@@ -9,17 +9,16 @@ app.use(express.static('public'));
 
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "root",
-  password: "azhar",
-  database : 'truskendb'
+var con = mysql.createConnection({  
+    host: "truskendb.cvq9vw8sfsww.us-east-1.rds.amazonaws.com",  
+    user: "trusken123",  
+    password: "qwerty1995",  
+    database : 'trusken'
 });
-
-// con.connect(function(err) {
-  // if (err) throw err;
-  // console.log("Connected!");
-// });
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
  
 
 var server = app.listen(80,function () {
