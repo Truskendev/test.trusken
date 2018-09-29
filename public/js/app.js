@@ -1,5 +1,11 @@
 
 let userNameToDisplay=''
+function isValidEmail(emailAddress) {
+	var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+
+	return pattern.test(emailAddress);
+
+}
 
 function login(){
 	 let loginData=
@@ -7,8 +13,15 @@ function login(){
 	 loginName:$('#uname').val(),
 	 loginPass:$('#passw').val()
 	}
+	if (isValidEmail(loginData['loginName']) && (loginData['loginPass'].length > 1)) {
+
 	$.post( "/loginUser",loginData,function(response) {
 		log(response);
+		if(response.user_id =="User name not found!"){ alert("invalid user name pasword")}
+		else{
+		userID=response.guid
+		window.location=response.redirectUrl+'?'+userID
+		}
 	  })
 		.done(function() {
 		  log( "second success" );
@@ -20,8 +33,13 @@ function login(){
 		  log( "finished" );
 		});
 	
+	}
+	else {
+	
+	$('#loginForm .input-error').delay(500).fadeIn(1000);
+	$('#loginForm .input-success').fadeOut(500);
+	}
 }
-
 const log=console.log
 
 function registerUser(){
@@ -31,7 +49,7 @@ let userData={
 	 regEmail:$('#emaile').val(),
 	 regPass:$('#regpass').val()
 	}
-	 
+	if (isValidEmail(userData['regEmail']) && (userData['regUsr'].length > 1)&& (userData['regPass'].length > 1)) {
 	$.post( "/registerNewUser",userData,function(response) {
 		log(response.redirectUrl);
 		userID=response.guid
@@ -47,7 +65,11 @@ let userData={
 		.always(function() {
 		  log( "finished" );
 		});
-
+	}
+	else{
+		$('#loginForm .input-error').delay(500).fadeIn(1000);
+		$('#loginForm .input-success').fadeOut(500);
+	}
 }
 
 
@@ -120,6 +142,7 @@ $('input[name="employmentType"]:checked').each(function() {
 		selectedworkexp:selectedworkexp,
 	  uid:window.location.href.split('?')[1]
 	}
+	if (isValidEmail(workData['managerEmail']) && (workData['companyName'].length > 1) && (workData['workstartYear'].length > 1) && (workData['workEndYear'].length > 1) && (workData['workTitle'].length > 1) && (workData['empdesc'].length > 1)) {
 	$.post( "/addWorkExData",workData,function(response) {
 		log(response.redirectUrl);
 		userID=response.uid
@@ -135,7 +158,10 @@ $('input[name="employmentType"]:checked').each(function() {
 		.always(function() {
 		  log( "finished" );
 		});
-
+	}
+	else{
+		alert("please fill in the data")
+	}
 
 }
 
@@ -154,6 +180,7 @@ function addEducation(){
 		
 	  uid:window.location.href.split('?')[1]
 	}
+	if (isValidEmail(eduData['eduInstut']) && (eduData['edustartYear'].length > 1) && (eduData['degreeCertificate'].length > 1) && (eduData['eduEndYear'].length > 1) ) {
 	$.post( "/addEducationData",eduData,function(response) {
 		log(response.redirectUrl);
 		userID=response.uid
@@ -169,7 +196,10 @@ function addEducation(){
 		.always(function() {
 		  log( "finished" );
 		});
-
+	}
+	else{
+		alert("fill in the data");
+	}
 
 }
 function loadEmploymentDetails(uid){
@@ -209,7 +239,7 @@ function loadEducationDetails(uid){
 		// window.location=response.redirectUrl+'?'+userID
 		$('#userNameDisplay').text(response[0].user_name)
 		$('#educationalInstitute').text(response[0].org_id)
-		$('#degree').text(response[0].Degree)
+		$('#degree').text(response[0].degree)
 		$('#specality').text(response[0].specialization)
 		$('#membershipNumber').text(response[0].mem_num)
 		

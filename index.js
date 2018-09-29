@@ -92,7 +92,7 @@ app.post('/loginUser',(request,response)=>{
     console.log(JSON.stringify(request.body))
     // let guid=guidGenerator()
     //var sql = "INSERT INTO user (user_id,user_name, user_email,password) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"')";
-    var sql ="SELECT user_name from user where email_id='"+request.body.loginName+"' AND password='"+request.body.loginPass+"'"
+    var sql ="SELECT user_id from user where email_id='"+request.body.loginName+"' AND password='"+request.body.loginPass+"'"
     con.query(sql, function (error, results, fields) {
         if (error) 
         {
@@ -104,11 +104,12 @@ app.post('/loginUser',(request,response)=>{
             console.log('The solution is: ', JSON.stringify(results))
             if(results.length===1)
             {
-                response.status(200).send(results[0])
+                //response.status(200).send(results[0])
+                return response.send({guid:results[0].user_id,redirectUrl: "/lumino/home.html"} );
             }
             else
             {
-                response.status(200).send({user_name:"User name not found!"})
+                response.status(200).send({user_id:"User name not found!"})
             }
         }
         
