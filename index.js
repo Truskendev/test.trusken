@@ -10,10 +10,10 @@ app.use(express.static('public'));
 var mysql = require('mysql');
 
 var con = mysql.createConnection({  
-    host: "truskendb.cvq9vw8sfsww.us-east-1.rds.amazonaws.com",  
+    host: "truskendb.cyoekoc1b5ex.us-east-2.rds.amazonaws.com",  
     user: "trusken123",  
     password: "qwerty1995",  
-    database : 'trusken'
+    database : 'truskendb'
 });
 con.connect(function(err) {
   if (err) throw err;
