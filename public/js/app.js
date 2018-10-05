@@ -17,7 +17,7 @@ function login(){
 
 	$.post( "/loginUser",loginData,function(response) {
 		log(response);
-		if(response.user_id =="User name not found!"){ alert("invalid user name pasword")}
+		if(response.status== 200){ alert(response.user_id)}
 		else{
 		userID=response.guid
 		window.location=response.redirectUrl+'?'+userID

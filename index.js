@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
+var mailer=require('./mailer')
 app = express();
 app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.json());
@@ -38,7 +38,20 @@ var server = app.listen(3000,'127.0.0.1' ,function () {
 app.get('/', function (request, response) {  
      response.sendFile( __dirname + "/public/" + "index.html" );
 });
-
+app.get('/verification', function (request, response) {
+  var uid=request.query.uid
+  var sql = "UPDATE user SET is_verified=1 where user_id='"+uid+"'";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500)
+        }
+        else{
+            response.sendFile( __dirname + "/public/" + "verification.html" )
+        }
+    })
+})
 app.post('/registerNewUser',(request,response)=>{
     console.log(JSON.stringify(request.body))
     let guid=guidGenerator()
@@ -51,8 +64,20 @@ app.post('/registerNewUser',(request,response)=>{
         }
         // console.log('The solution is: ', JSON.stringify(results));
         else{
-            //response.status(200).send({message:'Inserted'})
-            return response.send({guid:guid,redirectUrl: "/lumino/profile.html"} );
+            response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+
+            let content=mailer.getMailTemplate(guid,request.body.regUsr)
+            mailer.sendMail(request.body.regEmail,'Trusken Registration Verification',content,(res) => {
+                if(res.status == 200)
+                {
+                    console.log("mail success")
+                }
+                else
+                {
+                    response.status(500).json('Failed to send mail');
+                }
+            })
+            
         }
         
       })
@@ -100,7 +125,7 @@ app.post('/loginUser',(request,response)=>{
     console.log(JSON.stringify(request.body))
     // let guid=guidGenerator()
     //var sql = "INSERT INTO user (user_id,user_name, user_email,password) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"')";
-    var sql ="SELECT user_id from user where email_id='"+request.body.loginName+"' AND password='"+request.body.loginPass+"'"
+    var sql ="SELECT user_id,is_verified from user where email_id='"+request.body.loginName+"' AND password='"+request.body.loginPass+"'"
     con.query(sql, function (error, results, fields) {
         if (error) 
         {
@@ -112,6 +137,9 @@ app.post('/loginUser',(request,response)=>{
             console.log('The solution is: ', JSON.stringify(results))
             if(results.length===1)
             {
+                if(!results[0].is_verified){
+                   return response.status(200).send({status:200,user_id:"Please verify your account!"})
+                }
                 //response.status(200).send(results[0])
                 var sql1 ="SELECT * from workex where user_id='"+results[0].user_id+"'"
                 con.query(sql1, function (error, results1, fields) {
@@ -134,7 +162,7 @@ app.post('/loginUser',(request,response)=>{
             }
             else
             {
-                response.status(200).send({user_id:"User name not found!"})
+                response.status(200).send({status:200,user_id:"User name not found!"})
             }
         }
         
