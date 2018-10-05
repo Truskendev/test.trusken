@@ -129,11 +129,17 @@ function addWorkex(){
 $('input[name="employmentType"]:checked').each(function() {
 	selectedworkexp.push(this.value);
 });
+	stMonth=$(".stMonth option:selected").val();
+	stYear=$(".stYear option:selected").val();
+
+	enMonth=$(".enMonth option:selected").val();
+	enYear=$(".enYear option:selected").val();
+
 	let workData={
 		workTitle:$('#workTitle').val(),
 		companyName:$('#companyName').val(),
-		workstartYear:$('#workstartYear').val(),
-		workEndYear:$('#workEndYear').val(),
+		workstartYear:stMonth+"/"+stYear,
+		workEndYear:enMonth+"/"+enYear,
 		employeeNumber:$('#employeeNumber').val(),
 		managerNumber:$('#managerNumber').val(),
 		managerEmail:$('#managerEmail').val(),
@@ -142,7 +148,7 @@ $('input[name="employmentType"]:checked').each(function() {
 		selectedworkexp:selectedworkexp,
 	  uid:window.location.href.split('?')[1]
 	}
-	if (isValidEmail(workData['managerEmail']) && (workData['companyName'].length > 1) && (workData['workstartYear'].length > 1) && (workData['workEndYear'].length > 1) && (workData['workTitle'].length > 1) && (workData['empdesc'].length > 1)) {
+	if ((workData['companyName'].length > 1) && (workData['workstartYear'].length > 1) && (workData['workEndYear'].length > 1) && (workData['workTitle'].length > 1))  {
 	$.post( "/addWorkExData",workData,function(response) {
 		log(response.redirectUrl);
 		userID=response.uid
@@ -172,7 +178,7 @@ function addEducation(){
 		eduInstut:$('#eduInstut').val(),
 		degreeCertificate:$('#degreeCertificate').val(),
 		edustartYear:$('#edustartYear').val(),
-		eduEndYear:$('#workEndYear').val(),
+		eduEndYear:$('#eduEndYear').val(),
 		speciality:$('#speciality').val(),
 		memNumber:$('#memNumber').val(),
 		
@@ -180,7 +186,7 @@ function addEducation(){
 		
 	  uid:window.location.href.split('?')[1]
 	}
-	if (isValidEmail(eduData['eduInstut']) && (eduData['edustartYear'].length > 1) && (eduData['degreeCertificate'].length > 1) && (eduData['eduEndYear'].length > 1) ) {
+	if ((eduData['eduInstut'].length > 1) && (eduData['edustartYear'].length > 1) && (eduData['degreeCertificate'].length > 1) && (eduData['eduEndYear'].length > 1) ) {
 	$.post( "/addEducationData",eduData,function(response) {
 		log(response.redirectUrl);
 		userID=response.uid
@@ -212,8 +218,8 @@ function loadEmploymentDetails(uid){
 		$('#jobTitle').text(response[0].job_title_id)
 		$('#companyName').text(response[0].org_id)
 		$('#empNumber').text(response[0].emp_num)
-		$('#managerName').text(response[0].mgr_name)
-		$('#managerEmail').text(response[0].mgr_email)
+		$('#startDate').text(response[0].start_date)
+		$('#endDate').text(response[0].end_date)
 		$('#workDescription').text(response[0].desc_work)
 		$('#employmentType').text(response[0].emp_type_id)
 		
@@ -240,8 +246,8 @@ function loadEducationDetails(uid){
 		$('#userNameDisplay').text(response[0].user_name)
 		$('#educationalInstitute').text(response[0].org_id)
 		$('#degree').text(response[0].degree)
-		$('#specality').text(response[0].specialization)
-		$('#membershipNumber').text(response[0].mem_num)
+		$('#startDdate').text(response[0].start_year)
+		$('#endDdate').text(response[0].end_year)
 		
 		
 		
@@ -264,3 +270,33 @@ function redir(uid){
 function redirEducation(uid){
 	window.location="education.html"+'?'+uid
 }
+function redirectHome(){
+
+
+var uid=window.location.href.split('?')[1]
+window.location="home.html?"+uid
+}
+// $(document).ready(function(){
+
+// 	$(".monthPicker").datepicker({
+// 	dateFormat: 'MM yy',
+// 	changeMonth: true,
+// 	changeYear: true,
+// 	showButtonPanel: true,
+
+// 	onClose: function(dateText, inst) {
+// 			var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+// 			var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+// 			$(this).val($.datepicker.formatDate('MM yy', new Date(year, month, 1)));
+// 	}
+// });
+
+// $(".monthPicker").focus(function () {
+// 	$(".ui-datepicker-calendar").hide();
+// 	$("#ui-datepicker-div").position({
+// 			my: "center top",
+// 			at: "center bottom",
+// 			of: $(this)
+// 	});
+// });
+// });

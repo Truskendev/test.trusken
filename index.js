@@ -9,19 +9,27 @@ app.use(express.static('public'));
 
 var mysql = require('mysql');
 
-var con = mysql.createConnection({  
-    host: "truskendb.cyoekoc1b5ex.us-east-2.rds.amazonaws.com",  
-    user: "trusken123",  
-    password: "qwerty1995",  
-    database : 'truskendb'
+var con = mysql.createConnection({
+  host: "truskendb.cyoekoc1b5ex.us-east-2.rds.amazonaws.com",
+  user: "trusken123",
+   password: "qwerty1995",
+   database : 'truskendb'
+
+// host: "localhost",
+//    user: "root",
+//    password: "azhar",
+//    database : 'truskendb'
+
+
 });
+
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 });
  
 
-var server = app.listen(80,function () {
+var server = app.listen(3000,'127.0.0.1' ,function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Server listening at http://%s:%s", host, port)
@@ -105,7 +113,24 @@ app.post('/loginUser',(request,response)=>{
             if(results.length===1)
             {
                 //response.status(200).send(results[0])
-                return response.send({guid:results[0].user_id,redirectUrl: "/lumino/home.html"} );
+                var sql1 ="SELECT * from workex where user_id='"+results[0].user_id+"'"
+                con.query(sql1, function (error, results1, fields) {
+                        if (error) 
+                        {
+                            response.status(500).send({error:error})
+                        }
+                        else{
+                           if(results1.length===1) {
+                           
+                            return response.send({guid:results[0].user_id,redirectUrl: "/lumino/home.html"} );
+                           }else{
+                            
+                            return response.send({guid:results[0].user_id,redirectUrl: "/lumino/addExp.html"} );
+                           }
+                            
+                        }
+                    })
+                
             }
             else
             {
@@ -142,7 +167,7 @@ app.post('/addEducationData',(request,response)=>{
     console.log(JSON.stringify(request.body))
     let guid=guidGeneratorEducation()
    uid=request.body.uid
-    var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.workEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"')";
+    var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.eduEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"')";
     
     con.query(sql, function (error, results, fields) {
         if (error) 

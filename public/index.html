@@ -30,7 +30,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="images/ts.png">
+    <link rel="icon" href="images/tts.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/icon-114x114.png">
@@ -93,7 +93,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home_bootstrap_onepage.html" >
+                <a class="navbar-brand" href="index.html" >
 				<!-- <h3 style="color:#fff; margin-top:0px;">TRUSKEN</h3> -->
 				<img src="images/ts1.png" style="width:200px; height:50px;">
 				</a>
@@ -106,8 +106,8 @@
                     <!-- <li><a href="#cps-faq">Use Cases</a></li> -->
                     <!-- <li><a href="#cps-faq   #cps-team">FAQ</a></li> -->
 					  <a type="button" class="btn btn-white" data-toggle="modal" data-target="#myModal" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" >LOGIN</a>
-					  
-                    <a href="#subscription-area" class="btn btn-white" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" >CORPRATE</a>
+					  <a type="button" class="btn btn-white" data-toggle="modal" data-target="#myModal1" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" >SIGNUP</a>
+                    
 					
 
                 </ul>
@@ -116,29 +116,34 @@
     </nav>
     <!-- Header End -->
     <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog" >
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="border-bottom: none;">
+            <img src="images/ts1.png" style="width:200px; height:50px; margin-left: 20%;" >
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">LOGIN</h4>
+        
       </div>
       <div class="modal-body">
         
                 <div class="row">
                     <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
+                            <img src="images/sin.png" style="width:210px; height:40px;" onclick="alert('comming soon')">
+                            <h5 style="text-align:center; color:#bdc3c7">OR</h5>
                         <form id="loginForm" class="account-form">
-                            <input type="text" id="uname" name="username" placeholder="User Name" required>
+                               
+                            <input type="text" id="uname" name="username" placeholder="User Email" required>
                             <input type="password" id="passw" name="password" placeholder="Password" required>
                             <!-- <label class=""><input type="radio" name="remember-pass"> Remember Password</label></br> -->
                          <!-- <a  class="btn" onclick="redirect()" >Sign in</a> -->
-						 <input type="button" class="btn btn-white" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" onclick="login()" value="Login">
+						 <input type="button" class="btn btn-white" style="background-color:#0B4CFF;color:#fff; border-radius:21px; font-weight: bolder;  border:#0B4CFF;" onclick="login()" value="Login">
                          <!-- <a  class="btn btn-white" type="submit"  style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" >LOGIN</a> -->
                          <p class="input-error">Please fill in the details</p>
                         </form>
 							  <!-- <button class="account-form" href="registration.html" >sign in </button> -->
-                        click here to <a href="registration-10.html">signup</a>
+                        Do not have Login?
+                         <a type="button" data-toggle="modal" data-target="#myModal1" data-dismiss="modal" href><b>Signup</b></a>
                         
                         <!-- <div class="text-center or-section">
                             Or
@@ -160,6 +165,73 @@
 
   </div>
 </div>
+
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="border-bottom: none;">
+                <img src="images/ts1.png" style="width:200px; height:50px; margin-left: 20%;" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+        </div>
+        <div class="modal-body">
+          
+                  <div class="row">
+                      <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
+                          <img src="images/sin.png" style="width:210px; height:40px;" onclick="alert('comming soon')">
+                          <h5 style="text-align:center; color:#bdc3c7">OR</h5>
+                          
+                         
+                          <form id="loginForm" class="account-form registration-form">
+                                <input type="text" id="namew" name="name" placeholder="Name" required>
+                                <!-- <input type="text" name="lname" placeholder="Last Name" required> -->
+                                <input type="email" id="emaile" name="email" placeholder="Your Email" required>
+                              
+                                <input type="password" id="regpass" name="password" placeholder="Password" required>
+                                
+                                <!-- <div class="gender-inputs"> -->
+                                    <!-- I am -->
+                                    <!-- <label><input type="radio" name="gender" value="male"> Male</label> -->
+                                    <!-- <label><input type="radio" name="gender" value="female"> Female</label> -->
+                                    <!-- <label><input type="radio" name="gender" value="others"> Others</label> -->
+                                <!-- </div> -->
+                                <input type="checkbox" name="agreement" id="">Accept User Agreement and Privacy Policy<br>
+                                <input type="checkbox" name="corporateUser" id="">Corporate Account(Check this only if you want to be a corporate user)
+                                <input type="button" onclick="registerUser()" class="btn btn-white" style="background-color:#0B4CFF;border-radius:21px; font-weight: bolder; color:#fff; font-size:15px; border:#0B4CFF;" value="Sign In">
+
+                                <!-- <button type="button" onclick="registerUser()" class="btn btn-white" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;">Sign in</button> -->
+                                
+                                <p class="input-error">Please fill in the details</p>
+                            </form>
+                            Do you already have a Login?
+                            <a type="button" data-toggle="modal" data-target="#myModal" data-dismiss="modal" href ><b>Login</b></a>
+                           
+                                <!-- <button class="account-form" href="registration.html" >sign in </button> -->
+                          <!-- click here to 
+                           <a type="button" class="btn btn-white" style="background-color:#0B4CFF;color:#fff; border:none" href="registration-10.html">signup</a>
+                           -->
+                          <!-- <div class="text-center or-section">
+                              Or
+                          </div> -->
+                          <div class="login-with-social">
+                              <!-- <a class="gplus-login" href="#"><i class="fa fa-google-plus"></i> Sign in via Google Plus</a> -->
+                              <!-- <a class="facebook-login" href="#"><i class="fa fa-facebook"></i> Sign in via Facebook</a> -->
+                              <!-- <a class="twitter-login" href="#"><i class="fa fa-linkedin"></i> Sign in via LinkDN</a> -->
+                          </div>
+                      </div>
+                  </div>
+             
+        </div>
+  
+        <!-- <div class="modal-footer"> -->
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <!-- </div> -->
+      </div>
+  
+    </div>
+  </div>
     <!-- Banner -->
     <div class="cps-banner style-8" id="banner">
         <div class="cps-banner-item cps-banner-item-11">
@@ -191,6 +263,18 @@
                                 <p class="newsletter-success"></p>
                                 <p class="newsletter-error"></p>
                             </form> -->
+                            <div><a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81vg12i7e078ut&redirect_uri=https%3A%2F%2Fwww.example.com%2Fauth%2Flinkedin&state=987654321&scope=r_basicprofile" rel="nofollow" target="_blank"><img src="images/sin.png" style="width:240px; height:40px;" onclick="alert('comming soon')"></a></div>
+                        </br>
+							
+                        <h6 style="text-align:left">OR</h6>
+                        <form id="subscription"  class="" style="" >
+                            <input type="email" style="background-color:#ffffff; border:none; width: 240px; border-radius:0px" name="email" placeholder="Your email here">
+                            <input type="password" style="background-color:#ffffff; border:none; width:240px; border-radius:0px" name="password" placeholder="Password">
+                            <button type="button" class="btn btn-white"style="background-color:rgb(209,174,79);color:#0B4CFF; font-size:18px; border-radius:0px" ><b>GO</b></button>
+                            <div class="clearfix"></div>
+                            <p class="newsletter-success"></p>
+                            <p class="newsletter-error"></p>
+                        </form>
                         </div>
                         </div>
                     </div>
@@ -567,7 +651,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 text-center">
-                        <ul class="footer-menu">
+                        <ul class="footer-menu" style="font-size:20px;">
                             <!-- <li><a href="#">Pricing</a></li> -->
                             <!-- <li><a href="#">Career</a></li> -->
                             <li><a href="#">About</a></li>
@@ -576,9 +660,9 @@
                             <li><a href="#">Contact</a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 text-center">
-                        <p class="copyright">Copyright 2018, <a href="#">TRUSKEN</a>. All Rights Reserved</p>
-						<p>Designed By <a href="www.gamiac.in">Gamiac Studios</a></p>
+                    <div class="col-xs-12 text-center" >
+                        <p style="font-size:14px;" class="copyright">Copyright 2018, <a style="font-size:14px;" href="#">TRUSKEN</a>. All Rights Reserved</p>
+						<p style="font-size:14px;">Designed By <a style="font-size:14px;" href="www.gamiac.in">Gamiac Studios</a></p>
                     </div>
                 </div>
             </div>
