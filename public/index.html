@@ -30,7 +30,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" href="images/tts.png">
+    <link rel="icon" href="images/tts.png" >
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/icon-114x114.png">
@@ -39,6 +39,17 @@
         <script src="assets/js/html5shiv.min.js"></script>
         <script src="assets/js/respond.min.js"></script>
     <![endif]-->
+
+    
+	
+	<style type="text/css">
+		
+		
+	</style>
+	<script type="text/javascript">
+		
+	</script>
+
 	<style>
 	.accordion {
     background-color: #ffffff;
@@ -84,7 +95,7 @@
 <body>
    
     <!-- Header -->
-    <nav class="navbar navbar-default style-7"  data-spy="affix" data-offset-top="60">
+    <nav class="navbar navbar-default style-7"   data-spy="affix" data-offset-top="60">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
@@ -93,9 +104,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" >
+                <a class="navbar-brand leftOrient" href="index.html" >
 				<!-- <h3 style="color:#fff; margin-top:0px;">TRUSKEN</h3> -->
-				<img src="images/ts1.png" style="width:200px; height:50px;">
+				<img src="images/ts1.png"  style="width:200px; height:50px; ">
 				</a>
             </div>
 
@@ -107,7 +118,7 @@
                     <!-- <li><a href="#cps-faq   #cps-team">FAQ</a></li> -->
 					  <a type="button" class="btn btn-white" data-toggle="modal" data-target="#myModal" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" >LOGIN</a>
 					  <a type="button" class="btn btn-white" data-toggle="modal" data-target="#myModal1" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" >SIGNUP</a>
-                    
+                      <!-- <a type="button" class="btn btn-white" data-toggle="modal" data-target="#myModal2" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" onclick="init_Sign_Canvas()" >fdf</a> -->
 					
 
                 </ul>
@@ -121,7 +132,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header" style="border-bottom: none;">
-            <img src="images/ts1.png" style="width:200px; height:50px; margin-left: 20%;" >
+            <img src="images/ts1.png"  style="width:200px; height:50px; margin-left: 20%;" >
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         
       </div>
@@ -129,7 +140,7 @@
         
                 <div class="row">
                     <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
-                            <img src="images/sin.png" style="width:210px; height:40px;" onclick="alert('comming soon')">
+                            <img src="images/sin.png" class="LinkDNr" style=" height:40px;" onclick="signupLinkdn()">
                             <h5 style="text-align:center; color:#bdc3c7">OR</h5>
                         <form id="loginForm" class="account-form">
                                
@@ -180,7 +191,7 @@
           
                   <div class="row">
                       <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
-                          <img src="images/sin.png" style="width:210px; height:40px;" onclick="alert('comming soon')">
+                          <img src="images/sin.png" style="width:210px; height:40px;" onclick="signupLinkdn()">
                           <h5 style="text-align:center; color:#bdc3c7">OR</h5>
                           
                          
@@ -197,9 +208,9 @@
                                     <!-- <label><input type="radio" name="gender" value="female"> Female</label> -->
                                     <!-- <label><input type="radio" name="gender" value="others"> Others</label> -->
                                 <!-- </div> -->
-                                <input type="checkbox" name="agreement">Accept User Agreement and Privacy Policy<br>
+                                <input type="checkbox" required name="agreement">Accept User Agreement and Privacy Policy<br>
                                 <input type="checkbox" name="corporateUser">Corporate Account(Check this only if you want to be a corporate user)
-                                <input type="button" onclick="registerUser()" class="btn btn-white" style="background-color:#0B4CFF;border-radius:21px; font-weight: bolder; color:#fff; font-size:15px; border:#0B4CFF;" value="Sign In">
+                                <input type="button" data-toggle="modal" data-target="#myModal2"  class="btn btn-white" style="background-color:#0B4CFF;border-radius:21px; font-weight: bolder; color:#fff; font-size:15px; border:#0B4CFF;" value="Sign In">
 
                                 <!-- <button type="button" onclick="registerUser()" class="btn btn-white" style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;">Sign in</button> -->
                                 
@@ -222,6 +233,44 @@
                           </div>
                       </div>
                   </div>
+             
+        </div>
+  
+        <!-- <div class="modal-footer"> -->
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <!-- </div> -->
+      </div>
+  
+    </div>
+  </div>
+  
+  <div id="myModal2" class="modal fade" role="dialog"  >
+    <div class="modal-dialog">
+        
+            
+      <!-- Modal content-->
+      <div class="modal-content" style="width:550px;">
+        <div class="modal-header" style="border-bottom: none;">
+            
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+      </div>
+        <div class="modal-body" id="mdl-bdy">
+          
+            <div data-role="header" data-theme="b">
+                
+                <p class="">Signature Here</p>
+            </div>
+            <div class="ui-content popUpHeight">
+                <div id="div_signcontract">
+                    <canvas id="canvas">Canvas is not supported</canvas>
+                    <div>
+                            
+                        <input id="btnSubmitSign" type="button" class="btn btn-white" style="background-color:#0B4CFF;border-radius:21px; font-weight: bolder; color:#fff; font-size:15px; border:#0B4CFF;" value="Submit Sign" onclick="fun_submit()" />
+                        <input id="btnClearSign" type="button" class="btn btn-white" style="background-color:#0B4CFF;border-radius:21px; font-weight: bolder; color:#fff; font-size:15px; border:#0B4CFF;" value="Clear"  onclick="init_Sign_Canvas()" />
+                    </div>
+                </div>	
+            </div>  
              
         </div>
   
@@ -263,18 +312,19 @@
                                 <p class="newsletter-success"></p>
                                 <p class="newsletter-error"></p>
                             </form> -->
-                            <div><a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81vg12i7e078ut&redirect_uri=https%3A%2F%2Fwww.example.com%2Fauth%2Flinkedin&state=987654321&scope=r_basicprofile" rel="nofollow" target="_blank"><img src="images/sin.png" style="width:240px; height:40px;" onclick="alert('comming soon')"></a></div>
+                            <div><img src="images/sin.png"  style="width:240px; height:40px;" onclick="signupLinkdn()"></div>
                         </br>
 							
-                        <h6 style="text-align:left">OR</h6>
-                        <form id="subscription"  class="" style="" >
-                            <input type="email" style="background-color:#ffffff; border:none; width: 240px; border-radius:0px" name="email" placeholder="Your email here">
-                            <input type="password" style="background-color:#ffffff; border:none; width:240px; border-radius:0px" name="password" placeholder="Password">
-                            <button type="button" class="btn btn-white"style="background-color:rgb(209,174,79);color:#0B4CFF; font-size:18px; border-radius:0px" ><b>GO</b></button>
+                        <h6 style="text-align:center; margin-left: -50px;">OR</h6>
+                        <form id="subscription"  class="sm-text-center"  >
+                            <input type="email" class="sm-text-center" id="unameq" style="text-align:left; background-color:#ffffff; border:none; width: 240px; border-radius:0px" name="email" placeholder="Your email here">
+                            <input type="password" class="sm-text-center" id="passwq" style="text-align:left; background-color:#ffffff; border:none; width:240px; border-radius:0px" name="password" placeholder="Password">
+                            <input type="button" onclick="loginHom()" class="btn btn-white"style="background-color:rgb(209,174,79);color:#0B4CFF; width:100px;       font-size:18px; border-radius:0px"   value="GO">
                             <div class="clearfix"></div>
                             <p class="newsletter-success"></p>
                             <p class="newsletter-error"></p>
                         </form>
+                        
                         </div>
                         </div>
                     </div>
@@ -316,7 +366,6 @@
                     <div class="col-md-8 col-md-offset-2 col-xs-12">
                         <div class="cps-section-header text-center">
                             <h3 class="cps-section-title">Why Trusken ?
-
 </h3>
                             <p class="cps-section-text">Professional profile authenticity is the biggest problem during the hiring process.
 						</p>
@@ -325,13 +374,15 @@
                 </div>
 				 <div class="row">
 				<div class="cps-section-header text-center">
-                            <h3 class="cps-section-title">For Professionals</h3>
-                            <p class="cps-section-text">Improve your professional profile and credibility by getting your Trusken Badge.
+                            <h3 class="cps-section-title">For Professionals
+
+                            </h3>
+                            <p class="cps-section-text">Improve your professional profile and<br> credibility by getting your Trusken Badge.
 						</p>
                         </div>
                     <div class="cps-services">
                         <div class="col-md-6 col-xs-6">
-						<img src="images/asas.jpg" style="height:350px; width:100%">
+						<img src="images/asas.jpg" style="height:350px; width:100%"><br><br>
                             <!-- <div class="cps-service text-center"> -->
                                 <!-- <div class="cps-service-icon"> -->
                                     <!-- <span class="ti-harddrives"></span> -->
@@ -354,8 +405,9 @@
 				</div>
 				 <div class="row">
 				<div class="cps-section-header text-center">
+                    <br>
                             <h3 class="cps-section-title">For Corporates</h3>
-                            <p class="cps-section-text">A professional having a Trusken Badge & Certificate can  be trusted.
+                            <p class="cps-section-text">A professional having a Trusken Badge <br>& Certificate can  be trusted.
                         </div>
 				</div>
 				
@@ -465,7 +517,7 @@
                         <div class="col-sm-3" style="height:319px!important;">
                             <div class="cps-service-box style-4" style="height:280px!important;">
                                 <div class="cps-service-icon">
-                                   <img src="images/fla.png" style="width:50%; height:50%">
+                                   <img src="images/fla.png" style="width:50%; height:50%;margin-top: 5px;">
                                 </div>
                                 <h5 class="cps-service-title">Freelancers</h5>&nbsp;&nbsp;&nbsp;
                              
@@ -475,9 +527,9 @@
                         <div class="col-sm-3">
                             <div class="cps-service-box style-4" style="height:280px!important;">
                                 <div class="cps-service-icon">
-                                   <img src="images/boo.png" style="width:50%; height:50%">
-                                </div><br>
-                                <h4 class="cps-service-title">Corporates</h4>
+                                   <img src="images/boo.png" style="width:50%; height:53%; margin-top: 10px;">
+                                </div>
+                                <h5 class="cps-service-title">Corporates</h5>
                               
                             </div>
 						 </div>

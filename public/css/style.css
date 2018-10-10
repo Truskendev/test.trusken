@@ -672,7 +672,7 @@ font-family: 'Ubuntu', sans-serif;
   margin-right: -15px;
 }
 .navbar-default.affix {
-  min-height: 60px;
+  min-height: 65px;
   background-color: #ffffff;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -4232,7 +4232,7 @@ textarea {
   border-radius: 18px;
   resize: none;
   margin-bottom: 10px;
-  padding: 0 30px;
+  padding: 0 8px;
 }
 .cps-theme-bg input:not([type=submit]):not([type=radio]):not([type=checkbox]), .cps-gradient-bg input:not([type=submit]):not([type=radio]):not([type=checkbox]), .cps-theme-bg
 select, .cps-gradient-bg
@@ -4508,7 +4508,7 @@ textarea {
 .account-form input:not([type=submit]):not([type=radio]):not([type=checkbox]),
 .account-form select,
 .account-form textarea {
-  padding: 5px 30px;
+  padding: 5px 8px;
   border-radius: 3px;
   border-color: rgba(38, 38, 38, 0.33);
   margin-bottom: 20px;

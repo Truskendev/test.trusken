@@ -20,10 +20,10 @@
 	<nav class="navbar navbar-custom navbar-fixed-top" style="background-color:#fff;" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+				<!-- <button type="button" style="background-color:#0B4CFF" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span></button>
+					<span class="icon-bar"></span></button> -->
 				<a class="navbar-brand" onclick="redirectHome();"><span><img src="../images/ts1.png" style="width:200px; height:50px; margin-top: -14px;"></span></a>
 				<ul class="nav navbar-top-links navbar-right">
 					
@@ -66,14 +66,14 @@
 				</div>
 		<div class="divider"></div>
 		<br>
-		<a class="btn" onclick="$('#sidebar-collapse').fadeOut()">&nbsp;&nbsp;<em class="fa fa-arrow-left" style="font-size:20px;" ></em>	</a>
+		<a class="btn" onclick="$('#sidebar-collapse').fadeOut()">&nbsp;&nbsp;<em class="fa fa-navicon" style="font-size:20px;" ></em>	</a>
 		<ul class="nav menu">
-			<li><a href onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li>
+			<li><a  onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li>
 			
-			<li><a href onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li>
-			<li ><a href="#"><em class="fa fa-sitemap">&nbsp;</em> Job Board</a></li>
-			<li ><a href="#"><em class="fa fa-id-badge">&nbsp;</em> My Badge</a></li>	
-			<li ><a href="#"><em class="fa fa-book">&nbsp;</em> I Trust </a></li>	
+			<li><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li>
+			<!-- <li ><a href="#"><em class="fa fa-sitemap">&nbsp;</em> Job Board</a></li>
+			<li ><a href="#"><em class="fa fa-id-badge">&nbsp;</em> My Badge</a></li>	 -->
+			<!-- <li ><a href="#"><em class="fa fa-book">&nbsp;</em> I Trust </a></li>	 -->
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-navicon">&nbsp;</em> Fun Zone <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
@@ -90,7 +90,7 @@
 			<li><a href="../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
 	</div><!--/.sidebar-->
-	<a class="btn" onclick="$('#sidebar-collapse').fadeIn()">&nbsp;&nbsp;<em class="fa fa-navicon" style="font-size:20px; float: left; width: 10px;;" ></em>	</a>
+	<a class="btn" onclick="$('#sidebar-collapse').toggle()">&nbsp;&nbsp;<em class="fa fa-navicon" style="font-size:20px; float: left; width: 10px;;" ></em>	</a>
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row"  >
 				

@@ -1,11 +1,19 @@
+
+
 @media screen and (max-width: 1820px) {
   .cps-banner.style-6 .cps-banner-image img {
     width: 700px;
+  }
+  .leftOrient{
+    margin-left:-100px;
   }
 }
 @media screen and (max-width: 1599px) {
   .cps-banner.style-4 .cps-banner-image img {
     max-width: 1170px;
+  }
+  .leftOrient{
+    margin-left:-50px;
   }
 }
 /*** For media having less than 1200px width ***/
@@ -13,6 +21,13 @@
   footer .cps-footer-lower .footer-menu li + li {
     margin-left: 25px;
   }
+ 
+  .LinkDNr{
+    width: 210px;
+  }
+    .leftOrient{
+      margin-left:-50px;
+    }
 
   .cps-banner.style-9 .cps-banner-title {
     font-size: 4.8rem;
@@ -143,6 +158,18 @@
   .navbar-default .navbar-header {
     float: none;
   }
+
+
+#subscription  {
+  padding-left: 33.2%;
+}
+  
+
+  .leftOrient{
+    margin-left:-20px;
+  }
+
+
   .navbar-default .navbar-left,
   .navbar-default .navbar-right {
     float: none !important;
@@ -619,6 +646,16 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
+  .LinkDNr{
+    width: 148px;
+  }
+
+  #subscription  {
+    padding-left: 32%;
+  }
+  .leftOrient{
+    margin-left:-10px;
+  }
   .navbar-default .navbar-toggle.collapsed {
     background-color: transparent;
   }
@@ -904,6 +941,9 @@
   .instruction-tabs .nav-tabs li {
     width: 100%;
   }
+  #subscription  {
+    padding-left: 28%;
+  }
 
   .cps-video-section {
     height: 300px;
@@ -997,12 +1037,17 @@
   .col-xs-6 {
     width: 100%;
   }
-
+  #subscription  {
+    padding-left: 24%;
+  }
   .cps-case-study {
     margin: 0 auto;
     max-width: 370px;
   }
 
+  .leftOrient{
+    margin-left:-20px;
+  }
   .cps-banner .cps-banner-item,
   .cps-banner .cps-banner-item .overlay {
     height: 460px !important;
@@ -1198,6 +1243,20 @@
     float: none;
   }
 
+  #myModal{
+
+    width: 400px;
+  }  
+  .LinkDNr{
+    width: 348px;
+  }
+
+  .leftOrient{
+    margin-left:0px;
+  }
+  #subscription  {
+    padding-left: 15%;
+  }
   .integrated-with-wrap.style-2 {
     margin-bottom: -15px;
   }
