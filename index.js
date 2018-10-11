@@ -155,7 +155,7 @@ app.get('/verification', function (request, response) {
             response.status(500)
         }
         else{
-            response.sendFile(  "http://test.trusken.com/public/" + "verification.html" )
+            response.sendFile(  __dirname +"public/" + "verification.html" )
         }
     })
 })
