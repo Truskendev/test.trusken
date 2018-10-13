@@ -61,7 +61,7 @@ requestPromiseAPI(requestbody).then((body)=>{
     requestPromiseAPI(requestData).then((body)=>{
        
         var loginName=JSON.parse(body)['emailAddress'] 
-        var sql ="SELECT user_id from user where email_id='"+loginName+"'"
+        var sql ="SELECT user_id,wexSubm,eduSub from user where email_id='"+loginName+"'"
         con.query(sql, function (error, results, fields) {
             if (error) 
             {
@@ -73,14 +73,22 @@ requestPromiseAPI(requestbody).then((body)=>{
                 console.log('The solution is: ', JSON.stringify(results))
                 if(results.length===1)
                 {
-                    response.redirect('/lumino/home.html?'+results[0].user_id)
+                    if(results[0]['wexSubm']==1)
+                    {
+                        if(results[0]['eduSub']==1)
+                        {
+                           return response.redirect('/lumino/home.html?'+results[0].user_id)
+                        }
+                        return response.redirect('/lumino/addEdu.html?'+results[0].user_id)
+                    }
+                    return response.redirect('/lumino/addExp.html?'+results[0].user_id)
                     // return response.send({guid:results[0].user_id,redirectUrl: "/lumino/home.html"} );
                 }else{
                     requestData.uri="https://api.linkedin.com/v1/people/~:(id,first-name,email-address,num-connections,formatted-name,site-standard-profile-request,api-standard-profile-request,public-profile-url,num-connections-capped,current-share,phonetic-first-name,phonetic-last-name,formatted-phonetic-name,last-name,headline,picture-url,industry,location,summary,specialties,positions:(id,title,summary,start-date,end-date,is-current,company:(id,name,type,size,industry,ticker)),educations:(id,school-name,field-of-study,start-date,end-date,degree,activities,notes),associations,interests,num-recommenders,date-of-birth,publications:(id,title,publisher:(name),authors:(id,name),date,url,summary),patents:(id,title,summary,number,status:(id,name),office:(name),inventors:(id,name),date,url),languages:(id,language:(name),proficiency:(level,name)),skills:(id,skill:(name)),certifications:(id,name,authority:(name),number,start-date,end-date),courses:(id,name,number),recommendations-received:(id,recommendation-type,recommendation-text,recommender),honors-awards,three-current-positions,three-past-positions,volunteer)?format=json"
                     requestPromiseAPI(requestData)
                     .then((body)=>{
                         processLinkedInData(body)
-                        response.redirect('/lumino/home.html?'+JSON.parse(body)['id'])
+                        response.redirect('/lumino/addExp.html?'+JSON.parse(body)['id'])
                     })
                     .catch((error)=>{
                         console.log(error)
@@ -278,10 +286,10 @@ app.post('/loginUser',(request,response)=>{
 
 
 app.post('/addWorkExData',(request,response)=>{
-    console.log(JSON.stringify(request.body))
-    let guid=guidGeneratorWork()
+
+    let guid=request.body.expID==='undefined'? guidGeneratorWork():request.body.expID
     uid=request.body.uid
-    var sql = "INSERT INTO workex (exp_id,job_title_id, start_date,end_date,emp_num,mgr_name,mgr_email,desc_work,org_id,emp_type_id,user_id) VALUES ('"+guid+"','"+request.body.workTitle+"', '"+request.body.workstartYear+"','"+request.body.workEndYear+"','"+request.body.employeeNumber+"','"+request.body.managerNumber+"','"+request.body.managerEmail+"','"+request.body.empdesc+"','"+request.body.companyName+"','"+request.body.selectedworkexp+"','"+request.body.uid+"')";
+    var sql = "INSERT INTO workex (exp_id,job_title_id, start_date,end_date,emp_num,mgr_name,mgr_email,desc_work,org_id,emp_type_id,user_id) VALUES ('"+guid+"','"+request.body.workTitle+"', '"+request.body.workstartYear+"','"+request.body.workEndYear+"','"+request.body.employeeNumber+"','"+request.body.managerNumber+"','"+request.body.managerEmail+"','"+request.body.empdesc+"','"+request.body.companyName+"','"+request.body.selectedworkexp+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE job_title_id='"+request.body.workTitle+"', start_date='"+request.body.workstartYear+"',end_date='"+request.body.workEndYear+"',emp_num='"+request.body.employeeNumber+"',mgr_name='"+request.body.managerNumber+"',mgr_email='"+request.body.managerEmail+"',desc_work='"+request.body.empdesc+"', org_id='"+request.body.companyName+"' , emp_type_id='"+request.body.selectedworkexp+"'";
     
     con.query(sql, function (error, results, fields) {
         if (error) 
@@ -291,18 +299,34 @@ app.post('/addWorkExData',(request,response)=>{
         // console.log('The solution is: ', JSON.stringify(results));
         else{
             //response.status(200).send({message:'Inserted'})
-            return response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+             response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
         }
         
       })
+      var sq="update user set wexSubm=1 where user_id='"+uid+"' and wexSubm=0"
+      con.query(sq, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            //response.status(200).send({message:'Inserted'})
+           // return response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+           console.log("Submitted!")
+        }
+        
+      })
+
 })  
 
 
 app.post('/addEducationData',(request,response)=>{
     console.log(JSON.stringify(request.body))
-    let guid=guidGeneratorEducation()
+    let guid=request.body.eduID==='undefined'? guidGeneratorEducation():request.body.eduID
+    
    uid=request.body.uid
-    var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.eduEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"')";
+    var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.eduEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE org_id='"+request.body.eduInstut+"',Degree='"+request.body.degreeCertificate+"', start_year='"+request.body.edustartYear+"',end_year='"+request.body.eduEndYear+"',specialization='"+request.body.speciality+"',mem_num='"+request.body.memNumber+"'";
     
     con.query(sql, function (error, results, fields) {
         if (error) 
@@ -313,6 +337,20 @@ app.post('/addEducationData',(request,response)=>{
         else{
             //response.status(200).send({message:'Inserted'})
             return response.send({uid:uid,redirectUrl: "/lumino/home.html"} );
+        }
+        
+      })
+      var sq="update user set eduSub=1 where user_id='"+uid+"' and eduSub=0"
+      con.query(sq, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            //response.status(200).send({message:'Inserted'})
+           // return response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+           console.log("Submitted!")
         }
         
       })
@@ -396,7 +434,7 @@ function processLinkedInData(body){
 
     let summary=linkedinData['summary']
     let num_connections=linkedinData['numConnections']
-    let positions=linkedinData['positions']
+    let positions=linkedinData['positions'].values;
     let formatted_name=linkedinData['formattedName']
     let phonetic_first_name=linkedinData['phoneticFirstName']
     let phonetic_last_name=linkedinData['phoneticLastName']
@@ -418,7 +456,29 @@ function processLinkedInData(body){
             console.log('The solution is: ', JSON.stringify(results));
         }
     })
-    var st= "INSERT INTO workex (exp_id,job_title_id, start_date,org_id,user_id) VALUES ('"+guid+"','"+ positions.values[1].title +"','"+positions.values[1].startDate.month+"/"+positions.values[1].startDate.year+"','"+positions.values[1].company.name+"','"+userId+"')";
+    for(var i=0;i<positions.length;i++){
+        let guid=guidGeneratorWork()
+        var st="INSERT INTO workex (exp_id,";
+        var st1="VALUES ('"+guid+"',";
+        if(typeof positions[i].title !="undefined"){
+        st+="job_title_id,"
+        st1+="'"+ positions[i].title +"',";
+        }
+        if(typeof positions[i].startDate !="undefined"){
+        st+="start_date,"
+        st1+="'"+ positions[i].startDate.month +"/";
+        st1+= positions[i].startDate.year +"',";
+        }
+        if(typeof positions[i].company !="undefined"){
+        st+="org_id,"
+        st1+="'"+ positions[i].company.name +"',";
+        }
+      
+        st+="user_id)";
+        st1 +="'"+userId+"')";
+     st=st+st1;
+    // positions.
+    // var st= "INSERT INTO workex (exp_id,job_title_id, start_date,org_id,user_id) VALUES ('"+guid+"','"+ positions.values[1].title +"','"+positions.values[1].startDate.month+"/"+positions.values[1].startDate.year+"','"+positions.values[1].company.name+"','"+userId+"')";
     con.query(st, function (error, results, fields) {
         if (error) 
         {
@@ -429,4 +489,5 @@ function processLinkedInData(body){
             console.log('The solution is: ', JSON.stringify(results));
         }
     })
+}
 }

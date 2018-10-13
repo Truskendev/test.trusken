@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +9,7 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
-	
+
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -16,16 +17,18 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 </head>
+
 <body>
 	<nav class="navbar navbar-custom navbar-fixed-top" style="background-color:#fff;" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span></button>
-					<a class="navbar-brand" ><span><img src="../images/ts1.png" style="width:200px; height:50px; margin-top: -14px;"></span></a>
-					
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span
+					 class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand"><span><img src="../images/ts1.png" style="width:200px; height:50px; margin-top: -14px;"></span></a>
+
 			</div>
 		</div><!-- /.container-fluid -->
 	</nav>
@@ -55,141 +58,52 @@
 			<li><a href="../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul> -->
 	<!-- </div> -->
-	
+
 	<!--/.sidebar-->
-		
+
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
-			<ol class="breadcrumb"  style="float:right">
+			<ol class="breadcrumb" style="float:right">
 				<li><a href="#">
-					<em class="fa fa-home"></em>
-				</a></li>
+						<em class="fa fa-home"></em>
+					</a></li>
 				<li class="active">Add Education</li>
 			</ol>
-		</div><!--/.row-->
-		
+		</div>
+		<!--/.row-->
 
-		
-		
-				
-				
-				<div class="panel panel-default" id="addEd">
-					<div class="panel-heading">Eduction</div>
-						<div class="panel-body">
-							<div class="col-md-6">
-								<form role="form">
-								<div class="form-group">
-									<label>University / School / Institution *</label>
-									<input class="form-control" id="eduInstut0"  type="text" placeholder=" ">
-								</div>
-								<div class="form-group">
-									<label>Degree / Certificate *</label>
-									<input class="form-control" id="degreeCertificate0" type="text" placeholder="">
-								</div>
-								<div class="form-group">
-									<label>Tenure*</label></br>
-									<label>start</label>
-									<!-- <input class="form-control" id="edustartYear"  type="text" placeholder="Start Year"><br> -->
-									<select name="year" class="form-control edstYear0" style="width:25%;">
-											<option>YEAR</option>
-											<option value="1990">1990</option>
-											<option value="1991">1991</option>
-											<option value="1992">1992</option>
-											<option value="1993">1993</option>
-											<option value="1994">1994</option>
-											<option value="1995">1995</option>
-											<option value="1996">1996</option>
-											<option value="1997">1997</option>
-											<option value="1998">1998</option>
-											<option value="1999">1999</option>
-											<option value="2000">2000</option>
-											<option value="2001">2001</option>
-											<option value="2002">2002</option>
-											<option value="2003">2003</option>
-											<option value="2004">2004</option>
-											<option value="2005">2005</option>
-											<option value="2006">2006</option>
-											<option value="2007">2007</option>
-											<option value="2008">2008</option>
-											<option value="2009">2009</option>
-											<option value="2010">2010</option>
-											<option value="2011">2011</option>
-											<option value="2012">2012</option>
-											<option value="2013">2013</option>
-											<option value="2014">2014</option>
-											<option value="2015">2015</option>
-											<option value="2016">2016</option>
-											<option value="2017">2017</option>
-											<option value="2018">2018</option>
-										</select>
-									<label>End</label>
-									<!-- <input class="form-control" id="eduEndYear"  type="text" placeholder="End Year"> -->
-									<select name="year" class="form-control edEnYear0" style="width:25%;">
-											<option>YEAR</option>
-											<option value="1990">1990</option>
-											<option value="1991">1991</option>
-											<option value="1992">1992</option>
-											<option value="1993">1993</option>
-											<option value="1994">1994</option>
-											<option value="1995">1995</option>
-											<option value="1996">1996</option>
-											<option value="1997">1997</option>
-											<option value="1998">1998</option>
-											<option value="1999">1999</option>
-											<option value="2000">2000</option>
-											<option value="2001">2001</option>
-											<option value="2002">2002</option>
-											<option value="2003">2003</option>
-											<option value="2004">2004</option>
-											<option value="2005">2005</option>
-											<option value="2006">2006</option>
-											<option value="2007">2007</option>
-											<option value="2008">2008</option>
-											<option value="2009">2009</option>
-											<option value="2010">2010</option>
-											<option value="2011">2011</option>
-											<option value="2012">2012</option>
-											<option value="2013">2013</option>
-											<option value="2014">2014</option>
-											<option value="2015">2015</option>
-											<option value="2016">2016</option>
-											<option value="2017">2017</option>
-											<option value="2018">2018</option>
-										</select>
-								</div>
-									<div class="form-group">
-									<label>Specialization  </label>
-									<input class="form-control" id="speciality0" type="text" placeholder="">
-								</div>
-								
-									<div class="form-group">
-									<label>Membership Number</label>
-									<input class="form-control" id="memNumber0" type="text" placeholder="">
-								</div>
-								
-								
-							
-								<a type="button" onclick="addEducation()" class="btn btn-primary">SUBMIT</a>
-									<a type="button" onclick="addedu();" class="btn btn-primary"><em class="fa fa-plus">&nbsp;</em> Add Eduction </a>
-								</div>
-							
-									
-								</div>
-							</form>
-						</div>
-					</div>
-				</div><!-- /.panel-->
-			
-			
-		</div><!-- /.row -->
-	</div><!--/.main-->
-	
-			<div class="col-sm-12">
-				<!-- <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p> -->
+
+
+
+
+
+		<div class="panel panel-default" >
+			<div class="panel-heading">Eduction</div>
+			<div id="addEd">
 			</div>
-		</div><!--/.row-->
-	</div>	<!--/.main-->
-	
+			
+			<div style="text-align:center">
+					<a type="submit" id="addEduSubmit"  class="btn btn-primary">SUBMIT</a>
+					<a type="submit" id="addEdu"  class="btn btn-primary"><em class="fa fa-plus">&nbsp;</em> Add Eduction </a>
+					<br>
+					<br>
+					</div>
+		</div>
+	</div><!-- /.panel-->
+
+
+	</div><!-- /.row -->
+	</div>
+	<!--/.main-->
+
+	<div class="col-sm-12">
+		<!-- <p class="back-link">Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a></p> -->
+	</div>
+	</div>
+	<!--/.row-->
+	</div>
+	<!--/.main-->
+
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/chart.min.js"></script>
@@ -199,27 +113,30 @@
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="../js/app.js"></script>
+	<script src="../js/template.js"></script>
 	<script>
 		window.onload = function () {
-	var chart1 = document.getElementById("line-chart").getContext("2d");
-	window.myLine = new Chart(chart1).Line(lineChartData, {
-	responsive: true,
-	scaleLineColor: "rgba(0,0,0,.2)",
-	scaleGridLineColor: "rgba(0,0,0,.05)",
-	scaleFontColor: "#c5c7cc"
-	});
-};
+			var chart1 = document.getElementById("line-chart").getContext("2d");
+			window.myLine = new Chart(chart1).Line(lineChartData, {
+				responsive: true,
+				scaleLineColor: "rgba(0,0,0,.2)",
+				scaleGridLineColor: "rgba(0,0,0,.05)",
+				scaleFontColor: "#c5c7cc"
+			});
+		};
 
 
 
 
-$(document).ready(function(){
-	let uid=window.location.href.split('?')[1];
-loadProfilePage(uid);
+		$(document).ready(function () {
+			let uid = window.location.href.split('?')[1];
+			//loadProfilePage(uid);
+			loadaddEdu(uid)
 
-});
+		});
 
 	</script>
-		
+
 </body>
+
 </html>

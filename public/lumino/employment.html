@@ -229,7 +229,7 @@
 								</div>
 							</div>
 							<div class="clear"></div>
-						</div>
+						</div>	
 
 					
 				</div>
@@ -246,7 +246,7 @@
 					<div class="panel-heading">
 						Timeline
 				
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+						<span class="pull-right"><a class="btn" style="background-color:#4daf7c;color:white" onclick="redirectExperiance()">Add Workex</a></span></div>
 					<div class="panel-body timeline-container">
 						<ul class="timeline" id="employmentAppend">
 							
@@ -285,10 +285,15 @@
 	});
 };
 
+function redirectExperiance(){
+let uid=window.location.href.split('?')[1];
+window.location="addExp.html?"+uid;
+}
 $(document).ready(function(){
 	let uid=window.location.href.split('?')[1];
 loadEmploymentDetails(uid);
 loadProfilePage(uid);
+
 });
 	</script>
 		
