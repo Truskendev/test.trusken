@@ -494,7 +494,7 @@ function processLinkedInData(body){
     })
 }
 }
-<<<<<<< HEAD
+
 
 
 
@@ -515,5 +515,4 @@ app.post('/insertSalaryDetails',(request,response)=>{
         
       })
 })  
-=======
->>>>>>> 9a4709d71f4206d44bb026c4d571e08859f949ec
+
