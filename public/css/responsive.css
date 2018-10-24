@@ -16,11 +16,17 @@
     margin-left:-100px;
   }
 }
+@media screen and (max-width: 1299px) {
+  .leftOrient{
+    margin-left:-30px;
+  }
+}
 /*** For media having less than 1200px width ***/
 @media screen and (max-width: 1199px) {
   footer .cps-footer-lower .footer-menu li + li {
     margin-left: 25px;
   }
+  
  
   .LinkDNr{
     width: 210px;
@@ -1244,7 +1250,6 @@
   }
 
   #myModal{
-
     width: 400px;
   }  
   .LinkDNr{

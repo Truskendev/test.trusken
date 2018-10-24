@@ -12,21 +12,24 @@ function getWorkTemplate(index, ID) {
             </div>
             <div class="form-group" >
                 <label>Tenure*</label></br>
-                <label>start</label>
+                <label>start</label></br>
                 <!-- <input class="form-control" id="workstartYear"   type="text" placeholder="Start Year"><br> -->
-                <input type="text" class="form-control stDate`+ index + `" style="width:20%" placeholder="None">
+                <label>dd</label><label style="margin-left: 75px;">mm</label> <label style=" margin-left: 50px;">yyyy</label>
+                <input type="text" class="form-control stDate`+ index + `" style="width:15%" placeholder="None">
                 
-                <input type="text" class="form-control stMonth`+ index + `" style="width:20%;  float: left; margin-top: -45px; margin-left: 140px;" placeholder="Month">
-                <input type="text" class="form-control stYear`+ index + `" style="width:20%; float: left; margin-top: -45px; margin-left: 280px;" placeholder="Year">
+                <input type="text" class="form-control stMonth`+ index + `" style="width:15%;  float: left; margin-top: -45px; margin-left: 90px;" placeholder="Month">
+                
+                <input type="text" class="form-control stYear`+ index + `" style="width:15%; float: left; margin-top: -45px; margin-left: 10px;" placeholder="Year">
                 <br>
                 <br>
-                 <label>End</label>
+                 <label>End</label></br>
+                 <label>dd</label><label style="margin-left: 75px;">mm</label> <label style=" margin-left: 50px;">yyyy</label>
                 
-                    <input type="text" class="form-control enDate`+ index + `" style="width:20%" placeholder="None" >
+                    <input type="text" class="form-control enDate`+ index + `" style="width:15%" placeholder="None" >
                 
-                <input type="text" class="form-control enMonth`+ index + `" style="width:20%;  float: left; margin-top: -45px; margin-left: 140px;" placeholder="Month">
+                <input type="text" class="form-control enMonth`+ index + `" style="width:15%;  float: left; margin-top: -45px; margin-left: 90px;" placeholder="Month">
                 
-                <input type="text" class="form-control enYear`+ index + `" style="width:20%; float: left; margin-top: -45px; margin-left: 280px;" placeholder="Year">
+                <input type="text" class="form-control enYear`+ index + `" style="width:15%; float: left;margin-top: -45px; margin-left: 10px;" placeholder="Year">
             
 
             </div>

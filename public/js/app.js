@@ -1,5 +1,10 @@
 let userNameToDisplay = ''
 let cT = 0;
+
+
+
+
+
 function isValidEmail(emailAddress) {
 	var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 
@@ -112,7 +117,12 @@ function registerUser() {
 		$('#regForm .input-success').fadeOut(500);
 	}
 }
-
+function loadaddExperiance(uid){
+	var qwe = getWorkTemplate(0)
+	$('#addExpBtn').attr("onclick", "addexp(1)")
+	$('#submitWrkExp').attr("onclick", "addWorkex(1)")
+	$('#addEx').append(qwe);
+}
 function loadaddExp(uid) {
 	log(uid)
 	$.post("/getEmploymentData", { uid: uid }, function (response) {
@@ -313,7 +323,7 @@ function addWorkex(expCount) {
 
 
 
-		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1) && (workData[c]['workEndYear'].length > 1) && (workData[c]['workTitle'].length > 1)) {
+		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1)  && (workData[c]['workTitle'].length > 1)) {
 			$.post("/addWorkExData", workData[c], function (response) {
 
 
@@ -395,6 +405,14 @@ function addEducation(cT) {
 			alert("fill in the data");
 		}
 	}
+}
+
+function loadaddEducate(uid){
+	var qwe = getEducationTemplate(0)
+	$('#addEdu').attr("onclick", "addedu(1)")
+	$('#addEduSubmit').attr("onclick","addEducation(1)")
+
+	$('#addEd').append(qwe);
 }
 
 function loadaddEdu(uid) {
@@ -484,16 +502,16 @@ function loadEmploymentDetails(uid) {
 
 		response.forEach((element) => {
 
-			var we = `<li>
+			var we = `<li >
 		<div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
-		<div class="timeline-panel">
+		<div class="timeline-panel" style="background-color: #dcf8c6;">
 			<div class="timeline-heading">
-				<h4 class="timeline-title" id="companyName">`+ element.org_id + `</h4>
+				<h4 class="timeline-title" id="companyName"><b style="color:#000;">Company Name:</b> `+ element.org_id + `</h4>
 			</div>
 			<div class="timeline-body">
-					<p id="jobTitle">`+ element.job_title_id + `</p>	
-				<p id="startDate">`+ element.start_date + `</p>
-				<p id="endDate">`+ element.end_date + `</p>
+					<p id="jobTitle"><b style="color:#000;">Job Title:</b> `+ element.job_title_id + `</p>	
+				<p id="startDate"><b style="color:#000;">Start Date:</b> `+ element.start_date + `</p>
+				<p id="endDate"><b style="color:#000;">End Date:</b> `+ element.end_date + `</p>
 				<p></p>
 			</div>
 		</div>
@@ -535,14 +553,14 @@ function loadEducationDetails(uid) {
 		response.forEach((element) => {
 			var are = `<li>
 		<div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
-		<div class="timeline-panel">
+		<div class="timeline-panel" style="background-color: #dcf8c6;">
 			<div class="timeline-heading">
-				<h4 class="timeline-title" id="educationalInstitute">`+ element.org_id + `</h4>
+				<h4 class="timeline-title" id="educationalInstitute"><b style="color:#000;">Institute:</b> `+ element.org_id + `</h4>
 			</div>
 			<div class="timeline-body">
-				<p id="degree">`+ element.degree + `</p>
-				<p id="startDdate">`+ element.start_year + `</p>
-				<p id="endDdate">`+ element.end_year + `</p>
+				<p id="degree"><b style="color:#000;">Degree:</b> `+ element.degree + `</p>
+				<p id="startDdate"><b style="color:#000;">Star Year:</b> `+ element.start_year + `</p>
+				<p id="endDdate"><b style="color:#000;">End Year:</b> `+ element.end_year + `</p>
 			</div>
 		</div>
 	</li>`
@@ -571,7 +589,9 @@ function loadEducationDetails(uid) {
 			log("finished");
 		});
 }
-
+function redirCompSalary(uid){
+	window.location.href = "salaryalc.html?"+ uid
+}
 function redir(uid) {
 	window.location = "employment.html" + '?' + uid
 }
@@ -582,7 +602,7 @@ function redirectHome() {
 
 
 	var uid = window.location.href.split('?')[1]
-	window.location = "home.html?" + uid
+	window.location = "salaryalc.html?" + uid
 }
 // $(document).ready(function(){
 
@@ -743,6 +763,271 @@ function init_Sign_Canvas() {
 
 	});
 }
+
+
+
+
+function compareSalary(bar) {
+
+
+
+
+
+
+
+
+	let salaryData = {
+		jobTitle: $('#name').val(),
+		function: $('#jobCategory').val(),
+		industry: $('#industry').val(),
+		experiance: $('#experiance').val(),
+		region: $('#region').val(),
+		uid: window.location.href.split('?')[1],
+		annualSalary: $('#annualSalary').val()
+
+	}
+	$('#inrAmnt').append("<i>INR"+salaryData['annualSalary']+"</i>");
+	try {
+		if(salaryData['experiance']=='5'){
+			
+			if(salaryData['annualSalary']<=20){
+				if(salaryData['annualSalary']<=5){
+					 bar.animate(.1)
+					 $('svg').attr("stroke", "red")
+					}
+					else if(salaryData['annualSalary']<=10){
+						bar.animate(.2)
+						$('svg').attr("stroke", "red")
+					   }
+					   else if(salaryData['annualSalary']<=15){
+						bar.animate(.34)
+						$('svg').attr("stroke", "orange")
+					   }
+					  else if(salaryData['annualSalary']<=18){
+						bar.animate(.45)
+						$('svg').attr("stroke", "orange")
+					   }
+					  else if(salaryData['annualSalary']<20){
+						bar.animate(.45)
+						$('svg').attr("stroke", "orange")
+					   }
+					   else if(salaryData['annualSalary']==20){
+						bar.animate(.51)
+						$('svg').attr("stroke", "orange")
+					   }
+					   
+				//bar.animate(.4);
+				//$('svg').attr("stroke", "orange")
+			}
+			
+			else if(salaryData['annualSalary']>20){
+				if(salaryData['annualSalary']>=20){
+					bar.animate(.7)
+					$('svg').attr("stroke", "green")
+				   }
+				   if(salaryData['annualSalary']>=25){
+					   bar.animate(.8)
+					   $('svg').attr("stroke", "green")
+					  }
+					  if(salaryData['annualSalary']>35){
+					   bar.animate(1)
+					   $('svg').attr("stroke", "green")
+					  }
+				// bar.animate(.7);
+				// $('svg').attr("stroke", "green")
+			}
+		}
+		else if(salaryData['experiance']=='10'){
+			if(salaryData['annualSalary']<=30){
+
+				if(salaryData['annualSalary']<=5){
+					bar.animate(.1)
+					$('svg').attr("stroke", "red")
+				   }
+				   else if(salaryData['annualSalary']<=10){
+					   bar.animate(.2)
+					   $('svg').attr("stroke", "red")
+					  }
+					  else if(salaryData['annualSalary']<=15){
+					   bar.animate(.24)
+					   $('svg').attr("stroke", "orange")
+					  }
+					 else if(salaryData['annualSalary']<=18){
+					   bar.animate(.35)
+					   $('svg').attr("stroke", "orange")
+					  }
+					 else if(salaryData['annualSalary']<=20){
+					   bar.animate(.41)
+					   $('svg').attr("stroke", "orange")
+					  }
+					  else if(salaryData['annualSalary']<=25){
+						bar.animate(.41)
+						$('svg').attr("stroke", "orange")
+					   }
+					  else if(salaryData['annualSalary']<30){
+						bar.animate(.45)
+						$('svg').attr("stroke", "orange")
+					   }
+					   else if(salaryData['annualSalary']==30){
+						bar.animate(.51)
+						$('svg').attr("stroke", "orange")
+					   }
+			}
+		
+			else if(salaryData['annualSalary']>30){
+			 if(salaryData['annualSalary']>30){
+					bar.animate(.7)
+					$('svg').attr("stroke", "green")
+				   }
+			 if(salaryData['annualSalary']>35){
+					bar.animate(.10)
+					$('svg').attr("stroke", "orange")
+				   }
+			if(salaryData['annualSalary']>40){
+					bar.animate(1)
+					$('svg').attr("stroke", "orange")
+				   }
+			}
+
+		}
+		else if(salaryData['experiance']=='15'){
+			if(salaryData['annualSalary']<=65){
+
+				if(salaryData['annualSalary']<=5){
+					bar.animate(.1)
+					$('svg').attr("stroke", "red")
+				   }
+				   else if(salaryData['annualSalary']<=20){
+					   bar.animate(.2)
+					   $('svg').attr("stroke", "red")
+					  }
+					  else if(salaryData['annualSalary']<=35){
+					   bar.animate(.24)
+					   $('svg').attr("stroke", "orange")
+					  }
+					 else if(salaryData['annualSalary']<=40){
+					   bar.animate(.35)
+					   $('svg').attr("stroke", "orange")
+					  }
+					 else if(salaryData['annualSalary']<=45){
+					   bar.animate(.41)
+					   $('svg').attr("stroke", "orange")
+					  }
+					  else if(salaryData['annualSalary']<=50){
+						bar.animate(.41)
+						$('svg').attr("stroke", "orange")
+					   }
+					  else if(salaryData['annualSalary']<65){
+						bar.animate(.45)
+						$('svg').attr("stroke", "orange")
+					   }
+					   else if(salaryData['annualSalary']==65){
+						bar.animate(.51)
+						$('svg').attr("stroke", "orange")
+					   }
+			}
+		
+			else if(salaryData['annualSalary']>65){
+				 if(salaryData['annualSalary']>65){
+					bar.animate(.7)
+					$('svg').attr("stroke", "orange")
+				   }
+				   else if(salaryData['annualSalary']>75){
+					bar.animate(1)
+					$('svg').attr("stroke", "orange")
+				   }
+			}
+
+		}
+		else if(salaryData['experiance']=='16'){
+			if(salaryData['annualSalary']<=100){
+				if(salaryData['annualSalary']<=25){
+					bar.animate(.1)
+					$('svg').attr("stroke", "red")
+				   }
+				   else if(salaryData['annualSalary']<=30){
+					   bar.animate(.2)
+					   $('svg').attr("stroke", "red")
+					  }
+					  else if(salaryData['annualSalary']<=45){
+					   bar.animate(.24)
+					   $('svg').attr("stroke", "orange")
+					  }
+					 else if(salaryData['annualSalary']<=50){
+					   bar.animate(.35)
+					   $('svg').attr("stroke", "orange")
+					  }
+					 else if(salaryData['annualSalary']<=60){
+					   bar.animate(.41)
+					   $('svg').attr("stroke", "orange")
+					  }
+					  else if(salaryData['annualSalary']<=70){
+						bar.animate(.41)
+						$('svg').attr("stroke", "orange")
+					   }
+					  else if(salaryData['annualSalary']<=85){
+						bar.animate(.45)
+						$('svg').attr("stroke", "orange")
+					   }
+					   
+					  else if(salaryData['annualSalary']<=90){
+						bar.animate(.47)
+						$('svg').attr("stroke", "orange")
+					   }
+					   
+					  else if(salaryData['annualSalary']<100){
+						bar.animate(.49)
+						$('svg').attr("stroke", "orange")
+					   }
+					   else if(salaryData['annualSalary']==100){
+						bar.animate(.51)
+						$('svg').attr("stroke", "orange")
+					   }
+			}
+			
+			else if(salaryData['annualSalary']>100){
+				if(salaryData['annualSalary']>100){
+					bar.animate(.7)
+					$('svg').attr("stroke", "orange")
+				   }
+				    if(salaryData['annualSalary']>150){
+					bar.animate(1)
+					$('svg').attr("stroke", "orange")
+				   }
+			}
+
+		}
+	}
+	catch(err) {
+
+	}
+	if ((salaryData['jobTitle'].length > 1) && (salaryData['function'].length > 1) && (salaryData['industry'].length > 1)&& (salaryData['experiance'].length >= 1 )  && (salaryData['region'].length > 1) && (salaryData['annualSalary'].length >= 1)) {
+		$.post("/insertSalaryDetails", salaryData, function (response) {
+			log(response.redirectUrl);
+			if (response.status == 500) { alert("User already exists") }
+			userID = response.guid
+			window.location = response.redirectUrl + '?' + userID
+		})
+			.done(function () {
+
+				log("second success");
+			})
+			.fail(function (error) {
+				log(error.responseJSON.error.sqlMessage);
+			})
+			.always(function (response) {
+				//if (response.status == 500) { alert("User already exists") }
+				//$('#myModal2').hide();
+				//log("finished");
+			});
+	}
+	else {
+		alert("Please fill in all the details")
+	}
+}
+
+
+
 $(document).ready(function () {
 	$("#myModal2").on('shown.bs.modal', function () {
 		init_Sign_Canvas();

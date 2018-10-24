@@ -82,8 +82,8 @@
 			<div id="addEd">
 			</div>
 			
-			<div style="">
-				&nbsp;&nbsp;<a type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal"  href ><b>Submit</b></a>
+			<div style="text-align:center">
+                &nbsp;&nbsp;<a type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal"  href ><b>Submit</b></a>
 					
 				&nbsp;&nbsp;&nbsp;<a type="submit" id="addEdu"  class="btn btn-primary"><em class="fa fa-plus">&nbsp;</em> Add Eduction </a>
 					<br>
@@ -91,7 +91,8 @@
 					</div>
 		</div>
 	</div><!-- /.panel-->
-	<div id="myModal" class="modal fade" role="dialog">
+
+    <div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 	  
 		  <!-- Modal content-->
@@ -102,11 +103,9 @@
 			 
 			</div>
 			<div class="modal-body">
-			  
 					  <div class="row">
 						  <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
 							 <p>Allow "Trusken" to Verify your Details. </p>
-							 
 							 <a type="submit" id="addEduSubmit"  class="btn btn-primary">Yes</a>
 							 <a type="button" data-dismiss="modal" class="btn btn-primary">No</a>
 							   
@@ -134,8 +133,6 @@
 	  
 		</div>
 	  </div>
-				
-
 	</div><!-- /.row -->
 	</div>
 	<!--/.main-->
@@ -175,7 +172,7 @@
 		$(document).ready(function () {
 			let uid = window.location.href.split('?')[1];
 			//loadProfilePage(uid);
-			loadaddEdu(uid)
+			loadaddEducate(uid)
 
 		});
 

@@ -265,7 +265,7 @@ app.post('/loginUser',(request,response)=>{
                         else{
                            if(results1.length===1) {
                            
-                            return response.send({guid:results[0].user_id,redirectUrl: "/lumino/home.html"} );
+                            return response.send({guid:results[0].user_id,redirectUrl: "/lumino/salaryalc.html"} );
                            }else{
                             
                             return response.send({guid:results[0].user_id,redirectUrl: "/lumino/addExp.html"} );
@@ -336,7 +336,7 @@ app.post('/addEducationData',(request,response)=>{
         // console.log('The solution is: ', JSON.stringify(results));
         else{
             //response.status(200).send({message:'Inserted'})
-            return response.send({uid:uid,redirectUrl: "/lumino/home.html"} );
+            return response.send({uid:uid,redirectUrl: "/lumino/salaryalc.html"} );
         }
         
       })
@@ -402,6 +402,9 @@ function guidGeneratorWork(){
 }
 function guidGeneratorEducation(){
     return "ED_"+Math.random().toString(36).substr(2, 9).toUpperCase()
+}
+function guidGeneratorCompSal(){
+    return "CS_"+Math.random().toString(36).substr(2, 9).toUpperCase()
 }
 
 const requestPromiseAPI=(requestbody)=>{
@@ -491,3 +494,23 @@ function processLinkedInData(body){
     })
 }
 }
+
+
+
+app.post('/insertSalaryDetails',(request,response)=>{
+    console.log(JSON.stringify(request.body))
+    let guid=guidGeneratorCompSal()
+    var sql = "INSERT INTO compareSalary (salary_id,job_title, function,industry,years_of_exp,region,annual_salary,user_id) VALUES ('"+guid+"','"+request.body.jobTitle+"', '"+request.body.function+"','"+request.body.industry+"','"+request.body.experiance+"','"+request.body.region+"','"+request.body.annualSalary+"','"+request.body.uid+"')";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+          //  response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+        }
+        
+      })
+})  
