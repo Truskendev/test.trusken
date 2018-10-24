@@ -77,7 +77,7 @@ requestPromiseAPI(requestbody).then((body)=>{
                     {
                         if(results[0]['eduSub']==1)
                         {
-                           return response.redirect('/lumino/home.html?'+results[0].user_id)
+                           return response.redirect('/lumino/salaryalc.html?'+results[0].user_id)
                         }
                         return response.redirect('/lumino/addEdu.html?'+results[0].user_id)
                     }
