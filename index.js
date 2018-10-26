@@ -513,7 +513,7 @@ function processLinkedInData(body){
     })
 }
 }
-<<<<<<< HEAD
+
 
 
 
@@ -586,4 +586,3 @@ app.post('/updateMarksheet',(request,response)=>{
         }
         
       })
-})  
