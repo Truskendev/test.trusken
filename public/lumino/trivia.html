@@ -69,9 +69,9 @@
 					<!-- <li><a href=""><em class="fa fa-gamepad">&nbsp;</em> Fun Zone</a></li> -->
 					
 				<li><a  onclick="redirCompSalary(window.location.href.split('?')[1])"><em class="fa fa-money ">&nbsp;</em> Compare Salary</a></li>
-				<li><a   onclick="redirtricia(window.location.href.split('?')[1])"><em class="fa fa-eercast" >&nbsp;</em> Trivia Zone</a></li>
+				<li class="active"><a   onclick="redirtricia(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> Trivia Zone</a></li>
 				<li><a  onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li>
-				<li class="active"><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li>
+				<li ><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li>
 				<!-- <li><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li> -->
 				<!-- <li ><a href="#"><em class="fa fa-sitemap">&nbsp;</em> Job Board</a></li>
 				<li ><a href="#"><em class="fa fa-id-badge">&nbsp;</em> My Badge</a></li>	 -->
@@ -94,129 +94,28 @@
 			</ul>
 	</div><!--/.sidebar-->
 	
-	
 
+    
+          </div>
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-3 main">
-		<div class="row "  >
-			<ol class="breadcrumb"  style="float:right">
-				<!-- <li><a href  onclick="redirectHome();">
-					<em class="fa fa-home" ></em>
-				</a></li>
-				<li class="active">Education</li> -->
-			</ol>
-		</div><!--/.row-->
+		
 		
 		
 		
 		<br>
 		
-		
-		<!-- <div class="row">
-			<div class="col-lg-12">
-				
-				
-				<div class="alert bg-info" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em> Welcome to the Trusken <a href="#" class="pull-right"><em class="fa fa-lg fa-close"></em></a></div>
-
-			</div> -->
-		<!-- </div>	 -->
-		
-				
-		
 		<div class="row">
 			
-			<!-- <div class="col-md-6">
-				<div class="panel panel-default articles">
-					<div class="panel-heading">
-						Education Details
-						
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
-					<div class="panel-body articles-container">
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >EDUCATIONAL INSTITUTE</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="educationalInstitute"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >DEGREE</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="degree"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >SPECIALIZATION</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="specality"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >MEMBERSHIP NUMBER</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="membershipNumber" ></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						
-					 -->
-				<!-- </div>
-				
-				
-			</div> -->
-
 			
-				
-			<!-- </div> -->
-			<div class="col-md-6">
+			<div class="col-md-9">
 				
 				<div class="panel panel-default ">
 					<div class="panel-heading">
-						Education
-				
-						<span class="pull-right"><a class="btn" style="background-color:#4daf7c;color:white" onclick="redirectEducation()">Add Education</a></span></div>
-					
-					
+						Trivia
+				<span style="float:right; font-size: 1em">Score:<b id="ScoreCard"></b></span>
 				</div>
-				<div class="panel-body timeline-container">
-						<ul class="timeline" id="appendEducation">
-							
-							
-							
-						</ul>
+				<div class="panel-body  " id="triPanel" style="background-color: #f1f4f7;">
+						
 					</div>
 		</div><!--/.row-->
 		
@@ -254,7 +153,7 @@ function redirectEducation(){
 
 $(document).ready(function(){
 	let uid=window.location.href.split('?')[1];
-loadEducationDetails(uid);
+    loadTriviaPage(uid);
 loadProfilePage(uid);
 });
 	</script>

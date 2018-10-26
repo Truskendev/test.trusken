@@ -1,10 +1,6 @@
 let userNameToDisplay = ''
 let cT = 0;
 
-
-
-
-
 function isValidEmail(emailAddress) {
 	var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 
@@ -48,18 +44,18 @@ function login() {
 function loginHom() {
 	let loginDat =
 	{
-		loginName: $('#unameq').val(),
-		loginPass: $('#passwq').val()
+		regUsr: $('#unameq').val(),
+		regEmail: $('#unemaill').val(),
+		regPass: $('#passwq').val()
 	}
-	if (isValidEmail(loginDat['loginName']) && (loginDat['loginPass'].length > 1)) {
+	if (isValidEmail(loginDat['regEmail']) && (loginDat['regPass'].length > 1)&& (loginDat['regUsr'].length > 1)) {
 
-		$.post("/loginUser", loginDat, function (response) {
+		$.post("/registerNewUser", loginDat, function (response) {
 			log(response);
-			if (response.status == 200) { alert(response.user_id) }
-			else {
-				userID = response.guid
-				window.location = response.redirectUrl + '?' + userID
-			}
+			if (response.status == 500) { alert("User already exists") }
+			userID = response.guid
+			window.location = response.redirectUrl + '?' + userID
+			
 		})
 			.done(function () {
 				log("second success");
@@ -67,7 +63,9 @@ function loginHom() {
 			.fail(function (error) {
 				log(error.responseJSON.error.sqlMessage);
 			})
-			.always(function () {
+			.always(function (response) {
+				if (response.status == 500) { alert("User already exists") }
+				//$('#myModal2').hide();
 				log("finished");
 			});
 
@@ -598,6 +596,10 @@ function redir(uid) {
 function redirEducation(uid) {
 	window.location = "education.html" + '?' + uid
 }
+function redirtricia(uid) {
+	window.location = "trivia.html" + '?' + uid
+}
+
 function redirectHome() {
 
 
@@ -766,19 +768,47 @@ function init_Sign_Canvas() {
 
 
 
+function loadCompareSalary(uid) {
+	log(uid)
+	$.post("/getCompareSalaryData", { uid: uid }, function (response) {
+		log(response[0]);
+
+
+
+
+		response.forEach((element) => {
+
+			var wer = `
+				<option value="`+element.job_title+`" > `+ element.job_title + `</option>
+				`
+			$('#jTitle').append(wer);
+
+		});
+		
+
+
+	})
+		.done(function () {
+
+			log("second success");
+		})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {
+			log("finished");
+		});
+}
+
+function calcSalaryAvg(userSalary,industryAvg){
+	return (userSalary/industryAvg).toFixed(4)
+}
 
 function compareSalary(bar) {
-
-
-
-
-
-
-
-
+let expList=['freashers','beginers','intermediates','expers','seniorlevel']
 	let salaryData = {
-		jobTitle: $('#name').val(),
-		function: $('#jobCategory').val(),
+		jobTitle: $('#jTitle').val(),
+	//	function: $('#jobCategory').val(),
 		industry: $('#industry').val(),
 		experiance: $('#experiance').val(),
 		region: $('#region').val(),
@@ -786,227 +816,29 @@ function compareSalary(bar) {
 		annualSalary: $('#annualSalary').val()
 
 	}
-	$('#inrAmnt').append("<i>INR"+salaryData['annualSalary']+"</i>");
-	try {
-		if(salaryData['experiance']=='5'){
+	$('#inrAmnt').html("<i>INR"+salaryData['annualSalary']+"</i>");
+	
+	if ((salaryData['jobTitle'].length > 1) && (salaryData['industry'].length > 1)&& (salaryData['experiance'].length >= 1 )  && (salaryData['region'].length > 1) && (salaryData['annualSalary'].length >= 1)) {
+		$.post("/checkSalaryDetails", salaryData, function (response) {
 			
-			if(salaryData['annualSalary']<=20){
-				if(salaryData['annualSalary']<=5){
-					 bar.animate(.1)
-					 $('svg').attr("stroke", "red")
-					}
-					else if(salaryData['annualSalary']<=10){
-						bar.animate(.2)
-						$('svg').attr("stroke", "red")
-					   }
-					   else if(salaryData['annualSalary']<=15){
-						bar.animate(.34)
-						$('svg').attr("stroke", "orange")
-					   }
-					  else if(salaryData['annualSalary']<=18){
-						bar.animate(.45)
-						$('svg').attr("stroke", "orange")
-					   }
-					  else if(salaryData['annualSalary']<20){
-						bar.animate(.45)
-						$('svg').attr("stroke", "orange")
-					   }
-					   else if(salaryData['annualSalary']==20){
-						bar.animate(.51)
-						$('svg').attr("stroke", "orange")
-					   }
-					   
-				//bar.animate(.4);
-				//$('svg').attr("stroke", "orange")
-			}
-			
-			else if(salaryData['annualSalary']>20){
-				if(salaryData['annualSalary']>=20){
-					bar.animate(.7)
+
+			var currentExpLevel=expList[salaryData['experiance']]
+			// if(salaryData['experiance']==0){
+				var percentage=calcSalaryAvg(salaryData['annualSalary'],response[0][currentExpLevel])
+				$('#aveerr').html("<b>AVG "+response[0][currentExpLevel]+"</b>");
+				if(percentage<=0.6999){
+					bar.animate(percentage)
+					$('svg').attr("stroke", "red")
+
+				}else if(percentage>=.7 && percentage<=1){
+					bar.animate(percentage)
+					$('svg').attr("stroke", "orange")
+				}else 
+				{
+					bar.animate(1)
 					$('svg').attr("stroke", "green")
-				   }
-				   if(salaryData['annualSalary']>=25){
-					   bar.animate(.8)
-					   $('svg').attr("stroke", "green")
-					  }
-					  if(salaryData['annualSalary']>35){
-					   bar.animate(1)
-					   $('svg').attr("stroke", "green")
-					  }
-				// bar.animate(.7);
-				// $('svg').attr("stroke", "green")
-			}
-		}
-		else if(salaryData['experiance']=='10'){
-			if(salaryData['annualSalary']<=30){
-
-				if(salaryData['annualSalary']<=5){
-					bar.animate(.1)
-					$('svg').attr("stroke", "red")
-				   }
-				   else if(salaryData['annualSalary']<=10){
-					   bar.animate(.2)
-					   $('svg').attr("stroke", "red")
-					  }
-					  else if(salaryData['annualSalary']<=15){
-					   bar.animate(.24)
-					   $('svg').attr("stroke", "orange")
-					  }
-					 else if(salaryData['annualSalary']<=18){
-					   bar.animate(.35)
-					   $('svg').attr("stroke", "orange")
-					  }
-					 else if(salaryData['annualSalary']<=20){
-					   bar.animate(.41)
-					   $('svg').attr("stroke", "orange")
-					  }
-					  else if(salaryData['annualSalary']<=25){
-						bar.animate(.41)
-						$('svg').attr("stroke", "orange")
-					   }
-					  else if(salaryData['annualSalary']<30){
-						bar.animate(.45)
-						$('svg').attr("stroke", "orange")
-					   }
-					   else if(salaryData['annualSalary']==30){
-						bar.animate(.51)
-						$('svg').attr("stroke", "orange")
-					   }
-			}
+				}
 		
-			else if(salaryData['annualSalary']>30){
-			 if(salaryData['annualSalary']>30){
-					bar.animate(.7)
-					$('svg').attr("stroke", "green")
-				   }
-			 if(salaryData['annualSalary']>35){
-					bar.animate(.10)
-					$('svg').attr("stroke", "orange")
-				   }
-			if(salaryData['annualSalary']>40){
-					bar.animate(1)
-					$('svg').attr("stroke", "orange")
-				   }
-			}
-
-		}
-		else if(salaryData['experiance']=='15'){
-			if(salaryData['annualSalary']<=65){
-
-				if(salaryData['annualSalary']<=5){
-					bar.animate(.1)
-					$('svg').attr("stroke", "red")
-				   }
-				   else if(salaryData['annualSalary']<=20){
-					   bar.animate(.2)
-					   $('svg').attr("stroke", "red")
-					  }
-					  else if(salaryData['annualSalary']<=35){
-					   bar.animate(.24)
-					   $('svg').attr("stroke", "orange")
-					  }
-					 else if(salaryData['annualSalary']<=40){
-					   bar.animate(.35)
-					   $('svg').attr("stroke", "orange")
-					  }
-					 else if(salaryData['annualSalary']<=45){
-					   bar.animate(.41)
-					   $('svg').attr("stroke", "orange")
-					  }
-					  else if(salaryData['annualSalary']<=50){
-						bar.animate(.41)
-						$('svg').attr("stroke", "orange")
-					   }
-					  else if(salaryData['annualSalary']<65){
-						bar.animate(.45)
-						$('svg').attr("stroke", "orange")
-					   }
-					   else if(salaryData['annualSalary']==65){
-						bar.animate(.51)
-						$('svg').attr("stroke", "orange")
-					   }
-			}
-		
-			else if(salaryData['annualSalary']>65){
-				 if(salaryData['annualSalary']>65){
-					bar.animate(.7)
-					$('svg').attr("stroke", "orange")
-				   }
-				   else if(salaryData['annualSalary']>75){
-					bar.animate(1)
-					$('svg').attr("stroke", "orange")
-				   }
-			}
-
-		}
-		else if(salaryData['experiance']=='16'){
-			if(salaryData['annualSalary']<=100){
-				if(salaryData['annualSalary']<=25){
-					bar.animate(.1)
-					$('svg').attr("stroke", "red")
-				   }
-				   else if(salaryData['annualSalary']<=30){
-					   bar.animate(.2)
-					   $('svg').attr("stroke", "red")
-					  }
-					  else if(salaryData['annualSalary']<=45){
-					   bar.animate(.24)
-					   $('svg').attr("stroke", "orange")
-					  }
-					 else if(salaryData['annualSalary']<=50){
-					   bar.animate(.35)
-					   $('svg').attr("stroke", "orange")
-					  }
-					 else if(salaryData['annualSalary']<=60){
-					   bar.animate(.41)
-					   $('svg').attr("stroke", "orange")
-					  }
-					  else if(salaryData['annualSalary']<=70){
-						bar.animate(.41)
-						$('svg').attr("stroke", "orange")
-					   }
-					  else if(salaryData['annualSalary']<=85){
-						bar.animate(.45)
-						$('svg').attr("stroke", "orange")
-					   }
-					   
-					  else if(salaryData['annualSalary']<=90){
-						bar.animate(.47)
-						$('svg').attr("stroke", "orange")
-					   }
-					   
-					  else if(salaryData['annualSalary']<100){
-						bar.animate(.49)
-						$('svg').attr("stroke", "orange")
-					   }
-					   else if(salaryData['annualSalary']==100){
-						bar.animate(.51)
-						$('svg').attr("stroke", "orange")
-					   }
-			}
-			
-			else if(salaryData['annualSalary']>100){
-				if(salaryData['annualSalary']>100){
-					bar.animate(.7)
-					$('svg').attr("stroke", "orange")
-				   }
-				    if(salaryData['annualSalary']>150){
-					bar.animate(1)
-					$('svg').attr("stroke", "orange")
-				   }
-			}
-
-		}
-	}
-	catch(err) {
-
-	}
-	if ((salaryData['jobTitle'].length > 1) && (salaryData['function'].length > 1) && (salaryData['industry'].length > 1)&& (salaryData['experiance'].length >= 1 )  && (salaryData['region'].length > 1) && (salaryData['annualSalary'].length >= 1)) {
-		$.post("/insertSalaryDetails", salaryData, function (response) {
-			log(response.redirectUrl);
-			if (response.status == 500) { alert("User already exists") }
-			userID = response.guid
-			window.location = response.redirectUrl + '?' + userID
 		})
 			.done(function () {
 
@@ -1025,8 +857,122 @@ function compareSalary(bar) {
 		alert("Please fill in all the details")
 	}
 }
+function loadTriviaPage(uid){
+	$.post("/getTriviaQuestions", { uid: uid }, function (response) {
+		log(response[0]);
+		//var merge=0;
+
+		response.forEach((element,merge) => {
+
+			
+			var correctAnwser=element.correctAnwser				
+			var tri=`<div class="panel " id="tag`+merge+`" style="display:none">
+			<div class="panel-heading" id="questionHeading" style="text-align:center">
+			Question`+element.qid+`
+			<svg style="display:none" id="checkCorrect" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+			</div>
+			<div class="panel-body"  style="text-align:center">
+			<h4 style="color:#000000"  id="quest`+merge+`">`+element.questions+`</h4>
+						<br>
+						
+						<button type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionOne"  style="  background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionOne+`</button>
+
+						<button type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionTwo" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionTwo+`</button>
+
+						<button type="button"  class="btn"  onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionThree" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionThree+`</button>
+
+						<button type="button"  class="btn mng"   onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')"id="optionFour" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionFour+`</button>
+						
+						</div>
+						</div>`
+						//merge=merge+1
+			$('#triPanel').html(tri);
+			
+
+		});
+		$('#tag0').css("display", "block");
+	})
+		.done(function () {
+
+			log("second success");
+			$.post("/getMarksheet", {uid:uid}, function (response) {
+				// log(response[0]);
+				$("#ScoreCard").text(response[0]['marks'])
+				}).done(function () {
+					log("second success");
+				})
+				.fail(function (error) {
+					log(error.responseJSON.error.sqlMessage);
+				})
+				.always(function () {
+					log("finished");
+				});
+		})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {
+			log("finished");
+		});			
+}
+
+function getAnswer(id,mer,correctAnwser){
+	// let	triviaData={
+		
+	// 	id : $('#'+id).text(),
+	// 	region: $('#quest'+mer).val(),
+	// 	}
 
 
+		let trivData = {
+			qid: mer,
+			id: $('#'+id).text()	
+		}
+		if(trivData['id']==correctAnwser){
+			$('#checkCorrect').show();
+
+			setTimeout(function () {
+				var uid=window.location.href.split('?')[1]
+				// $("#myModal22").hide();
+				$.post("/updateMarksheet", {uid:uid,qid:mer,mark:1}, function (response) {
+					log(response[0]);
+					loadTriviaPage(uid)
+					$('#triPanel').fadeIn()
+					}).done(function () {
+						log("second success");
+					})
+					.fail(function (error) {
+						log(error.responseJSON.error.sqlMessage);
+					})
+					.always(function () {
+						log("finished");
+					});
+					$('#triPanel').fadeOut()
+			}, 2000);
+		}else{
+
+			$('#questionHeading').css('color','red')
+			$('#questionHeading').text('INCORRECT ✗')
+			setTimeout(function () {
+				var uid=window.location.href.split('?')[1]
+				// $("#myModal22").hide();
+				$.post("/updateMarksheet", {uid:uid,qid:mer,mark:0}, function (response) {
+					log(response[0]);
+					loadTriviaPage(uid)
+					$('#triPanel').fadeIn()
+					}).done(function () {
+						log("second success");
+					})
+					.fail(function (error) {
+						log(error.responseJSON.error.sqlMessage);
+					})
+					.always(function () {
+						log("finished");
+					});
+					$('#triPanel').fadeOut()
+			}, 2000);
+		}
+}
 
 $(document).ready(function () {
 	$("#myModal2").on('shown.bs.modal', function () {

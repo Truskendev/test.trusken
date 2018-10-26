@@ -12,24 +12,24 @@ function getWorkTemplate(index, ID) {
             </div>
             <div class="form-group" >
                 <label>Tenure*</label></br>
-                <label>start</label></br>
+                <label>start Date</label></br>
                 <!-- <input class="form-control" id="workstartYear"   type="text" placeholder="Start Year"><br> -->
-                <label>dd</label><label style="margin-left: 75px;">mm</label> <label style=" margin-left: 50px;">yyyy</label>
-                <input type="text" class="form-control stDate`+ index + `" style="width:15%" placeholder="None">
+             
+                <input type="text" class="form-control stDate`+ index + `" style="width:15%" placeholder="dd">
                 
-                <input type="text" class="form-control stMonth`+ index + `" style="width:15%;  float: left; margin-top: -45px; margin-left: 90px;" placeholder="Month">
+                <input type="text" class="form-control stMonth`+ index + `" style="width:15%;  float: left; margin-top: -45px; margin-left: 90px;" placeholder="mm">
                 
-                <input type="text" class="form-control stYear`+ index + `" style="width:15%; float: left; margin-top: -45px; margin-left: 10px;" placeholder="Year">
+                <input type="text" class="form-control stYear`+ index + `" style="width:15%; float: left; margin-top: -45px; margin-left: 10px;" placeholder="yyyy">
                 <br>
                 <br>
-                 <label>End</label></br>
-                 <label>dd</label><label style="margin-left: 75px;">mm</label> <label style=" margin-left: 50px;">yyyy</label>
+                 <label>End Date</label></br>
+            
                 
-                    <input type="text" class="form-control enDate`+ index + `" style="width:15%" placeholder="None" >
+                    <input type="text" class="form-control enDate`+ index + `" style="width:15%" placeholder="dd" >
                 
-                <input type="text" class="form-control enMonth`+ index + `" style="width:15%;  float: left; margin-top: -45px; margin-left: 90px;" placeholder="Month">
+                <input type="text" class="form-control enMonth`+ index + `" style="width:15%;  float: left; margin-top: -45px; margin-left: 90px;" placeholder="mm">
                 
-                <input type="text" class="form-control enYear`+ index + `" style="width:15%; float: left;margin-top: -45px; margin-left: 10px;" placeholder="Year">
+                <input type="text" class="form-control enYear`+ index + `" style="width:15%; float: left;margin-top: -45px; margin-left: 10px;" placeholder="yyyy">
             
 
             </div>
@@ -126,12 +126,12 @@ function getEducationTemplate(cT,ID) {
                 </div>
                 <div class="form-group">
         <label>Tenure*</label></br>
-        <label>start</label>
-        <input type="text" class="form-control edstYear`+ cT + `" style="width:25%;" placeholder="Year">
+        <label>start Year</label>
+        <input type="text" class="form-control edstYear`+ cT + `" style="width:25%;" placeholder="yyyy">
         
        
-        <label>End</label>
-        <input type="text" class="form-control edEnYear`+ cT + `" style="width:25%;"  placeholder="Year">
+        <label>End Year</label>
+        <input type="text" class="form-control edEnYear`+ cT + `" style="width:25%;"  placeholder="yyyy">
         
     </div>
                     <div class="form-group">

@@ -394,6 +394,25 @@ app.post('/getEducationData',(request,response)=>{
       })
 })  
 
+app.post('/getCompareSalaryData',(request,response)=>{
+    console.log(JSON.stringify(request.body))
+   // let guid=guidGenerator()
+    var sql = "select * from compareSalary";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            //response.status(200).send({message:'Inserted'})
+            return response.send(results);
+        }
+        
+      })
+})  
+
 function guidGenerator(){
     return "TU_"+Math.random().toString(36).substr(2, 9).toUpperCase()
 }
@@ -498,10 +517,10 @@ function processLinkedInData(body){
 
 
 
-app.post('/insertSalaryDetails',(request,response)=>{
+app.post('/checkSalaryDetails',(request,response)=>{
     console.log(JSON.stringify(request.body))
     let guid=guidGeneratorCompSal()
-    var sql = "INSERT INTO compareSalary (salary_id,job_title, function,industry,years_of_exp,region,annual_salary,user_id) VALUES ('"+guid+"','"+request.body.jobTitle+"', '"+request.body.function+"','"+request.body.industry+"','"+request.body.experiance+"','"+request.body.region+"','"+request.body.annualSalary+"','"+request.body.uid+"')";
+    var sql = "select * from compareSalary where job_title='"+request.body.jobTitle+"'";
     
     con.query(sql, function (error, results, fields) {
         if (error) 
@@ -510,10 +529,61 @@ app.post('/insertSalaryDetails',(request,response)=>{
         }
         // console.log('The solution is: ', JSON.stringify(results));
         else{
-          //  response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+          response.send(results);
+        }
+        
+      })
+})  
+app.post('/getTriviaQuestions',(request,response)=>{
+    console.log(JSON.stringify(request.body))
+    //let guid=guidGeneratorCompSal()
+    var sql = "select * from trivia where qid not in(select qid from trivia_marksheet where user_id='"+request.body.uid+"') limit 1";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+          response.send(results);
         }
         
       })
 })  
 =======
 >>>>>>> 9a4709d71f4206d44bb026c4d571e08859f949ec
+app.post('/getMarksheet',(request,response)=>{
+    var sql = "SELECT SUM(mark) as marks FROM trivia_marksheet where user_id='"+request.body.uid+"'";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+          response.send(results);
+        }
+        
+      })
+})
+
+
+app.post('/updateMarksheet',(request,response)=>{
+    console.log(JSON.stringify(request.body))
+    //let guid=guidGeneratorCompSal()
+    var sql = "insert into trivia_marksheet (qid,user_id,mark) values('"+request.body.qid+"','"+request.body.uid+"','"+request.body.mark+"')";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+          response.send(results);
+        }
+        
+      })
+})  
