@@ -551,8 +551,7 @@ app.post('/getTriviaQuestions',(request,response)=>{
         
       })
 })  
-=======
->>>>>>> 9a4709d71f4206d44bb026c4d571e08859f949ec
+
 app.post('/getMarksheet',(request,response)=>{
     var sql = "SELECT SUM(mark) as marks FROM trivia_marksheet where user_id='"+request.body.uid+"'";
     
