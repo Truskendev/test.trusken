@@ -866,7 +866,7 @@ function loadTriviaPage(uid){
 
 			
 			var correctAnwser=element.correctAnwser				
-			var tri=`<div class="panel " id="tag`+merge+`" style="display:none">
+				var tri=`<div class="panel " id="tag`+merge+`" style="display:none">
 			<div class="panel-heading" id="questionHeading" style="text-align:center">
 			Question`+element.qid+`
 			<svg style="display:none" id="checkCorrect" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
@@ -874,15 +874,20 @@ function loadTriviaPage(uid){
 			<div class="panel-body"  style="text-align:center">
 			<h4 style="color:#000000"  id="quest`+merge+`">`+element.questions+`</h4>
 						<br>
-						
-						<button type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionOne"  style="  background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionOne+`</button>
-
-						<button type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionTwo" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionTwo+`</button>
-
-						<button type="button"  class="btn"  onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionThree" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionThree+`</button>
-
-						<button type="button"  class="btn mng"   onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')"id="optionFour" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionFour+`</button>
-						
+						<div style="text-align:left">
+						<div style="padding:2%;">
+						<a type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionOne"  style="  background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionOne+`</a>
+						</div>
+						<div style="padding:2%;">
+						<a type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionTwo" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionTwo+`</a>
+						</div>
+						<div style="padding:2%;">
+						<a type="button"  class="btn"  onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionThree" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionThree+`</a>
+						</div>
+						<div style="padding:2%;">
+						<a type="button"  class="btn mng"   onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')"id="optionFour" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionFour+`</a>
+						</div>
+						</div>
 						</div>
 						</div>`
 						//merge=merge+1
