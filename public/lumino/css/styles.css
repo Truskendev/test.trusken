@@ -785,12 +785,12 @@ a.label:hover, a.label:focus {
     width: 100%; } }
 .sidebar ul.nav a:hover, .sidebar ul.nav li.parent ul li a:hover {
   text-decoration: none;
-  background-color: #0B4CFF;
+  background-color: #dcc062;
   color: #fff; }
 
 .sidebar ul.nav .active a, .sidebar ul.nav li.parent a.active, .sidebar ul.nav .active > a:hover, .sidebar ul.nav li.parent a.active:hover, .sidebar ul.nav .active > a:focus, .sidebar ul.nav li.parent a.active:focus {
   color: #fff;
-  background-color: #0B4CFF; }
+  background-color: #dcc062; }
 
 .sidebar ul.nav ul, .sidebar ul.nav ul li {
   list-style: none;
@@ -1081,3 +1081,32 @@ p.back-link {
       box-shadow: inset 0px 0px 0px 30px #0B4CFF;
     }
   }
+  .card3{
+    box-shadow:0 2px 4px rgba(0,0,0,0.19), 0 3px 10px rgba(0,0,0,0.23);
+  }
+
+  .coin {
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    background-image: url('/images/coins.png');
+    background-size: 100% 100%;
+    animation: coin-rotate 2s both infinite;
+  }
+  
+  @keyframes coin-rotate {
+    0 {
+      transform: rotateY(0);
+    }
+    50% {
+      transform: rotateY(180deg);
+    }
+    100% {
+      transform: rotateY(0deg);
+    }
+  }
+  .infields{
+  width:304px;
+
+  height:34px!important;
+}

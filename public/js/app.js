@@ -204,7 +204,7 @@ function loadProfilePage(uid) {
 		// userID=response.guid	
 		// window.location=response.redirectUrl+'?'+userID
 		$('#userNameDisplay').text(response[0].user_name)
-		$('#userNameDispla').text(response[0].user_name)
+		$('#userNameDispla').text("Welcome "+response[0].user_name)
 		$('#fullName').val(response[0].user_name)
 		$('#emailId').val(response[0].email_id)
 
@@ -635,12 +635,12 @@ function loadEducationDetails(uid) {
 					log(response)
 
 				response.forEach((elemo,index)=>{
-				urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+				urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 				let badge=` 
 					<img src="`+elemo.badge_name+`" style="width:100px;height:100px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
 					
 							
-					<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+					<a  onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval"  ><i style="color:#fff; width:40px; height:40px; border-radius:50px;  background-color:#1d4590; font-size:20px; padding:5%; text-align:center;" class=" fa fa-share-alt "></i></a>
 					
 					</div>
 				`
@@ -717,6 +717,9 @@ function redirtricia(uid) {
 }
 function redirtrust(uid) {
 	window.location = "trust.html" + '?' + uid
+}
+function redirProfile(uid) {
+	window.location = "profile.html" + '?' + uid
 }
 function redirbdgdatails(uid,bid){
 	window.location = "badgeDetails.html" + '?' + uid + '/' + bid
@@ -969,7 +972,7 @@ let expList=['freashers','beginers','intermediates','expers','seniorlevel']
 					bar.animate(1)
 					$('svg').attr("stroke", "green")
 				}
-				
+				$('#jbttl').text(salaryData['jobTitle']);
 				if(salaryData['annualSalary'] > response[0][currentExpLevel])
 				{
 					var amn=salaryData['annualSalary']-response[0][currentExpLevel]
@@ -1007,7 +1010,7 @@ function loadTriviaPage(uid){
 
 			
 			var correctAnwser=element.correctAnwser				
-				var tri=`<div class="panel " id="tag`+merge+`" style="display:none">
+			var tri=`<div class="panel " id="tag`+merge+`" style="display:none">
 			<div class="panel-heading" id="questionHeading" style="text-align:center">
 			Question`+element.qid+`
 			<svg style="display:none" id="checkCorrect" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
@@ -1229,7 +1232,7 @@ function loadMyBadge(uid){
 		response[1].forEach((elements)=>{
 			if(elements.verification_status==1){
 				response[0].forEach((elemo)=>{
-					urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+					urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 			let badge=` 
 			<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
 			
@@ -1244,7 +1247,7 @@ function loadMyBadge(uid){
 	})
 	}else{
 		response[0].forEach((elemo)=>{
-			urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+			urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 		let badge=` 
 
 		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
@@ -1365,7 +1368,18 @@ $(document).ready(function () {
 		$('#loginForm .input-error').hide();
 		$('#loginForm .input-success').fadeOut(500);
 	});
-
+	// var Coin = document.getElementById("coin");
+	// var degrees = 0;
+	// //Coin.onclick = function() {
+	//   setInterval(function() {
+	// 	degrees += 1800;
+	//   console.log(degrees)
+	//   Coin.style.webkitTransform = "rotateY(" + degrees + "deg)";
+	//   Coin.style.MozTransform = "rotateY(" + degrees + "deg)";
+	//   Coin.style.msTransform = "rotateY(" + degrees + "deg)";
+	//   Coin.style.OTransform = "rotateY(" + degrees + "deg)";
+	//   Coin.style.transform = "rotateY(" + degrees + "deg)";
+	//   },2500)
 	
 })
 function coinsTotal(uid){
@@ -1404,7 +1418,4 @@ function dissp(cc) {
 
 
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 6465692687d23161e6e7135ecec932fec5d81752

@@ -31,7 +31,6 @@ con.connect(function(err) {
  
 var created=new Date();
 var server = app.listen(80,function () {
-var server = app.listen(80 ,function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Server listening at http://%s:%s", host, port)
@@ -41,13 +40,13 @@ app.get('/', function (request, response) {
      response.sendFile( __dirname + "/public/" + "index.html" );
 });
 app.get('/linkedinSignin',function(request,response){
-    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77nyczoox31is7&redirect_uri=http://test.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
+    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77nyczoox31is7&redirect_uri=http://localhost:3000/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
 })
 
 app.get('/verifyLinkedin',function(request,response){
 
 var requestbody={
-    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://test.trusken.com/verifyLinkedin&client_id=77nyczoox31is7&client_secret=9oinTRmmtrm4FRve"
+    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://localhost:3000/verifyLinkedin&client_id=77nyczoox31is7&client_secret=9oinTRmmtrm4FRve"
     ,method:"POST"
 }
 requestPromiseAPI(requestbody).then((body)=>{
@@ -89,7 +88,7 @@ requestPromiseAPI(requestbody).then((body)=>{
                     requestPromiseAPI(requestData)
                     .then((body)=>{
                         processLinkedInData(body)
-                        response.redirect('/lumino/addExp.html?'+JSON.parse(body)['id'])
+                        response.redirect('/refferalsignup.html?'+JSON.parse(body)['id'])
                     })
                     .catch((error)=>{
                         console.log(error)
@@ -192,7 +191,7 @@ app.post('/registerNewUser',(request,response)=>{
                 else{
                     console.log(resultse)
       
-                    response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+                    response.send({guid:guid,redirectUrl: "/refferalsignup.html"} );
                     insertcoinsIssued(ciid,guid,resultse)
                 }
             })
@@ -267,7 +266,7 @@ app.post('/updateProfileData',(request,response)=>{
         // console.log('The solution is: ', JSON.stringify(results));
         else{
             //response.status(200).send({message:'Inserted'})
-            return response.send({guid:request.body.uid,redirectUrl: "/lumino/addExp.html"} );
+            return response.send({guid:request.body.uid,redirectUrl: "/lumino/dashb.html"} );
         }
         
       })
@@ -305,7 +304,7 @@ app.post('/loginUser',(request,response)=>{
                             return response.send({guid:results[0].user_id,redirectUrl: "/referral_landing.html"} );
                            }else{
                             
-                            return response.send({guid:results[0].user_id,redirectUrl: "/lumino/addExp.html"} );
+                            return response.send({guid:results[0].user_id,redirectUrl: "/refferalsignup.html"} );
                            }
                             
                         }
@@ -566,7 +565,7 @@ function processLinkedInData(body){
                 else{
                     console.log(resultse)
       
-                    response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+                   // response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
                     insertcoinsIssued(ciid,guid,resultse)
                 }
             })
@@ -644,10 +643,6 @@ app.post('/getTriviaQuestions',(request,response)=>{
         
       })
 })  
-<<<<<<< HEAD
-=======
-
->>>>>>> 6465692687d23161e6e7135ecec932fec5d81752
 app.post('/getMarksheet',(request,response)=>{
     var sql = "SELECT SUM(mark) as marks FROM trivia_marksheet where user_id='"+request.body.uid+"'";
     
@@ -679,7 +674,7 @@ app.post('/updateMarksheet',(request,response)=>{
         else{
           response.send(results);
         }
-    })
+        
       })
 })  
 
@@ -976,7 +971,7 @@ app.post('/totalCoins',(request,response)=>{
                         else{
                             console.log(resultsee)
               
-                            response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+                            response.send({guid:guid,redirectUrl: "/refferalsignup.html"} );
                             insertcoinsIssued(cqid,request.body.refId,resultsee)
                         }
                     })
@@ -999,4 +994,5 @@ app.post('/totalCoins',(request,response)=>{
         
              
         
-            })  
+            }) 
+         

@@ -44,7 +44,7 @@ function getMailTemplate(uid,username){
                   <p style="color:#1d2227;line-height:28px;font-size:22px;margin:12px 10px 20px 10px;font-weight:400;">Hi `+username+`, it's great to meet you.</p>
                   <p style="margin:0 10px 10px 10px;padding:0;">We'd like to make sure we got your email address right.</p>
                   <p>
-                    <a style="display:inline-block;text-decoration:none;padding:15px 20px;background-color:#2baaed;border:1px solid #2baaed;border-radius:3px;color:#FFF;font-weight:bold;" href="http://test.trusken.com/verification?uid=`+uid+`" target="_blank">Yes, it's me – let's get started</a>
+                    <a style="display:inline-block;text-decoration:none;padding:15px 20px;background-color:#2baaed;border:1px solid #2baaed;border-radius:3px;color:#FFF;font-weight:bold;" href="http://localhost:3000/verification?uid=`+uid+`" target="_blank">Yes, it's me – let's get started</a>
                   </p>
                 </td>
               </tr>

@@ -4,54 +4,54 @@ function getWorkTemplate(index, ID) {
             <form role="form">
             <div class="form-group">
                 <label>Title*</label>
-                <input class="form-control" id="workTitle`+ index + `" type="text" placeholder="Job Title">
+                <input class="form-control infields" id="workTitle`+ index + `" type="text" placeholder="Job Title">
             </div>
             <div class="form-group">
                 <label>Company*</label>
-                <input class="form-control" id="companyName`+ index + `"  type="email" placeholder="Company">
+                <input class="form-control infields" id="companyName`+ index + `"  type="email" placeholder="Company">
             </div>
             <div class="form-group" >
                 <label>Tenure*</label></br>
                 <label>Start Date</label></br>
-                <!-- <input class="form-control" id="workstartYear"   type="text" placeholder="Start Year"><br> -->
+                <!-- <input class="form-control infields" id="workstartYear"   type="text" placeholder="Start Year"><br> -->
              
-                <input type="text" class="form-control stDate`+ index + `" style="width:15%" placeholder="DD">
+                <input type="text" class=" infields form-control stDate`+ index + `" style="width:9%" placeholder="DD">
                 
-                <input type="text" class="form-control stMonth`+ index + `" style="width:15%;  float: left; margin-top: -45px; margin-left: 90px;" placeholder="MM">
+                <input type="text" class=" infields form-control stMonth`+ index + `" style="width:9%;   margin-top: -33px; margin-left: 50px;" placeholder="MM">
                 
-                <input type="text" class="form-control stYear`+ index + `" style="width:15%; float: left; margin-top: -45px; margin-left: 10px;" placeholder="YYYY">
+                <input type="text" class=" infields form-control stYear`+ index + `" style="width:13%;  margin-top: -34px; margin-left: 100px;" placeholder="YYYY">
                 <br>
                 <br>
                  <label>End Date</label></br>
             
                 
-                    <input type="text" class="form-control enDate`+ index + `" style="width:15%" placeholder="DD" >
+                    <input type="text" class="infields form-control enDate`+ index + `" style="width:9%" placeholder="DD" >
                 
-                <input type="text" class="form-control enMonth`+ index + `" style="width:15%;  float: left; margin-top: -45px; margin-left: 90px;" placeholder="MM">
+                <input type="text" class="infields form-control enMonth`+ index + `" style="width:10%;  float: left; margin-top: -33px; margin-left: 50px;" placeholder="MM">
                 
-                <input type="text" class="form-control enYear`+ index + `" style="width:15%; float: left;margin-top: -45px; margin-left: 10px;" placeholder="YYYY">
+                <input type="text" class="infields form-control enYear`+ index + `" style="width:13%; float: left;margin-top: -32px; margin-left: 5px;" placeholder="YYYY">
             
 
             </div>
                 <div class="form-group">
                 <label>Employee Number </label>
-                <input class="form-control" id="employeeNumber`+ index + `" type="text" placeholder="Employee Number">
+                <input class="form-control infields" id="employeeNumber`+ index + `" type="text" placeholder="Employee Number">
             </div>
             
                 <div class="form-group" id="checkdeck`+ index + `" style="display:none">
                 <label>Manager's Name</label>
-                <input class="form-control"  id="managerNumber`+ index + `" type="text" placeholder="Manager's Name">
+                <input class="form-control infields"  id="managerNumber`+ index + `" type="text" placeholder="Manager's Name">
             </div>
             
                 <div class="form-group" id="checkdeck`+ index + `" style="display:none">
                 <label>Manager's Email* </label>
-                <input class="form-control" id="managerEmail`+ index + `"  type="text" placeholder="Manager's Email">
+                <input class="form-control infields" id="managerEmail`+ index + `"  type="text" placeholder="Manager's Email">
             </div>
             
                                                 
             <div class="form-group" id="checkdeck`+ index + `" style="display:none">
                 <label>Description of Work*</label>
-                <textarea class="form-control"  id="empdesc`+ index + `" rows="3"></textarea>
+                <textarea class="form-control infields"  id="empdesc`+ index + `" rows="3"></textarea>
             </div>
             
             
@@ -118,30 +118,30 @@ function getEducationTemplate(cT,ID) {
                 <form role="form">
                 <div class="form-group">
                     <label>University / School / Institution *</label>
-                    <input class="form-control" id="eduInstut`+ cT + `"  type="text" placeholder=" ">
+                    <input class="form-control infields" id="eduInstut`+ cT + `"  type="text" placeholder=" ">
                 </div>
                 <div class="form-group">
                     <label>Degree / Certificate *</label>
-                    <input class="form-control" id="degreeCertificate`+ cT + `" type="text" placeholder="">
+                    <input class="form-control infields" id="degreeCertificate`+ cT + `" type="text" placeholder="">
                 </div>
                 <div class="form-group">
         <label>Tenure*</label></br>
         <label>Start Year</label>
-        <input type="text" class="form-control edstYear`+ cT + `" style="width:25%;" placeholder="YYYY">
+        <input type="text" class=" infields form-control edstYear`+ cT + `" style="width:25%;" placeholder="YYYY">
         
        
         <label>End Year</label>
-        <input type="text" class="form-control edEnYear`+ cT + `" style="width:25%;"  placeholder="YYYY">
+        <input type="text" class=" infields form-control edEnYear`+ cT + `" style="width:25%;"  placeholder="YYYY">
         
     </div>
                     <div class="form-group">
                     <label>Specialization  </label>
-                    <input class="form-control" id="speciality`+ cT + `" type="text" placeholder="">
+                    <input class=" infields form-control" id="speciality`+ cT + `" type="text" placeholder="">
                 </div>
                 
                     <div class="form-group">
                     <label>Membership Number</label>
-                    <input class="form-control" id="memNumber`+ cT + `" type="text" placeholder="">
+                    <input class="form-control infields" id="memNumber`+ cT + `" type="text" placeholder="">
                 </div>
                 
                 
