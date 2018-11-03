@@ -29,8 +29,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
  
-
-var server = app.listen(80,function () {
+var created=new Date();
     var host = server.address().address
     var port = server.address().port
     console.log("Server listening at http://%s:%s", host, port)
@@ -77,7 +76,7 @@ requestPromiseAPI(requestbody).then((body)=>{
                     {
                         if(results[0]['eduSub']==1)
                         {
-                           return response.redirect('/lumino/salaryalc.html?'+results[0].user_id)
+                           return response.redirect('/referral_landing.html?'+results[0].user_id)
                         }
                         return response.redirect('/lumino/addEdu.html?'+results[0].user_id)
                     }
@@ -170,6 +169,7 @@ app.get('/verification', function (request, response) {
 app.post('/registerNewUser',(request,response)=>{
     console.log(JSON.stringify(request.body))
     let guid=guidGenerator()
+    let ciid=guidGeneratorCoin()
     var sql = "INSERT INTO user (user_id,user_name, email_id,password,signature) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"','"+request.body.signature+"')";
     
     con.query(sql, function (error, results, fields) {
@@ -179,7 +179,21 @@ app.post('/registerNewUser',(request,response)=>{
         }
         // console.log('The solution is: ', JSON.stringify(results));
         else{
-            response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+           
+            var sql1="select * from coins_allocation where activity_type='SIGNUP'"
+            con.query(sql1, function (errorw, resultse, fieldqs) {
+                if (errorw) 
+                {
+                   // response.status(500).send({error:error})
+                }
+                // console.log('The solution is: ', JSON.stringify(results));
+                else{
+                    console.log(resultse)
+      
+                    response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+                    insertcoinsIssued(ciid,guid,resultse)
+                }
+            })
 
             let content=mailer.getMailTemplate(guid,request.body.regUsr)
             mailer.sendMail(request.body.regEmail,'Trusken Registration Verification',content,(res) => {
@@ -189,14 +203,35 @@ app.post('/registerNewUser',(request,response)=>{
                 }
                 else
                 {
-                    response.status(500).json('Failed to send mail');
+                    console.log("mail failed")
                 }
             })
-            
+           
         }
         
       })
-})  
+
+     
+
+    })  
+
+function insertcoinsIssued(ciid,guid,resultse){
+
+ var sql2="insert into coins_issued_details (coins_issued_details_id,user_id,coins_earned,issued_date,created_at,created_by,last_updated,coins_alloc_id) values('"+ciid+"','"+guid+"', '"+resultse[0].coins_alloc+"','"+created+"','"+created+"','"+guid+"','"+created+"', '"+resultse[0].coins_alloc_id+"')";
+            con.query(sql2, function (errorw, resultse, fieldqs) {
+                if (errorw) 
+                {
+                   // response.status(500).send({error:error})
+                }
+                // console.log('The solution is: ', JSON.stringify(results));
+                else{
+                    console.log(resultse)
+      
+                    
+                }
+            })
+    }
+
 
 app.post('/getProfileData',(request,response)=>{
     console.log(JSON.stringify(request.body))
@@ -265,7 +300,7 @@ app.post('/loginUser',(request,response)=>{
                         else{
                            if(results1.length===1) {
                            
-                            return response.send({guid:results[0].user_id,redirectUrl: "/lumino/salaryalc.html"} );
+                            return response.send({guid:results[0].user_id,redirectUrl: "/referral_landing.html"} );
                            }else{
                             
                             return response.send({guid:results[0].user_id,redirectUrl: "/lumino/addExp.html"} );
@@ -286,7 +321,7 @@ app.post('/loginUser',(request,response)=>{
 
 
 app.post('/addWorkExData',(request,response)=>{
-
+    let ciid=guidGeneratorCoin();
     let guid=request.body.expID==='undefined'? guidGeneratorWork():request.body.expID
     uid=request.body.uid
     var sql = "INSERT INTO workex (exp_id,job_title_id, start_date,end_date,emp_num,mgr_name,mgr_email,desc_work,org_id,emp_type_id,user_id) VALUES ('"+guid+"','"+request.body.workTitle+"', '"+request.body.workstartYear+"','"+request.body.workEndYear+"','"+request.body.employeeNumber+"','"+request.body.managerNumber+"','"+request.body.managerEmail+"','"+request.body.empdesc+"','"+request.body.companyName+"','"+request.body.selectedworkexp+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE job_title_id='"+request.body.workTitle+"', start_date='"+request.body.workstartYear+"',end_date='"+request.body.workEndYear+"',emp_num='"+request.body.employeeNumber+"',mgr_name='"+request.body.managerNumber+"',mgr_email='"+request.body.managerEmail+"',desc_work='"+request.body.empdesc+"', org_id='"+request.body.companyName+"' , emp_type_id='"+request.body.selectedworkexp+"'";
@@ -299,7 +334,24 @@ app.post('/addWorkExData',(request,response)=>{
         // console.log('The solution is: ', JSON.stringify(results));
         else{
             //response.status(200).send({message:'Inserted'})
-             response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+            
+
+              var sql1="select * from coins_allocation where activity_type='ADD_WORKEX'"
+            con.query(sql1, function (errorw, resultse, fieldqs) {
+                if (errorw) 
+                {
+                   // response.status(500).send({error:error})
+                }
+                // console.log('The solution is: ', JSON.stringify(results));
+                else{
+                    console.log(resultse)
+      
+                    response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+                    insertcoinsIssued(ciid,request.body.uid,resultse)
+
+                }
+            })
+
         }
         
       })
@@ -322,6 +374,7 @@ app.post('/addWorkExData',(request,response)=>{
 
 
 app.post('/addEducationData',(request,response)=>{
+    let ciid=guidGeneratorCoin();
     console.log(JSON.stringify(request.body))
     let guid=request.body.eduID==='undefined'? guidGeneratorEducation():request.body.eduID
     
@@ -336,7 +389,24 @@ app.post('/addEducationData',(request,response)=>{
         // console.log('The solution is: ', JSON.stringify(results));
         else{
             //response.status(200).send({message:'Inserted'})
-            return response.send({uid:uid,redirectUrl: "/lumino/salaryalc.html"} );
+           
+
+            var sql1="select * from coins_allocation where activity_type='ADD_EDU'"
+            con.query(sql1, function (errorw, resultse, fieldqs) {
+                if (errorw) 
+                {
+                   // response.status(500).send({error:error})
+                }
+                // console.log('The solution is: ', JSON.stringify(results));
+                else{
+                    console.log(resultse)
+                    insertcoinsIssued(ciid,request.body.uid,resultse)
+                    return response.send({uid:uid,redirectUrl: "/lumino/salaryalc.html"} );
+                   
+
+                }
+            })
+
         }
         
       })
@@ -425,6 +495,14 @@ function guidGeneratorEducation(){
 function guidGeneratorCompSal(){
     return "CS_"+Math.random().toString(36).substr(2, 9).toUpperCase()
 }
+function guidGeneratorCoin(){
+    return "CI_"+Math.random().toString(36).substr(2, 9).toUpperCase()
+}
+function guidGeneratoriTrust(){
+    return "IT_"+Math.random().toString(36).substr(2, 9).toUpperCase()
+}
+
+
 
 const requestPromiseAPI=(requestbody)=>{
     return new Promise((resolve,reject)=>{
@@ -462,7 +540,7 @@ function processLinkedInData(body){
     let phonetic_last_name=linkedinData['phoneticLastName']
     let formatted_phonetic_name=linkedinData['formattedPhoneticName']
     let num_connections_capped=linkedinData['numConnectionsCapped']
-
+    let ciid=guidGeneratorCoin()
 
     //var sql = "INSERT INTO basic_profile (user_id,first-name, last-name,formatted-name,phonetic-first-name,phonetic-last-name,formatted-phonetic-name,headline,location,industry,current-share,num-connections,num-connections-capped,summary,specialties,picture-url,site-standard-profile-request,api-standard-profile-request,public-profile-url,email-address) VALUES ('"+guid+"','"+request.body.regUsr+"')";
     var sql = "INSERT INTO user (user_id,user_name, email_id) VALUES ('"+userId+"','"+firstName+" "+lastName+"', '"+email_id+"')";
@@ -476,6 +554,20 @@ function processLinkedInData(body){
         // console.log('The solution is: ', JSON.stringify(results));
         else{
             console.log('The solution is: ', JSON.stringify(results));
+            var sql1="select * from coins_allocation where activity_type='SIGNUP'"
+            con.query(sql1, function (errorw, resultse, fieldqs) {
+                if (errorw) 
+                {
+                   // response.status(500).send({error:error})
+                }
+                // console.log('The solution is: ', JSON.stringify(results));
+                else{
+                    console.log(resultse)
+      
+                    response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+                    insertcoinsIssued(ciid,guid,resultse)
+                }
+            })
         }
     })
     for(var i=0;i<positions.length;i++){
@@ -516,7 +608,6 @@ function processLinkedInData(body){
 
 
 
-
 app.post('/checkSalaryDetails',(request,response)=>{
     console.log(JSON.stringify(request.body))
     let guid=guidGeneratorCompSal()
@@ -551,8 +642,6 @@ app.post('/getTriviaQuestions',(request,response)=>{
         
       })
 })  
-=======
->>>>>>> 9a4709d71f4206d44bb026c4d571e08859f949ec
 app.post('/getMarksheet',(request,response)=>{
     var sql = "SELECT SUM(mark) as marks FROM trivia_marksheet where user_id='"+request.body.uid+"'";
     
@@ -586,3 +675,322 @@ app.post('/updateMarksheet',(request,response)=>{
         }
         
       })
+})  
+
+app.post('/getItrustData',(request,response)=>{
+//var sql ="SELECT * from workex where user_id='"+request.body.uid+"'"
+var sql="SELECT user_name,user_id FROM truskendb.user where user_id in (select user_id from truskendb.workex where org_id in (select org_id from truskendb.workex where user_id='"+request.body.uid+"') and start_date >=( select start_date from truskendb.workex where user_id='"+request.body.uid+"' )) and user_id not like '"+request.body.uid+"' and user_id not in (select trusted_user_id from itrust where trusted_by_user_id='"+request.body.uid+"')"
+con.query(sql, function (error, results, fields) {
+    if (error) 
+    {
+        response.status(500).send({error:error})
+    }
+    // 
+    else
+    {
+        console.log('The solution is: ', JSON.stringify(results))
+        response.send(results)
+        // var sqq="select user_id from workex where org_id='"+results[0].org_id+"'"
+        // con.query(sqq, function (error, results1, fields) {
+        //     if (error) 
+        //     {
+        //         response.status(500).send({error:error})
+        //     }
+        //     // 
+        //     else
+        //     {
+        //         var resultse=[]
+                
+              
+        //         results1.forEach((element,index) => {
+        //         var sqq1="select user_name,email_id,user_id from user where user_id='"+element.user_id+"'"
+        //         con.query(sqq1, function (error, results2, fields) {
+                    
+        //             if (error) 
+        //             {
+        //                 response.status(500).send({error:error})
+        //             }
+        //             // 
+        //             else
+        //             {
+                      
+        //                 resultse[index]=results2;
+        //                 if(resultse.length==results1.length){
+        //                 response.send(resultse);
+        //                // response.send(results);
+        //                 }
+                        
+                
+        //                 }
+                            
+                    
+                        
+        //           })
+                 
+        
+        //         })
+            
+                
+           
+            
+        //     }
+        // })
+        }
+        
+   
+    
+  })
+})
+
+app.post('/getEmployeDate',(request,response)=>{
+   
+    var sql = "SELECT * from workex where user_id='"+request.body.uid+"'";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+          response.send(results);
+        }
+        
+      })
+})
+
+app.post('/getCurrentUserDate',(request,response)=>{
+   
+    var sql = "SELECT * from workex where user_id='"+request.body.uid+"'";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+          response.send(results);
+        }
+        
+      })
+})
+let meat=[];
+app.post('/getBadgeDetails',(request,response)=>{
+   
+    //var sql = "select verification_status from workex where user_id='"+request.body.uide+"'";
+    var sql="SELECT * FROM truskendb.badges where badge_id in (select badge_id from workex where user_id='"+request.body.uide+"')"
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            response.send(results)
+            
+        //     results.forEach((elements)=>{
+        //         if(elements.verification_status==1){
+        //             var sq = "select * from badges where badge_id='1'";
+        
+        // con.query(sq, function (error, picto, fields) {
+        //     if (error) 
+        //     {
+        //         response.status(500).send({error:error})
+        //     }
+        //     else{
+        //         meat[0]=picto;
+        //         meat[1]=results;
+        //         response.send(meat);
+                
+        //        // response.send(results);
+        //     }
+        
+        //     })
+        //   }else{
+        //     // var sq = "select * from badges where badge_id='2'";
+        
+        //     // con.query(sq, function (error, picto, fields) {
+        //     //     if (error) 
+        //     //     {
+        //     //         response.status(500).send({error:error})
+        //     //     }
+        //     //     else{
+        
+        //     //         //if(meat[0]!=""){
+        //     //         meat[0]=picto;
+        //     //         meat[1]=results;
+        //     //     //     }else{
+        //     //     //     meat[0]=picto;
+        //     //     // meat[1]=results;
+            
+        //     //     response.send(meat);
+        //     //     }
+            
+                
+        //     // })
+            
+        //     }
+            
+        // })
+            
+            
+            
+    
+        }
+        
+      })
+})
+
+app.post('/getbadDetails',(request,response)=>{
+    console.log(JSON.stringify(request.body))
+   // let guid=guidGenerator()
+    var sql = "select * from badges where badge_id='"+request.body.bid+"'";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            //response.status(200).send({message:'Inserted'})
+            return response.send(results);
+        }
+        
+      })
+})  
+
+
+app.post('/trustMe',(request,response)=>{
+  
+  let values=[]
+  request.body.for_user.forEach((user)=>{
+    let guid= guidGeneratoriTrust()
+    values.push("('"+guid+"','"+user+"','"+request.body.by_user+"')")
+  })
+    var sql = "insert into itrust (itrust_id,trusted_user_id,trusted_by_user_id) values "+values.toString();
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            console.log(results)
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            let ciid=guidGeneratorCoin()
+         var sql1="select * from coins_allocation where activity_type='ITRUST_U'"
+         con.query(sql1, function (errorw, resultse, fieldqs) {
+             if (errorw) 
+             {
+                // response.status(500).send({error:error})
+             }
+             // console.log('The solution is: ', JSON.stringify(results));
+             else{
+                 console.log(resultse)
+   
+                
+                 insertcoinsIssued(ciid,request.body.by_user,resultse)
+             }
+         })
+         var sql2="select * from coins_allocation where activity_type='U_TRUST_ME'"
+         let ciqid=guidGeneratorCoin()
+         con.query(sql2, function (errorw, resultse, fieldqs) {
+             if (errorw) 
+             {
+                // response.status(500).send({error:error})
+             }
+             // console.log('The solution is: ', JSON.stringify(results));
+             else{
+                 console.log(resultse)
+   
+                 response.send(results)
+                 insertcoinsIssued(ciqid,request.body.for_user[0],resultse)
+             }
+         })
+        }
+        
+      })
+    
+})
+
+app.post('/totalCoins',(request,response)=>{
+    var sql2="select sum(coins_earned) as coinsTot from coins_v where user_id='"+request.body.uid+"'";
+               con.query(sql2, function (errorw, results, fieldqs) {
+                   if (errorw) 
+                   {
+                    console.log(errorw)
+                      // response.status(500).send({error:error})
+                   }
+                   // console.log('The solution is: ', JSON.stringify(results));
+                   else{
+                    response.send(results)
+                    
+                       
+                   }
+               })
+
+        })
+
+        app.post('/registerRefferedUser',(request,response)=>{
+            console.log(JSON.stringify(request.body))
+            let guid=guidGenerator()
+            let ciid=guidGeneratorCoin()
+            var sql = "INSERT INTO user (user_id,user_name, email_id,password,signature,referral_id) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"','"+request.body.signature+"','"+request.body.refId+"')";
+            
+            con.query(sql, function (error, results, fields) {
+                if (error) 
+                {
+                    response.status(500).send({error:error})
+                }
+                // console.log('The solution is: ', JSON.stringify(results));
+                else{
+                   
+                    var sql1="select * from coins_allocation where activity_type='SIGNUP'"
+                    con.query(sql1, function (errorw, resultse, fieldqs) {
+                        if (errorw) 
+                        {
+                           // response.status(500).send({error:error})
+                        }
+                        // console.log('The solution is: ', JSON.stringify(results));
+                        else{
+                            console.log(resultse)
+              
+                          //  response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+                            insertcoinsIssued(ciid,guid,resultse)
+                        }
+                    })
+                    let cqid=guidGeneratorCoin()
+                    var sql3="select * from coins_allocation where activity_type='REFFERED'"
+                    con.query(sql3, function (errorw, resultsee, fieldqs) {
+                        if (errorw) 
+                        {
+                           // response.status(500).send({error:error})
+                        }
+                        // console.log('The solution is: ', JSON.stringify(results));
+                        else{
+                            console.log(resultsee)
+              
+                            response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
+                            insertcoinsIssued(cqid,request.body.refId,resultsee)
+                        }
+                    })
+        
+                    let content=mailer.getMailTemplate(guid,request.body.regUsr)
+                    mailer.sendMail(request.body.regEmail,'Trusken Registration Verification',content,(res) => {
+                        if(res.status == 200)
+                        {
+                            console.log("mail success")
+                        }
+                        else
+                        {
+                            console.log("mail failed")
+                        }
+                    })
+                   
+                }
+                
+              })
+        
+             
+        
+            })  

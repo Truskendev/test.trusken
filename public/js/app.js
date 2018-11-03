@@ -37,20 +37,20 @@ function login() {
 	}
 	else {
 
-		$('#loginForm .input-error').delay(500).fadeIn(1000);
-		$('#loginForm .input-success').fadeOut(500);
+		alert("please fill in the details")
 	}
 }
-function loginHom() {
+function loginHom(rid) {
 	let loginDat =
 	{
 		regUsr: $('#unameq').val(),
 		regEmail: $('#unemaill').val(),
-		regPass: $('#passwq').val()
+		regPass: $('#passwq').val(),
+		refId:rid
 	}
 	if (isValidEmail(loginDat['regEmail']) && (loginDat['regPass'].length > 1)&& (loginDat['regUsr'].length > 1)) {
 
-		$.post("/registerNewUser", loginDat, function (response) {
+		$.post("/registerRefferedUser", loginDat, function (response) {
 			log(response);
 			if (response.status == 500) { alert("User already exists") }
 			userID = response.guid
@@ -110,9 +110,8 @@ function registerUser() {
 			});
 	}
 	else {
-		$('#myModal2').hide();
-		$('#regForm .input-error').delay(500).fadeIn(1000);
-		$('#regForm .input-success').fadeOut(500);
+		
+		alert("please fill in the details")
 	}
 }
 function loadaddExperiance(uid){
@@ -205,6 +204,7 @@ function loadProfilePage(uid) {
 		// userID=response.guid	
 		// window.location=response.redirectUrl+'?'+userID
 		$('#userNameDisplay').text(response[0].user_name)
+		$('#userNameDispla').text(response[0].user_name)
 		$('#fullName').val(response[0].user_name)
 		$('#emailId').val(response[0].email_id)
 
@@ -274,23 +274,43 @@ function addWorkex(expCount) {
 	var selectedworkexp = new Array();
 
 	var workData = []
-
+	let stDate = new Array();
 	let stMonth = new Array();
 	let stYear = new Array();
+	let enDate = new Array();
 	let enMonth = new Array();
 	let enYear = new Array();
-
+	
 	for (c = 0; c < expCount; c++) {
+var selectedworkexp = new Array();
 
 		$('input[name="employmentType' + c + '"]:checked').each(function () {
 			selectedworkexp = this.value;
 		});
+		if($(".stDate" + c).val()!=""){
+		$(".stDate" + c).each(function () {
+			stDate = this.value;
+		});
+	}else{
+		$(".enDate" + c).each(function () {
+			stDate = "01";
+		});
+	}
 		$(".stMonth" + c).each(function () {
 			stMonth = this.value;
 		});
 		$(".stYear" + c).each(function () {
 			stYear = this.value;
 		});
+		if($(".enDate" + c)!=""){
+			$(".enDate" + c).each(function () {
+				enDate = this.value;
+			});
+		}else{
+			$(".enDate" + c).each(function () {
+				enDate = "01";
+			});
+		}
 		$(".enMonth" + c).each(function () {
 			enMonth = this.value;
 		});
@@ -305,8 +325,9 @@ function addWorkex(expCount) {
 			workTitle: $('#workTitle' + c).val(),
 
 			companyName: $('#companyName' + c).val(),
-			workstartYear: stMonth + "/" + stYear,
-			workEndYear: enMonth + "/" + enYear,
+			workstartYear: stDate + "/" + stMonth + "/" + stYear,
+			
+			workEndYear:  enDate + "/"+enMonth + "/" + enYear,
 			employeeNumber: $('#employeeNumber' + c).val(),
 			managerNumber: $('#managerNumber' + c).val(),
 			managerEmail: $('#managerEmail' + c).val(),
@@ -499,7 +520,7 @@ function loadEmploymentDetails(uid) {
 
 
 		response.forEach((element) => {
-
+			var status= element.verification_status==0 ? "Verification in progress" : "Verified";
 			var we = `<li >
 		<div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
 		<div class="timeline-panel" style="background-color: #dcf8c6;">
@@ -510,6 +531,7 @@ function loadEmploymentDetails(uid) {
 					<p id="jobTitle"><b style="color:#000;">Job Title:</b> `+ element.job_title_id + `</p>	
 				<p id="startDate"><b style="color:#000;">Start Date:</b> `+ element.start_date + `</p>
 				<p id="endDate"><b style="color:#000;">End Date:</b> `+ element.end_date + `</p>
+				<p id="endDate"><b style="color:#2ecc71;">Status:</b> `+ status + `</p>
 				<p></p>
 			</div>
 		</div>
@@ -544,39 +566,27 @@ function loadEmploymentDetails(uid) {
 
 function loadEducationDetails(uid) {
 	log(uid)
+
 	$.post("/getEducationData", { uid: uid }, function (response) {
 		log(response[0]);
 
 
 		response.forEach((element) => {
-			var are = `<li>
-		<div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
-		<div class="timeline-panel" style="background-color: #dcf8c6;">
-			<div class="timeline-heading">
-				<h4 class="timeline-title" id="educationalInstitute"><b style="color:#000;">Institute:</b> `+ element.org_id + `</h4>
-			</div>
-			<div class="timeline-body">
-				<p id="degree"><b style="color:#000;">Degree:</b> `+ element.degree + `</p>
-				<p id="startDdate"><b style="color:#000;">Star Year:</b> `+ element.start_year + `</p>
-				<p id="endDdate"><b style="color:#000;">End Year:</b> `+ element.end_year + `</p>
-			</div>
-		</div>
-	</li>`
+	
 
-			$('#appendEducation').append(are);
+	var are = `<tr>	<td>`+ element.org_id + `</td>
+				<td>`+ element.degree + `</td>
+				<td>`+ element.start_year + `</td>
+				<td> `+ element.end_year + `</td>
+				</tr>
+			
+	`
+
+			$('#customers').append(are);
 		})
-		// userID=response.guid	
-		// window.location=response.redirectUrl+'?'+userID
-		// $('#userNameDisplay').text(response[0].user_name)
-		// $('#educationalInstitute').text(response[0].org_id)
-		// $('#degree').text(response[0].degree)
-		// $('#startDdate').text(response[0].start_year)
-		// $('#endDdate').text(response[0].end_year)
+	
 
-
-
-	})
-		.done(function () {
+	}).done(function () {
 
 			log("second success");
 		})
@@ -586,7 +596,113 @@ function loadEducationDetails(uid) {
 		.always(function () {
 			log("finished");
 		});
-}
+
+
+		$.post("/getEmploymentData", { uid: uid }, function (respons) {
+			
+			respons.forEach((element,index) => {
+				var status= element.badge_id==0 ? "Verification in progress" : "Verified";
+	
+		var we = `<tr>	<td>`+ element.org_id + `</td>
+				<td>`+ element.job_title_id + `</td>
+				<td>`+ element.start_date + `</td>
+				<td>`+ element.end_date + `</td>
+				<td> `+ status + `</td>
+				<td id="Badge`+index+`"> </td>
+				</tr>
+			
+	`
+
+			$('#employment').append(we);
+		})
+			
+			})
+			
+			.done(function () {
+	
+				log("second success");
+			})
+			.fail(function (error) {
+				log(error.responseJSON.error.sqlMessage);
+			})
+			.always(function () {
+				log("finished");
+			});
+	
+
+			$.post("/getBadgeDetails", {uide:uid}, function (response) {
+				var urlforshare;
+					log(response)
+
+				response.forEach((elemo,index)=>{
+				urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+				let badge=` 
+					<img src="`+elemo.badge_name+`" style="width:100px;height:100px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+					
+							
+					<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+					
+					</div>
+				`
+				$('#Badge'+index).append(badge);
+				})
+				// 	response[1].forEach((elements)=>{
+				// 		if(elements.verification_status==1){
+				// 			response[0].forEach((elemo)=>{
+				// 				urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+				// 		let badge=` 
+				// 		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+						
+								
+				// 		<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+						
+				// 		</div>
+				// 	`
+				// 	//$('#atachUrl').attr("data-a2a-url","http://localhost:3000/lumino/badgeDetails.html?'"+uid+"'/'"+elemo.badge_id+"'")
+				// 	$('#Badge0').append(badge);
+					
+				// })
+				// }else{
+				// 	response[0].forEach((elemo)=>{
+				// 		urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+				// 	let badge=` 
+			
+				// 	<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+				// 	<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+					
+				// `
+				// //class="a2a_kit a2a_kit_size_32 a2a_default_style"
+				// //class="a2a_button_linkedin"
+				// $('#Badge0').append(badge);
+				
+				// 	})
+				// }
+				// 	})
+				
+					}).done(function () {
+						log("second success");
+					})
+					.fail(function (error) {
+						log(error.responseJSON.error.sqlMessage);
+					})
+					.always(function () {
+						log("finished");
+					});
+				
+					
+
+			}
+
+
+
+
+
+
+		
+
+
+
+
 function redirCompSalary(uid){
 	window.location.href = "salaryalc.html?"+ uid
 }
@@ -594,12 +710,21 @@ function redir(uid) {
 	window.location = "employment.html" + '?' + uid
 }
 function redirEducation(uid) {
-	window.location = "education.html" + '?' + uid
+	window.location = "dashb.html" + '?' + uid
 }
 function redirtricia(uid) {
 	window.location = "trivia.html" + '?' + uid
 }
+function redirtrust(uid) {
+	window.location = "trust.html" + '?' + uid
+}
+function redirbdgdatails(uid,bid){
+	window.location = "badgeDetails.html" + '?' + uid + '/' + bid
 
+}
+function redirbadg(uid) {
+	window.location = "badge.html" + '?' + uid
+}
 function redirectHome() {
 
 
@@ -801,7 +926,7 @@ function loadCompareSalary(uid) {
 }
 
 function calcSalaryAvg(userSalary,industryAvg){
-	return (userSalary/industryAvg).toFixed(4)
+	return (userSalary/(industryAvg*2)).toFixed(4)
 }
 
 function compareSalary(bar) {
@@ -826,21 +951,37 @@ let expList=['freashers','beginers','intermediates','expers','seniorlevel']
 			// if(salaryData['experiance']==0){
 				var percentage=calcSalaryAvg(salaryData['annualSalary'],response[0][currentExpLevel])
 				$('#aveerr').html("<b>AVG "+response[0][currentExpLevel]+"</b>");
-				if(percentage<=0.6999){
+				if(percentage<=0.3999){
 					bar.animate(percentage)
 					$('svg').attr("stroke", "red")
 
-				}else if(percentage>=.7 && percentage<=1){
+				}else if(percentage>=.4 && percentage<=0.5){
 					bar.animate(percentage)
 					$('svg').attr("stroke", "orange")
-				}else 
+				}else if(percentage>=0.5 && percentage<=1) 
+				{
+					
+					bar.animate(percentage)
+					$('svg').attr("stroke", "green")
+				}
+				else if(percentage>1)
 				{
 					bar.animate(1)
 					$('svg').attr("stroke", "green")
 				}
-		
-		})
-			.done(function () {
+				
+				if(salaryData['annualSalary'] > response[0][currentExpLevel])
+				{
+					var amn=salaryData['annualSalary']-response[0][currentExpLevel]
+					$('#inrAmnt').html("<i>INR "+amn+"</i> more than average salary")
+
+				}else if(salaryData['annualSalary'] <= response[0][currentExpLevel])
+				{
+					var amn=response[0][currentExpLevel]-salaryData['annualSalary']
+					$('#inrAmnt').html("<i>INR "+(amn)+"</i> less than average salary")
+
+				}
+		}).done(function () {
 
 				log("second success");
 			})
@@ -874,15 +1015,20 @@ function loadTriviaPage(uid){
 			<div class="panel-body"  style="text-align:center">
 			<h4 style="color:#000000"  id="quest`+merge+`">`+element.questions+`</h4>
 						<br>
-						
-						<button type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionOne"  style="  background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionOne+`</button>
-
-						<button type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionTwo" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionTwo+`</button>
-
-						<button type="button"  class="btn"  onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionThree" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionThree+`</button>
-
-						<button type="button"  class="btn mng"   onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')"id="optionFour" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionFour+`</button>
-						
+						<div style="text-align:left">
+						<div style="padding:2%;">
+						<a type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionOne"  style="  background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionOne+`</a>
+						</div>
+						<div style="padding:2%;">
+						<a type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionTwo" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionTwo+`</a>
+						</div>
+						<div style="padding:2%;">
+						<a type="button"  class="btn"  onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionThree" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionThree+`</a>
+						</div>
+						<div style="padding:2%;">
+						<a type="button"  class="btn mng"   onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')"id="optionFour" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionFour+`</a>
+						</div>
+						</div>
 						</div>
 						</div>`
 						//merge=merge+1
@@ -974,7 +1120,244 @@ function getAnswer(id,mer,correctAnwser){
 		}
 }
 
+function loadItrustData(uid){
+
+	$("#checkboxMaster").click(function () {
+		$('input:checkbox').not(this).prop('checked', this.checked);
+	});
+	var fakeServerResponse = [];
+		// var datalist = document.getElementById('names');
+
+		// document.getElementById('name').addEventListener('keyup', function (event) {
+			
+		// 		if (this.value.length === 0) {
+		// 			return;
+		// 		}
+		// 		if(event.keyCode === 13)
+		// 		{
+		// 			event.preventDefault();
+		// 			console.log(this.value)
+		// 		}
+		// 		// Send Ajax request and loop of its result
+
+		// 		datalist.textContent = '';
+		// 		for (var i = 0; i < fakeServerResponse.length; i++) {
+		// 			if (fakeServerResponse[i].indexOf(this.value.toUpperCase()) !== 0) {
+		// 				continue;
+		// 			}
+		// 			var option = document.createElement('option');
+		// 			option.value = fakeServerResponse[i];
+		// 			datalist.appendChild(option);
+		// 		}
+		// 	});
+
+	$.post("/getItrustData", { uid:uid }, function (response) {
+			log(response);
+			response.forEach((user,index)=>{
+				var trust=`&nbsp;&nbsp;<input type="checkbox" name="checkbo`+index+`" id="checkbo`+index+`" value="`+user.user_id+`" />
+				<label for="checkbo`+index+`">`+user.user_name+`</label>`
+				$('#testAttach').append(trust);
+				fakeServerResponse.push(user.user_name)
+			})
+
+	// 		let rest=[];
+	// 		response.forEach((element,index) => {
+	// 			element.forEach((elem)=>{
+	// 		$.post("/getEmployeDate", { uid:elem.user_id }, function (res) {
+	// 			log(res);
+				
+
+	// 			rest[index]=res
+	// 	})
+
+	// 		.done(function (res) {
+	// 			;
+	// 			log("second success");
+
+
+	// 		})
+	// 		.fail(function (error) {
+	// 			log(error.responseJSON.error.sqlMessage);
+	// 		})
+	// 		.always(function () {
+	// 			log("finished");
+	// 		});
+	// 	})
+	// 	})		
+	
+	// $.post("/getCurrentUserDate", { uid:uid }, function (resu) {
+	// 	log(rest);
+	// 	car=0;
+	// 	rest.forEach((element)=>{
+	// 		element.forEach((eleme,indu)=>{
+	// 			if((eleme.end_date>=resu[0].start_date)&&(resu[0].end_date<=eleme.start_date)){
+	// 				$.post("/getProfileData", { uid: eleme.user_id }, function (respe) {
+					
+	// 					var trust=`&nbsp;&nbsp;<input type="checkbox" name="checkbo`+car+`" id="checkbo`+car+`" value="`+respe[0].user_id+`" />
+	// 					<label for="checkbo`+car+`">`+respe[0].user_name+`</label>`
+	// 					$('#testAttach').append(trust);
+	// 					fakeServerResponse[car]=respe[0].user_name
+	// 					car++	
+
+	// 				})
+
+						
+	// 			}
+	// 		})		
+	// 	})
+		
+
+	// })
+}).done(function () {
+			log("second success");
+		})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {
+			log("finished");
+		});
+		coinsTotal(uid)
+
+}
+
+function loadMyBadge(uid){
+	
+	$.post("/getBadgeDetails", {uide:uid}, function (response) {
+	var urlforshare;
+		log(response)
+		response[1].forEach((elements)=>{
+			if(elements.verification_status==1){
+				response[0].forEach((elemo)=>{
+					urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+			let badge=` 
+			<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+			
+					
+			<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+			
+			</div>
+		`
+		//$('#atachUrl').attr("data-a2a-url","http://localhost:3000/lumino/badgeDetails.html?'"+uid+"'/'"+elemo.badge_id+"'")
+		$('#badgepage').append(badge);
+		
+	})
+	}else{
+		response[0].forEach((elemo)=>{
+			urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+		let badge=` 
+
+		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+		<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+		
+	`
+	//class="a2a_kit a2a_kit_size_32 a2a_default_style"
+	//class="a2a_button_linkedin"
+	$('#badgepage').append(badge);
+	
+		})
+	}
+		})
+	
+		}).done(function () {
+			log("second success");
+		})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {
+			log("finished");
+		});
+	
+		
+	
+}
+
+function loadMbdetails(uidi,uuid){
+	$.post("/getbadDetails", { bid: uuid }, function (response) {
+		log(response[0]);
+		// userID=response.guid	
+		// window.location=response.redirectUrl+'?'+userID
+		let badge=` 
+		<img src="`+response[0].badge_name+`" style="width:300px;height:300px;" >
+		<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://localhost:3000/lumino/badgeDetails.html?QYySAnTx5d/1" style="text-align:center;  ">
+                                           
+		<a class="a2a_button_linkedin"></a>
+		<a class="a2a_button_facebook"></a>
+		<a class="a2a_button_twitter"></a>
+		<a class="a2a_button_google_plus"></a>
+		<a class="a2a_button_whatsapp"></a>
+		<a class="a2a_button_google_gmail"></a>
+		<a class="a2a_button_copy_link"></a>
+		<a class="a2a_button_telegram"></a>
+		</div>
+
+	`
+	$('#badger').append(badge);
+
+	})
+		.done(function () {
+
+			log("second success");
+		})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {
+			log("finished");
+		});
+}
+
+function trustMe(uid){
+
+
+
+var selectedusers = new Array()
+
+var inputs = document.getElementsByTagName("input"); 
+var cbs = []; 
+
+for (var i = 0; i < inputs.length; i++) {
+  if (inputs[i].type == "checkbox") {
+    cbs.push(inputs[i]);
+
+  }
+}
+var nbCbs = cbs.length; //number of checkboxes
+
+for(indu=0;indu<nbCbs;indu++){
+		$('input[name="checkbo'+indu+'"]:checked').each(function () {
+			selectedusers.push(this.value);
+		});
+}
+	if(selectedusers.length===0)
+	{
+		return
+	}
+	let trustData =
+	{
+		by_user: window.location.href.split('?')[1],
+		for_user: selectedusers
+	}
+	$.post("/trustMe", trustData, function (response) {
+		log(response)
+		location.reload()
+	})
+		.done(function () {
+			
+		})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {
+			log("finished");
+		});
+}
+
+
+
 $(document).ready(function () {
+	
 	$("#myModal2").on('shown.bs.modal', function () {
 		init_Sign_Canvas();
 	});
@@ -982,9 +1365,33 @@ $(document).ready(function () {
 		$('#loginForm .input-error').hide();
 		$('#loginForm .input-success').fadeOut(500);
 	});
+
+	
 })
+function coinsTotal(uid){
 
+	$.post("/totalCoins", {uid:uid}, function (response) {
+		log(response);
+		
+		$('#qweer').html(response[0].coinsTot)
+			
+		
+	})
+		.done(function () {
+			
+		})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {	
+			log("finished");
+		});
+}
 
+function accm(ur){
+	$('#atachUrl').attr("data-a2a-url",ur);
+	$.getScript("https://static.addtoany.com/menu/page.js");
+}
 function dissp(cc) {
 
 	var checker = $('input[name="employmentType' + cc + '"]:checked').val()
@@ -997,3 +1404,4 @@ function dissp(cc) {
 
 
 }
+

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TRUSKEN</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<style>
+		.search {
+  position: relative;
+  color: #aaa;
+  font-size: 16px;
+}
+
+.search input {
+  width: 250px;
+  height: 32px;
+
+  background: #ffffff;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #ccc, 0 10px 15px #ffffff inset;
+}
+
+.search input { text-indent: 1px;}
+.search .fa-search { 
+  position: absolute;
+  top: 8px;
+  left: 155px;
+  color:#0B4CFF;
+}
+
+.glow {
+  font-size: 18px;
+  color: #0B4CFF;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0B4CFF, 0 0 40px #0B4CFF, 0 0 50px #0B4CFF, 0 0 60px #0B4CFF, 0 0 70px #0B4CFF;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #0B4CFF, 0 0 50px #0B4CFF, 0 0 60px #0B4CFF, 0 0 70px #0B4CFF, 0 0 80px #0B4CFF;
+  }
+}
+		</style>
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" style="background-color:#fff; height:140px;" role="navigation" >
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" style="background-color: #0B4CFF" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" onclick="redirectHome();"><span><img src="../images/ts1.png" style="width:200px; height:50px; margin-top: -14px;"></span></a>
+				<ul class="nav navbar-top-links navbar-right">
+					
+					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+						<em class="fa fa-bell" style="color:black"></em><span class="label label-info"></span>
+					</a>
+						<!-- <ul class="dropdown-menu dropdown-alerts">
+							<li><a href="#">
+								<div><em class="fa fa-envelope"></em> 1 New Message
+									<span class="pull-right text-muted small">3 mins ago</span></div>
+							</a></li>
+							<li class="divider"></li>
+							<li><a href="#">
+								<div><em class="fa fa-heart"></em> 12 New Likes
+									<span class="pull-right text-muted small">4 mins ago</span></div>
+							</a></li>
+							<li class="divider"></li>
+							<li><a href="#">
+								<div><em class="fa fa-user"></em> 5 New Followers
+									<span class="pull-right text-muted small">4 mins ago</span></div>
+							</a></li>
+						</ul> -->
+					</li>
+				</ul>
+<div>
+		
+</div>
+	
+				<ul class="nav navbar-top-links navbar-right">
+					
+						<li class="dropdown" style="margin-left:-680px; ">
+								<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l0ExhcMymdL6TrZ84" width="100%" height="60%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p  style="margin-top:-60px;"><a href="https://giphy.com/gifs/funny-party-l0ExhcMymdL6TrZ84"><b id="userNameDisplay"></b> Coins earned<b id="qweer"></b></a></p>
+		
+						</li>
+					</ul>
+				
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-3 sidebar" style="z-index: 5000;" >
+		<div class="profile-sidebar">
+				<div class="profile-userpic">
+						<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+					</div>
+					<div class="profile-usertitle">
+							<div class="profile-usertitle-name" id="userNameDispla">Username</div>
+						<!-- <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div> -->
+					</div>
+			<!-- <div class="profile-usertitle">
+				<div class="profile-usertitle-name" id="userNameDisplay">Username</div> -->
+				<!-- <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div> -->
+			<!-- </div> -->
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<!-- <a class="btn" onclick="$('#sidebar-collapse').fadeOut()">&nbsp;&nbsp;<em class="fa fa-navicon" style="font-size:20px;" ></em>	</a>		 -->
+			<ul class="nav menu">
+					<!-- <li><a href=""><em class="fa fa-gamepad">&nbsp;</em> Fun Zone</a></li> -->
+					
+				<li><a  onclick="redirCompSalary(window.location.href.split('?')[1])"><em class="fa fa-money ">&nbsp;</em> Compare Salary</a></li>
+				<!-- <li><a   onclick="redirtricia(window.location.href.split('?')[1])"><em class="fa fa-eercast" >&nbsp;</em> Trivia Zone</a></li> -->
+				<li class="active"><a  onclick="redirtrust(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> I Trust</a></li>
+				<!-- <li ><a  onclick="redirbadg(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> My Badges</a></li>
+				<li><a  onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li> -->
+				<li ><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> My Dashboard</a></li>
+				<!-- <li><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li> -->
+				<!-- <li ><a href="#"><em class="fa fa-sitemap">&nbsp;</em> Job Board</a></li>
+				<li ><a href="#"><em class="fa fa-id-badge">&nbsp;</em> My Badge</a></li>	 -->
+				<!-- <li ><a href="#"><em class="fa fa-book">&nbsp;</em> I Trust </a></li>	 -->
+				
+				<!-- <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+					<em class="fa fa-navicon">&nbsp;</em> Fun Zone <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+					</a>
+					<ul class="children collapse" id="sub-item-1">
+						<li><a class="" href="#">
+							<span class="fa fa-arrow-right">&nbsp;</span> Compare Salary
+						</a></li>
+						<li><a class="" href="#">
+							<span class="fa fa-arrow-right">&nbsp;</span> Trivia Zone
+						</a></li>
+						
+					</ul>
+				</li>		 -->
+				<li><a href="../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+			</ul>
+	</div><!--/.sidebar-->
+	
+	
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-3 main" >
+		
+		<!-- <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-3 main" style="background-image:url('images/Depositphotos_104388970_xl-2015.jpg'); overflow-x: hidden; background-size: 600px 600px;opacity:0.95;"> -->
+		
+		
+		
+				
+		
+		<div class="row" >
+				<br><br><br><br><br>	
+			
+				
+			<!-- </div> -->
+			<div class="col-md-8" >
+					
+				
+					<div class="panel panel-success">
+						<div class="panel-heading">A Trusken connection means you can always trust</div>
+						<div class="panel-body">
+							<p>Trusken enables you to utilise your coins to enhance the profile of your trusted connections. By trusting your connections, you will get become part of large trust network. For each person you trust, you will have to spent 500 Trusken coins but they earn 2000 Trusken coins.</p>
+						</div>
+					</div>
+				
+					<!-- <div >	
+				<h3>A Trusken connection means you can always trust</h3>
+					<h4>Trusken enables you to utilise your coins to enhance the profile of your trusted connections. By trusting your connections, you will get become part of large trust network. For each person you trust, you will have to spent 500 Trusken coins but they earn 2000 Trusken coins.</h4> -->
+					
+					<!-- <form>-->
+							<!-- <div class="form-group search">
+							<span class="fa fa-search"></span>
+								<input type="text" id="name" list="names" autocomplete="off" class="form-control" placeholder="Search" style="width:25%;">
+								<datalist id="names"></datalist>
+							 </div> -->
+						<!--</form> -->
+						<!-- </div> -->
+					
+						<div class="panel panel-default">
+								<div class="panel-heading">
+										
+												<input type="checkbox" id="checkboxMaster" />
+												<label for="checkboxMaster">Select All</label>
+										
+									
+									<span class="pull-right"><a class="btn" onclick="trustMe()" style="background-color:#4daf7c;color:white" >Trust Me</a></span></div>
+								<div class="panel-body">
+									<ul class="todo-list">
+										<li class="todo-list-item">
+											<div class="checkbox" id="testAttach">
+											
+											</div>
+											<div class="pull-right action-buttons"></div>
+										</li>
+										
+									</ul>
+								</div>
+							
+							
+							</div>
+							<h4>* you can only trust colleagues who have worked with you in the same organisation during your tenure there. Also, both of you should have verified work experience.</h4>
+		</div><!--/.row-->
+		
+		
+			<div class="col-sm-12">
+				<!-- <p class="back-link">Lumino Theme by <a href="https://www.gamiac.in">Gamiac</a></p> -->
+			</div>
+			<br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</div><!--/.row-->
+	</div>	<!--/.main-->
+	
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="../js/app.js"></script>
+	<script>
+		window.onload = function () {
+	
+};
+
+function redirectEducation(){
+	let uid=window.location.href.split('?')[1];
+	window.location="addEducationOnly.html?"+uid;
+}
+
+$(document).ready(function(){
+	let uid=window.location.href.split('?')[1];
+loadItrustData(uid);
+loadProfilePage(uid);
+});
+
+	</script>
+		
+</body>
+</html>

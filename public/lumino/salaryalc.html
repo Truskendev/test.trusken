@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style=" overflow-x: hidden;">
 
 <head>
 	<meta charset="utf-8">
@@ -16,8 +16,8 @@
 
 
 	<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-
+	<!-- <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css"> -->
+	<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<!--[if lt IE 9]>
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
@@ -58,7 +58,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-custom navbar-fixed-top" style="background-color:#fff;" role="navigation">
+	<nav class="navbar navbar-custom navbar-fixed-top" style="background-color:#fff;height:140px;" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" style="background-color: #0B4CFF" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
@@ -89,17 +89,24 @@
 						</ul> -->
 					</li>
 				</ul>
+				<ul class="nav navbar-top-links navbar-right">
+					
+					<li class="dropdown" style="margin-left:-680px; ">
+							<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l0ExhcMymdL6TrZ84" width="100%" height="60%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p class="glow" style="margin-top:-60px;"><a href="https://giphy.com/gifs/funny-party-l0ExhcMymdL6TrZ84"><b id="userNameDisplay"></b> Coins earned<b id="qweer"></b></a></p>
+	
+					</li>
+				</ul>
 			</div>
 		</div><!-- /.container-fluid -->
 	</nav>
 
-	<div id="sidebar-collapse" class="col-sm-3 col-lg-3 sidebar">
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-3 sidebar" style="z-index: 5000;">
 		<div class="profile-sidebar">
 			<div class="profile-userpic">
 				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
 			</div>
 			<div class="profile-usertitle">
-					<div class="profile-usertitle-name" id="userNameDisplay">Username</div>
+					<div class="profile-usertitle-name" id="userNameDispla">Username</div>
 				<!-- <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div> -->
 			</div>
 			<div class="clear"></div>
@@ -111,10 +118,12 @@
 
 			<li class="active"><a  onclick="redirCompSalary(window.location.href.split('?')[1])"><em class="fa fa-money ">&nbsp;</em>
 					Compare Salary</a></li>
-			<li><a  onclick="redirtricia(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> Trivia Zone</a></li>
-			<li><a onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li>
+			<!-- <li><a  onclick="redirtricia(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> Trivia Zone</a></li> -->
+			<li><a  onclick="redirtrust(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> I Trust</a></li>
+			<!-- <li ><a  onclick="redirbadg(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> My Badges</a></li>
+			<li><a onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li> -->
 			<li><a onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em>
-					Education</a></li>
+				My Dashboard</a></li>
 			<!-- <li><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li> -->
 			<!-- <li ><a href="#"><em class="fa fa-sitemap">&nbsp;</em> Job Board</a></li>
 			<li ><a href="#"><em class="fa fa-id-badge">&nbsp;</em> My Badge</a></li>	 -->
@@ -140,114 +149,27 @@
 
 	<!-- <a class="btn" onclick="$('#sidebar-collapse').fadeIn()">&nbsp;&nbsp;<em class="fa fa-navicon" style="font-size:20px; float: left; width: 10px;;" ></em>	</a> -->
 
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-3 main">
-		<div class="row ">
-			<!-- <ol class="breadcrumb"  style="float:right">
-				<li><a href  onclick="redirectHome();">
-					<em class="fa fa-home" ></em>
-				</a></li>
-				<li class="active">Compare Salary</li>
-			</ol> -->
-		</div>
-		<!--/.row-->
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-3 main"  >
+		
+	
 
 
-
-		<br>
-
-
-		<!-- <div class="row">
-			<div class="col-lg-12">
-				
-				
-				<div class="alert bg-info" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em> Welcome to the Trusken <a href="#" class="pull-right"><em class="fa fa-lg fa-close"></em></a></div>
-
-			</div> -->
-		<!-- </div>	 -->
+	
 
 
+	
 
-		<div class="row">
 
-			<!-- <div class="col-md-6">
-				<div class="panel panel-default articles">
-					<div class="panel-heading">
-						Education Details
-						
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
-					<div class="panel-body articles-container">
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >EDUCATIONAL INSTITUTE</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="educationalInstitute"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >DEGREE</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="degree"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >SPECIALIZATION</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="specality"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >MEMBERSHIP NUMBER</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="membershipNumber" ></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						
-					 -->
-			<!-- </div>
-				
-				
-			</div> -->
+		<br><br>
+		<div class="row" style="background-color:#f1f4f7;" >
 
-			<div class="col-md-12">
-				<div class="panel panel-default">
+			<br><br>
+
+			<div class="col-md-12 " style="height:100%; background-color:#f1f4f7; " >
+				<div class="panel panel-default" style="background-color:#f1f4f7;">
 					<div class="panel-body tabs">
 
-						<div class="tab-content" style="background-color: #f1f4f7;">
+						<div class="tab-content" >
 							<div class="tab-pane fade in active" id="tab1">
 								<div class="row">
 									<div class="col-md-4">
@@ -255,7 +177,7 @@
 
 											<div class="panel-body">
 
-												<form role="form">
+												<form role="form" style="opacity:2; color:#000000" >
 														<div class="form-group">
 																<label>Industry</label>
 																<!-- <input class="form-control" id=industry type="text" placeholder="Industry"> -->
@@ -273,12 +195,6 @@
 																</select>
 														
 													</div>
-													<!-- <div class="form-group">
-														<label>Function</label>
-														<input class="form-control" id="jobCategory" autocomplete="off" placeholder="Job Category">
-
-
-													</div> -->
 													
 													<div class="form-group">
 														<label>Year of Experiance</label>
@@ -314,9 +230,9 @@
 									<!--/.col end-->
 
 									<div class="col-md-7">
-										<div class="panel panel-default">
+										<div class="panel panel-default" >
 
-											<div class="panel-body" style="text-align:center;">
+											<div class="panel-body" style="text-align:center; opacity: 2;">
 												<h4><b>As a Internal Audit</b></h4>
 												<p><b>You are paid <b id="inrAmnt"></b>  </b></p>
 												<h4 style="color:#000" id="aveerr"></h4>
@@ -330,6 +246,7 @@
 									</div>
 								</div>
 								<!--/.col end-->
+								<br><br><br><br><br>
 							</div>
 
 
@@ -339,13 +256,10 @@
 				<!--/.panel-->
 			</div>
 
-			<!-- </div> -->
-			<!--/.row-->
+			
 
 
-			<div class="col-sm-12">
-				<!-- <p class="back-link">Lumino Theme by <a href="https://www.gamiac.in">Gamiac</a></p> -->
-			</div>
+			
 		</div>
 		<!--/.row-->
 	</div>
@@ -367,6 +281,7 @@
 let uid=window.location.href.split('?')[1];
 
 loadProfilePage(uid);
+coinsTotal(uid);
 loadCompareSalary(uid);
 
 
@@ -478,6 +393,7 @@ loadCompareSalary(uid);
 
 				color: '#fff',
 				trailColor: '#eee',
+				stroke:1,
 				trailWidth: 20,
 				easing: 'easeInOut',
 				duration: 1400,
@@ -492,20 +408,20 @@ loadCompareSalary(uid);
 					bar.path.setAttribute('stroke', state.color);
 					var value = Math.round(bar.value() * 100);
 					if (value < 50) {
-						bar.setText(value + '%');
+						//bar.setText(value + '%');
 						//	$('svg').attr("stroke", "red")
 					} else if (value > 50) {
-						bar.setText(value + "%");
+						//bar.setText(value + "%");
 						//	$('svg').attr("stroke", "orange")
 					}
 
-					bar.text.style.color = state.color;
+					//bar.text.style.color = state.color;
 				}
 			});
-			bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-			bar.text.style.fontSize = '2rem';
-			bar.text.style.color = '#000';
-			bar.text.style.marginLeft = '50px';
+			// bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+			// bar.text.style.fontSize = '2rem';
+			// bar.text.style.color = '#000';
+			// bar.text.style.marginLeft = '50px';
 
 			bar.animate(0);
 			$('svg').attr("stroke", "orange")

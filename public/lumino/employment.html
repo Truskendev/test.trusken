@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="overflow-x:hidden">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -69,6 +69,8 @@
 				
 			<li><a onclick="redirCompSalary(window.location.href.split('?')[1])"><em class="fa fa-money ">&nbsp;</em> Compare Salary</a></li>
 			<li><a  onclick="redirtricia(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> Trivia Zone</a></li>
+			<li><a  onclick="redirtrust(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> I Trust</a></li>	
+			<li ><a  onclick="redirbadg(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> My Badges</a></li>
 			<li  class="active"><a  onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li>
 			<li><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li>
 			<!-- <li><a  onclick="redirEducation(window.location.href.split('?')[1])"><em class="fa fa-graduation-cap">&nbsp;</em> Education</a></li> -->
@@ -94,157 +96,19 @@
 	</div><!--/.sidebar-->
 		
 	<!-- <a class="btn" onclick="$('#sidebar-collapse').fadeIn()">&nbsp;&nbsp;<em class="fa fa-navicon" style="font-size:20px; float: left; width: 10px;;" ></em>	</a> -->
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-3 main">
-		<div class="row "  >
-			<!-- <ol class="breadcrumb"  style="float:right">
-				<li><a href onclick="redirectHome();" type="button">
-					<em class="fa fa-home" ></em>
-				</a></li>
-				<li class="active">Employment</li>
-			</ol> -->
-		</div><!--/.row-->
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-3 main"style="background-image:url('images/emp.jpg'); overflow-x: hidden; background-size: 600px 600px;opacity:0.95;">
 		
 		
 		
-		<br>
 		
-		
-		<div class="row">
-			<div class="col-lg-12">
-				
-				
-				<!-- <div class="alert bg-info" role="alert"><em class="fa fa-lg fa-warning">&nbsp;</em> Welcome to the Trusken <a href="#" class="pull-right"><em class="fa fa-lg fa-close"></em></a></div> -->
-
-			</div>
-		</div><!--/.row-->	
-		
-				
-		
-		<div class="row">
-<!-- 			
-			<div class="col-md-6">
-				<div class="panel panel-default articles">
-					<div class="panel-heading">
-						Empoyee Details
-						
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
-					<div class="panel-body articles-container">
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >JOB TITLE</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="jobTitle"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div> -->
-						<!-- <div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >COMPANY</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="companyName"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >EMPLOYEE NUMBER</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="empNumber"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >MANAGER'S NAME</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="managerName" ></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium"  style="text-align:right;">MANAGERS EMAIL</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="managerEmail"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >WORK DESCRIPTION</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="workDescription"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="article border-bottom">
-							<div class="col-xs-12">
-								<div class="row">
-									<div class="col-xs-4 col-md-4 date">
-										<div class="medium" style="text-align:right;" >EMPLOYMENT TYPE</div>
-										
-									</div>
-									<div class="col-xs-8 col-md-8">
-										<h4 id="employmentType"></h4>
-										
-									</div>
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>	
-
-					
-				</div>
-				
-				
-			</div>
-
 			
+		
 				
-			</div> -->
-			<div class="col-md-6">
+		
+
+		<div class="row" style=" background-color:#f5f5f5;opacity:.95">
+			<br>
+			<div class="col-md-6" style=" background-color:#f5f5f5;opacity:.95">
 				
 				<div class="panel panel-default ">
 					<div class="panel-heading">
@@ -281,13 +145,13 @@
 	<script src="../js/app.js"></script>
 	<script>
 		window.onload = function () {
-	var chart1 = document.getElementById("line-chart").getContext("2d");
-	window.myLine = new Chart(chart1).Line(lineChartData, {
-	responsive: true,
-	scaleLineColor: "rgba(0,0,0,.2)",
-	scaleGridLineColor: "rgba(0,0,0,.05)",
-	scaleFontColor: "#c5c7cc"
-	});
+	// var chart1 = document.getElementById("line-chart").getContext("2d");
+	// window.myLine = new Chart(chart1).Line(lineChartData, {
+	// responsive: true,
+	// scaleLineColor: "rgba(0,0,0,.2)",
+	// scaleGridLineColor: "rgba(0,0,0,.05)",
+	// scaleFontColor: "#c5c7cc"
+	// });
 };
 
 function redirectExperiance(){
