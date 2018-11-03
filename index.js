@@ -674,7 +674,7 @@ app.post('/updateMarksheet',(request,response)=>{
         else{
           response.send(results);
         }
-        
+    })
       })
 })  
 
