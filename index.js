@@ -30,8 +30,7 @@ con.connect(function(err) {
 });
  
 var created=new Date();
-
-var server = app.listen(80 ,function () {
+var server = app.listen(80' ,function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Server listening at http://%s:%s", host, port)
@@ -644,7 +643,6 @@ app.post('/getTriviaQuestions',(request,response)=>{
         
       })
 })  
-
 app.post('/getMarksheet',(request,response)=>{
     var sql = "SELECT SUM(mark) as marks FROM trivia_marksheet where user_id='"+request.body.uid+"'";
     
@@ -676,7 +674,7 @@ app.post('/updateMarksheet',(request,response)=>{
         else{
           response.send(results);
         }
-    })
+        
       })
 })  
 
@@ -994,8 +992,7 @@ app.post('/totalCoins',(request,response)=>{
                 
               })
         
-        })
-        
              
-       
-})
+        
+            }) 
+         
