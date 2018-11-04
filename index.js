@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var mailer=require('./mailer')
 var requestApi=require('request')
 app = express();
-app.use(bodyParser({limit: '50mb'}));
+//app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
