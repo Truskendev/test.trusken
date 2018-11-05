@@ -3286,8 +3286,8 @@ fieldset[disabled] .btn-info.focus {
 }
 .btn-warning {
   color: #fff;
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  background-color: #1d4590;
+  border-color: #1d4590;
 }
 .btn-warning:focus,
 .btn-warning.focus {
@@ -3334,8 +3334,8 @@ fieldset[disabled] .btn-warning:focus,
 .btn-warning.disabled.focus,
 .btn-warning[disabled].focus,
 fieldset[disabled] .btn-warning.focus {
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  background-color: #1d4590;
+  border-color: #1d4590;
 }
 .btn-warning .badge {
   color: #f0ad4e;
@@ -6458,7 +6458,7 @@ button.close {
     bottom: 20px;
   }
 }
-.clearfix:before,
+/* .clearfix:before,
 .clearfix:after,
 .dl-horizontal dd:before,
 .dl-horizontal dd:after,
@@ -6474,15 +6474,15 @@ button.close {
 .btn-toolbar:after,
 .btn-group-vertical > .btn-group:before,
 .btn-group-vertical > .btn-group:after,
-.nav:before,
+/* .nav:before,
 .nav:after,
 .navbar:before,
 .navbar:after,
 .navbar-header:before,
 .navbar-header:after,
 .navbar-collapse:before,
-.navbar-collapse:after,
-.pager:before,
+.navbar-collapse:after, */
+/* .pager:before,
 .pager:after,
 .panel-body:before,
 .panel-body:after,
@@ -6492,7 +6492,7 @@ button.close {
 .modal-footer:after {
   display: table;
   content: " ";
-}
+}  */
 .clearfix:after,
 .dl-horizontal dd:after,
 .container:after,
@@ -6755,3 +6755,4 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+

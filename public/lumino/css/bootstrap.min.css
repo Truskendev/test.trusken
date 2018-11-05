@@ -7957,6 +7957,12 @@ button.close {
 	}
 }
 
+@media (min-width:1100px) {
+	.coiner {
+		display: none;
+	}
+}
+
 @media (max-width:767px) {
 	.hidden-xs {
 		display: none!important

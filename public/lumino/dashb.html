@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TRUSKEN</title>
+    <title>TRUSKEN - My Dashboard</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
@@ -36,9 +36,12 @@
                 padding-top: 12px;
                 padding-bottom: 12px;
                 text-align: left;
-                background-color: #dcc062;
+                background-color: #00c6d7;
                 color: white;
             }
+            .dropdown:hover {  
+    color:#000!important;
+}
             </style>
 </head>
 
@@ -77,13 +80,13 @@
 						</ul>
 						<ul class="nav navbar-top-links navbar-right">
 							
-							<li class="dropdown" style="margin-left:-780px; ">
+							<li class="dropdown" style="margin-left:-880px; ">
 								<div class="row" style="text-align: center" >
 		
 										<div class="col-md-3" style="display: flex; justify-content: center; " >
 												<div class="coin"></div>	<div class="coin"></div>	<div class="coin"></div>
 											</div>
-											<div class="col-md-6" style="text-align: center">
+											<div class="col-md-6 earn" >
 											<b id="userNameDisplay"></b> you earned <b id="qweer"></b>
 											</div>
 											<div class="col-md-3" id="coin" style="display: flex; justify-content: center;">
@@ -117,15 +120,15 @@
 			<ul class="nav menu">
                     <!-- <li><a href=""><em class="fa fa-gamepad">&nbsp;</em> Fun Zone</a></li> -->
         
-                    <li ><a style="font-size:18px;"  onclick="redirCompSalary(window.location.href.split('?')[1])"><em ><img src="images/comapre.png" style="width:35px;height:35px;"> </em>
+                    <li  class="pointer" ><a style="font-size:16px; font-weight:400"  onclick="redirCompSalary(window.location.href.split('?')[1])"><em ><img src="images/comapre.png" style="width:35px;height:35px;"> </em>
                             Compare Salary</a></li>
                     <!-- <li><a  onclick="redirtricia(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> Trivia Zone</a></li> -->
-                    <li  ><a style="font-size:18px;" onclick="redirtrust(window.location.href.split('?')[1])"><em ><img src="images/itrust.png" style="width:35px;height:35px;"> </em> I Trust</a></li>
+                    <li  class="pointer" ><a style="font-size:16px; font-weight:400" onclick="redirtrust(window.location.href.split('?')[1])"><em ><img src="images/itrust.png" style="width:35px;height:35px;"> </em> I Trust</a></li>
                     <!-- <li ><a  onclick="redirbadg(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> My Badges</a></li>
                     <li><a onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li> -->
-                    <li class="active"><a style="font-size:18px;" onclick="redirEducation(window.location.href.split('?')[1])"><em ><img src="images/dashboard.png" style="width:35px;height:35px;"> </em>
+                    <li class="active pointer"><a style="font-size:16px; font-weight:400" onclick="redirEducation(window.location.href.split('?')[1])"><em ><img src="images/dashboard.png" style="width:35px;height:35px;"> </em>
                         My Dashboard</a></li>
-                    <li  ><a style="font-size:18px;" onclick="redirProfile(window.location.href.split('?')[1])"><em><img src="images/jobs.png" style="width:35px;height:35px;"> </em> My Profile</a></li>
+                    <li  class="pointer" ><a style="font-size:16px; font-weight:400" onclick="redirProfile(window.location.href.split('?')[1])"><em><img src="images/jobs.png" style="width:35px;height:35px;"> </em> My Profile</a></li>
                     <!-- <li ><a href="#"><em class="fa fa-sitemap">&nbsp;</em> Job Board</a></li>
                     <li ><a href="#"><em class="fa fa-id-badge">&nbsp;</em> My Badge</a></li>	 -->
                     <!-- <li ><a href="#"><em class="fa fa-book">&nbsp;</em> I Trust </a></li>	 -->
@@ -143,7 +146,7 @@
                             
                         </ul>
                     </li>		 -->
-                    <li><a style="font-size:18px;" href="../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+                    <li><a style="font-size:16px; font-weight:400" href="../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
                 </ul>
 		</div>
     <!--/.sidebar-->

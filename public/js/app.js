@@ -81,12 +81,12 @@ function modalData() {
 	registerUser();
 }
 function registerUser() {
-
+	
 	let userData = {
 		regUsr: $('#namew').val(),
 		regEmail: $('#emaile').val(),
 		regPass: $('#regpass').val(),
-		signature: $('#qwer').attr('src')
+	
 	}
 
 	if (isValidEmail(userData['regEmail']) && (userData['regUsr'].length > 1) && (userData['regPass'].length > 1)) {
@@ -118,6 +118,7 @@ function loadaddExperiance(uid){
 	var qwe = getWorkTemplate(0)
 	$('#addExpBtn').attr("onclick", "addexp(1)")
 	$('#submitWrkExp').attr("onclick", "addWorkex(1)")
+	$('#submitWrkExpp').attr("onclick", "addWorkexq(1)")
 	$('#addEx').append(qwe);
 }
 function loadaddExp(uid) {
@@ -266,6 +267,7 @@ function addexp(index) {
 	let template = getWorkTemplate(index)
 	$('#addExpBtn').attr("onclick", "addexp(" + (index + 1) + ")")
 	$('#submitWrkExp').attr("onclick", "addWorkex(" + (index + 1) + ")")
+	$('#submitWrkExpp').attr("onclick", "addWorkexq(" + (index + 1) + ")")
 	$('#addEx').append(template)
 
 }
@@ -372,10 +374,115 @@ var selectedworkexp = new Array();
 
 }
 
+function addWorkexq(expCount) {
+	var selectedworkexp = new Array();
+
+	var workData = []
+	let stDate = new Array();
+	let stMonth = new Array();
+	let stYear = new Array();
+	let enDate = new Array();
+	let enMonth = new Array();
+	let enYear = new Array();
+	
+	for (c = 0; c < expCount; c++) {
+var selectedworkexp = new Array();
+
+		$('input[name="employmentType' + c + '"]:checked').each(function () {
+			selectedworkexp = this.value;
+		});
+		if($(".stDate" + c).val()!=""){
+		$(".stDate" + c).each(function () {
+			stDate = this.value;
+		});
+	}else{
+		$(".enDate" + c).each(function () {
+			stDate = "01";
+		});
+	}
+		$(".stMonth" + c).each(function () {
+			stMonth = this.value;
+		});
+		$(".stYear" + c).each(function () {
+			stYear = this.value;
+		});
+		if($(".enDate" + c)!=""){
+			$(".enDate" + c).each(function () {
+				enDate = this.value;
+			});
+		}else{
+			$(".enDate" + c).each(function () {
+				enDate = "01";
+			});
+		}
+		$(".enMonth" + c).each(function () {
+			enMonth = this.value;
+		});
+		$(".enYear" + c).each(function () {
+			enYear = this.value;
+		});
+
+
+
+		workData1 = {
+			expID: $('#expID' + c).text(),
+			workTitle: $('#workTitle' + c).val(),
+
+			companyName: $('#companyName' + c).val(),
+			workstartYear: stDate + "/" + stMonth + "/" + stYear,
+			
+			workEndYear:  enDate + "/"+enMonth + "/" + enYear,
+			employeeNumber: $('#employeeNumber' + c).val(),
+			managerNumber: $('#managerNumber' + c).val(),
+			managerEmail: $('#managerEmail' + c).val(),
+			empdesc: $('#empdesc' + c).val(),
+
+			selectedworkexp: selectedworkexp,
+			uid: window.location.href.split('?')[1],
+
+		}
+		workData[c] = workData1
+
+
+
+
+		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1)  && (workData[c]['workTitle'].length > 1)) {
+			$.post("/addWorkExDataa", workData[c], function (response) {
+
+
+				log(response.redirectUrl);
+				userID = response.uid
+						
+				window.location = response.redirectUrl + '?' + userID
+
+			})
+				.done(function () {
+
+					log("second success");
+				})
+				.fail(function (error) {
+					log(error.responseJSON.error.sqlMessage);
+				})
+				.always(function () {
+					log("finished");
+				});
+		}
+		else {
+			alert("please fill in the data")
+		}
+
+	}
+
+
+}
+
+
+
 function addedu(index) {
 	var qwe = getEducationTemplate(index)
 	$('#addEdu').attr("onclick", "addedu(" + (index + 1) + ")")
 				$('#addEduSubmit').attr("onclick","addEducation(" + (index + 1) + ")")
+				$('#addEduSubmitt').attr("onclick","addEducationn(" + (index + 1) + ")")
 
 		$('#addEd').append(qwe);
 
@@ -426,10 +533,59 @@ function addEducation(cT) {
 	}
 }
 
+function addEducationn(cT) {
+
+
+
+	var eduData = []
+
+
+
+	for (c = 0; c < cT; c++) {
+
+
+
+		let eduData1 = {
+			eduInstut: $('#eduInstut' + c).val(),
+			degreeCertificate: $('#degreeCertificate' + c).val(),
+			edustartYear: $(".edstYear" + c).val(),
+			eduEndYear: $(".edEnYear" + c).val(),
+			speciality: $('#speciality' + c).val(),
+			memNumber: $('#memNumber' + c).val(),
+			eduID:$('#eduID' + c).text(),
+			uid: window.location.href.split('?')[1]
+		}
+		eduData[c] = eduData1
+		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)) {
+			$.post("/addEducationDataw", eduData[c], function (response) {
+				log(response.redirectUrl);
+				userID = response.uid
+				window.location = response.redirectUrl + '?' + userID
+			})
+				.done(function () {
+
+					log("second success");
+				})
+				.fail(function (error) {
+					log(error.responseJSON.error.sqlMessage);
+				})
+				.always(function () {
+					log("finished");
+				});
+		}
+		else {
+			alert("fill in the data");
+		}
+	}
+}
+
+
 function loadaddEducate(uid){
 	var qwe = getEducationTemplate(0)
 	$('#addEdu').attr("onclick", "addedu(1)")
 	$('#addEduSubmit').attr("onclick","addEducation(1)")
+	$('#addEduSubmitt').attr("onclick","addEducationn(1)")
+
 
 	$('#addEd').append(qwe);
 }
@@ -635,7 +791,7 @@ function loadEducationDetails(uid) {
 					log(response)
 
 				response.forEach((elemo,index)=>{
-				urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+				urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 				let badge=` 
 					<img src="`+elemo.badge_name+`" style="width:100px;height:100px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
 					
@@ -1232,7 +1388,7 @@ function loadMyBadge(uid){
 		response[1].forEach((elements)=>{
 			if(elements.verification_status==1){
 				response[0].forEach((elemo)=>{
-					urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+					urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 			let badge=` 
 			<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
 			
@@ -1247,7 +1403,7 @@ function loadMyBadge(uid){
 	})
 	}else{
 		response[0].forEach((elemo)=>{
-			urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+			urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 		let badge=` 
 
 		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
@@ -1283,7 +1439,7 @@ function loadMbdetails(uidi,uuid){
 		// window.location=response.redirectUrl+'?'+userID
 		let badge=` 
 		<img src="`+response[0].badge_name+`" style="width:300px;height:300px;" >
-		<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://localhost:3000/lumino/badgeDetails.html?QYySAnTx5d/1" style="text-align:center;  ">
+		<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://beta.trusken.com/lumino/badgeDetails.html?QYySAnTx5d/1" style="text-align:center;  ">
                                            
 		<a class="a2a_button_linkedin"></a>
 		<a class="a2a_button_facebook"></a>

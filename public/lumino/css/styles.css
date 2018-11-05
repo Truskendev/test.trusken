@@ -209,8 +209,8 @@ a.btn:active, button:active {
   border-color: #8ad919; }
 
 .btn-warning, .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open > .dropdown-toggle.btn-warning, .btn-warning.disabled, .btn-warning[disabled], fieldset[disabled] .btn-warning, .btn-warning.disabled:hover, .btn-warning[disabled]:hover, fieldset[disabled] .btn-warning:hover, .btn-warning.disabled:focus, .btn-warning[disabled]:focus, fieldset[disabled] .btn-warning:focus, .btn-warning.disabled:active, .btn-warning[disabled]:active, fieldset[disabled] .btn-warning:active, .btn-warning.disabled.active, .btn-warning[disabled].active, fieldset[disabled] .btn-warning.active {
-  background-color: #ffb53e;
-  border-color: #ffb53e; }
+  background-color: #1d4590;
+  border-color: #1d4590; }
 
 .btn-danger, .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger, .btn-danger.disabled, .btn-danger[disabled], fieldset[disabled] .btn-danger, .btn-danger.disabled:hover, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger:hover, .btn-danger.disabled:focus, .btn-danger[disabled]:focus, fieldset[disabled] .btn-danger:focus, .btn-danger.disabled:active, .btn-danger[disabled]:active, fieldset[disabled] .btn-danger:active, .btn-danger.disabled.active, .btn-danger[disabled].active, fieldset[disabled] .btn-danger.active {
   background-color: #f9243f;
@@ -785,12 +785,12 @@ a.label:hover, a.label:focus {
     width: 100%; } }
 .sidebar ul.nav a:hover, .sidebar ul.nav li.parent ul li a:hover {
   text-decoration: none;
-  background-color: #dcc062;
+  background-color: #00c6d7;
   color: #fff; }
 
 .sidebar ul.nav .active a, .sidebar ul.nav li.parent a.active, .sidebar ul.nav .active > a:hover, .sidebar ul.nav li.parent a.active:hover, .sidebar ul.nav .active > a:focus, .sidebar ul.nav li.parent a.active:focus {
   color: #fff;
-  background-color: #dcc062; }
+  background-color: #00c6d7; }
 
 .sidebar ul.nav ul, .sidebar ul.nav ul li {
   list-style: none;
@@ -1086,10 +1086,10 @@ p.back-link {
   }
 
   .coin {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 100px;
-    background-image: url('/images/coins.png');
+    background-image: url('/images/coins.jpeg');
     background-size: 100% 100%;
     animation: coin-rotate 2s both infinite;
   }
@@ -1110,3 +1110,25 @@ p.back-link {
 
   height:34px!important;
 }
+.earn{
+  text-align: center; font-size: 18px;
+}
+.pointer:hover{
+  cursor: pointer;
+}
+
+@media (min-width:268px) and (max-width:1100px) {
+	.coiner {
+    display: none!important;
+    visibility: hidden;
+  }
+
+  
+}
+@media (min-width:1110px) {
+	.coiner {
+		display: block!important;
+	}
+}
+
+

@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var mailer=require('./mailer')
 var requestApi=require('request')
 app = express();
-app.use(bodyParser({limit: '50mb'}));
+// app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -40,13 +40,13 @@ app.get('/', function (request, response) {
      response.sendFile( __dirname + "/public/" + "index.html" );
 });
 app.get('/linkedinSignin',function(request,response){
-    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77nyczoox31is7&redirect_uri=http://localhost:3000/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
+    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77nyczoox31is7&redirect_uri=http://beta.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
 })
 
 app.get('/verifyLinkedin',function(request,response){
 
 var requestbody={
-    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://localhost:3000/verifyLinkedin&client_id=77nyczoox31is7&client_secret=9oinTRmmtrm4FRve"
+    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://beta.trusken.com/verifyLinkedin&client_id=77nyczoox31is7&client_secret=9oinTRmmtrm4FRve"
     ,method:"POST"
 }
 requestPromiseAPI(requestbody).then((body)=>{
@@ -299,7 +299,7 @@ app.post('/loginUser',(request,response)=>{
                             response.status(500).send({error:error})
                         }
                         else{
-                           if(results1.length===1) {
+                           if(results1.length!=0) {
                            
                             return response.send({guid:results[0].user_id,redirectUrl: "/referral_landing.html"} );
                            }else{
@@ -348,6 +348,61 @@ app.post('/addWorkExData',(request,response)=>{
                     console.log(resultse)
       
                     response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+                    insertcoinsIssued(ciid,request.body.uid,resultse)
+
+                }
+            })
+
+        }
+        
+      })
+      var sq="update user set wexSubm=1 where user_id='"+uid+"' and wexSubm=0"
+      con.query(sq, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            //response.status(200).send({message:'Inserted'})
+           // return response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+           console.log("Submitted!")
+        }
+        
+      })
+
+})  
+
+
+
+
+app.post('/addWorkExDataa',(request,response)=>{
+    let ciid=guidGeneratorCoin();
+    let guid=request.body.expID==='undefined'? guidGeneratorWork():request.body.expID
+    uid=request.body.uid
+    var sql = "INSERT INTO workex (exp_id,job_title_id, start_date,end_date,emp_num,mgr_name,mgr_email,desc_work,org_id,emp_type_id,user_id) VALUES ('"+guid+"','"+request.body.workTitle+"', '"+request.body.workstartYear+"','"+request.body.workEndYear+"','"+request.body.employeeNumber+"','"+request.body.managerNumber+"','"+request.body.managerEmail+"','"+request.body.empdesc+"','"+request.body.companyName+"','"+request.body.selectedworkexp+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE job_title_id='"+request.body.workTitle+"', start_date='"+request.body.workstartYear+"',end_date='"+request.body.workEndYear+"',emp_num='"+request.body.employeeNumber+"',mgr_name='"+request.body.managerNumber+"',mgr_email='"+request.body.managerEmail+"',desc_work='"+request.body.empdesc+"', org_id='"+request.body.companyName+"' , emp_type_id='"+request.body.selectedworkexp+"'";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            //response.status(200).send({message:'Inserted'})
+            
+
+              var sql1="select * from coins_allocation where activity_type='ADD_WORKEX'"
+            con.query(sql1, function (errorw, resultse, fieldqs) {
+                if (errorw) 
+                {
+                   // response.status(500).send({error:error})
+                }
+                // console.log('The solution is: ', JSON.stringify(results));
+                else{
+                    console.log(resultse)
+      
+                    response.send({uid:uid,redirectUrl: "/lumino/dashb.html"} );
                     insertcoinsIssued(ciid,request.body.uid,resultse)
 
                 }
@@ -426,6 +481,60 @@ app.post('/addEducationData',(request,response)=>{
         
       })
 })  
+
+app.post('/addEducationDataw',(request,response)=>{
+    let ciid=guidGeneratorCoin();
+    console.log(JSON.stringify(request.body))
+    let guid=request.body.eduID==='undefined'? guidGeneratorEducation():request.body.eduID
+    
+   uid=request.body.uid
+    var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.eduEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE org_id='"+request.body.eduInstut+"',Degree='"+request.body.degreeCertificate+"', start_year='"+request.body.edustartYear+"',end_year='"+request.body.eduEndYear+"',specialization='"+request.body.speciality+"',mem_num='"+request.body.memNumber+"'";
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            //response.status(200).send({message:'Inserted'})
+           
+
+            var sql1="select * from coins_allocation where activity_type='ADD_EDU'"
+            con.query(sql1, function (errorw, resultse, fieldqs) {
+                if (errorw) 
+                {
+                   // response.status(500).send({error:error})
+                }
+                // console.log('The solution is: ', JSON.stringify(results));
+                else{
+                    console.log(resultse)
+                    insertcoinsIssued(ciid,request.body.uid,resultse)
+                    return response.send({uid:uid,redirectUrl: "/lumino/dashb.html"} );
+                   
+
+                }
+            })
+
+        }
+        
+      })
+      var sq="update user set eduSub=1 where user_id='"+uid+"' and eduSub=0"
+      con.query(sq, function (error, results, fields) {
+        if (error) 
+        {
+            response.status(500).send({error:error})
+        }
+        // console.log('The solution is: ', JSON.stringify(results));
+        else{
+            //response.status(200).send({message:'Inserted'})
+           // return response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+           console.log("Submitted!")
+        }
+        
+      })
+}) 
+
 
 app.post('/getEmploymentData',(request,response)=>{
     console.log(JSON.stringify(request.body))
