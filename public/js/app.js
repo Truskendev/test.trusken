@@ -764,7 +764,7 @@ function loadEducationDetails(uid) {
 				<td>`+ element.start_date + `</td>
 				<td>`+ element.end_date + `</td>
 				<td> `+ status + `</td>
-				<td id="Badge`+index+`"> </td>
+				<td> </td>
 				</tr>
 			
 	`
