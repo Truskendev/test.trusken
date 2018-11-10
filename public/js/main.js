@@ -493,6 +493,21 @@ var CRUMINA = {};
 			m.className = 'menu-icon-wrapper scaled';
 		}
 
+		function openNav(q) {
+	
+			document.getElementById("myNav").style.width = "100%";
+			
+		  }
+		  
+		  function closeNav() {
+			  
+			document.getElementById("myNav").style.width = "0%";
+			outAC(segmentD);
+				outB(segmentE);
+				outAC(segmentF);
+		  }
+
+
 		function removeScale(m) {
 			m.className = 'menu-icon-wrapper';
 		}
@@ -512,6 +527,7 @@ var CRUMINA = {};
 		wrapper2.style.visibility = 'visible';
 
 		trigger2.onclick = function () {
+			openNav(toCloseIcon2);
 			addScale(wrapper2);
 			if (toCloseIcon2) {
 				inAC(segmentD);

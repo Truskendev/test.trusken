@@ -6505,6 +6505,7 @@ button.close {
 .navbar:after,
 .navbar-header:after,
 .navbar-collapse:after,
+
 .pager:after,
 .panel-body:after,
 .modal-header:after,
@@ -6753,6 +6754,14 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .maintai{
+  
+      margin-left: -45px;
+    }
 }
 /*# sourceMappingURL=bootstrap.css.map */
 

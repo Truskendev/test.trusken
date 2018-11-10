@@ -8042,6 +8042,7 @@ button.close {
 		display: none!important
 	}
 }
+
 @media screen and (max-width: 1199px) {
     .maintai{
     
@@ -8074,5 +8075,55 @@ button.close {
       .verticalLine{
         left: 51%; 
       }
+}
+@media (min-width:1110px) {
+	.coiner {
+		display: block!important;
+	}
+}
+@media (min-width:320px) {
+	.coiner {
+		display: none!important;
+    visibility: hidden;
+	}
+}
+
+@media screen and (min-width: 375px) {
+  .maintai{
+  
+      margin-left: 0px!important      ;
+      
+    }
+}
+@media screen and (min-width: 768px) {
+  .maintai{
+  
+      margin-left: 109px!important
+      ;
+    }
+}
+
+@media screen and (min-width: 400px) {
+  .maintai{
+  
+      margin-left: 15px!important
+      ;
+    }
+}
+
+@media screen and (min-width: 414px) {
+  .maintai{
+  
+      margin-left: 27px!important
+      ;
+    }
+}
+
+
+@media screen and (min-width: 1020px) {
+  .maintai{
+  
+      margin-left: 45px!important;
+    }
 }
 /*# sourceMappingURL=bootstrap.min.css.map */

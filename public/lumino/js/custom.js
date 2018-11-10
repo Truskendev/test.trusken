@@ -28,3 +28,11 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
 		$this.find('em').removeClass('fa-toggle-down').addClass('fa-toggle-up');
 	}
 })
+
+function openNav() {
+	document.getElementById("myNav").style.width = "100%";
+  }
+  
+  function closeNav() {
+	document.getElementById("myNav").style.width = "0%";
+  }

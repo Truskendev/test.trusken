@@ -25,7 +25,7 @@
             
             .customers td, .customers th {
                 border: 1px solid #ddd;
-                padding: 8px;
+                padding: 5px;
             }
             
             .customers tr:nth-child(even){background-color: #ffffff;}
@@ -47,62 +47,110 @@
 
 <body>
       
-    	<nav class="navbar navbar-custom navbar-fixed-top" style="background-color:#fff;" role="navigation">
-				<div class="container-fluid card3">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" style="background-color: #0B4CFF" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span></button>
-						<a class="navbar-brand" onclick="redirectHome();"><span><img src="../images/ts1.png" style="width:200px; height:50px; margin-top: -14px;"></span></a>
-						<ul class="nav navbar-top-links navbar-right">
-		
-							<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-									<em class="fa fa-bell" style="color:black"></em><span class="label label-info"></span>
-								</a>
-								<!-- <ul class="dropdown-menu dropdown-alerts">
-									<li><a href="#">
-											<div><em class="fa fa-envelope"></em> 1 New Message
-												<span class="pull-right text-muted small">3 mins ago</span></div>
-										</a></li>
-									<li class="divider"></li>
-									<li><a href="#">
-											<div><em class="fa fa-heart"></em> 12 New Likes
-												<span class="pull-right text-muted small">4 mins ago</span></div>
-										</a></li>
-									<li class="divider"></li>
-									<li><a href="#">
-											<div><em class="fa fa-user"></em> 5 New Followers
-												<span class="pull-right text-muted small">4 mins ago</span></div>
-										</a></li>
-								</ul> -->
-							</li>
-						</ul>
-						<ul class="nav navbar-top-links navbar-right">
-							
-							<li class="dropdown" style="margin-left:-880px; ">
-								<div class="row" style="text-align: center" >
-		
-										<div class="col-md-3" style="display: flex; justify-content: center; " >
-												<div class="coin"></div>	<div class="coin"></div>	<div class="coin"></div>
-											</div>
-											<div class="col-md-6 earn" >
-											<b id="userNameDisplay"></b> you earned <b id="qweer"></b>
-											</div>
-											<div class="col-md-3" id="coin" style="display: flex; justify-content: center;">
-													<div class="coin"></div><div class="coin"></div><div class="coin"></div>
-											</div>
-											
-								</div>
-									
-									
-									<!-- <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l0ExhcMymdL6TrZ84" width="100%" height="60%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p class="glow" style="margin-top:-60px;"><a href="https://giphy.com/gifs/funny-party-l0ExhcMymdL6TrZ84"><b id="userNameDisplay"></b> Coins earned<b id="qweer"></b></a></p> -->
-			
-							</li>
-						</ul>
-					</div>
-				</div><!-- /.container-fluid -->
-			</nav>
+        <nav class="navbar navbar-custom navbar-fixed-top" style="background-color:#fff;" role="navigation">
+                <div class="container-fluid card3">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" onclick="openNav()" style="background-color: #0B4CFF" 	><span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span></button>
+                        <a class="navbar-brand" onclick="redirectHome();"><span><img src="../images/ts1.png" style="width:200px; height:50px; margin-top: -14px;"></span></a>
+                        <ul class="nav navbar-top-links navbar-right">
+        
+                            <li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                    <em class="fa fa-bell" style="color:black"></em><span class="label label-info"></span>
+                                </a>
+                                <!-- <ul class="dropdown-menu dropdown-alerts">
+                                    <li><a href="#">
+                                            <div><em class="fa fa-envelope"></em> 1 New Message
+                                                <span class="pull-right text-muted small">3 mins ago</span></div>
+                                        </a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">
+                                            <div><em class="fa fa-heart"></em> 12 New Likes
+                                                <span class="pull-right text-muted small">4 mins ago</span></div>
+                                        </a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">
+                                            <div><em class="fa fa-user"></em> 5 New Followers
+                                                <span class="pull-right text-muted small">4 mins ago</span></div>
+                                        </a></li>
+                                </ul> -->
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-top-links navbar-right coiner">
+                            
+                            <li class="dropdown " style="margin-left:-880px; ">
+                                <div class="row" style="text-align: center" >
+                                        
+                                        <div class="col-md-3" style="display: flex; justify-content: center; " >
+                                            <div class="coin"></div>	<div class="coin"></div>	<div class="coin"></div>
+                                        </div>
+                                        <div class="col-md-6 earn" >
+                                        <b id="userNameDisplay"></b> you earned <b id="qweer"></b>
+                                        </div>
+                                        <div class="col-md-3" id="coin" style="display: flex; justify-content: center;">
+                                                <div class="coin"></div><div class="coin"></div><div class="coin"></div>
+                                        </div>
+                                        
+                                </div>
+                                    
+                                    
+                                    <!-- <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l0ExhcMymdL6TrZ84" width="100%" height="60%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p class="glow" style="margin-top:-60px;"><a href="https://giphy.com/gifs/funny-party-l0ExhcMymdL6TrZ84"><b id="userNameDisplay"></b> Coins earned<b id="qweer"></b></a></p> -->
+            
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- /.container-fluid -->
+                <div id="myNav" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <br><br>
+                    <div class="profile-sidebar">
+                        <!-- <div class="profile-userpic">
+                            <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+                        </div> -->
+                        <div class="profile-usertitle">
+                                <div class="profile-usertitle-name" id="userNameDispla">Username</div>
+                            <!-- <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div> -->
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="divider"></div>
+                    <!-- <a class="btn" onclick="$('#sidebar-collapse').fadeOut()">&nbsp;&nbsp;<em class="fa fa-navicon" style="font-size:20px;" ></em>	</a>		 -->
+                    <ul class="nav menu">
+                            <!-- <li><a href=""><em class="fa fa-gamepad">&nbsp;</em> Fun Zone</a></li> -->
+                
+                            <li class="active pointer"  ><a style="font-size:16px; font-weight:400"  onclick="redirCompSalary(window.location.href.split('?')[1])"><em ><img src="images/comapre.png" style="width:35px;height:35px;"> </em>
+                                    Compare Salary</a></li>
+                            <!-- <li><a  onclick="redirtricia(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> Trivia Zone</a></li> -->
+                            <li class="pointer" ><a style="font-size:16px; font-weight:400" onclick="redirtrust(window.location.href.split('?')[1])"><em ><img src="images/itrust.png" style="width:35px;height:35px;"> </em> I Trust</a></li>
+                            <!-- <li ><a  onclick="redirbadg(window.location.href.split('?')[1])"><em class="fa fa-eercast">&nbsp;</em> My Badges</a></li>
+                            <li><a onclick="redir(window.location.href.split('?')[1])"><em class="fa fa-briefcase">&nbsp;</em> Employment</a></li> -->
+                            <li class="pointer"><a style="font-size:16px; font-weight:400" onclick="redirEducation(window.location.href.split('?')[1])"><em ><img src="images/dashboard.png" style="width:35px;height:35px;"> </em>
+                                My Dashboard</a></li>
+                            <li class="pointer" ><a style="font-size:16px; font-weight:400" onclick="redirProfile(window.location.href.split('?')[1])"><em><img src="images/jobs.png" style="width:35px;height:35px;"> </em> My Profile</a></li>
+                            <!-- <li ><a href="#"><em class="fa fa-sitemap">&nbsp;</em> Job Board</a></li>
+                            <li ><a href="#"><em class="fa fa-id-badge">&nbsp;</em> My Badge</a></li>	 -->
+                            <!-- <li ><a href="#"><em class="fa fa-book">&nbsp;</em> I Trust </a></li>	 -->
+                
+                            <!-- <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+                                <em class="fa fa-navicon">&nbsp;</em> Fun Zone <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                                </a>
+                                <ul class="children collapse" id="sub-item-1">
+                                    <li><a class="" href="#">
+                                        <span class="fa fa-arrow-right">&nbsp;</span> Compare Salary
+                                    </a></li>
+                                    <li><a class="" href="#">
+                                        <span class="fa fa-arrow-right">&nbsp;</span> Trivia Zone
+                                    </a></li>
+                                    
+                                </ul>
+                            </li>		 -->
+                            <li class="pointer"><a style="font-size:16px; font-weight:400" href="../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+                        </ul>
+            
+                  </div>
+            </nav>
 		
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-3 sidebar card3" >
 			<div class="profile-sidebar">
@@ -159,13 +207,48 @@
         <div class="row" style=" background-color:#ffffff;">
             <br><br><br>
             
+
+          
+
+            <div class="col-md-10">
+                <div class="panel panel-success card3">
+                        <!-- <div class="panel-heading">A Trusken connection means you can always trust</div> -->
+                        <div class="panel-body">
+                            <p style="font-size:15px; color: #000000;"> As a Trusken member, there is an exclusive time bound opportunity for you to earn substantial Trusken coins by inviting your contacts to build the community. You can send the invite by sharing your badge on social media. You will be rewarded 500 Trusken coins for every new subscriber who joins through your invite. So go ahead share away to earn your Trusken coins.</p>
+                        </div>
+                    </div>
+<!-- <h4>As a Trusken member, there is an exclusive time bound opportunity for you to earn substantial Trusken coins by inviting your contacts to build the community. You can send the invite by sharing your badge on social media. You will be rewarded 500 Trusken coins for every new subscriber who joins through your invite. So go ahead share away to earn your Trusken coins.</h4> -->
+                    <div class="panel panel-default card3">
+                        <div class="panel-heading">
+                            Badges
+    
+                    </div>
+                    <div class="panel-body ">
+                            <div style="overflow-x:auto;">
+                        <table id="badge" class="customers card3">
+    
+                            <tr>
+                                    <th>Badge Name</th>
+                                <th>Badge</th>
+                                <th>Issue Date                       
+                                </th>
+                               
+                            </tr>
+
+                        </table>
+                        </div>
+                    </div>
+                </div>
+                
+
+
              <div class="col-md-10">
-                    <div class="panel panel-success card3">
+                    <!-- <div class="panel panel-success card3"> -->
                             <!-- <div class="panel-heading">A Trusken connection means you can always trust</div> -->
-                            <div class="panel-body">
+                            <!-- <div class="panel-body">
                                 <p style="font-size:15px; color: #000000;"> As a Trusken member, there is an exclusive time bound opportunity for you to earn substantial Trusken coins by inviting your contacts to build the community. You can send the invite by sharing your badge on social media. You will be rewarded 500 Trusken coins for every new subscriber who joins through your invite. So go ahead share away to earn your Trusken coins.</p>
                             </div>
-                        </div>
+                        </div> -->
 <!-- <h4>As a Trusken member, there is an exclusive time bound opportunity for you to earn substantial Trusken coins by inviting your contacts to build the community. You can send the invite by sharing your badge on social media. You will be rewarded 500 Trusken coins for every new subscriber who joins through your invite. So go ahead share away to earn your Trusken coins.</h4> -->
                         <div class="panel panel-default card3">
                             <div class="panel-heading">
@@ -175,6 +258,7 @@
                                         Employment</a></span></div>
                         </div>
                         <div class="panel-body ">
+                                <div style="overflow-x:auto;">
                             <table id="employment" class="customers card3">
         
                                 <tr>
@@ -188,8 +272,10 @@
                                 </tr>
 
                             </table>
+                            </div>
                         </div>
                     </div>
+                    
 
 
 
@@ -207,6 +293,7 @@
 
                 </div>
                 <div class="panel-body ">
+                        <div style="overflow-x:auto;">
                     <table id="customers" class="customers card3">
 
                         <tr>
@@ -214,14 +301,14 @@
                             <th>Degree</th>
                             <th>Star Year</th>
                             <th>End Year</th>
-
-                        </tr>
+                            
 
 
                     </table>
-
+                    </div>
 
                 </div>
+            </div>
             </div>
           
         </div>

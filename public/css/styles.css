@@ -3162,7 +3162,9 @@ textarea {
           transition: all .3s ease; }
     @media (max-width: 768px) {
       .header nav.not-nav-add {
-        padding-right: 100px; } }
+        padding-right: 100px; }
+      
+      }
     @media (max-width: 480px) {
       .header nav.not-nav-add {
         padding-right: 0; } }

@@ -30,7 +30,7 @@ con.connect(function(err) {
 });
  
 var created=new Date();
-var server = app.listen(80,function () {
+var server = app.listen(3000,'127.0.0.1' ,function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Server listening at http://%s:%s", host, port)
@@ -40,13 +40,13 @@ app.get('/', function (request, response) {
      response.sendFile( __dirname + "/public/" + "index.html" );
 });
 app.get('/linkedinSignin',function(request,response){
-    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77nyczoox31is7&redirect_uri=http://beta.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
+    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77nyczoox31is7&redirect_uri=http://localhost:3000/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
 })
 
 app.get('/verifyLinkedin',function(request,response){
 
 var requestbody={
-    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://beta.trusken.com/verifyLinkedin&client_id=77nyczoox31is7&client_secret=9oinTRmmtrm4FRve"
+    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://localhost:3000/verifyLinkedin&client_id=77nyczoox31is7&client_secret=9oinTRmmtrm4FRve"
     ,method:"POST"
 }
 requestPromiseAPI(requestbody).then((body)=>{
@@ -171,7 +171,7 @@ app.post('/registerNewUser',(request,response)=>{
     console.log(JSON.stringify(request.body))
     let guid=guidGenerator()
     let ciid=guidGeneratorCoin()
-    var sql = "INSERT INTO user (user_id,user_name, email_id,password,signature) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"','"+request.body.signature+"')";
+    var sql = "INSERT INTO user (user_id,user_name, email_id,password,created_at,last_updated,created_by) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"','"+created+"','"+created+"','"+guid+"')";
     
     con.query(sql, function (error, results, fields) {
         if (error) 
@@ -653,7 +653,7 @@ function processLinkedInData(body){
     let ciid=guidGeneratorCoin()
 
     //var sql = "INSERT INTO basic_profile (user_id,first-name, last-name,formatted-name,phonetic-first-name,phonetic-last-name,formatted-phonetic-name,headline,location,industry,current-share,num-connections,num-connections-capped,summary,specialties,picture-url,site-standard-profile-request,api-standard-profile-request,public-profile-url,email-address) VALUES ('"+guid+"','"+request.body.regUsr+"')";
-    var sql = "INSERT INTO user (user_id,user_name, email_id) VALUES ('"+userId+"','"+firstName+" "+lastName+"', '"+email_id+"')";
+    var sql = "INSERT INTO user (user_id,user_name, email_id,created_at,last_updated,created_by) VALUES ('"+userId+"','"+firstName+" "+lastName+"', '"+email_id+"', '"+created+"', '"+created+"', '"+userId+"')";
    
     //positions.Keys
     con.query(sql, function (error, results, fields) {
@@ -1045,7 +1045,7 @@ app.post('/totalCoins',(request,response)=>{
             console.log(JSON.stringify(request.body))
             let guid=guidGenerator()
             let ciid=guidGeneratorCoin()
-            var sql = "INSERT INTO user (user_id,user_name, email_id,password,signature,referral_id) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"','"+request.body.signature+"','"+request.body.refId+"')";
+            var sql = "INSERT INTO user (user_id,user_name, email_id,password,signature,referral_id,created_at,created_by,last_updated) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"','"+request.body.signature+"','"+request.body.refId+"','"+created+"','"+guid+"','"+created+"')";
             
             con.query(sql, function (error, results, fields) {
                 if (error) 
@@ -1104,3 +1104,4 @@ app.post('/totalCoins',(request,response)=>{
              
         
             }) 
+         

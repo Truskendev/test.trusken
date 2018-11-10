@@ -668,6 +668,7 @@ function loadaddEdu(uid) {
 
 
 function loadEmploymentDetails(uid) {
+	let badge;
 	log(uid)
 	$.post("/getEmploymentData", { uid: uid }, function (response) {
 		log(response[0]);
@@ -764,12 +765,13 @@ function loadEducationDetails(uid) {
 				<td>`+ element.start_date + `</td>
 				<td>`+ element.end_date + `</td>
 				<td> `+ status + `</td>
-				<td id="Badge`+index+`"> </td>
+				<td> </td>
 				</tr>
 			
 	`
 
 			$('#employment').append(we);
+			
 		})
 			
 			})
@@ -788,11 +790,13 @@ function loadEducationDetails(uid) {
 
 			$.post("/getBadgeDetails", {uide:uid}, function (response) {
 				var urlforshare;
+				var arm;
 					log(response)
 
 				response.forEach((elemo,index)=>{
-				urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
-				let badge=` 
+				urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+				arm=elemo.badge_id
+				 badge=` 
 					<img src="`+elemo.badge_name+`" style="width:100px;height:100px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
 					
 							
@@ -802,6 +806,10 @@ function loadEducationDetails(uid) {
 				`
 				$('#Badge'+index).append(badge);
 				})
+
+
+			
+
 				// 	response[1].forEach((elements)=>{
 				// 		if(elements.verification_status==1){
 				// 			response[0].forEach((elemo)=>{
@@ -845,7 +853,21 @@ function loadEducationDetails(uid) {
 						log("finished");
 					});
 				
+					$.post("/getProfileData", { uid: uid }, function (respons) {
 					
+						var bd=`<tr> <td>Trusken Badge</td>	<td style="text-align:center"><img src="	images/trusbadnor.jpeg" style="width:100px;height:100px;" onclick="redirbdgdatails('`+uid+`',0)"></td>
+				<td>`+respons[0].created_at+`</td>
+				
+				</tr>
+
+				`
+			$('#badge').append(bd);
+					})
+						
+						
+
+
+
 
 			}
 
@@ -1388,7 +1410,7 @@ function loadMyBadge(uid){
 		response[1].forEach((elements)=>{
 			if(elements.verification_status==1){
 				response[0].forEach((elemo)=>{
-					urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+					urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 			let badge=` 
 			<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
 			
@@ -1403,7 +1425,7 @@ function loadMyBadge(uid){
 	})
 	}else{
 		response[0].forEach((elemo)=>{
-			urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+			urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 		let badge=` 
 
 		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
@@ -1439,7 +1461,7 @@ function loadMbdetails(uidi,uuid){
 		// window.location=response.redirectUrl+'?'+userID
 		let badge=` 
 		<img src="`+response[0].badge_name+`" style="width:300px;height:300px;" >
-		<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://beta.trusken.com/lumino/badgeDetails.html?QYySAnTx5d/1" style="text-align:center;  ">
+		<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://localhost:3000/lumino/badgeDetails.html?QYySAnTx5d/1" style="text-align:center;  ">
                                            
 		<a class="a2a_button_linkedin"></a>
 		<a class="a2a_button_facebook"></a>

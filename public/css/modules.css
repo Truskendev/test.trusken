@@ -219,10 +219,12 @@
     .nav-add {
       float: left; } }
   @media (max-width: 768px) {
-    .nav-add {
-      position: absolute;
+     .nav-add {
+       display: none;
+      /* position: absolute;
       right: 15px;
-      padding: 0; } }
+      padding: 0; */
+     } }
   .nav-add li {
     display: inline-block; }
     .nav-add li.cart {
