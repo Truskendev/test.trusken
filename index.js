@@ -31,7 +31,6 @@ con.connect(function(err) {
  
 var created=new Date();
 var server = app.listen(3000,'127.0.0.1' ,function () {
-var server = app.listen(80 ,function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Server listening at http://%s:%s", host, port)
@@ -42,14 +41,12 @@ app.get('/', function (request, response) {
 });
 app.get('/linkedinSignin',function(request,response){
     response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77nyczoox31is7&redirect_uri=http://localhost:3000/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
-    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81vg12i7e078ut&redirect_uri=http://beta.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
 })
 
 app.get('/verifyLinkedin',function(request,response){
 
 var requestbody={
     url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://localhost:3000/verifyLinkedin&client_id=77nyczoox31is7&client_secret=9oinTRmmtrm4FRve"
-    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://beta.trusken.com/verifyLinkedin&client_id=81vg12i7e078ut&client_secret=66PSmjoxuWDjCdRn"
     ,method:"POST"
 }
 requestPromiseAPI(requestbody).then((body)=>{
