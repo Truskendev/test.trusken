@@ -8,7 +8,7 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
-	
+	<link rel="icon" href="../images/tts.png">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -38,7 +38,7 @@
 	
 
 	<br>
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" >
+	<div class="col-sm-9 col-lg-offset-1 main" >
 		<div class="row" >
 		
 		</div><!--/.row-->
@@ -50,7 +50,9 @@
 		<!-- </div><!--/.row--> 
 		
 		
-				
+						<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-10">
 				
 				<div class="panel panel-default card3" >
 					<div class="panel-heading" id="typer">Add Experience</div>
@@ -58,7 +60,7 @@
 
 					</div>
 					<div style="">
-						&nbsp;&nbsp;<a type="button" data-toggle="modal" style="background-color: #1d4590" class="btn btn-primary" data-target="#myModal"  href ><b>Submit</b></a>
+						&nbsp;&nbsp;<a type="button" style="background-color: #1d4590" class="btn btn-primary" id="submitModalCheck"  href ><b>Submit</b></a>
 					
 						&nbsp;&nbsp;&nbsp;<a type="button" id="addExpBtn" style="background-color: #1d4590" class="btn btn-primary"><em class="fa fa-plus">&nbsp;</em> Add More Workex </a>
 					<br>
@@ -66,23 +68,26 @@
 					</div>
 				</div>
 					
-				</div><!-- /.panel-->
+				</div>
+				
+		<div class="col-md-2"></div>
+	</div>
 			
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
   
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header" style="border-bottom: none;">
+        <div class="modal-header" style="border-bottom: none; padding: 5px;">
               
           <button type="button" class="close" data-dismiss="modal">&times;</button>
          
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="padding: 5px;">
           
-                  <div class="row">
+                  <div class="row" style="text-align: center;">
                       <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
-						 <p>Trusken shall verify on submission </p>
+						 <p style="font-weight: bold;">Trusken shall verify on submission</p>
 						 
 						 <a type="button" id="submitWrkExp" style="background-color: #1d4590" class="btn btn-primary">Yes</a>
 						 <a type="button" data-dismiss="modal" style="background-color: #1d4590" class="btn btn-primary">&nbsp;No</a>
@@ -147,7 +152,10 @@
 $(document).ready(function(){
 	let uid=window.location.href.split('?')[1];
 	loadaddExp(uid);
-
+	// $('#submitModalCheck').click((event)=>{
+	// 	event.preventDefault()
+	// 	checkWorkExp()
+	// })
 });
 	</script>
 		

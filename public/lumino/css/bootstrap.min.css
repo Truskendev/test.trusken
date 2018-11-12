@@ -8076,7 +8076,7 @@ button.close {
         left: 51%; 
       }
 }
-@media (min-width:1110px) {
+/*@media (min-width:1110px) {
 	.coiner {
 		display: block!important;
 	}
@@ -8087,7 +8087,7 @@ button.close {
     visibility: hidden;
 	}
 }
-
+*/
 @media screen and (min-width: 375px) {
   .maintai{
   

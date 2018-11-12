@@ -9,7 +9,7 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
-
+	<link rel="icon" href="../images/tts.png">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -61,7 +61,7 @@
 
 	<!--/.sidebar-->
 
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+	<div class="col-sm-9  col-lg-offset-1 main">
 		
 		<!--/.row-->
 
@@ -69,37 +69,42 @@
 <br>
 
 
-
+		<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-10">
 		<div class="panel panel-default card3" >
-			<div class="panel-heading">Eduction</div>
+			<div class="panel-heading">Education</div>
 			<div id="addEd">
 			</div>
 			
 			<div style="">
-				&nbsp;&nbsp;<a type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal"  style="background-color: #1d4590" ><b>Submit</b></a>
+				&nbsp;&nbsp;<a type="button" class="btn btn-primary" id="submitModalCheckEdu" style="background-color: #1d4590" ><b>Submit</b></a>
 					
-				&nbsp;&nbsp;&nbsp;<a type="submit" id="addEdu" style="background-color: #1d4590"  class="btn btn-primary"><em class="fa fa-plus">&nbsp;</em> Add Eduction </a>
+				&nbsp;&nbsp;&nbsp;<a type="submit" id="addEdu" style="background-color: #1d4590"  class="btn btn-primary"><em class="fa fa-plus">&nbsp;</em> Add Education </a>
 				&nbsp;&nbsp;&nbsp;<a type="submit" onclick="redirCompSalary(window.location.href.split('?')[1])"  style="background-color: #1d4590"  class="btn btn-primary"> Skip </a>
 					<br>
 					<br>
 					</div>
 		</div>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
 	</div><!-- /.panel-->
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 	  
 		  <!-- Modal content-->
 		  <div class="modal-content">
-			<div class="modal-header" style="border-bottom: none;">
+			<div class="modal-header" style="border-bottom: none;padding: 5px;">
 				  
 			  <button type="button" class="close" data-dismiss="modal">&times;</button>
 			 
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" style="padding: 5px;">
 			  
-					  <div class="row">
+					  <div class="row" style="text-align: center;">
 						  <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
-							 <p>Trusken shall verify on submission. </p>
+							 <p style="font-weight: bold;">Trusken shall verify on submission. </p>
 							 
 							 <a type="submit" id="addEduSubmit"  style="background-color: #1d4590" class="btn btn-primary">Yes</a>
 							 <a type="button" data-dismiss="modal" style="background-color: #1d4590" class="btn btn-primary">No</a>

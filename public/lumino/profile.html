@@ -8,7 +8,7 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
-	
+	<link rel="icon" href="../images/tts.png">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -21,7 +21,7 @@
 }
 	</style>
 </head>
-<body>
+<body style="background-color: #ffffff">
 		<nav class="navbar navbar-custom navbar-fixed-top" style="background-color:#fff;" role="navigation">
 				<div class="container-fluid card3">
 					<div class="navbar-header">
@@ -79,13 +79,13 @@
 				</div><!-- /.container-fluid -->
 				<div id="myNav" class="overlay">
 					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-					<br><br>
-					<div class="profile-sidebar">
+<!-- 					<br><br>
+ -->					<div class="profile-sidebar">
 						<!-- <div class="profile-userpic">
 							<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
 						</div> -->
 						<div class="profile-usertitle">
-								<div class="profile-usertitle-name" id="userNameDispla">Username</div>
+								<div class="profile-usertitle-name" id="userNameDispl">Username</div>
 							<!-- <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div> -->
 						</div>
 						<div class="clear"></div>
@@ -172,7 +172,7 @@
 					<li><a style="font-size:16px; font-weight:400" href="../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 				</ul>
 		</div>
-	<div class="col-sm-9  col-sm-offset-3 col-lg-10 col-lg-offset-3 main" style="background-color: #ffffff">
+	<div class="col-sm-9  col-sm-offset-3 col-lg-offset-3 main" style="background-color: #ffffff">
 		<!-- <div class="row">
 			<ol class="breadcrumb"  style="float:right">
 				<li><a href="#">
@@ -190,7 +190,8 @@
 		
 		
 				<br><br><br>
-		<div class="col-md-7 " >
+				<div class="col-md-2"></div>
+		<div class="col-md-8">
 				<div class="panel panel-default card3" >
 					
 					<div class="panel-heading">My Profile</div>
@@ -199,11 +200,11 @@
 								<form role="form">
 									<div class="form-group">
 										<label>FULL NAME*</label>
-										<input class="form-control" id="fullName" type="text" placeholder="FULL NAME">
+										<input class="form-control" id="fullName" type="text" placeholder="FULL NAME" readonly>
 									</div>
 									<div class="form-group">
 										<label>EMAIL/USER ID*</label>
-										<input class="form-control" id="emailId" type="email" placeholder="Email Id">
+										<input class="form-control" id="emailId" type="email" placeholder="Email Id" readonly>
 									</div>
 									
 									<button type="button"   onclick="updateProfile()" class="btn btn-primary">SAVE</button>
@@ -213,15 +214,16 @@
 									
 								</form>
 							</div>
-							<br><br><br><br><br><br><br><br><br><br><br>
-			</div>
-		</div>
+<!-- 							<br><br><br><br><br><br><br><br><br><br><br>
+ -->			
+						</div>
+					</div>
 				<br>
 				
 					</div>
 				</div><!-- /.panel-->
 			</div><!-- /.col-->
-			
+			<div class="col-md-2"></div>
 		</div><!-- /.row -->
 	</div><!--/.main-->
 	

@@ -15,20 +15,6 @@ function getWorkTemplate(index, ID) {
                 <label>Start Date</label></br>
                 <!-- <input class="form-control infields" id="workstartYear"   type="text" placeholder="Start Year"><br> -->
                 <div class="demo">
-                <select id="month" name="month" class="stMonth`+ index + `">
-                    <option value="01">January</option> 
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>
                 <select id="day" name="day" class="stDate`+ index + `">
                     <option value="01">1</option>
                     <option value="02">2</option>
@@ -62,7 +48,25 @@ function getWorkTemplate(index, ID) {
                     <option value="30">30</option>
                     <option value="31">31</option>
                 </select>
+                <select id="month" name="month" class="stMonth`+ index + `">
+                    <option value="01">January</option> 
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+
                 <select id="year" name="year" class="stYear`+ index + `">
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
                     <option value="2011">2011</option>
                     <option value="2012">2012</option>
                     <option value="2013">2013</option>
@@ -72,8 +76,6 @@ function getWorkTemplate(index, ID) {
                 <input type="hidden" id="datepicker" />
                 
             </div>
-              
-                <br>
                 <br>
                  <label>End Date</label></br>
             

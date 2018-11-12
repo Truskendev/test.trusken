@@ -35,7 +35,7 @@ function getMailTemplate(uid,username){
               <tr>
                 <td style="padding:0 0 20px 0;border-bottom:1px solid #e9edee;">
                   <a href="http://www.trusken.com" style="display:block; margin:0 auto;" target="_blank">
-                    <img src="http://beta.trusken.com/images/ts1.png" width="150" height="75" style="border: 0px;">
+                    <img src="http://beta.trusken.com/images/ts1.png" width="190" height="55" style="border: 0px;">
                   </a>
                 </td>
               </tr>

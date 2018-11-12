@@ -852,7 +852,7 @@ a.label:hover, a.label:focus {
   margin: 10px 0 0 12px; }
 
 .profile-usertitle-name {
-  font-size: 25px;
+  font-size: 20px;
   margin-bottom: 0px; }
 
 .profile-usertitle-status {
@@ -1157,13 +1157,10 @@ p.back-link {
 }
 
 .overlay .closebtn {
-/*  position: absolute;
+  position: absolute;
   top: 20px;
-  right: 45px;*/
-  padding: 0px;
-  float: right;
-  padding-right: 10px;
-  font-size: 40px;
+  right: 45px;
+  font-size: 60px;
 }
 
 @media screen and (max-height: 450px) {
@@ -1175,11 +1172,9 @@ p.back-link {
 }
 }
 
+  
 
-.coiner{
-  display: block;
-  visibility: visible;
-}
+
 
 
 @media (min-width:268px) and (max-width:1100px) {
@@ -1190,13 +1185,21 @@ p.back-link {
 
   
 }
+.coiner {
+  display: block!important;
+}
 
-/* @media only screen and (max-width:320px) {
+@media (min-width:1110px) {
+	.coiner {
+		display: block!important;
+	}
+}
+/*@media (min-width:320px) {
 	.coiner {
 		display: none!important;
     visibility: hidden;
 	}
-} */
+}*/
 
 @media screen and (min-width: 375px) {
   .maintai{

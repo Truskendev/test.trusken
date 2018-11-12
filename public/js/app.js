@@ -17,7 +17,7 @@ function login() {
 	if (isValidEmail(loginData['loginName']) && (loginData['loginPass'].length > 1)) {
 
 		$.post("/loginUser", loginData, function (response) {
-			log(response);
+			//log(response);
 			if (response.status == 200) { alert(response.user_id) }
 			else {
 				userID = response.guid
@@ -51,7 +51,7 @@ function loginHom(rid) {
 	if (isValidEmail(loginDat['regEmail']) && (loginDat['regPass'].length > 1)&& (loginDat['regUsr'].length > 1)) {
 
 		$.post("/registerRefferedUser", loginDat, function (response) {
-			log(response);
+			//log(response);
 			if (response.status == 500) { alert("User already exists") }
 			userID = response.guid
 			window.location = response.redirectUrl + '?' + userID
@@ -91,7 +91,7 @@ function registerUser() {
 
 	if (isValidEmail(userData['regEmail']) && (userData['regUsr'].length > 1) && (userData['regPass'].length > 1)) {
 		$.post("/registerNewUser", userData, function (response) {
-			log(response.redirectUrl);
+			//log(response.redirectUrl);
 			if (response.status == 500) { alert("User already exists") }
 			userID = response.guid
 			window.location = response.redirectUrl + '?' + userID
@@ -118,18 +118,20 @@ function loadaddExperiance(uid){
 	var qwe = getWorkTemplate(0)
 	$('#addExpBtn').attr("onclick", "addexp(1)")
 	$('#submitWrkExp').attr("onclick", "addWorkex(1)")
+	$('#submitModalCheck').attr("onclick","checkWorkExp(event,1)")
 	$('#submitWrkExpp').attr("onclick", "addWorkexq(1)")
 	$('#addEx').append(qwe);
 }
 function loadaddExp(uid) {
-	log(uid)
+	//log(uid)
 	$.post("/getEmploymentData", { uid: uid }, function (response) {
-		log(response[0]);
+		//log(response[0]);
 		len = response.length
 		if (len == 0) {
 			var qwe = getWorkTemplate(0)
 			$('#addExpBtn').attr("onclick", "addexp(1)")
 			$('#submitWrkExp').attr("onclick", "addWorkex(1)")
+			$('#submitModalCheck').attr("onclick","checkWorkExp(event,1)")
 
 			$('#addEx').append(qwe);
 		}
@@ -148,6 +150,7 @@ function loadaddExp(uid) {
 				var qwe = getWorkTemplate(i, response[i].exp_id)
 				$('#addExpBtn').attr("onclick", "addexp(" + (i + 1) + ")")
 				$('#submitWrkExp').attr("onclick", "addWorkex(" + (i + 1) + ")")
+				$('#submitModalCheck').attr("onclick","checkWorkExp(event," + (index + 1) + ")")
 
 				$('#addEx').append(qwe);
 				$('#workTitle' + i).val(response[i].job_title_id);
@@ -199,13 +202,13 @@ function loadaddExp(uid) {
 
 function loadProfilePage(uid) {
 
-	log(uid)
+	//log(uid)
 	$.post("/getProfileData", { uid: uid }, function (response) {
-		log(response[0]);
+		//log(response[0]);
 		// userID=response.guid	
 		// window.location=response.redirectUrl+'?'+userID
 		$('#userNameDisplay').text(response[0].user_name)
-		$('#userNameDispla').text("Welcome "+response[0].user_name)
+		$('#userNameDispla,#userNameDispl').text("Welcome "+response[0].user_name)
 		$('#fullName').val(response[0].user_name)
 		$('#emailId').val(response[0].email_id)
 
@@ -231,7 +234,7 @@ function updateProfile() {
 		uid: window.location.href.split('?')[1]
 	}
 	$.post("/updateProfileData", profileData, function (response) {
-		log(response.redirectUrl);
+		//log(response.redirectUrl);
 		userID = response.guid
 		window.location = response.redirectUrl + '?' + userID
 	})
@@ -267,6 +270,7 @@ function addexp(index) {
 	let template = getWorkTemplate(index)
 	$('#addExpBtn').attr("onclick", "addexp(" + (index + 1) + ")")
 	$('#submitWrkExp').attr("onclick", "addWorkex(" + (index + 1) + ")")
+	$('#submitModalCheck').attr("onclick","checkWorkExp(event," + (index + 1) + ")")
 	$('#submitWrkExpp').attr("onclick", "addWorkexq(" + (index + 1) + ")")
 	$('#addEx').append(template)
 
@@ -284,7 +288,7 @@ function addWorkex(expCount) {
 	let enYear = new Array();
 	
 	for (c = 0; c < expCount; c++) {
-var selectedworkexp = new Array();
+		var selectedworkexp = new Array();
 
 		$('input[name="employmentType' + c + '"]:checked').each(function () {
 			selectedworkexp = this.value;
@@ -348,7 +352,7 @@ var selectedworkexp = new Array();
 			$.post("/addWorkExData", workData[c], function (response) {
 
 
-				log(response.redirectUrl);
+				//log(response.redirectUrl);
 				userID = response.uid
 						
 				window.location = response.redirectUrl + '?' + userID
@@ -372,6 +376,90 @@ var selectedworkexp = new Array();
 	}
 
 
+}
+
+function checkWorkExp(event,expCount){
+	event.preventDefault()
+	var selectedworkexp = new Array();
+
+	var workData = []
+	let stDate = new Array();
+	let stMonth = new Array();
+	let stYear = new Array();
+	let enDate = new Array();
+	let enMonth = new Array();
+	let enYear = new Array();
+	
+	for (c = 0; c < expCount; c++) {
+		var selectedworkexp = new Array();
+
+		$('input[name="employmentType' + c + '"]:checked').each(function () {
+			selectedworkexp = this.value;
+		});
+		if($(".stDate" + c).val()!=""){
+		$(".stDate" + c).each(function () {
+			stDate = this.value;
+		});
+		}else{
+			$(".enDate" + c).each(function () {
+				stDate = "01";
+			});
+		}
+		$(".stMonth" + c).each(function () {
+			stMonth = this.value;
+		});
+		$(".stYear" + c).each(function () {
+			stYear = this.value;
+		});
+		if($(".enDate" + c)!=""){
+			$(".enDate" + c).each(function () {
+				enDate = this.value;
+			});
+		}else{
+			$(".enDate" + c).each(function () {
+				enDate = "01";
+			});
+		}
+		$(".enMonth" + c).each(function () {
+			enMonth = this.value;
+		});
+		$(".enYear" + c).each(function () {
+			enYear = this.value;
+		});
+
+
+
+		workData1 = {
+			expID: $('#expID' + c).text(),
+			workTitle: $('#workTitle' + c).val(),
+
+			companyName: $('#companyName' + c).val(),
+			workstartYear: stDate + "/" + stMonth + "/" + stYear,
+			
+			workEndYear:  enDate + "/"+enMonth + "/" + enYear,
+			employeeNumber: $('#employeeNumber' + c).val(),
+			managerNumber: $('#managerNumber' + c).val(),
+			managerEmail: $('#managerEmail' + c).val(),
+			empdesc: $('#empdesc' + c).val(),
+
+			selectedworkexp: selectedworkexp,
+			uid: window.location.href.split('?')[1],
+
+		}
+		workData[c] = workData1
+
+
+
+
+		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1)  && (workData[c]['workTitle'].length > 1)) {
+
+				$('#myModal').modal('show');
+
+			}
+		else {
+			alert("please fill in the data")
+		}
+	}
 }
 
 function addWorkexq(expCount) {
@@ -450,7 +538,7 @@ var selectedworkexp = new Array();
 			$.post("/addWorkExDataa", workData[c], function (response) {
 
 
-				log(response.redirectUrl);
+				//log(response.redirectUrl);
 				userID = response.uid
 						
 				window.location = response.redirectUrl + '?' + userID
@@ -482,11 +570,43 @@ function addedu(index) {
 	var qwe = getEducationTemplate(index)
 	$('#addEdu').attr("onclick", "addedu(" + (index + 1) + ")")
 				$('#addEduSubmit').attr("onclick","addEducation(" + (index + 1) + ")")
+				$('#submitModalCheckEdu').attr("onclick","checkEduFields(event," + (index + 1) + ")")
 				$('#addEduSubmitt').attr("onclick","addEducationn(" + (index + 1) + ")")
 
 		$('#addEd').append(qwe);
 
 }
+
+function checkEduFields(event,cT) {
+	event.preventDefault()
+	var eduData = []
+
+
+
+	for (c = 0; c < cT; c++) {
+
+
+
+		let eduData1 = {
+			eduInstut: $('#eduInstut' + c).val(),
+			degreeCertificate: $('#degreeCertificate' + c).val(),
+			edustartYear: $(".edstYear" + c).val(),
+			eduEndYear: $(".edEnYear" + c).val(),
+			speciality: $('#speciality' + c).val(),
+			memNumber: $('#memNumber' + c).val(),
+			eduID:$('#eduID' + c).text(),
+			uid: window.location.href.split('?')[1]
+		}
+		eduData[c] = eduData1
+		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)) {
+			$('#myModal').modal('show')
+		}
+		else {
+			alert("fill in the data");
+		}
+	}
+}
+
 function addEducation(cT) {
 
 
@@ -512,7 +632,7 @@ function addEducation(cT) {
 		eduData[c] = eduData1
 		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)) {
 			$.post("/addEducationData", eduData[c], function (response) {
-				log(response.redirectUrl);
+				//log(response.redirectUrl);
 				userID = response.uid
 				window.location = response.redirectUrl + '?' + userID
 			})
@@ -558,7 +678,7 @@ function addEducationn(cT) {
 		eduData[c] = eduData1
 		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)) {
 			$.post("/addEducationDataw", eduData[c], function (response) {
-				log(response.redirectUrl);
+				//log(response.redirectUrl);
 				userID = response.uid
 				window.location = response.redirectUrl + '?' + userID
 			})
@@ -584,6 +704,7 @@ function loadaddEducate(uid){
 	var qwe = getEducationTemplate(0)
 	$('#addEdu').attr("onclick", "addedu(1)")
 	$('#addEduSubmit').attr("onclick","addEducation(1)")
+	$('#submitModalCheckEdu').attr("onclick","checkEduFields(event,1)")
 	$('#addEduSubmitt').attr("onclick","addEducationn(1)")
 
 
@@ -591,14 +712,15 @@ function loadaddEducate(uid){
 }
 
 function loadaddEdu(uid) {
-	log(uid)
+	//log(uid)
 	$.post("/getEducationData", { uid: uid }, function (response) {
-		log(response[0]);
+		//log(response[0]);
 		len = response.length
 		if (len == 0) {
 			var qwe = getEducationTemplate(0)
 			$('#addEdu').attr("onclick", "addedu(1)")
 			$('#addEduSubmit').attr("onclick","addEducation(1)")
+			$('#submitModalCheckEdu').attr("onclick","checkEduFields(event,1)")
 
 			$('#addEd').append(qwe);
 		}
@@ -617,7 +739,7 @@ function loadaddEdu(uid) {
 				var qwe = getEducationTemplate(i, response[i].edu_id)
 				$('#addEdu').attr("onclick", "addedu(" + (i + 1) + ")")
 				$('#addEduSubmit').attr("onclick","addEducation(" + (i + 1) + ")")
-
+				$('#submitModalCheckEdu').attr("onclick","checkEduFields(event," + (i + 1) + ")")
 				$('#addEd').append(qwe);
 				$('#eduInstut' + i).val(response[i].org_id);
 				$('#degreeCertificate' + i).val(response[i].degree);
@@ -669,9 +791,9 @@ function loadaddEdu(uid) {
 
 function loadEmploymentDetails(uid) {
 	let badge;
-	log(uid)
+	//log(uid)
 	$.post("/getEmploymentData", { uid: uid }, function (response) {
-		log(response[0]);
+		//log(response[0]);
 
 
 
@@ -722,10 +844,10 @@ function loadEmploymentDetails(uid) {
 }
 
 function loadEducationDetails(uid) {
-	log(uid)
+	//log(uid)
 
 	$.post("/getEducationData", { uid: uid }, function (response) {
-		log(response[0]);
+		//log(response[0]);
 
 
 		response.forEach((element) => {
@@ -791,7 +913,7 @@ function loadEducationDetails(uid) {
 			$.post("/getBadgeDetails", {uide:uid}, function (response) {
 				var urlforshare;
 				var arm;
-					log(response)
+					//log(response)
 
 				response.forEach((elemo,index)=>{
 				urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
@@ -1075,9 +1197,9 @@ function init_Sign_Canvas() {
 
 
 function loadCompareSalary(uid) {
-	log(uid)
+	//log(uid)
 	$.post("/getCompareSalaryData", { uid: uid }, function (response) {
-		log(response[0]);
+		//log(response[0]);
 
 
 
@@ -1181,7 +1303,7 @@ let expList=['freashers','beginers','intermediates','expers','seniorlevel']
 }
 function loadTriviaPage(uid){
 	$.post("/getTriviaQuestions", { uid: uid }, function (response) {
-		log(response[0]);
+		//log(response[0]);
 		//var merge=0;
 
 		response.forEach((element,merge) => {
@@ -1262,7 +1384,7 @@ function getAnswer(id,mer,correctAnwser){
 				var uid=window.location.href.split('?')[1]
 				// $("#myModal22").hide();
 				$.post("/updateMarksheet", {uid:uid,qid:mer,mark:1}, function (response) {
-					log(response[0]);
+					//log(response[0]);
 					loadTriviaPage(uid)
 					$('#triPanel').fadeIn()
 					}).done(function () {
@@ -1284,7 +1406,7 @@ function getAnswer(id,mer,correctAnwser){
 				var uid=window.location.href.split('?')[1]
 				// $("#myModal22").hide();
 				$.post("/updateMarksheet", {uid:uid,qid:mer,mark:0}, function (response) {
-					log(response[0]);
+					//log(response[0]);
 					loadTriviaPage(uid)
 					$('#triPanel').fadeIn()
 					}).done(function () {
@@ -1333,14 +1455,19 @@ function loadItrustData(uid){
 		// 	});
 
 	$.post("/getItrustData", { uid:uid }, function (response) {
-			log(response);
+			//log(response);
+			let iTrustTable=`<table class='table'><tbody style='text-align:center'>`
 			response.forEach((user,index)=>{
-				var trust=`&nbsp;&nbsp;<input type="checkbox" name="checkbo`+index+`" id="checkbo`+index+`" value="`+user.user_id+`" />
-				<label for="checkbo`+index+`">`+user.user_name+`</label>`
-				$('#testAttach').append(trust);
+				iTrustTable+=`<tr><td><input type="checkbox" name="checkbo`+index+`" id="checkbo`+index+`" value="`+user.user_id+`" /></td>
+					<td><label for="checkbo`+index+`">`+user.user_name+`</label></td>
+					<td></td>
+					<td></td>
+					<td></td>`
+				// $('#testAttach').append(trust);
 				fakeServerResponse.push(user.user_name)
 			})
-
+			iTrustTable+=`</tbody></table>`
+			$('#testAttach').append(iTrustTable);
 	// 		let rest=[];
 	// 		response.forEach((element,index) => {
 	// 			element.forEach((elem)=>{
@@ -1406,7 +1533,7 @@ function loadMyBadge(uid){
 	
 	$.post("/getBadgeDetails", {uide:uid}, function (response) {
 	var urlforshare;
-		log(response)
+		//log(response)
 		response[1].forEach((elements)=>{
 			if(elements.verification_status==1){
 				response[0].forEach((elemo)=>{
@@ -1456,13 +1583,13 @@ function loadMyBadge(uid){
 
 function loadMbdetails(uidi,uuid){
 	$.post("/getbadDetails", { bid: uuid }, function (response) {
-		log(response[0]);
+		//log(response[0]);
 		// userID=response.guid	
 		// window.location=response.redirectUrl+'?'+userID
-		let badge=` 
-		<img src="`+response[0].badge_name+`" style="width:300px;height:300px;" >
-		<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://localhost:3000/lumino/badgeDetails.html?QYySAnTx5d/1" style="text-align:center;  ">
-                                           
+		let badge=`<br> 
+		<img src="`+response[0].badge_name+`" style="width:250px;height:250px; padding:15px" >
+		<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://beta.trusken.com/lumino/badgeDetails.html?QYySAnTx5d/1" style="text-align:center;">
+       	<h4>Issued By:Trusken</h4>                                
 		<a class="a2a_button_linkedin"></a>
 		<a class="a2a_button_facebook"></a>
 		<a class="a2a_button_twitter"></a>
@@ -1513,6 +1640,7 @@ for(indu=0;indu<nbCbs;indu++){
 }
 	if(selectedusers.length===0)
 	{
+		alert('Please Select user before providing iTrust')
 		return
 	}
 	let trustData =
@@ -1521,7 +1649,7 @@ for(indu=0;indu<nbCbs;indu++){
 		for_user: selectedusers
 	}
 	$.post("/trustMe", trustData, function (response) {
-		log(response)
+		//log(response)
 		location.reload()
 	})
 		.done(function () {
@@ -1563,7 +1691,7 @@ $(document).ready(function () {
 function coinsTotal(uid){
 
 	$.post("/totalCoins", {uid:uid}, function (response) {
-		log(response);
+		//log(response);
 		
 		$('#qweer').html(response[0].coinsTot)
 			
