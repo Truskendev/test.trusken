@@ -24,12 +24,63 @@
     <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
 
     <!--Styles for RTL-->
-    <link rel="icon" href="images/tts.png">
+
     <!--<link rel="stylesheet" type="text/css" href="css/rtl.css">-->
 
 
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-
+    <style>
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ffffff;
+            background-color: #ffffff;;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+        
+        .overlay-content {
+            position: relative;
+            top: 10%;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            
+        }
+        
+        .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: rgb(50,86,154);
+            display: block;
+            transition: 0.3s;
+        }
+        
+        .overlay a:hover, .overlay a:focus {
+            color: #f1f1f1;
+        }
+        
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+        }
+        
+        @media screen and (max-height: 450px) {
+          .overlay a {font-size: 20px}
+          .overlay .closebtn {
+            font-size: 40px;
+            top: 15px;
+            right: 35px;
+          }
+        }
+        </style>
 </head>
 
 <body class=" ">
@@ -104,304 +155,101 @@
 
         <div class="header-content-wrapper">
 
-            <div class="logo">
+            <a id="top-bar-js" class="top-bar-link"></a>
+
+            <div class="logo" style="float:left">
                 <a href="index.html" class="full-block-link"></a>
                 <img src="images/truskenlogo.png" alt="Trusken">
-               
-			   
+                <!---<div class="logo-text">
+                    <div class="logo-title">Trusken</div>
+                    <div class="logo-sub-title"></div>
+                </div> -->
             </div>
 
-            <!-- <nav id="primary-menu" class="primary-menu"> -->
+            <nav id="primary-menu" class="primary-menu" style="text-align: center">
 
-                <!-- <a href='javascript:void(0)' id="menu-icon-trigger" class="menu-icon-trigger showhide"> -->
-                    <!-- <span class="mob-menu--title">Menu</span> -->
-                        <!-- <span id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden"> -->
-                            <!-- <svg width="1000px" height="1000px"> -->
-                                <!-- <path id="pathD" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path> -->
-                                <!-- <path id="pathE" d="M 300 500 L 700 500"></path> -->
-                                <!-- <path id="pathF" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path> -->
-                            <!-- </svg> -->
-                        <!-- </span> -->
-                <!-- </a> -->
-
-                <!-- <!-- menu-icon-wrapper --> 
-
-                <!-- <ul class="primary-menu-menu"> -->
-                    <!-- <li class="menu-item-has-children"> -->
-                        <!-- <a href="index.html">Home</a> -->
-                    <!-- </li> -->
-
-                    <!-- <li class=""> -->
-                        <!-- <a href="03_services.html">Services</a> -->
-                        <!-- <ul class="dropdown"> -->
-                            <!-- <li class="megamenu-item-info"> -->
-                                <!-- <h5 class="megamenu-item-info-title">List of Services</h5> -->
-                                <!-- <p class="megamenu-item-info-text">Choose a Service</p> -->
-                            <!-- </li> -->
-                            <!-- <li class="hover-ver2"> -->
-                                <!-- <a href="05_service_details_localseo.html"><i class="seoicon-pin-map"></i> -->
-                                    <!-- Local SEO -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class="hover-ver2"> -->
-                                <!-- <a href="07_service_email_marketing.html"><i class="seoicon-mail-send"></i> -->
-                                    <!-- Email Marketing -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class="hover-ver2"> -->
-                                <!-- <a href="06_service_detail.html"><i class="seoicon-chat-comment"></i> -->
-                                    <!-- Social Media Marketing -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class="menu-item-has-children hover-ver2"> -->
-                                <!-- <a href="04_service_detail_seo.html"> -->
-                                    <!-- <i class="seoicon-search"></i> -->
-                                    <!-- Search Engine Optimization -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class="hover-ver2"> -->
-                                <!-- <a href="08_service_ppc_management.html"><i class="seoicon-button"></i> -->
-                                    <!-- Pay Per Click Management -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class="menu-item-has-children hover-ver2"> -->
-                                <!-- <a href="03_services.html"> -->
-                                    <!-- <i class="seoicon-pie-graph-split"></i> -->
-                                    <!-- Services Promo List -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                        <!-- </ul> -->
-                    <!-- </li> -->
-
-                    <!-- <li class=""> -->
-                        <!-- <a href="#">Case Studies</a> -->
-                        <!-- <ul class="dropdown"> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="11_case_studies.html"> -->
-                                    <!-- Case Studies Page -->
-                                    <!-- <i class="seoicon-right-arrow"></i> -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-
-                            <!-- <li class=""> -->
-                                <!-- <a href="12_project_details_ver_01.html"> -->
-                                    <!-- Project details ver1 -->
-                                    <!-- <i class="seoicon-right-arrow"></i> -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="13_project_details_ver_02.html"> -->
-                                    <!-- Project details ver2 -->
-                                    <!-- <i class="seoicon-right-arrow"></i> -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                        <!-- </ul> -->
-                    <!-- </li> -->
-
-                    <!-- <li class="has-megamenu menu-item-has-children"> -->
-                        <!-- <a href="#">Pages</a> -->
-
-                        <!-- <div class="megamenu" style="background-image: url('img/menu-bg.png');"> -->
-                            <!-- <div class="megamenu-row"> -->
-
-                                <!-- <div class="col3"> -->
-                                    <!-- <ul> -->
-                                        <!-- <li class="megamenu-item-info"> -->
-                                            <!-- <h5 class="megamenu-item-info-title">Standard Pages</h5> -->
-                                            <!-- <p class="megamenu-item-info-text">Pages that every website needs.</p> -->
-                                        <!-- </li> -->
-
-                                        <!-- <li> -->
-                                            <!-- <a href="02_abouts.html">Our Agency<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                            <!-- <a href="21_seo_analysis.html">SEO Analysis<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-
-                                        <!-- <li> -->
-                                            <!-- <a href="10_testimonials.html">Testimonials <i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                            <!-- <a href="09_our_clients.html">Our Special Clients<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                            <!-- <a href="34_pricing-tables.html">Pricing Packages<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                            <!-- <a href="404.html">404 Page<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-                                    <!-- </ul> -->
-                                <!-- </div> -->
-                                <!-- <div class="col3"> -->
-                                    <!-- <ul> -->
-                                        <!-- <li class="megamenu-item-info"> -->
-                                            <!-- <h5 class="megamenu-item-info-title">Features</h5> -->
-                                            <!-- <p class="megamenu-item-info-text">Features of Our Digital Agency.</p> -->
-                                        <!-- </li> -->
-
-                                        <!-- <li> -->
-                                            <!-- <a href="36_slider-with-photo.html">Main slider with photo<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                            <!-- <a href="25_navigation-flat.html">Stunning Headers<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-
-                                        <!-- <li> -->
-                                            <!-- <a href="37_navigation-with-photo.html">Sub-headers with photo<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-
-                                        <!-- <li> -->
-                                            <!-- <a href="38_photo-elements.html">Photo elements<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-
-                                        <!-- <li> -->
-                                            <!-- <a href="32_testimonials.html">Our Testimonials<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-
-                                    <!-- </ul> -->
-                                <!-- </div> -->
-                                <!-- <div class="col3"> -->
-                                    <!-- <ul> -->
-
-                                        <!-- <li class="megamenu-item-info"> -->
-                                            <!-- <h5 class="megamenu-item-info-title">Web Elements</h5> -->
-                                            <!-- <p class="megamenu-item-info-text">Awesome header and title style -->
-                                                <!-- variations and many more.</p> -->
-                                        <!-- </li> -->
-
-                                        <!-- <li> -->
-                                            <!-- <a href="typography.html">Typography<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                            <!-- <a href="33_charts_counters.html">Charts &amp; Graphs<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-                                        <!-- <li> -->
-                                            <!-- <a href="buttons.html">Buttons<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-
-                                        <!-- <li> -->
-                                            <!-- <a href="28_popup-search.html">Popup Search<i class="seoicon-right-arrow"></i></a> -->
-                                        <!-- </li> -->
-
-                                    <!-- </ul> -->
-                                <!-- </div> -->
+                <!-- menu-icon-wrapper -->
+                <a href='javascript:void(0)' id="menu-icon-trigger" onclick="openNav()" class="menu-icon-trigger showhide">
+                    <span style="font-size:30px;cursor:pointer" >&nbsp;&nbsp;&nbsp;&nbsp;&#9776;</span>
+                    <!-- <span class="mob-menu--title">Menu</span>
+                    <span id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden"> -->
+                        
+                        <!-- <svg width="1000px" height="1000px">
+                            <path id="pathD" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                            <path id="pathE" d="M 300 500 L 700 500"></path>
+                            <path id="pathF" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+                        </svg> -->
+                    <!-- </span> -->
+                    <!--  -->
+                </a>
 
 
-                                <!-- <div class="col3"> -->
-                                    <!-- <ul> -->
-                                        <!-- <li> -->
-                                            <!-- <div class="google-logo"> -->
-                                                <!-- <img src="img/google-logo.png" alt="logo"> -->
-                                            <!-- </div> -->
 
-                                            <!-- <p class="google-text">The Yoast Analytics plugin lets you easily -->
-                                                <!-- connect your website to Google Analytics and keep track of all -->
-                                                <!-- your site traffic and key metrics in real-time. -->
-                                            <!-- </p> -->
-                                        <!-- </li> -->
-                                    <!-- </ul> -->
-                                <!-- </div> -->
 
-                            <!-- </div> -->
-                        <!-- </div> -->
-                    <!-- </li> -->
-                    <!-- <li class=""> -->
-                        <!-- <a href="14_blog.html">Blog</a> -->
-                    <!-- </li> -->
-                    <!-- <li class=""> -->
-                        <!-- <a href="#">Shop</a> -->
-                        <!-- <ul class="dropdown"> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="16_shop.html"> -->
-                                    <!-- Shop Page -->
-                                    <!-- <i class="seoicon-right-arrow"></i> -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="17_product_details.html"> -->
-                                    <!-- Product Details -->
-                                    <!-- <i class="seoicon-right-arrow"></i> -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="20_checkout.html"> -->
-                                    <!-- Checkout -->
-                                    <!-- <i class="seoicon-right-arrow"></i> -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="19_cart.html"> -->
-                                    <!-- Shopping Cart -->
-                                    <!-- <i class="seoicon-right-arrow"></i> -->
-                                <!-- </a> -->
-                            <!-- </li> -->
-                        <!-- </ul> -->
+                <div id="myNav" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <br><br>
+                    <div style="text-align: left"> 
+                    <!-- <a href="index.html" class="full-block-link"></a> -->
+                    <img src="images/truskenlogo.png" alt="Trusken">
+                    </div>
+                    <div class="overlay-content">
+                      <a data-toggle="modal" data-target="#myModal" >Login</a>
+                      <a data-toggle="modal" data-target="#myModal1">Sign Up</a>
+                      <a href="aboutus.html">About</a>
+                      <!-- <a >Why Trusken</a> -->
+                    </div>
+                  </div>
 
-                    <!-- </li> -->
+                <ul class="primary-menu-menu " >
+                    <!-- <li class="">
+                        <a> <img src="images/signinlinkedin.png" onclick="signupLinkdn()" /> </a> &nbsp; &nbsp;
+                    </li>
+                    <li class="">
+                        <a data-toggle="modal" data-target="#myModal" class="Btn Btn-small Btn--blue Btn-hover-shadow">
+                            <span class="text">Login</span>
+    
+                        </a>
+    
+                    </li> <li class="">
+                        <a data-toggle="modal" data-target="#myModal1" class="Btn Btn-small Btn--orange Btn-hover-shadow">
+                            <span class="text">Signup</span>
+                            </a>
+                    </li>
 
-                    <!-- <li class=""> -->
-                        <!-- <a href="22_contacts.html">Contacts</a> -->
-                    <!-- </li> -->
-                <!-- </ul> -->
-            <!-- </nav> -->
+                </ul> -->
+            </nav>
 
-            <!-- <ul class="nav-add"> -->
-                <!-- <li class="cart"> -->
+            <ul class="nav-add pmhide">
+             
 
-                    <!-- <a href="#" class="js-cart-animate"> -->
-                        <!-- <i class="seoicon-basket"></i> -->
-                        <!-- <span class="cart-count">0</span> -->
-                    <!-- </a> -->
+                <li class="">
+                    <a> <img src="images/signinlinkedin.png" onclick="signupLinkdn()" /> </a> &nbsp; &nbsp;
+                </li>
+                <li class="">
+                    <a data-toggle="modal" data-target="#myModal" class="Btn Btn-small Btn--blue Btn-hover-shadow">
+                        <span class="text">Login</span>
 
-                    <!-- <div class="cart-popup-wrap"> -->
-                        <!-- <div class="popup-cart"> -->
-                            <!-- <h4 class="title-cart">No products in the cart!</h4> -->
-                            <!-- <p class="subtitle">Please make your choice.</p> -->
-                            <!-- <div class="btn btn-small btn--dark"> -->
-                                <!-- <span class="text">view all catalog</span> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
+                    </a>
 
-                <!-- </li> -->
+                </li> <li class="">
+                    <a data-toggle="modal" data-target="#myModal1" class="Btn Btn-small Btn--orange Btn-hover-shadow">
+                        <span class="text">Signup</span>
+                        </a>
+                </li>
+               
 
-                <!-- <li class="search search_main"> -->
-                    <!-- <a href="#" class="js-open-search"> -->
-                        <!-- <i class="seoicon-loupe"></i> -->
-                    <!-- </a> -->
-                <!-- </li> -->
-            <!-- </ul> -->
+              
 
-            <!-- <div class="user-menu open-overlay"> -->
-                <!-- <a href="#" class="user-menu-content  js-open-aside"> -->
-                    <!-- <span></span> -->
-                    <!-- <span></span> -->
-                    <!-- <span></span> -->
-                <!-- </a> -->
-            <!-- </div> -->
-			
-			  <ul class="nav-add">
-                    <a > <img src="images/signinlinkedin.png" onclick="signupLinkdn()" /> </a> &nbsp; &nbsp;
-                    
-                    <a   data-toggle="modal" data-target="#myModal"  class="Btn Btn-small Btn--blue Btn-hover-shadow">
-                                                <span class="text">Login</span>
-                                                
-                                            </a>
-                    
-                    <a   data-toggle="modal" data-target="#myModal1"  class="Btn Btn-small Btn--orange Btn-hover-shadow">
-                                                <span class="text">Signup</span>
-                                               
-                                            </a>
-                    
-                
-                </ul>	
-			
+
+            </ul>
+
+
         </div>
 
     </div>
 
 </header>
-<div class="header-spacer"></div>
 
 <!-- ... End Header -->
 
@@ -461,22 +309,22 @@
                     <span class="long-line"></span>
                 </div>
 
-                <h5 class="heading-subtitle">Blockchain Technology has opened up numerous opportunities for improving efficiency through transparency across sectors. Trusken is a platform where counterparties can quickly establish trust using the power of Blockchain.
+                <h5 class="heading-subtitle">Blockchain Technology has opened numerous opportunities for improving efficiency through transparency across sectors. Trusken is a platform where counterparties can quickly establish trust using the power of Blockchain.
                 </h5>
 				
 				<h5 class="heading-subtitle">Since the days mankind has required to exchange goods and services, the establishment of trust has been essential for trade. To establish this trust, numerous intermediaries like Banks, Merchants and myriad other middlemen have been required.
                 </h5>
 				
-				<h5 class="heading-subtitle">The robust Blockchain technology (which has powered the creation of crypto currencies) like Bitcoin, Ethereum etc.  can also be used to create a Trust network. Every time two parties transact, the same is recorded on a blockchain. 
+				<h5 class="heading-subtitle">The robust Blockchain technology which has powered the creation of crypto currencies like Bitcoin, Ethereum etc., can also be used to create a Trust network. 
                 </h5>
 				
-				<h5 class="heading-subtitle">Let us explain with an example. When you swipe your card to purchase something,the banking system takes a hefty commission.This is because they bring trust into the system. This issue of trust can easily be solved through blockchain technologies. Now the same analogy can be used for things as diverse as a cab ride to background verification. A cab hailing company’s primary function is to establish trust that the ride will be smooth. The same functionality can be replicated by a blockchain trust network by establishing the bona fides/ history of the driver and the rider. 
+				<h5 class="heading-subtitle">Let us explain with an example. When you swipe your card to purchase something, the banking system takes a hefty commission, this is because they bring trust into the system. This issue of trust can easily be solved through blockchain technologies. Now the same analogy can be used for things as diverse as a cab ride to background verification. A cab hailing company’s primary function is to establish trust that the ride will be smooth. The same functionality can be replicated by a blockchain trust network by establishing the bona fides / history of the driver and the rider. Every time two parties transact, the same can be recorded on a blockchain. 
                 </h5>
 				
-				<h5 class="heading-subtitle">The Trusken platform will allow the community to quickly establish trust between counterparties. Initially Trusken is using the platform to create Trust between Employers and Professionals.Once the community is sufficiently large, Blockchain offers numerous solutions for a multitude of use cases which Trusken will enable.
+				<h5 class="heading-subtitle">The Trusken platform will allow the community to quickly establish trust between counterparties. Initially Trusken is using the platform to create Trust between Employers and Professionals. Blockchain offers numerous solutions for a multitude of use cases which Trusken will enable; as the community grows.
                 </h5>
 				
-				<h5 class="heading-subtitle">The main limitation of creating such trust networks is scale. To rapidly build scale, the backbone of Trusken would be its coins. These will be distributed liberally to early users to enable rapid scaleup. Later on, these coins will enable the community to contribute to creating value and also avail benefits.As millions join, the Trusken Coins becomes more valuable and reach their highest potential value.
+				<h5 class="heading-subtitle">The challenge for the success of such a trust network is scale. To rapidly build users, Trusken is liberally issuing coins to early adopters. These coins will enable the community to create value and avail benefits. As millions join, the Trusken Coins becomes more valuable and reach their highest potential.
                 </h5>
 				
             </div>
@@ -523,9 +371,9 @@
                             
                                                         <div id="toggleSample" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                                The early joiners of the platform will be awarded more coins. As the envisaged scale is reached, the quantum of coins distributed will also reduce. There is absolutely no cost to joining and building the Trusken Trust community. Think of this as a free lottery ticket. It is absolutely safe.
+                                                                The early joiners of the platform will be awarded more coins. As the envisaged scale is reached, the quantum of coins distributed will also reduce. There is absolutely no cost to joining and building the Trusken Trust community. Think of this as a free lottery ticket.
                             
-                                                                By joining, you contribute towards the establishment of a Trust Network that removes the multitude of middlemen in a diverse range of businesses. These commissions add up to a lot. The intermediaries themselves cannot be trusted and regularly fold up leading to massive losses to the common people. By contributing the creating a Trust network you will support the cause of reducing costs, frauds and scams.
+                                                                By joining, you contribute towards the establishment of a Trust Network that removes the multitude of middlemen in a diverse range of businesses. These commissions add up to a lot. The intermediaries themselves cannot be trusted and regularly fold up leading to massive losses to the common people.
                             
                                                             </div>
                                                         </div>
@@ -546,7 +394,7 @@
                             
                                                         <div id="toggleSecond" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                                There are no risks. It’s safe and free to join. We store your personal data securely and we don’t share it with anyone else. We will only email you regarding the project and your account (read our privacy policy).
+                                                                There are no risks. It’s safe and free to join. We store information on blockchain securely and we don’t share it with anyone else without your consent.
                                                             </div>
                                                         </div>
                                                     </li>
@@ -560,15 +408,15 @@
                                                                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                                         <i class="fa fa-angle-down active" aria-hidden="true"></i>
                                                                     </span>
-                                                                <span class="ovh">Why do I need to provide my public linkedin employment profile? </span>
+                                                                <span class="ovh">Why do I need to provide my public linkedin employment profile? Why does Trusken verify it?</span>
                                                             </a>
                                                         </div>
                             
                                                         <div id="toggleFourth" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                               Unlike numerous other initiaves both crypto and non-crypto which are distributing coins free, at Trusken, we are serious about implementing a tangible use. Initially Trusken is using the platform to create Trust between Employers and Professionals. Once the community is sufficiently large, Blockchain offers numerous solutions for a multitude of use cases which Trusken will enable.
+                                                                Unlike numerous other initiatives both crypto and non-crypto which are distributing coins for free, at Trusken, we are serious about implementing a tangible use. Initially Trusken is using the platform to create Trust between Employers and Professionals. Once the community is sufficiently large, Trusken will enable other solutions for a multitude of use cases through it’s Blockchain trust platform.
                             
-                                                               Verification helps ensure that accounts are created by real people and not bots. If verification is not valid, the user will eventually be deleted from the system and the account will not be activated or eligible for rewards.
+                                                                Verification helps ensure that accounts are created by real people and not bots. If verification is not valid, the user will eventually be deleted from the system and the account will not be activated or eligible for rewards.
                             
                                                             </div>
                                                         </div>
@@ -589,9 +437,9 @@
                             
                                                         <div id="toggleFive" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                               Ponzi scams take money from new members and give it to earlier members. Trusken is completely free. There is no money to be collected or distributed.
+                                                                Ponzi scams take money from new members and give it to earlier members. Trusken is completely free. There is no money to be collected or distributed.
                                                                
-                                                               Trusken does reward members who join with Trusken Coins, and more coins are given to early members and to those who share invites. The potential of these Truskencoins will increase as the number of users and frequency of use increases.
+                                                                Trusken does reward its members with Trusken Coins. More coins are given to early members and to those who help build the community. The value of these coins can increase as the number of users and frequency of use increases.
                                                             </div>
                                                         </div>
                             
@@ -611,9 +459,9 @@
                             
                                                         <div id="toggleSix" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                                The very purpose of the Trusken Platform is to establish trust which is unique to you. You should only open one account with accurate details. Trusken will verify these details and reward users with coins, badges and stars on successful verification as per terms & conditions.
+                                                                The very purpose of the Trusken Platform is to establish trust which is unique to you. You should only open one account with accurate details. Trusken will verify these details and reward users with coins, badges and stars on successful verification as per it’s terms & conditions.
                             
-                                                                Providing false details, impersonation, or opening more than one account will result in the termination of all accounts and loss of the coins earned.
+                                                                Providing false details, impersonation, or opening more than one account will result in the termination of all accounts and loss of rewards earned.
                             
                                                             </div>
                                                         </div>
@@ -635,8 +483,7 @@
                             
                                                         <div id="toggleSeven" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                                On registration, Trusken coins are allocated for you as a reward for joining. On helping growing the network by inviting friends and other activities you can earn more coins.
-                            
+                                                                On registration, Trusken coins are allocated for you as a reward for joining. On helping grow the network by inviting friends and other activities you can earn more coins.
                                                             </div>
                                                         </div>
                                                         
@@ -657,7 +504,7 @@
                             
                                                         <div id="toggleEight" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                                The value of a trust network is only realised once many people start using it. It is difficult to get people to join initially. By rewarding initially users with higher number of Trusken coins is a way of overcoming the initial hurdles.
+                                                                The value of a trust network is only realised once many people start using it. It is difficult to get people to join initially. Rewarding initial users with higher number of Trusken coins is a way of overcoming the initial hurdles.
                                                             </div>
                                                         </div>
                                                         
@@ -672,7 +519,7 @@
                                                                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                                         <i class="fa fa-angle-down active" aria-hidden="true"></i>
                                                                     </span>
-                                                                <span class="ovh">I want more Trusken Coins. Can I buy them?How many Trusken coins do I get for joining?</span>
+                                                                <span class="ovh">I want more Trusken Coins. Can I buy them?</span>
                                                             </a>
                                                         </div>
                             
@@ -699,7 +546,7 @@
                             
                                                         <div id="toggleTen" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                                The original idea of Blockchain was to create Trust platforms (also known as Trustless platforms as technology eliminates the need for conventional trust). However, the crypto currencies which have been built on blockchain backbone have overpowered the technological narrative. Numerous alternative coins have been introduced without any tangible use case. Trusken is neither a crypto currency nor a payment network. The regulations around these are grey and still evolving. New Government legislations and policies lead to sudden and massive loss in value of coins. At Trusken, we are leveraging the power of blockchain technology for actual use cases.
+                                                                The original idea of Blockchain was to create Trust platforms. These are also known as Trustless platforms as technology eliminates the need for conventional trust. However, the crypto currencies which have been built on blockchain backbone have overshadowed the technological narrative. Numerous alternative coins have been introduced without any tangible use case. Trusken is neither a crypto currency nor a payment network. The regulations around these are grey and still evolving. New Government legislations and policies lead to sudden and massive loss in value of coins. At Trusken, we are leveraging the power of blockchain technology for actual use cases.
                                                             </div>
                                                         </div>
                                                         
@@ -741,36 +588,12 @@
                             
                                                         <div id="toggle12" class="panel-collapse collapse" aria-expanded="false" role="tree">
                                                             <div class="panel-info">
-                                                                Trusken has been setup by a team of senior technologists and business professionals with decades of experience with global firms. The CEO is a Charter Holder from the prestigious CFA institute USA with a Post Graduation in Management, IIM, Ahmadabad. He has over 2 decades of work experience in strategy, marketing, operations and new business rollouts. He has worked for Govt. and Private sector firms like Britannia, GMR, Cinepolis, ISB, ITDC etc., 
-                                                                
-                                                                CTO has more than 17 years of experience in IT Services, software products and consulting. His last stint was with Qualcomm INC. 
+                                                                Trusken has been setup by a team of senior technologists and business professionals with decades of experience with global firms. Sandeep Gupta, CEO is a Charter Holder from the CFA institute USA with a Post Graduation in Management from IIM, Ahmedabad. He has over 2 decades of work experience in strategy, marketing, operations and new business rollouts. He has worked for Govt. and Private sector firms like Britannia, GMR, Cinepolis, ISB, ITDC etc., 
+                                                                Ravi Mohan CoFounder and CTO has more than 17 years of experience in IT Services, software products and consulting. His last stint was with Qualcomm INC.                                                                 
                                                             </div>
-                                                        </div>
+                                                        </div>   
                                                         
-                                                        
-                                                    </li>
-                                                    
-                                                    <li class="accordion-panel">
-                            
-                                                        <div class="panel-heading">
-                                                            <a href="#toggle13" class="accordion-heading collapsed" data-toggle="collapse" data-parent="#accordion" aria-expanded="false">
-                                                                    <span class="icon">
-                                                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                                                        <i class="fa fa-angle-down active" aria-hidden="true"></i>
-                                                                    </span>
-                                                                <span class="ovh">Who are Trusken Corporate members?</span>
-                                                            </a>
-                                                        </div>
-                            
-                                                        <div id="toggleFourth" class="panel-collapse collapse" aria-expanded="false" role="tree">
-                                                            <div class="panel-info">
-                                                                Truskenis creating a Trust Marketplace. If the abbreviation of Businesses is B and that of retail consumers is C, in any marketplace the transactions can be B2C, B2B, C2C or even C2B. Depending on the specific use case, Trusken platform will also onboard many corporates and business users. At Trusken, our philosophy is that the data of users belongs to them and will remain in their control. However, they can share information at their discretion with counter parties which may include corporates.  
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        
-                                                    </li>
-                                                    
+                                                    </li> 
                                                 </ul>
                                             </div>
                                 </div>
@@ -1231,7 +1054,15 @@
 <script src="js/animation.velocity.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/time-line.js"></script>
-
+<script>
+    function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+    }
+    
+    function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+    }
+    </script>
 <!-- ...end JS Script -->
 
 </body>
