@@ -73,11 +73,11 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-10">
 		<div class="panel panel-default card3" >
-			<div class="panel-heading">Education</div>
+			<div class="panel-heading">Education-<b id="userNameDisplay"></b></div>
 			<div id="addEd">
 			</div>
 			
-			<div style="">
+			<div >
 				&nbsp;&nbsp;<a type="button" class="btn btn-primary" id="submitModalCheckEdu" style="background-color: #1d4590" ><b>Submit</b></a>
 					
 				&nbsp;&nbsp;&nbsp;<a type="submit" id="addEdu" style="background-color: #1d4590"  class="btn btn-primary"><em class="fa fa-plus">&nbsp;</em> Add Education </a>
@@ -173,7 +173,7 @@
 
 		$(document).ready(function () {
 			let uid = window.location.href.split('?')[1];
-			//loadProfilePage(uid);
+			loadProfilePage(uid);
 			loadaddEdu(uid)
 
 		});

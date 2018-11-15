@@ -6,10 +6,30 @@ function getWorkTemplate(index, ID) {
                 <label>Title*</label>
                 <input class="form-control infields" id="workTitle`+ index + `" type="text" placeholder="Job Title">
             </div>
-            <div class="form-group">
-                <label>Company*</label>
-                <input class="form-control infields" id="companyName`+ index + `"  type="email" placeholder="Company">
-            </div>
+    <div class="form-group">
+    <label>Company*</label>
+    <input class="form-control infields" id="companyName`+ index + `"  type="text" placeholder="Company">
+</div>
+
+
+<div class="form-group">
+<label>City*</label>
+<input class="form-control infields" id="city`+ index + `"  type="text" placeholder="City">
+</div>
+<div class="form-group">
+<label>State*</label>
+<input class="form-control infields" id="state`+ index + `"  type="text" placeholder="State">
+</div>
+<div class="form-group">
+<label>Country*</label>
+<input class="form-control infields" id="country`+ index + `"  type="text" placeholder="Country">
+</div>
+
+<div class="form-group">
+<label>Alias Name</label>
+<input class="form-control infields" id="alias`+ index + `"  type="text" placeholder="Alias">
+</div>
+
             <div class="form-group" >
                 <label>Tenure*</label></br>
                 <label>Start Date</label></br>
@@ -64,6 +84,15 @@ function getWorkTemplate(index, ID) {
                 </select>
 
                 <select id="year" name="year" class="stYear`+ index + `">
+                <option value="2000">2000</option>
+                <option value="2001">2001</option>
+
+                 <option value="2002">2002</option>
+                 <option value="2003">2003</option>
+                 <option value="2004">2004</option>
+                 <option value="2005">2005</option>
+                 <option value="2006">2006</option>
+                 <option value="2007">2007</option>
                     <option value="2008">2008</option>
                     <option value="2009">2009</option>
                     <option value="2010">2010</option>
@@ -72,6 +101,11 @@ function getWorkTemplate(index, ID) {
                     <option value="2013">2013</option>
                     <option value="2014">2014</option>
                     <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                   
+
                 </select>
                 <input type="hidden" id="datepicker" />
                 
@@ -129,11 +163,28 @@ function getWorkTemplate(index, ID) {
                      <option value="12">December</option>
                  </select>
                  <select id="year" name="year" class="enYear`+ index + `">
+                 <option value="2000">2000</option>
+                 <option value="2001">2001</option>
+ 
+                  <option value="2002">2002</option>
+                  <option value="2003">2003</option>
+                  <option value="2004">2004</option>
+                  <option value="2005">2005</option>
+                  <option value="2006">2006</option>
+                  <option value="2007">2007</option>
+                     <option value="2008">2008</option>
+                     <option value="2009">2009</option>
+                     <option value="2010">2010</option>
                      <option value="2011">2011</option>
                      <option value="2012">2012</option>
                      <option value="2013">2013</option>
                      <option value="2014">2014</option>
                      <option value="2015">2015</option>
+                     <option value="2016">2016</option>
+                     <option value="2017">2017</option>
+                     <option selected value="2018">2018</option>
+                    
+ 
                  </select>
                 
                  
@@ -234,7 +285,23 @@ function getEducationTemplate(cT,ID) {
                     <label>Degree / Certificate *</label>
                     <input class="form-control infields" id="degreeCertificate`+ cT + `" type="text" placeholder="">
                 </div>
+
                 <div class="form-group">
+                <label>City*</label>
+                <input class="form-control infields" id="city`+ cT + `"  type="text" placeholder="City">
+                </div>
+                <div class="form-group">
+                <label>State*</label>
+                <input class="form-control infields" id="state`+ cT + `"  type="text" placeholder="State">
+                </div>
+                <div class="form-group">
+                <label>Country*</label>
+                <input class="form-control infields" id="country`+ cT + `"  type="text" placeholder="Country">
+                </div>
+
+
+                <div class="form-group">
+
         <label>Tenure*</label></br>
         <label>Start Year</label>
         <input type="text" class=" infields form-control edstYear`+ cT + `" style="width:25%;" placeholder="YYYY">

@@ -73,15 +73,15 @@
 		<div class="col-md-10">
 
 		<div class="panel panel-default card3" >
-			<div class="panel-heading">Education</div>
+			<div class="panel-heading">Education-<b id="userNameDisplay"></b></div>
 			<div id="addEd">
 			</div>
 			
 			<div style="text-align:center">
-                &nbsp;&nbsp;<a type="button"  id="submitModalCheckEdu" class="btn btn-primary"   href ><b>Submit</b></a>
+                &nbsp;&nbsp;<a type="button"  id="submitModalCheckEdu" class="btn btn-primary" style="background-color: #1d4590"   href ><b>Submit</b></a>
 					
 				&nbsp;&nbsp;&nbsp;<a type="submit" id="addEdu" style="background-color: #1d4590"   class="btn btn-primary"><em class="fa fa-plus">&nbsp;</em> Add Education </a>
-				&nbsp;&nbsp;&nbsp;<a type="submit" onclick="redirCompSalary(window.location.href.split('?')[1])"  style="background-color: #1d4590"  class="btn btn-primary">Skip </a>
+				<!-- &nbsp;&nbsp;&nbsp;<a type="submit" onclick="redirCompSalary(window.location.href.split('?')[1])"  style="background-color: #1d4590"  class="btn btn-primary">Skip </a> -->
 					<br>
 					<br>
 					</div>
@@ -168,7 +168,7 @@
 
 		$(document).ready(function () {
 			let uid = window.location.href.split('?')[1];
-			//loadProfilePage(uid);
+			loadProfilePage(uid);
 			loadaddEducate(uid)
 
 		});

@@ -325,7 +325,7 @@ app.post('/addWorkExData',(request,response)=>{
     let ciid=guidGeneratorCoin();
     let guid=request.body.expID==='undefined'? guidGeneratorWork():request.body.expID
     uid=request.body.uid
-    var sql = "INSERT INTO workex (exp_id,job_title_id, start_date,end_date,emp_num,mgr_name,mgr_email,desc_work,org_id,emp_type_id,user_id) VALUES ('"+guid+"','"+request.body.workTitle+"', '"+request.body.workstartYear+"','"+request.body.workEndYear+"','"+request.body.employeeNumber+"','"+request.body.managerNumber+"','"+request.body.managerEmail+"','"+request.body.empdesc+"','"+request.body.companyName+"','"+request.body.selectedworkexp+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE job_title_id='"+request.body.workTitle+"', start_date='"+request.body.workstartYear+"',end_date='"+request.body.workEndYear+"',emp_num='"+request.body.employeeNumber+"',mgr_name='"+request.body.managerNumber+"',mgr_email='"+request.body.managerEmail+"',desc_work='"+request.body.empdesc+"', org_id='"+request.body.companyName+"' , emp_type_id='"+request.body.selectedworkexp+"'";
+    var sql = "INSERT INTO workex (exp_id,job_title_id, start_date,end_date,emp_num,mgr_name,mgr_email,desc_work,org_id,emp_type_id,user_id,alias_name,state,country,city) VALUES ('"+guid+"','"+request.body.workTitle+"', '"+request.body.workstartYear+"','"+request.body.workEndYear+"','"+request.body.employeeNumber+"','"+request.body.managerNumber+"','"+request.body.managerEmail+"','"+request.body.empdesc+"','"+request.body.companyName+"','"+request.body.selectedworkexp+"','"+request.body.uid+"','"+request.body.alias+"','"+request.body.state+"','"+request.body.country+"','"+request.body.city+"') ON DUPLICATE KEY UPDATE job_title_id='"+request.body.workTitle+"', start_date='"+request.body.workstartYear+"',end_date='"+request.body.workEndYear+"',emp_num='"+request.body.employeeNumber+"',mgr_name='"+request.body.managerNumber+"',mgr_email='"+request.body.managerEmail+"',desc_work='"+request.body.empdesc+"', org_id='"+request.body.companyName+"' , emp_type_id='"+request.body.selectedworkexp+"', alias_name='"+request.body.alias+"', state='"+request.body.state+"', country='"+request.body.country+"', emp_type_id='"+request.body.city+"'";
     
     con.query(sql, function (error, results, fields) {
         if (error) 
@@ -380,7 +380,7 @@ app.post('/addWorkExDataa',(request,response)=>{
     let ciid=guidGeneratorCoin();
     let guid=request.body.expID==='undefined'? guidGeneratorWork():request.body.expID
     uid=request.body.uid
-    var sql = "INSERT INTO workex (exp_id,job_title_id, start_date,end_date,emp_num,mgr_name,mgr_email,desc_work,org_id,emp_type_id,user_id) VALUES ('"+guid+"','"+request.body.workTitle+"', '"+request.body.workstartYear+"','"+request.body.workEndYear+"','"+request.body.employeeNumber+"','"+request.body.managerNumber+"','"+request.body.managerEmail+"','"+request.body.empdesc+"','"+request.body.companyName+"','"+request.body.selectedworkexp+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE job_title_id='"+request.body.workTitle+"', start_date='"+request.body.workstartYear+"',end_date='"+request.body.workEndYear+"',emp_num='"+request.body.employeeNumber+"',mgr_name='"+request.body.managerNumber+"',mgr_email='"+request.body.managerEmail+"',desc_work='"+request.body.empdesc+"', org_id='"+request.body.companyName+"' , emp_type_id='"+request.body.selectedworkexp+"'";
+    var sql = "INSERT INTO workex (exp_id,job_title_id, start_date,end_date,emp_num,mgr_name,mgr_email,desc_work,org_id,emp_type_id,user_id,alias_name,state,country,city) VALUES ('"+guid+"','"+request.body.workTitle+"', '"+request.body.workstartYear+"','"+request.body.workEndYear+"','"+request.body.employeeNumber+"','"+request.body.managerNumber+"','"+request.body.managerEmail+"','"+request.body.empdesc+"','"+request.body.companyName+"','"+request.body.selectedworkexp+"','"+request.body.uid+"','"+request.body.alias+"','"+request.body.state+"','"+request.body.country+"','"+request.body.city+"') ON DUPLICATE KEY UPDATE job_title_id='"+request.body.workTitle+"', start_date='"+request.body.workstartYear+"',end_date='"+request.body.workEndYear+"',emp_num='"+request.body.employeeNumber+"',mgr_name='"+request.body.managerNumber+"',mgr_email='"+request.body.managerEmail+"',desc_work='"+request.body.empdesc+"', org_id='"+request.body.companyName+"' , emp_type_id='"+request.body.selectedworkexp+"', alias_name='"+request.body.alias+"', state='"+request.body.state+"', country='"+request.body.country+"', emp_type_id='"+request.body.city+"'";
     
     con.query(sql, function (error, results, fields) {
         if (error) 
@@ -435,7 +435,7 @@ app.post('/addEducationData',(request,response)=>{
     let guid=request.body.eduID==='undefined'? guidGeneratorEducation():request.body.eduID
     
    uid=request.body.uid
-    var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.eduEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE org_id='"+request.body.eduInstut+"',Degree='"+request.body.degreeCertificate+"', start_year='"+request.body.edustartYear+"',end_year='"+request.body.eduEndYear+"',specialization='"+request.body.speciality+"',mem_num='"+request.body.memNumber+"'";
+    var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id,state,country,city) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.eduEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"','"+request.body.state+"','"+request.body.country+"','"+request.body.city+"') ON DUPLICATE KEY UPDATE org_id='"+request.body.eduInstut+"',Degree='"+request.body.degreeCertificate+"', start_year='"+request.body.edustartYear+"',end_year='"+request.body.eduEndYear+"',specialization='"+request.body.speciality+"',mem_num='"+request.body.memNumber+"',city='"+request.body.city+"',state='"+request.body.state+"',country='"+request.body.country+"'";
     
     con.query(sql, function (error, results, fields) {
         if (error) 
@@ -488,7 +488,7 @@ app.post('/addEducationDataw',(request,response)=>{
     let guid=request.body.eduID==='undefined'? guidGeneratorEducation():request.body.eduID
     
    uid=request.body.uid
-    var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.eduEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"') ON DUPLICATE KEY UPDATE org_id='"+request.body.eduInstut+"',Degree='"+request.body.degreeCertificate+"', start_year='"+request.body.edustartYear+"',end_year='"+request.body.eduEndYear+"',specialization='"+request.body.speciality+"',mem_num='"+request.body.memNumber+"'";
+   var sql = "INSERT INTO education (edu_id,org_id,Degree, start_year,end_year,specialization,mem_num,user_id,state,country,city) VALUES ('"+guid+"','"+request.body.eduInstut+"', '"+request.body.degreeCertificate+"','"+request.body.edustartYear+"','"+request.body.eduEndYear+"','"+request.body.speciality+"','"+request.body.memNumber+"','"+request.body.uid+"','"+request.body.state+"','"+request.body.country+"','"+request.body.city+"') ON DUPLICATE KEY UPDATE org_id='"+request.body.eduInstut+"',Degree='"+request.body.degreeCertificate+"', start_year='"+request.body.edustartYear+"',end_year='"+request.body.eduEndYear+"',specialization='"+request.body.speciality+"',mem_num='"+request.body.memNumber+"',city='"+request.body.city+"',state='"+request.body.state+"',country='"+request.body.country+"'";
     
     con.query(sql, function (error, results, fields) {
         if (error) 
@@ -1105,3 +1105,39 @@ app.post('/totalCoins',(request,response)=>{
         
             }) 
          
+            app.post('/passRequest',(request,response)=>{
+                
+                
+                let content=mailer.getFpassMailTemplate(request.body.fpass)
+                mailer.sendMail(request.body.fpass,'Trusken New Password Request',content,(response) => {
+                    if(response.status == 200)
+                    {
+                        console.log("mail success")
+                        
+                    }
+                    else
+                    {
+                        console.log("mail failed")
+                        response.status(500);
+                    }
+                })
+
+
+
+            })
+
+            app.post('/passReset', function (request, response) {
+                
+                
+                var sql = "UPDATE user SET password='"+request.body.passd+"',last_updated='"+created+"' where email_id='"+request.body.eid+"'";
+                  
+                  con.query(sql, function (error, results, fields) {
+                      if (error) 
+                      {
+                          response.status(500)
+                      }
+                      else{
+                        response.send({redirectUrl: "/sucess.html"} );
+                      }
+                  })
+              })

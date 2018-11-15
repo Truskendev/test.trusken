@@ -208,6 +208,7 @@ function loadProfilePage(uid) {
 		// userID=response.guid	
 		// window.location=response.redirectUrl+'?'+userID
 		$('#userNameDisplay').text(response[0].user_name)
+		$('#userNameDis').text(response[0].user_name)
 		$('#userNameDispla,#userNameDispl').text("Welcome "+response[0].user_name)
 		$('#fullName').val(response[0].user_name)
 		$('#emailId').val(response[0].email_id)
@@ -338,7 +339,10 @@ function addWorkex(expCount) {
 			managerNumber: $('#managerNumber' + c).val(),
 			managerEmail: $('#managerEmail' + c).val(),
 			empdesc: $('#empdesc' + c).val(),
-
+			city: $('#city' + c).val(),
+			state: $('#state' + c).val(),
+			country: $('#country' + c).val(),
+			alias: $('#alias' + c).val(),
 			selectedworkexp: selectedworkexp,
 			uid: window.location.href.split('?')[1],
 
@@ -348,7 +352,7 @@ function addWorkex(expCount) {
 
 
 
-		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1)  && (workData[c]['workTitle'].length > 1)) {
+		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1)  && (workData[c]['workTitle'].length > 1)&& (workData[c]['city'].length > 1)&& (workData[c]['state'].length > 1)&& (workData[c]['country'].length > 1)) {
 			$.post("/addWorkExData", workData[c], function (response) {
 
 
@@ -524,6 +528,10 @@ var selectedworkexp = new Array();
 			managerNumber: $('#managerNumber' + c).val(),
 			managerEmail: $('#managerEmail' + c).val(),
 			empdesc: $('#empdesc' + c).val(),
+			city: $('#city' + c).val(),
+			state: $('#state' + c).val(),
+			country: $('#country' + c).val(),
+			alias: $('#alias' + c).val(),
 
 			selectedworkexp: selectedworkexp,
 			uid: window.location.href.split('?')[1],
@@ -626,11 +634,14 @@ function addEducation(cT) {
 			eduEndYear: $(".edEnYear" + c).val(),
 			speciality: $('#speciality' + c).val(),
 			memNumber: $('#memNumber' + c).val(),
+			city: $('#city' + c).val(),
+			state: $('#state' + c).val(),
+			country: $('#country' + c).val(),
 			eduID:$('#eduID' + c).text(),
 			uid: window.location.href.split('?')[1]
 		}
 		eduData[c] = eduData1
-		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)) {
+		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)&& (eduData[c]['city'].length > 1)&& (eduData[c]['state'].length > 1)&& (eduData[c]['country'].length > 1)) {
 			$.post("/addEducationData", eduData[c], function (response) {
 				//log(response.redirectUrl);
 				userID = response.uid
@@ -672,6 +683,9 @@ function addEducationn(cT) {
 			eduEndYear: $(".edEnYear" + c).val(),
 			speciality: $('#speciality' + c).val(),
 			memNumber: $('#memNumber' + c).val(),
+			city: $('#city' + c).val(),
+			state: $('#state' + c).val(),
+			country: $('#country' + c).val(),
 			eduID:$('#eduID' + c).text(),
 			uid: window.location.href.split('?')[1]
 		}
@@ -916,7 +930,7 @@ function loadEducationDetails(uid) {
 					//log(response)
 
 				response.forEach((elemo,index)=>{
-				urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+				urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 				arm=elemo.badge_id
 				 badge=` 
 					<img src="`+elemo.badge_name+`" style="width:100px;height:100px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
@@ -1028,6 +1042,11 @@ function redirbdgdatails(uid,bid){
 function redirbadg(uid) {
 	window.location = "badge.html" + '?' + uid
 }
+
+
+// function redirforgPass(uid){
+// 	window.location = "forgotPass.html" + '?' + uid
+// }
 function redirectHome() {
 
 
@@ -1537,7 +1556,7 @@ function loadMyBadge(uid){
 		response[1].forEach((elements)=>{
 			if(elements.verification_status==1){
 				response[0].forEach((elemo)=>{
-					urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+					urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 			let badge=` 
 			<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
 			
@@ -1552,7 +1571,7 @@ function loadMyBadge(uid){
 	})
 	}else{
 		response[0].forEach((elemo)=>{
-			urlforshare="http://test.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+			urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
 		let badge=` 
 
 		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
@@ -1694,6 +1713,7 @@ function coinsTotal(uid){
 		//log(response);
 		
 		$('#qweer').html(response[0].coinsTot)
+		$('#qweer1').html(response[0].coinsTot)
 			
 		
 	})
@@ -1707,6 +1727,52 @@ function coinsTotal(uid){
 			log("finished");
 		});
 }
+
+
+function reqPassword(){
+ var fpassemail=$('#fpassEmail').val();
+
+	$.post("/passRequest", {fpass:fpassemail}, function (response) {
+		//log(response);
+		if (response.status == 500) { 
+			log("Error")
+			alert("check your mail to reset password")
+		 }
+		else {
+			
+			alert("check your mail to reset password")
+		}
+			
+	
+			
+		
+	})
+	alert("check your mail to reset password")
+}
+
+function resetPassword(eid){
+	let resetCreds =
+	{
+		eid: eid,
+		passd: $('#password').val()
+	}
+
+	$.post("/passReset", resetCreds, function (response)	 {
+		   //log(response);
+		   
+		   if (response.status == 500) { 
+			   log("Error")
+			}
+		   else {
+			   
+			   window.location = response.redirectUrl 
+		   }
+			   
+		   
+	   })
+   
+   }
+   
 
 function accm(ur){
 	$('#atachUrl').attr("data-a2a-url",ur);

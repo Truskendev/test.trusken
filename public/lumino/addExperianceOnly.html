@@ -55,7 +55,7 @@
 		<div class="col-md-10">
 				
 				<div class="panel panel-default card3">
-					<div class="panel-heading" id="typer">Add Experience</div>
+					<div class="panel-heading" id="typer">Add Experience-<b id="userNameDisplay"></b></div>
 					<div id="addEx">
 					</div>
 					<div style="text-align:center">
@@ -148,6 +148,7 @@
 $(document).ready(function(){
 	let uid=window.location.href.split('?')[1];
 	loadaddExperiance(uid);
+	loadProfilePage(uid);
 
 });
 	</script>
