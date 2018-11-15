@@ -1731,7 +1731,7 @@ function coinsTotal(uid){
 
 function reqPassword(){
  var fpassemail=$('#fpassEmail').val();
-
+ if(isValidEmail(fpassemail)){
 	$.post("/passRequest", {fpass:fpassemail}, function (response) {
 		//log(response);
 		if (response.status == 500) { 
@@ -1749,6 +1749,10 @@ function reqPassword(){
 	})
 	alert("check your mail to reset password")
 }
+else{
+	alert("please Enter proper Mail Id")
+}
+}
 
 function resetPassword(eid){
 	let resetCreds =
@@ -1756,7 +1760,7 @@ function resetPassword(eid){
 		eid: eid,
 		passd: $('#password').val()
 	}
-
+	if(resetCreds['passd'].length > 1){
 	$.post("/passReset", resetCreds, function (response)	 {
 		   //log(response);
 		   
@@ -1770,7 +1774,10 @@ function resetPassword(eid){
 			   
 		   
 	   })
-   
+	}else{
+		alert("please provide Password")
+	}
+
    }
    
 
