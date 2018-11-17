@@ -41,21 +41,23 @@ function login() {
 	}
 }
 function loginHom(rid) {
+	var regCheck = $('#agreement');
 	let loginDat =
 	{
 		regUsr: $('#unameq').val(),
 		regEmail: $('#unemaill').val(),
 		regPass: $('#passwq').val(),
-		refId:rid
+
+		refId: rid
 	}
-	if (isValidEmail(loginDat['regEmail']) && (loginDat['regPass'].length > 1)&& (loginDat['regUsr'].length > 1)) {
+	if (isValidEmail(loginDat['regEmail']) && (loginDat['regPass'].length > 1) && (loginDat['regUsr'].length > 1) && (regCheck.is(":checked"))) {
 
 		$.post("/registerRefferedUser", loginDat, function (response) {
 			//log(response);
 			if (response.status == 500) { alert("User already exists") }
 			userID = response.guid
 			window.location = response.redirectUrl + '?' + userID
-			
+
 		})
 			.done(function () {
 				log("second success");
@@ -81,15 +83,17 @@ function modalData() {
 	registerUser();
 }
 function registerUser() {
-	
+
+	var regCheck = $('#agreement')
 	let userData = {
 		regUsr: $('#namew').val(),
 		regEmail: $('#emaile').val(),
 		regPass: $('#regpass').val(),
-	
+
+
 	}
 
-	if (isValidEmail(userData['regEmail']) && (userData['regUsr'].length > 1) && (userData['regPass'].length > 1)) {
+	if (isValidEmail(userData['regEmail']) && (userData['regUsr'].length > 1) && (userData['regPass'].length > 1) && (regCheck.is(":checked"))) {
 		$.post("/registerNewUser", userData, function (response) {
 			//log(response.redirectUrl);
 			if (response.status == 500) { alert("User already exists") }
@@ -110,15 +114,15 @@ function registerUser() {
 			});
 	}
 	else {
-		
+
 		alert("please fill in the details")
 	}
 }
-function loadaddExperiance(uid){
+function loadaddExperiance(uid) {
 	var qwe = getWorkTemplate(0)
 	$('#addExpBtn').attr("onclick", "addexp(1)")
 	$('#submitWrkExp').attr("onclick", "addWorkex(1)")
-	$('#submitModalCheck').attr("onclick","checkWorkExp(event,1)")
+	$('#submitModalCheck').attr("onclick", "checkWorkExp(event,1)")
 	$('#submitWrkExpp').attr("onclick", "addWorkexq(1)")
 	$('#addEx').append(qwe);
 }
@@ -131,7 +135,7 @@ function loadaddExp(uid) {
 			var qwe = getWorkTemplate(0)
 			$('#addExpBtn').attr("onclick", "addexp(1)")
 			$('#submitWrkExp').attr("onclick", "addWorkex(1)")
-			$('#submitModalCheck').attr("onclick","checkWorkExp(event,1)")
+			$('#submitModalCheck').attr("onclick", "checkWorkExp(event,1)")
 
 			$('#addEx').append(qwe);
 		}
@@ -150,7 +154,7 @@ function loadaddExp(uid) {
 				var qwe = getWorkTemplate(i, response[i].exp_id)
 				$('#addExpBtn').attr("onclick", "addexp(" + (i + 1) + ")")
 				$('#submitWrkExp').attr("onclick", "addWorkex(" + (i + 1) + ")")
-				$('#submitModalCheck').attr("onclick","checkWorkExp(event," + (index + 1) + ")")
+				$('#submitModalCheck').attr("onclick", "checkWorkExp(event," + (i + 1) + ")")
 
 				$('#addEx').append(qwe);
 				$('#workTitle' + i).val(response[i].job_title_id);
@@ -204,12 +208,15 @@ function loadProfilePage(uid) {
 
 	//log(uid)
 	$.post("/getProfileData", { uid: uid }, function (response) {
+		if (response.redirectFlag === true) {
+			window.location.href = '/'
+		}
 		//log(response[0]);
 		// userID=response.guid	
 		// window.location=response.redirectUrl+'?'+userID
 		$('#userNameDisplay').text(response[0].user_name)
 		$('#userNameDis').text(response[0].user_name)
-		$('#userNameDispla,#userNameDispl').text("Welcome "+response[0].user_name)
+		$('#userNameDispla,#userNameDispl').text("Welcome " + response[0].user_name)
 		$('#fullName').val(response[0].user_name)
 		$('#emailId').val(response[0].email_id)
 
@@ -271,13 +278,14 @@ function addexp(index) {
 	let template = getWorkTemplate(index)
 	$('#addExpBtn').attr("onclick", "addexp(" + (index + 1) + ")")
 	$('#submitWrkExp').attr("onclick", "addWorkex(" + (index + 1) + ")")
-	$('#submitModalCheck').attr("onclick","checkWorkExp(event," + (index + 1) + ")")
+	$('#submitModalCheck').attr("onclick", "checkWorkExp(event," + (index + 1) + ")")
 	$('#submitWrkExpp').attr("onclick", "addWorkexq(" + (index + 1) + ")")
 	$('#addEx').append(template)
 
 }
 
 function addWorkex(expCount) {
+
 	var selectedworkexp = new Array();
 
 	var workData = []
@@ -287,33 +295,33 @@ function addWorkex(expCount) {
 	let enDate = new Array();
 	let enMonth = new Array();
 	let enYear = new Array();
-	
+
 	for (c = 0; c < expCount; c++) {
 		var selectedworkexp = new Array();
 
 		$('input[name="employmentType' + c + '"]:checked').each(function () {
 			selectedworkexp = this.value;
 		});
-		if($(".stDate" + c).val()!=""){
-		$(".stDate" + c).each(function () {
-			stDate = this.value;
-		});
-	}else{
-		$(".enDate" + c).each(function () {
-			stDate = "01";
-		});
-	}
+		if ($(".stDate" + c).val() != "") {
+			$(".stDate" + c).each(function () {
+				stDate = this.value;
+			});
+		} else {
+			$(".enDate" + c).each(function () {
+				stDate = "01";
+			});
+		}
 		$(".stMonth" + c).each(function () {
 			stMonth = this.value;
 		});
 		$(".stYear" + c).each(function () {
 			stYear = this.value;
 		});
-		if($(".enDate" + c)!=""){
+		if ($(".enDate" + c) != "") {
 			$(".enDate" + c).each(function () {
 				enDate = this.value;
 			});
-		}else{
+		} else {
 			$(".enDate" + c).each(function () {
 				enDate = "01";
 			});
@@ -333,8 +341,8 @@ function addWorkex(expCount) {
 
 			companyName: $('#companyName' + c).val(),
 			workstartYear: stDate + "/" + stMonth + "/" + stYear,
-			
-			workEndYear:  enDate + "/"+enMonth + "/" + enYear,
+
+			workEndYear: enDate + "/" + enMonth + "/" + enYear,
 			employeeNumber: $('#employeeNumber' + c).val(),
 			managerNumber: $('#managerNumber' + c).val(),
 			managerEmail: $('#managerEmail' + c).val(),
@@ -352,13 +360,16 @@ function addWorkex(expCount) {
 
 
 
-		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1)  && (workData[c]['workTitle'].length > 1)&& (workData[c]['city'].length > 1)&& (workData[c]['state'].length > 1)&& (workData[c]['country'].length > 1)) {
+		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1) && (workData[c]['workTitle'].length > 1) && (workData[c]['city'].length > 1) && (workData[c]['state'].length > 1) && (workData[c]['country'].length > 1)) {
+
+			$('#forgot-form').modal('show');
+			setTimeout(function () { $('#forgot-form').modal('hide'); }, 4000);
 			$.post("/addWorkExData", workData[c], function (response) {
 
 
 				//log(response.redirectUrl);
 				userID = response.uid
-						
+
 				window.location = response.redirectUrl + '?' + userID
 
 			})
@@ -382,7 +393,7 @@ function addWorkex(expCount) {
 
 }
 
-function checkWorkExp(event,expCount){
+function checkWorkExp(event, expCount) {
 	event.preventDefault()
 	var selectedworkexp = new Array();
 
@@ -393,18 +404,18 @@ function checkWorkExp(event,expCount){
 	let enDate = new Array();
 	let enMonth = new Array();
 	let enYear = new Array();
-	
+
 	for (c = 0; c < expCount; c++) {
 		var selectedworkexp = new Array();
 
 		$('input[name="employmentType' + c + '"]:checked').each(function () {
 			selectedworkexp = this.value;
 		});
-		if($(".stDate" + c).val()!=""){
-		$(".stDate" + c).each(function () {
-			stDate = this.value;
-		});
-		}else{
+		if ($(".stDate" + c).val() != "") {
+			$(".stDate" + c).each(function () {
+				stDate = this.value;
+			});
+		} else {
 			$(".enDate" + c).each(function () {
 				stDate = "01";
 			});
@@ -415,11 +426,11 @@ function checkWorkExp(event,expCount){
 		$(".stYear" + c).each(function () {
 			stYear = this.value;
 		});
-		if($(".enDate" + c)!=""){
+		if ($(".enDate" + c) != "") {
 			$(".enDate" + c).each(function () {
 				enDate = this.value;
 			});
-		}else{
+		} else {
 			$(".enDate" + c).each(function () {
 				enDate = "01";
 			});
@@ -439,13 +450,15 @@ function checkWorkExp(event,expCount){
 
 			companyName: $('#companyName' + c).val(),
 			workstartYear: stDate + "/" + stMonth + "/" + stYear,
-			
-			workEndYear:  enDate + "/"+enMonth + "/" + enYear,
+
+			workEndYear: enDate + "/" + enMonth + "/" + enYear,
 			employeeNumber: $('#employeeNumber' + c).val(),
 			managerNumber: $('#managerNumber' + c).val(),
 			managerEmail: $('#managerEmail' + c).val(),
 			empdesc: $('#empdesc' + c).val(),
-
+			city: $('#city' + c).val(),
+			state: $('#state' + c).val(),
+			country: $('#country' + c).val(),
 			selectedworkexp: selectedworkexp,
 			uid: window.location.href.split('?')[1],
 
@@ -455,18 +468,47 @@ function checkWorkExp(event,expCount){
 
 
 
-		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1)  && (workData[c]['workTitle'].length > 1)) {
+		if ((workData[c]['workTitle'].length > 1)) {
 
-				$('#myModal').modal('show');
+			if ((workData[c]['companyName'].length > 1)) {
 
+
+
+				
+					
+					if ((workData[c]['city'].length > 1)) {
+						if ((workData[c]['state'].length > 1)) {
+							if ((workData[c]['country'].length > 1)) {
+								if ((workData[c]['workstartYear'].length > 1)) {
+
+								$('#myModal').modal('show');
+							} else {
+								alert("please provide Start date")
+							}
+						} else {
+							alert("please Country Name")
+						}
+					} else {
+						alert("please provide State Name")
+					}
+				} else {
+					alert("please Provide City Name")
+				}
+			} else {
+				alert("please Provide Company Name")
 			}
+
+
+
+		}
 		else {
-			alert("please fill in the data")
+			alert("please Provide Title")
 		}
 	}
 }
 
 function addWorkexq(expCount) {
+
 	var selectedworkexp = new Array();
 
 	var workData = []
@@ -476,33 +518,33 @@ function addWorkexq(expCount) {
 	let enDate = new Array();
 	let enMonth = new Array();
 	let enYear = new Array();
-	
+
 	for (c = 0; c < expCount; c++) {
-var selectedworkexp = new Array();
+		var selectedworkexp = new Array();
 
 		$('input[name="employmentType' + c + '"]:checked').each(function () {
 			selectedworkexp = this.value;
 		});
-		if($(".stDate" + c).val()!=""){
-		$(".stDate" + c).each(function () {
-			stDate = this.value;
-		});
-	}else{
-		$(".enDate" + c).each(function () {
-			stDate = "01";
-		});
-	}
+		if ($(".stDate" + c).val() != "") {
+			$(".stDate" + c).each(function () {
+				stDate = this.value;
+			});
+		} else {
+			$(".enDate" + c).each(function () {
+				stDate = "01";
+			});
+		}
 		$(".stMonth" + c).each(function () {
 			stMonth = this.value;
 		});
 		$(".stYear" + c).each(function () {
 			stYear = this.value;
 		});
-		if($(".enDate" + c)!=""){
+		if ($(".enDate" + c) != "") {
 			$(".enDate" + c).each(function () {
 				enDate = this.value;
 			});
-		}else{
+		} else {
 			$(".enDate" + c).each(function () {
 				enDate = "01";
 			});
@@ -522,8 +564,8 @@ var selectedworkexp = new Array();
 
 			companyName: $('#companyName' + c).val(),
 			workstartYear: stDate + "/" + stMonth + "/" + stYear,
-			
-			workEndYear:  enDate + "/"+enMonth + "/" + enYear,
+
+			workEndYear: enDate + "/" + enMonth + "/" + enYear,
 			employeeNumber: $('#employeeNumber' + c).val(),
 			managerNumber: $('#managerNumber' + c).val(),
 			managerEmail: $('#managerEmail' + c).val(),
@@ -542,13 +584,15 @@ var selectedworkexp = new Array();
 
 
 
-		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1)  && (workData[c]['workTitle'].length > 1)) {
+		if ((workData[c]['companyName'].length > 1) && (workData[c]['workstartYear'].length > 1) && (workData[c]['workTitle'].length > 1) && (workData[c]['city'].length > 1) && (workData[c]['state'].length > 1) && (workData[c]['country'].length > 1)) {
+			$('#forgot-form').modal('show');
+			setTimeout(function () { $('#forgot-form').modal('hide'); }, 4000);
 			$.post("/addWorkExDataa", workData[c], function (response) {
 
 
 				//log(response.redirectUrl);
 				userID = response.uid
-						
+
 				window.location = response.redirectUrl + '?' + userID
 
 			})
@@ -577,15 +621,15 @@ var selectedworkexp = new Array();
 function addedu(index) {
 	var qwe = getEducationTemplate(index)
 	$('#addEdu').attr("onclick", "addedu(" + (index + 1) + ")")
-				$('#addEduSubmit').attr("onclick","addEducation(" + (index + 1) + ")")
-				$('#submitModalCheckEdu').attr("onclick","checkEduFields(event," + (index + 1) + ")")
-				$('#addEduSubmitt').attr("onclick","addEducationn(" + (index + 1) + ")")
+	$('#addEduSubmit').attr("onclick", "addEducation(" + (index + 1) + ")")
+	$('#submitModalCheckEdu').attr("onclick", "checkEduFields(event," + (index + 1) + ")")
+	$('#addEduSubmitt').attr("onclick", "addEducationn(" + (index + 1) + ")")
 
-		$('#addEd').append(qwe);
+	$('#addEd').append(qwe);
 
 }
 
-function checkEduFields(event,cT) {
+function checkEduFields(event, cT) {
 	event.preventDefault()
 	var eduData = []
 
@@ -602,16 +646,61 @@ function checkEduFields(event,cT) {
 			eduEndYear: $(".edEnYear" + c).val(),
 			speciality: $('#speciality' + c).val(),
 			memNumber: $('#memNumber' + c).val(),
-			eduID:$('#eduID' + c).text(),
+			eduID: $('#eduID' + c).text(),
+			city: $('#city' + c).val(),
+			state: $('#state' + c).val(),
+			country: $('#country' + c).val(),
 			uid: window.location.href.split('?')[1]
 		}
 		eduData[c] = eduData1
-		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)) {
-			$('#myModal').modal('show')
+		// if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)) {
+		// 	$('#myModal').modal('show')
+		// }
+		// else {
+		// 	alert("fill in the data");
+		// }
+
+
+
+		if ((eduData[c]['eduInstut'].length > 1)) {
+
+			if ((eduData[c]['degreeCertificate'].length > 1)) {
+
+	if ((eduData[c]['city'].length > 1)) {
+						if ((eduData[c]['state'].length > 1)) {
+							if ((eduData[c]['country'].length > 1)) {
+								if ((eduData[c]['edustartYear'].length > 1)) {
+									if ((eduData[c]['edustartYear'].length > 1)) {
+								$('#myModal').modal('show');
+									}else {
+										alert("please provide End Year")
+									}
+							} else {
+								alert("please provide Start Year")
+							}
+						} else {
+							alert("please Country Name")
+						}
+					} else {
+						alert("please provide State Name")
+					}
+				} else {
+					alert("please Provide City Name")
+				}
+			} else {
+				alert("please Provide Degree")
+			}
 		}
 		else {
-			alert("fill in the data");
+			alert("please Provide Institution Name")
 		}
+
+
+
+
+
+
+
 	}
 }
 
@@ -637,11 +726,13 @@ function addEducation(cT) {
 			city: $('#city' + c).val(),
 			state: $('#state' + c).val(),
 			country: $('#country' + c).val(),
-			eduID:$('#eduID' + c).text(),
+			eduID: $('#eduID' + c).text(),
 			uid: window.location.href.split('?')[1]
 		}
 		eduData[c] = eduData1
-		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)&& (eduData[c]['city'].length > 1)&& (eduData[c]['state'].length > 1)&& (eduData[c]['country'].length > 1)) {
+		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1) && (eduData[c]['city'].length > 1) && (eduData[c]['state'].length > 1) && (eduData[c]['country'].length > 1)) {
+			$('#forgot-form').modal('show');
+			setTimeout(function () { $('#forgot-form').modal('hide'); }, 4000);
 			$.post("/addEducationData", eduData[c], function (response) {
 				//log(response.redirectUrl);
 				userID = response.uid
@@ -686,11 +777,13 @@ function addEducationn(cT) {
 			city: $('#city' + c).val(),
 			state: $('#state' + c).val(),
 			country: $('#country' + c).val(),
-			eduID:$('#eduID' + c).text(),
+			eduID: $('#eduID' + c).text(),
 			uid: window.location.href.split('?')[1]
 		}
 		eduData[c] = eduData1
 		if ((eduData[c]['eduInstut'].length > 1) && (eduData[c]['edustartYear'].length > 1) && (eduData[c]['degreeCertificate'].length > 1) && (eduData[c]['eduEndYear'].length > 1)) {
+			$('#forgot-form').modal('show');
+			setTimeout(function () { $('#forgot-form').modal('hide'); }, 4000);
 			$.post("/addEducationDataw", eduData[c], function (response) {
 				//log(response.redirectUrl);
 				userID = response.uid
@@ -714,12 +807,12 @@ function addEducationn(cT) {
 }
 
 
-function loadaddEducate(uid){
+function loadaddEducate(uid) {
 	var qwe = getEducationTemplate(0)
 	$('#addEdu').attr("onclick", "addedu(1)")
-	$('#addEduSubmit').attr("onclick","addEducation(1)")
-	$('#submitModalCheckEdu').attr("onclick","checkEduFields(event,1)")
-	$('#addEduSubmitt').attr("onclick","addEducationn(1)")
+	$('#addEduSubmit').attr("onclick", "addEducation(1)")
+	$('#submitModalCheckEdu').attr("onclick", "checkEduFields(event,1)")
+	$('#addEduSubmitt').attr("onclick", "addEducationn(1)")
 
 
 	$('#addEd').append(qwe);
@@ -733,8 +826,8 @@ function loadaddEdu(uid) {
 		if (len == 0) {
 			var qwe = getEducationTemplate(0)
 			$('#addEdu').attr("onclick", "addedu(1)")
-			$('#addEduSubmit').attr("onclick","addEducation(1)")
-			$('#submitModalCheckEdu').attr("onclick","checkEduFields(event,1)")
+			$('#addEduSubmit').attr("onclick", "addEducation(1)")
+			$('#submitModalCheckEdu').attr("onclick", "checkEduFields(event,1)")
 
 			$('#addEd').append(qwe);
 		}
@@ -752,8 +845,8 @@ function loadaddEdu(uid) {
 
 				var qwe = getEducationTemplate(i, response[i].edu_id)
 				$('#addEdu').attr("onclick", "addedu(" + (i + 1) + ")")
-				$('#addEduSubmit').attr("onclick","addEducation(" + (i + 1) + ")")
-				$('#submitModalCheckEdu').attr("onclick","checkEduFields(event," + (i + 1) + ")")
+				$('#addEduSubmit').attr("onclick", "addEducation(" + (i + 1) + ")")
+				$('#submitModalCheckEdu').attr("onclick", "checkEduFields(event," + (i + 1) + ")")
 				$('#addEd').append(qwe);
 				$('#eduInstut' + i).val(response[i].org_id);
 				$('#degreeCertificate' + i).val(response[i].degree);
@@ -813,7 +906,7 @@ function loadEmploymentDetails(uid) {
 
 
 		response.forEach((element) => {
-			var status= element.verification_status==0 ? "Verification in progress" : "Verified";
+			var status = element.verification_status == 0 ? "Verification in progress" : "Verified";
 			var we = `<li >
 		<div class="timeline-badge"><i class="glyphicon glyphicon-pushpin"></i></div>
 		<div class="timeline-panel" style="background-color: #dcf8c6;">
@@ -865,9 +958,9 @@ function loadEducationDetails(uid) {
 
 
 		response.forEach((element) => {
-	
 
-	var are = `<tr>	<td>`+ element.org_id + `</td>
+
+			var are = `<tr>	<td>` + element.org_id + `</td>
 				<td>`+ element.degree + `</td>
 				<td>`+ element.start_year + `</td>
 				<td> `+ element.end_year + `</td>
@@ -877,9 +970,42 @@ function loadEducationDetails(uid) {
 
 			$('#customers').append(are);
 		})
-	
+
 
 	}).done(function () {
+
+		log("second success");
+	})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {
+			log("finished");
+		});
+
+
+	$.post("/getEmploymentData", { uid: uid }, function (respons) {
+
+		respons.forEach((element, index) => {
+			var status = element.badge_id == 0 ? "Verification in progress" : "Verified";
+
+			var we = `<tr>	<td>` + element.org_id + `</td>
+				<td>`+ element.job_title_id + `</td>
+				<td>`+ element.start_date + `</td>
+				<td>`+ element.end_date + `</td>
+				<td> `+ status + `</td>
+				<td> </td>
+				</tr>
+			
+	`
+
+			$('#employment').append(we);
+
+		})
+
+	})
+
+		.done(function () {
 
 			log("second success");
 		})
@@ -891,134 +1017,101 @@ function loadEducationDetails(uid) {
 		});
 
 
-		$.post("/getEmploymentData", { uid: uid }, function (respons) {
-			
-			respons.forEach((element,index) => {
-				var status= element.badge_id==0 ? "Verification in progress" : "Verified";
-	
-		var we = `<tr>	<td>`+ element.org_id + `</td>
-				<td>`+ element.job_title_id + `</td>
-				<td>`+ element.start_date + `</td>
-				<td>`+ element.end_date + `</td>
-				<td> `+ status + `</td>
-				<td> </td>
-				</tr>
-			
-	`
+	$.post("/getBadgeDetails", { uide: uid }, function (response) {
+		var urlforshare;
+		var arm;
+		//log(response)
 
-			$('#employment').append(we);
-			
-		})
-			
-			})
-			
-			.done(function () {
-	
-				log("second success");
-			})
-			.fail(function (error) {
-				log(error.responseJSON.error.sqlMessage);
-			})
-			.always(function () {
-				log("finished");
-			});
-	
-
-			$.post("/getBadgeDetails", {uide:uid}, function (response) {
-				var urlforshare;
-				var arm;
-					//log(response)
-
-				response.forEach((elemo,index)=>{
-				urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
-				arm=elemo.badge_id
-				 badge=` 
-					<img src="`+elemo.badge_name+`" style="width:100px;height:100px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+		response.forEach((elemo, index) => {
+			urlforshare = "http://beta.trusken.com/lumino/badgeDetails.html?" + uid + "/" + elemo.badge_id + ""
+			arm = elemo.badge_id
+			badge = ` 
+					<img src="`+ elemo.badge_name + `" style="width:100px;height:100px;" onclick="redirbdgdatails('` + uid + `',` + elemo.badge_id + `)">
 					
 							
-					<a  onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval"  ><i style="color:#fff; width:40px; height:40px; border-radius:50px;  background-color:#1d4590; font-size:20px; padding:5%; text-align:center;" class=" fa fa-share-alt "></i></a>
+					<a  onclick="accm('`+ urlforshare + `')"  data-toggle="modal" data-target="#myModal21" id="stroedval"  ><i style="color:#fff; width:40px; height:40px; border-radius:50px;  background-color:#1d4590; font-size:20px; padding:5%; text-align:center;" class=" fa fa-share-alt "></i></a>
 					
 					</div>
 				`
-				$('#Badge'+index).append(badge);
-				})
+			$('#Badge' + index).append(badge);
+		})
 
 
-			
 
-				// 	response[1].forEach((elements)=>{
-				// 		if(elements.verification_status==1){
-				// 			response[0].forEach((elemo)=>{
-				// 				urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
-				// 		let badge=` 
-				// 		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
-						
-								
-				// 		<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
-						
-				// 		</div>
-				// 	`
-				// 	//$('#atachUrl').attr("data-a2a-url","http://localhost:3000/lumino/badgeDetails.html?'"+uid+"'/'"+elemo.badge_id+"'")
-				// 	$('#Badge0').append(badge);
-					
-				// })
-				// }else{
-				// 	response[0].forEach((elemo)=>{
-				// 		urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
-				// 	let badge=` 
-			
-				// 	<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
-				// 	<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
-					
-				// `
-				// //class="a2a_kit a2a_kit_size_32 a2a_default_style"
-				// //class="a2a_button_linkedin"
-				// $('#Badge0').append(badge);
-				
-				// 	})
-				// }
-				// 	})
-				
-					}).done(function () {
-						log("second success");
-					})
-					.fail(function (error) {
-						log(error.responseJSON.error.sqlMessage);
-					})
-					.always(function () {
-						log("finished");
-					});
-				
-					$.post("/getProfileData", { uid: uid }, function (respons) {
-					
-						var bd=`<tr> <td>Trusken Badge</td>	<td style="text-align:center"><img src="	images/trusbadnor.jpeg" style="width:100px;height:100px;" onclick="redirbdgdatails('`+uid+`',0)"></td>
-				<td>`+respons[0].created_at+`</td>
+
+		// 	response[1].forEach((elements)=>{
+		// 		if(elements.verification_status==1){
+		// 			response[0].forEach((elemo)=>{
+		// 				urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+		// 		let badge=` 
+		// 		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+
+
+		// 		<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+
+		// 		</div>
+		// 	`
+		// 	//$('#atachUrl').attr("data-a2a-url","http://localhost:3000/lumino/badgeDetails.html?'"+uid+"'/'"+elemo.badge_id+"'")
+		// 	$('#Badge0').append(badge);
+
+		// })
+		// }else{
+		// 	response[0].forEach((elemo)=>{
+		// 		urlforshare="http://localhost:3000/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
+		// 	let badge=` 
+
+		// 	<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+		// 	<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+
+		// `
+		// //class="a2a_kit a2a_kit_size_32 a2a_default_style"
+		// //class="a2a_button_linkedin"
+		// $('#Badge0').append(badge);
+
+		// 	})
+		// }
+		// 	})
+
+	}).done(function () {
+		log("second success");
+	})
+		.fail(function (error) {
+			log(error.responseJSON.error.sqlMessage);
+		})
+		.always(function () {
+			log("finished");
+		});
+
+	$.post("/getProfileData", { uid: uid }, function (respons) {
+
+		var bd = `<tr> <td>Trusken Badge</td>	<td style="text-align:center"><img src="	images/trusbadnor.png" style="width:100px;height:100px;" onclick="redirbdgdatails('` + uid + `',0)"></td>
+				<td>`+ respons[0].created_at + `</td>
 				
 				</tr>
 
 				`
-			$('#badge').append(bd);
-					})
-						
-						
-
-
-
-
-			}
+		$('#badge').append(bd);
+	})
 
 
 
 
 
 
-		
+}
 
 
 
 
-function redirCompSalary(uid){
-	window.location.href = "salaryalc.html?"+ uid
+
+
+
+
+
+
+
+function redirCompSalary(uid) {
+	window.location.href = "salaryalc.html?" + uid
 }
 function redir(uid) {
 	window.location = "employment.html" + '?' + uid
@@ -1035,7 +1128,7 @@ function redirtrust(uid) {
 function redirProfile(uid) {
 	window.location = "profile.html" + '?' + uid
 }
-function redirbdgdatails(uid,bid){
+function redirbdgdatails(uid, bid) {
 	window.location = "badgeDetails.html" + '?' + uid + '/' + bid
 
 }
@@ -1226,12 +1319,12 @@ function loadCompareSalary(uid) {
 		response.forEach((element) => {
 
 			var wer = `
-				<option value="`+element.job_title+`" > `+ element.job_title + `</option>
+				<option value="`+ element.job_title + `" > ` + element.job_title + `</option>
 				`
 			$('#jTitle').append(wer);
 
 		});
-		
+
 
 
 	})
@@ -1247,15 +1340,15 @@ function loadCompareSalary(uid) {
 		});
 }
 
-function calcSalaryAvg(userSalary,industryAvg){
-	return (userSalary/(industryAvg*2)).toFixed(4)
+function calcSalaryAvg(userSalary, industryAvg) {
+	return (userSalary / (industryAvg * 2)).toFixed(4)
 }
 
 function compareSalary(bar) {
-let expList=['freashers','beginers','intermediates','expers','seniorlevel']
+	let expList = ['freashers', 'beginers', 'intermediates', 'expers', 'seniorlevel']
 	let salaryData = {
 		jobTitle: $('#jTitle').val(),
-	//	function: $('#jobCategory').val(),
+		//	function: $('#jobCategory').val(),
 		industry: $('#industry').val(),
 		experiance: $('#experiance').val(),
 		region: $('#region').val(),
@@ -1263,50 +1356,46 @@ let expList=['freashers','beginers','intermediates','expers','seniorlevel']
 		annualSalary: $('#annualSalary').val()
 
 	}
-	$('#inrAmnt').html("<i>INR"+salaryData['annualSalary']+"</i>");
-	
-	if ((salaryData['jobTitle'].length > 1) && (salaryData['industry'].length > 1)&& (salaryData['experiance'].length >= 1 )  && (salaryData['region'].length > 1) && (salaryData['annualSalary'].length >= 1)) {
+	$('#inrAmnt').html("<i>INR" + salaryData['annualSalary'] + "</i>");
+
+	if ((salaryData['jobTitle'].length > 1) && (salaryData['industry'].length > 1) && (salaryData['experiance'].length >= 1) && (salaryData['region'].length > 1) && (salaryData['annualSalary'].length >= 1)) {
 		$.post("/checkSalaryDetails", salaryData, function (response) {
-			
 
-			var currentExpLevel=expList[salaryData['experiance']]
+
+			var currentExpLevel = expList[salaryData['experiance']]
 			// if(salaryData['experiance']==0){
-				var percentage=calcSalaryAvg(salaryData['annualSalary'],response[0][currentExpLevel])
-				$('#aveerr').html("<b>AVG "+response[0][currentExpLevel]+"</b>");
-				if(percentage<=0.3999){
-					bar.animate(percentage)
-					$('svg').attr("stroke", "red")
+			var percentage = calcSalaryAvg(salaryData['annualSalary'], response[0][currentExpLevel])
+			$('#aveerr').html("<b>AVG " + response[0][currentExpLevel] + "</b>");
+			if (percentage <= 0.3999) {
+				bar.animate(percentage)
+				$('svg').attr("stroke", "red")
 
-				}else if(percentage>=.4 && percentage<=0.5){
-					bar.animate(percentage)
-					$('svg').attr("stroke", "orange")
-				}else if(percentage>=0.5 && percentage<=1) 
-				{
-					
-					bar.animate(percentage)
-					$('svg').attr("stroke", "green")
-				}
-				else if(percentage>1)
-				{
-					bar.animate(1)
-					$('svg').attr("stroke", "green")
-				}
-				$('#jbttl').text(salaryData['jobTitle']);
-				if(salaryData['annualSalary'] > response[0][currentExpLevel])
-				{
-					var amn=salaryData['annualSalary']-response[0][currentExpLevel]
-					$('#inrAmnt').html("<i>INR "+amn+"</i> more than average salary")
+			} else if (percentage >= .4 && percentage <= 0.5) {
+				bar.animate(percentage)
+				$('svg').attr("stroke", "orange")
+			} else if (percentage >= 0.5 && percentage <= 1) {
 
-				}else if(salaryData['annualSalary'] <= response[0][currentExpLevel])
-				{
-					var amn=response[0][currentExpLevel]-salaryData['annualSalary']
-					$('#inrAmnt').html("<i>INR "+(amn)+"</i> less than average salary")
+				bar.animate(percentage)
+				$('svg').attr("stroke", "green")
+			}
+			else if (percentage > 1) {
+				bar.animate(1)
+				$('svg').attr("stroke", "green")
+			}
+			$('#jbttl').text(salaryData['jobTitle']);
+			if (salaryData['annualSalary'] > response[0][currentExpLevel]) {
+				var amn = salaryData['annualSalary'] - response[0][currentExpLevel]
+				$('#inrAmnt').html("<i>INR " + amn + "</i> more than average salary")
 
-				}
+			} else if (salaryData['annualSalary'] <= response[0][currentExpLevel]) {
+				var amn = response[0][currentExpLevel] - salaryData['annualSalary']
+				$('#inrAmnt').html("<i>INR " + (amn) + "</i> less than average salary")
+
+			}
 		}).done(function () {
 
-				log("second success");
-			})
+			log("second success");
+		})
 			.fail(function (error) {
 				log(error.responseJSON.error.sqlMessage);
 			})
@@ -1320,42 +1409,42 @@ let expList=['freashers','beginers','intermediates','expers','seniorlevel']
 		alert("Please fill in all the details")
 	}
 }
-function loadTriviaPage(uid){
+function loadTriviaPage(uid) {
 	$.post("/getTriviaQuestions", { uid: uid }, function (response) {
 		//log(response[0]);
 		//var merge=0;
 
-		response.forEach((element,merge) => {
+		response.forEach((element, merge) => {
 
-			
-			var correctAnwser=element.correctAnwser				
-			var tri=`<div class="panel " id="tag`+merge+`" style="display:none">
+
+			var correctAnwser = element.correctAnwser
+			var tri = `<div class="panel " id="tag` + merge + `" style="display:none">
 			<div class="panel-heading" id="questionHeading" style="text-align:center">
-			Question`+element.qid+`
+			Question`+ element.qid + `
 			<svg style="display:none" id="checkCorrect" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
 			</div>
 			<div class="panel-body"  style="text-align:center">
-			<h4 style="color:#000000"  id="quest`+merge+`">`+element.questions+`</h4>
+			<h4 style="color:#000000"  id="quest`+ merge + `">` + element.questions + `</h4>
 						<br>
 						<div style="text-align:left">
 						<div style="padding:2%;">
-						<a type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionOne"  style="  background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionOne+`</a>
+						<a type="button"  class="btn" onclick="getAnswer(this.id,`+ element.qid + `,'` + correctAnwser + `')" id="optionOne"  style="  background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">` + element.optionOne + `</a>
 						</div>
 						<div style="padding:2%;">
-						<a type="button"  class="btn" onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionTwo" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionTwo+`</a>
+						<a type="button"  class="btn" onclick="getAnswer(this.id,`+ element.qid + `,'` + correctAnwser + `')" id="optionTwo" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">` + element.optionTwo + `</a>
 						</div>
 						<div style="padding:2%;">
-						<a type="button"  class="btn"  onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')" id="optionThree" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionThree+`</a>
+						<a type="button"  class="btn"  onclick="getAnswer(this.id,`+ element.qid + `,'` + correctAnwser + `')" id="optionThree" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">` + element.optionThree + `</a>
 						</div>
 						<div style="padding:2%;">
-						<a type="button"  class="btn mng"   onclick="getAnswer(this.id,`+element.qid+`,'`+correctAnwser+`')"id="optionFour" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">`+element.optionFour+`</a>
+						<a type="button"  class="btn mng"   onclick="getAnswer(this.id,`+ element.qid + `,'` + correctAnwser + `')"id="optionFour" style="background-color:#0B4CFF; color:#fff; border:1px solid #0B4CFF; border-radius: 0;">` + element.optionFour + `</a>
 						</div>
 						</div>
 						</div>
 						</div>`
-						//merge=merge+1
+			//merge=merge+1
 			$('#triPanel').html(tri);
-			
+
 
 		});
 		$('#tag0').css("display", "block");
@@ -1363,12 +1452,12 @@ function loadTriviaPage(uid){
 		.done(function () {
 
 			log("second success");
-			$.post("/getMarksheet", {uid:uid}, function (response) {
+			$.post("/getMarksheet", { uid: uid }, function (response) {
 				// log(response[0]);
 				$("#ScoreCard").text(response[0]['marks'])
-				}).done(function () {
-					log("second success");
-				})
+			}).done(function () {
+				log("second success");
+			})
 				.fail(function (error) {
 					log(error.responseJSON.error.sqlMessage);
 				})
@@ -1381,232 +1470,232 @@ function loadTriviaPage(uid){
 		})
 		.always(function () {
 			log("finished");
-		});			
+		});
 }
 
-function getAnswer(id,mer,correctAnwser){
+function getAnswer(id, mer, correctAnwser) {
 	// let	triviaData={
-		
+
 	// 	id : $('#'+id).text(),
 	// 	region: $('#quest'+mer).val(),
 	// 	}
 
 
-		let trivData = {
-			qid: mer,
-			id: $('#'+id).text()	
-		}
-		if(trivData['id']==correctAnwser){
-			$('#checkCorrect').show();
+	let trivData = {
+		qid: mer,
+		id: $('#' + id).text()
+	}
+	if (trivData['id'] == correctAnwser) {
+		$('#checkCorrect').show();
 
-			setTimeout(function () {
-				var uid=window.location.href.split('?')[1]
-				// $("#myModal22").hide();
-				$.post("/updateMarksheet", {uid:uid,qid:mer,mark:1}, function (response) {
-					//log(response[0]);
-					loadTriviaPage(uid)
-					$('#triPanel').fadeIn()
-					}).done(function () {
-						log("second success");
-					})
-					.fail(function (error) {
-						log(error.responseJSON.error.sqlMessage);
-					})
-					.always(function () {
-						log("finished");
-					});
-					$('#triPanel').fadeOut()
-			}, 2000);
-		}else{
+		setTimeout(function () {
+			var uid = window.location.href.split('?')[1]
+			// $("#myModal22").hide();
+			$.post("/updateMarksheet", { uid: uid, qid: mer, mark: 1 }, function (response) {
+				//log(response[0]);
+				loadTriviaPage(uid)
+				$('#triPanel').fadeIn()
+			}).done(function () {
+				log("second success");
+			})
+				.fail(function (error) {
+					log(error.responseJSON.error.sqlMessage);
+				})
+				.always(function () {
+					log("finished");
+				});
+			$('#triPanel').fadeOut()
+		}, 2000);
+	} else {
 
-			$('#questionHeading').css('color','red')
-			$('#questionHeading').text('INCORRECT ✗')
-			setTimeout(function () {
-				var uid=window.location.href.split('?')[1]
-				// $("#myModal22").hide();
-				$.post("/updateMarksheet", {uid:uid,qid:mer,mark:0}, function (response) {
-					//log(response[0]);
-					loadTriviaPage(uid)
-					$('#triPanel').fadeIn()
-					}).done(function () {
-						log("second success");
-					})
-					.fail(function (error) {
-						log(error.responseJSON.error.sqlMessage);
-					})
-					.always(function () {
-						log("finished");
-					});
-					$('#triPanel').fadeOut()
-			}, 2000);
-		}
+		$('#questionHeading').css('color', 'red')
+		$('#questionHeading').text('INCORRECT ✗')
+		setTimeout(function () {
+			var uid = window.location.href.split('?')[1]
+			// $("#myModal22").hide();
+			$.post("/updateMarksheet", { uid: uid, qid: mer, mark: 0 }, function (response) {
+				//log(response[0]);
+				loadTriviaPage(uid)
+				$('#triPanel').fadeIn()
+			}).done(function () {
+				log("second success");
+			})
+				.fail(function (error) {
+					log(error.responseJSON.error.sqlMessage);
+				})
+				.always(function () {
+					log("finished");
+				});
+			$('#triPanel').fadeOut()
+		}, 2000);
+	}
 }
 
-function loadItrustData(uid){
+function loadItrustData(uid) {
 
 	$("#checkboxMaster").click(function () {
 		$('input:checkbox').not(this).prop('checked', this.checked);
 	});
 	var fakeServerResponse = [];
-		// var datalist = document.getElementById('names');
+	// var datalist = document.getElementById('names');
 
-		// document.getElementById('name').addEventListener('keyup', function (event) {
-			
-		// 		if (this.value.length === 0) {
-		// 			return;
-		// 		}
-		// 		if(event.keyCode === 13)
-		// 		{
-		// 			event.preventDefault();
-		// 			console.log(this.value)
-		// 		}
-		// 		// Send Ajax request and loop of its result
+	// document.getElementById('name').addEventListener('keyup', function (event) {
 
-		// 		datalist.textContent = '';
-		// 		for (var i = 0; i < fakeServerResponse.length; i++) {
-		// 			if (fakeServerResponse[i].indexOf(this.value.toUpperCase()) !== 0) {
-		// 				continue;
-		// 			}
-		// 			var option = document.createElement('option');
-		// 			option.value = fakeServerResponse[i];
-		// 			datalist.appendChild(option);
-		// 		}
-		// 	});
+	// 		if (this.value.length === 0) {
+	// 			return;
+	// 		}
+	// 		if(event.keyCode === 13)
+	// 		{
+	// 			event.preventDefault();
+	// 			console.log(this.value)
+	// 		}
+	// 		// Send Ajax request and loop of its result
 
-	$.post("/getItrustData", { uid:uid }, function (response) {
-			//log(response);
-			let iTrustTable=`<table class='table'><tbody style='text-align:center'>`
-			response.forEach((user,index)=>{
-				iTrustTable+=`<tr><td><input type="checkbox" name="checkbo`+index+`" id="checkbo`+index+`" value="`+user.user_id+`" /></td>
-					<td><label for="checkbo`+index+`">`+user.user_name+`</label></td>
+	// 		datalist.textContent = '';
+	// 		for (var i = 0; i < fakeServerResponse.length; i++) {
+	// 			if (fakeServerResponse[i].indexOf(this.value.toUpperCase()) !== 0) {
+	// 				continue;
+	// 			}
+	// 			var option = document.createElement('option');
+	// 			option.value = fakeServerResponse[i];
+	// 			datalist.appendChild(option);
+	// 		}
+	// 	});
+
+	$.post("/getItrustData", { uid: uid }, function (response) {
+		//log(response);
+		let iTrustTable = `<table class='table'><tbody style='text-align:center'>`
+		response.forEach((user, index) => {
+			iTrustTable += `<tr><td><input type="checkbox" name="checkbo` + index + `" id="checkbo` + index + `" value="` + user.user_id + `" /></td>
+					<td><label for="checkbo`+ index + `">` + user.user_name + `</label></td>
 					<td></td>
 					<td></td>
 					<td></td>`
-				// $('#testAttach').append(trust);
-				fakeServerResponse.push(user.user_name)
-			})
-			iTrustTable+=`</tbody></table>`
-			$('#testAttach').append(iTrustTable);
-	// 		let rest=[];
-	// 		response.forEach((element,index) => {
-	// 			element.forEach((elem)=>{
-	// 		$.post("/getEmployeDate", { uid:elem.user_id }, function (res) {
-	// 			log(res);
-				
-
-	// 			rest[index]=res
-	// 	})
-
-	// 		.done(function (res) {
-	// 			;
-	// 			log("second success");
-
-
-	// 		})
-	// 		.fail(function (error) {
-	// 			log(error.responseJSON.error.sqlMessage);
-	// 		})
-	// 		.always(function () {
-	// 			log("finished");
-	// 		});
-	// 	})
-	// 	})		
-	
-	// $.post("/getCurrentUserDate", { uid:uid }, function (resu) {
-	// 	log(rest);
-	// 	car=0;
-	// 	rest.forEach((element)=>{
-	// 		element.forEach((eleme,indu)=>{
-	// 			if((eleme.end_date>=resu[0].start_date)&&(resu[0].end_date<=eleme.start_date)){
-	// 				$.post("/getProfileData", { uid: eleme.user_id }, function (respe) {
-					
-	// 					var trust=`&nbsp;&nbsp;<input type="checkbox" name="checkbo`+car+`" id="checkbo`+car+`" value="`+respe[0].user_id+`" />
-	// 					<label for="checkbo`+car+`">`+respe[0].user_name+`</label>`
-	// 					$('#testAttach').append(trust);
-	// 					fakeServerResponse[car]=respe[0].user_name
-	// 					car++	
-
-	// 				})
-
-						
-	// 			}
-	// 		})		
-	// 	})
-		
-
-	// })
-}).done(function () {
-			log("second success");
+			// $('#testAttach').append(trust);
+			fakeServerResponse.push(user.user_name)
 		})
+		iTrustTable += `</tbody></table>`
+		$('#testAttach').append(iTrustTable);
+		// 		let rest=[];
+		// 		response.forEach((element,index) => {
+		// 			element.forEach((elem)=>{
+		// 		$.post("/getEmployeDate", { uid:elem.user_id }, function (res) {
+		// 			log(res);
+
+
+		// 			rest[index]=res
+		// 	})
+
+		// 		.done(function (res) {
+		// 			;
+		// 			log("second success");
+
+
+		// 		})
+		// 		.fail(function (error) {
+		// 			log(error.responseJSON.error.sqlMessage);
+		// 		})
+		// 		.always(function () {
+		// 			log("finished");
+		// 		});
+		// 	})
+		// 	})		
+
+		// $.post("/getCurrentUserDate", { uid:uid }, function (resu) {
+		// 	log(rest);
+		// 	car=0;
+		// 	rest.forEach((element)=>{
+		// 		element.forEach((eleme,indu)=>{
+		// 			if((eleme.end_date>=resu[0].start_date)&&(resu[0].end_date<=eleme.start_date)){
+		// 				$.post("/getProfileData", { uid: eleme.user_id }, function (respe) {
+
+		// 					var trust=`&nbsp;&nbsp;<input type="checkbox" name="checkbo`+car+`" id="checkbo`+car+`" value="`+respe[0].user_id+`" />
+		// 					<label for="checkbo`+car+`">`+respe[0].user_name+`</label>`
+		// 					$('#testAttach').append(trust);
+		// 					fakeServerResponse[car]=respe[0].user_name
+		// 					car++	
+
+		// 				})
+
+
+		// 			}
+		// 		})		
+		// 	})
+
+
+		// })
+	}).done(function () {
+		log("second success");
+	})
 		.fail(function (error) {
 			log(error.responseJSON.error.sqlMessage);
 		})
 		.always(function () {
 			log("finished");
 		});
-		coinsTotal(uid)
+	coinsTotal(uid)
 
 }
 
-function loadMyBadge(uid){
-	
-	$.post("/getBadgeDetails", {uide:uid}, function (response) {
-	var urlforshare;
+function loadMyBadge(uid) {
+
+	$.post("/getBadgeDetails", { uide: uid }, function (response) {
+		var urlforshare;
 		//log(response)
-		response[1].forEach((elements)=>{
-			if(elements.verification_status==1){
-				response[0].forEach((elemo)=>{
-					urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
-			let badge=` 
-			<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
+		response[1].forEach((elements) => {
+			if (elements.verification_status == 1) {
+				response[0].forEach((elemo) => {
+					urlforshare = "http://beta.trusken.com/lumino/badgeDetails.html?" + uid + "/" + elemo.badge_id + ""
+					let badge = ` 
+			<img src="`+ elemo.badge_name + `" style="width:200px;height:200px;" onclick="redirbdgdatails('` + uid + `',` + elemo.badge_id + `)">
 			
 					
-			<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+			<a class=" fa fa-share-alt qq" onclick="accm('`+ urlforshare + `')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
 			
 			</div>
 		`
-		//$('#atachUrl').attr("data-a2a-url","http://localhost:3000/lumino/badgeDetails.html?'"+uid+"'/'"+elemo.badge_id+"'")
-		$('#badgepage').append(badge);
-		
-	})
-	}else{
-		response[0].forEach((elemo)=>{
-			urlforshare="http://beta.trusken.com/lumino/badgeDetails.html?"+uid+"/"+elemo.badge_id+""
-		let badge=` 
+					//$('#atachUrl').attr("data-a2a-url","http://localhost:3000/lumino/badgeDetails.html?'"+uid+"'/'"+elemo.badge_id+"'")
+					$('#badgepage').append(badge);
 
-		<img src="`+elemo.badge_name+`" style="width:200px;height:200px;" onclick="redirbdgdatails('`+uid+`',`+elemo.badge_id+`)">
-		<a class=" fa fa-share-alt qq" onclick="accm('`+urlforshare+`')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
+				})
+			} else {
+				response[0].forEach((elemo) => {
+					urlforshare = "http://beta.trusken.com/lumino/badgeDetails.html?" + uid + "/" + elemo.badge_id + ""
+					let badge = ` 
+
+		<img src="`+ elemo.badge_name + `" style="width:200px;height:200px;" onclick="redirbdgdatails('` + uid + `',` + elemo.badge_id + `)">
+		<a class=" fa fa-share-alt qq" onclick="accm('`+ urlforshare + `')"  data-toggle="modal" data-target="#myModal21" id="stroedval" ></a>
 		
 	`
-	//class="a2a_kit a2a_kit_size_32 a2a_default_style"
-	//class="a2a_button_linkedin"
-	$('#badgepage').append(badge);
-	
+					//class="a2a_kit a2a_kit_size_32 a2a_default_style"
+					//class="a2a_button_linkedin"
+					$('#badgepage').append(badge);
+
+				})
+			}
 		})
-	}
-		})
-	
-		}).done(function () {
-			log("second success");
-		})
+
+	}).done(function () {
+		log("second success");
+	})
 		.fail(function (error) {
 			log(error.responseJSON.error.sqlMessage);
 		})
 		.always(function () {
 			log("finished");
 		});
-	
-		
-	
+
+
+
 }
 
-function loadMbdetails(uidi,uuid){
+function loadMbdetails(uidi, uuid) {
 	$.post("/getbadDetails", { bid: uuid }, function (response) {
 		//log(response[0]);
 		// userID=response.guid	
 		// window.location=response.redirectUrl+'?'+userID
-		let badge=`<br> 
-		<img src="`+response[0].badge_name+`" style="width:250px;height:250px; padding:15px" >
+		let badge = `<br> 
+		<img src="`+ response[0].badge_name + `" style="width:250px;height:250px; padding:15px" >
 		<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://beta.trusken.com/lumino/badgeDetails.html?QYySAnTx5d/1" style="text-align:center;">
        	<h4>Issued By:Trusken</h4>                                
 		<a class="a2a_button_linkedin"></a>
@@ -1620,7 +1709,7 @@ function loadMbdetails(uidi,uuid){
 		</div>
 
 	`
-	$('#badger').append(badge);
+		$('#badger').append(badge);
 
 	})
 		.done(function () {
@@ -1635,30 +1724,29 @@ function loadMbdetails(uidi,uuid){
 		});
 }
 
-function trustMe(uid){
+function trustMe(uid) {
 
 
 
-var selectedusers = new Array()
+	var selectedusers = new Array()
 
-var inputs = document.getElementsByTagName("input"); 
-var cbs = []; 
+	var inputs = document.getElementsByTagName("input");
+	var cbs = [];
 
-for (var i = 0; i < inputs.length; i++) {
-  if (inputs[i].type == "checkbox") {
-    cbs.push(inputs[i]);
+	for (var i = 0; i < inputs.length; i++) {
+		if (inputs[i].type == "checkbox") {
+			cbs.push(inputs[i]);
 
-  }
-}
-var nbCbs = cbs.length; //number of checkboxes
+		}
+	}
+	var nbCbs = cbs.length; //number of checkboxes
 
-for(indu=0;indu<nbCbs;indu++){
-		$('input[name="checkbo'+indu+'"]:checked').each(function () {
+	for (indu = 0; indu < nbCbs; indu++) {
+		$('input[name="checkbo' + indu + '"]:checked').each(function () {
 			selectedusers.push(this.value);
 		});
-}
-	if(selectedusers.length===0)
-	{
+	}
+	if (selectedusers.length === 0) {
 		alert('Please Select user before providing iTrust')
 		return
 	}
@@ -1672,7 +1760,7 @@ for(indu=0;indu<nbCbs;indu++){
 		location.reload()
 	})
 		.done(function () {
-			
+
 		})
 		.fail(function (error) {
 			log(error.responseJSON.error.sqlMessage);
@@ -1685,7 +1773,7 @@ for(indu=0;indu<nbCbs;indu++){
 
 
 $(document).ready(function () {
-	
+
 	$("#myModal2").on('shown.bs.modal', function () {
 		init_Sign_Canvas();
 	});
@@ -1705,84 +1793,84 @@ $(document).ready(function () {
 	//   Coin.style.OTransform = "rotateY(" + degrees + "deg)";
 	//   Coin.style.transform = "rotateY(" + degrees + "deg)";
 	//   },2500)
-	
-})
-function coinsTotal(uid){
 
-	$.post("/totalCoins", {uid:uid}, function (response) {
+})
+function coinsTotal(uid) {
+
+	$.post("/totalCoins", { uid: uid }, function (response) {
 		//log(response);
-		
+
 		$('#qweer').html(response[0].coinsTot)
 		$('#qweer1').html(response[0].coinsTot)
-			
-		
+
+
 	})
 		.done(function () {
-			
+
 		})
 		.fail(function (error) {
 			log(error.responseJSON.error.sqlMessage);
 		})
-		.always(function () {	
+		.always(function () {
 			log("finished");
 		});
 }
 
 
-function reqPassword(){
- var fpassemail=$('#fpassEmail').val();
- if(isValidEmail(fpassemail)){
-	$.post("/passRequest", {fpass:fpassemail}, function (response) {
-		//log(response);
-		if (response.status == 500) { 
-			log("Error")
-			alert("check your mail to reset password")
-		 }
-		else {
-			
-			alert("check your mail to reset password")
-		}
-			
-	
-			
-		
-	})
-	alert("check your mail to reset password")
-}
-else{
-	alert("please Enter proper Mail Id")
-}
+function reqPassword() {
+	var fpassemail = $('#fpassEmail').val();
+	if (isValidEmail(fpassemail)) {
+		$.post("/passRequest", { fpass: fpassemail }, function (response) {
+			//log(response);
+			if (response.status == 500) {
+				log("Error")
+				alert("check your mail to reset password")
+			}
+			else {
+
+				alert("check your mail to reset password")
+			}
+
+
+
+
+		})
+		alert("check your mail to reset password")
+	}
+	else {
+		alert("please Enter proper Mail Id")
+	}
 }
 
-function resetPassword(eid){
+function resetPassword(eid) {
 	let resetCreds =
 	{
 		eid: eid,
 		passd: $('#password').val()
 	}
-	if(resetCreds['passd'].length > 1){
-	$.post("/passReset", resetCreds, function (response)	 {
-		   //log(response);
-		   
-		   if (response.status == 500) { 
-			   log("Error")
+	if (resetCreds['passd'].length > 1) {
+		$.post("/passReset", resetCreds, function (response) {
+			//log(response);
+
+			if (response.status == 500) {
+				log("Error")
 			}
-		   else {
-			   
-			   window.location = response.redirectUrl 
-		   }
-			   
-		   
-	   })
-	}else{
+			else {
+
+				window.location = response.redirectUrl
+			}
+
+
+		})
+	} else {
 		alert("please provide Password")
 	}
 
-   }
-   
+}
 
-function accm(ur){
-	$('#atachUrl').attr("data-a2a-url",ur);
+
+function accm(ur) {
+	$('#atachUrl').attr("data-a2a-url", ur);
 	$.getScript("https://static.addtoany.com/menu/page.js");
 }
 function dissp(cc) {

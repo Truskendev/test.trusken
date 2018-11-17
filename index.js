@@ -1,12 +1,30 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var mailer=require('./mailer')
 var requestApi=require('request')
+var session = require('express-session');
 app = express();
 // app.use(bodyParser({limit: '50mb'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(cookieParser());
+// initialize express-session to allow us track the logged-in user across sessions.
+app.use(session({
+    name:'user_sid',
+    secret: 'SE98UK268MH_N50X5E14W_IB0ASOTKNJA',
+    resave: false,
+    saveUninitialized: false
+}));
+// This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
+// This usually happens when you stop your express server after login, your cookie still remains saved in the browser.
+app.use((req, res, next) => {
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid');        
+    }
+    next();
+});
 
 var mysql = require('mysql');
 
@@ -36,10 +54,49 @@ var server = app.listen(80,function () {
     console.log("Server listening at http://%s:%s", host, port)
 });
 
-app.get('/', function (request, response) {  
-     response.sendFile( __dirname + "/public/" + "index.html" );
+// middleware function to check for logged-in users
+var sessionChecker = (req, res, next) => {
+    if (req.cookies.user_sid && req.session.user) {
+        console.log('user session active')
+        let userData=req.session.user
+        if(userData['password']===undefined)
+        {
+            res.redirect('/linkedinSignin')
+            return
+        }
+
+        loginChecks(userData.email,userData.password).then((data)=>{
+            console.log(data)
+            if(data.redirectUrl!=undefined)
+            {
+                res.redirect(data.redirectUrl.split('.')[0]+'?'+data['guid'])
+            }else{
+                res.sendFile( __dirname + "/public/" + "inde.html" );
+            }
+            //response.status(200).send(data)
+        }).catch((error)=>{
+            console.log(error)
+            //response.status(500).send(error)
+        })
+
+    } else {
+        next();
+    }    
+};
+// middleware function to check for logged-in users
+var PostLoginChecker = (req, res, next) => {
+    if (req.cookies.user_sid && req.session.user) {
+        next();
+    }
+    else {
+        res.send({redirectFlag:true})
+    }   
+};
+app.get('/', sessionChecker,function (request, response) {  
+     response.sendFile( __dirname + "/public/" + "inde.html" );
 });
 app.get('/linkedinSignin',function(request,response){
+
     response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81vg12i7e078ut&redirect_uri=http://beta.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
 })
 
@@ -70,6 +127,9 @@ requestPromiseAPI(requestbody).then((body)=>{
             // 
             else
             {
+                request.session.user={
+                   email:loginName
+                }
                 console.log('The solution is: ', JSON.stringify(results))
                 if(results.length===1)
                 {
@@ -88,6 +148,9 @@ requestPromiseAPI(requestbody).then((body)=>{
                     requestPromiseAPI(requestData)
                     .then((body)=>{
                         processLinkedInData(body)
+
+                        let linkedinData=JSON.parse(body)
+                        let email_id=linkedinData['emailAddress']                    
                         response.redirect('/refferalsignup.html?'+JSON.parse(body)['id'])
                     })
                     .catch((error)=>{
@@ -167,7 +230,16 @@ app.get('/verification', function (request, response) {
         }
     })
 })
-app.post('/registerNewUser',(request,response)=>{
+
+app.get('/referral_landing',function(request,response){
+    response.sendFile( __dirname + "/public/" + "referral_landing.html")
+})
+
+app.get('/refferalsignup',function(request,response){
+    response.sendFile( __dirname + "/public/" + "refferalsignup.html")
+})
+
+app.post('/registerNewUser',sessionChecker,(request,response)=>{
     console.log(JSON.stringify(request.body))
     let guid=guidGenerator()
     let ciid=guidGeneratorCoin()
@@ -190,7 +262,11 @@ app.post('/registerNewUser',(request,response)=>{
                 // console.log('The solution is: ', JSON.stringify(results));
                 else{
                     console.log(resultse)
-      
+                    request.session.user={
+                        guid:guid,
+                        email:request.body.regEmail,
+                        password:request.body.regPass
+                    }
                     response.send({guid:guid,redirectUrl: "/refferalsignup.html"} );
                     insertcoinsIssued(ciid,guid,resultse)
                 }
@@ -214,7 +290,7 @@ app.post('/registerNewUser',(request,response)=>{
 
      
 
-    })  
+})
 
 function insertcoinsIssued(ciid,guid,resultse){
 
@@ -234,7 +310,7 @@ function insertcoinsIssued(ciid,guid,resultse){
     }
 
 
-app.post('/getProfileData',(request,response)=>{
+app.post('/getProfileData',PostLoginChecker,(request,response)=>{
     console.log(JSON.stringify(request.body))
    // let guid=guidGenerator()
     var sql = "select * from user where user_id='"+request.body.uid+"'";
@@ -272,15 +348,40 @@ app.post('/updateProfileData',(request,response)=>{
       })
 })  
 
-app.post('/loginUser',(request,response)=>{
+app.get('/logout',(req,res)=>{
+    if (req.cookies.user_sid && req.session.user) {
+        res.clearCookie('user_sid');
+        res.sendFile( __dirname + "/public/" + "inde.html" );       
+    }
+})
+
+app.post('/loginUser',sessionChecker,(request,response)=>{
     console.log(JSON.stringify(request.body))
     // let guid=guidGenerator()
     //var sql = "INSERT INTO user (user_id,user_name, user_email,password) VALUES ('"+guid+"','"+request.body.regUsr+"', '"+request.body.regEmail+"','"+request.body.regPass+"')";
-    var sql ="SELECT user_id,is_verified from user where email_id='"+request.body.loginName+"' AND password='"+request.body.loginPass+"'"
+    loginChecks(request.body.loginName,request.body.loginPass).then((data)=>{
+        if(data['guid']!=undefined){
+            request.session.user={
+                guid:data['guid'],
+                email:request.body.loginName,
+                password:request.body.loginPass
+            }
+        }
+        response.status(200).send(data)
+    }).catch((error)=>{
+        response.status(500).send(error)
+    })
+
+})  
+
+function loginChecks(loginName,loginPass){
+ return new Promise((resolve,reject)=>{
+    var sql ="SELECT user_id,is_verified from user where email_id='"+loginName+"' AND password='"+loginPass+"'"
     con.query(sql, function (error, results, fields) {
         if (error) 
         {
-            response.status(500).send({error:error})
+            //response.status(500).send({error:error})
+            reject({error:error})
         }
         // 
         else
@@ -289,22 +390,25 @@ app.post('/loginUser',(request,response)=>{
             if(results.length===1)
             {
                 if(!results[0].is_verified){
-                   return response.status(200).send({status:200,user_id:"Please verify your account!"})
+                   //return response.status(200).send({status:200,user_id:"Please verify your account!"})
+                   resolve({status:200,user_id:"Please verify your account!"})
                 }
                 //response.status(200).send(results[0])
                 var sql1 ="SELECT * from workex where user_id='"+results[0].user_id+"'"
                 con.query(sql1, function (error, results1, fields) {
                         if (error) 
                         {
-                            response.status(500).send({error:error})
+                            //response.status(500).send({error:error})
+                            reject({error:error})
                         }
                         else{
                            if(results1.length!=0) {
                            
-                            return response.send({guid:results[0].user_id,redirectUrl: "/referral_landing.html"} );
+                            //return response.send({guid:results[0].user_id,redirectUrl: "/referral_landing.html"} );
+                            resolve({guid:results[0].user_id,redirectUrl: "/referral_landing.html"})
                            }else{
-                            
-                            return response.send({guid:results[0].user_id,redirectUrl: "/refferalsignup.html"} );
+                            resolve({guid:results[0].user_id,redirectUrl: "/refferalsignup.html"})
+                            //return response.send({guid:results[0].user_id,redirectUrl: "/refferalsignup.html"} );
                            }
                             
                         }
@@ -313,13 +417,16 @@ app.post('/loginUser',(request,response)=>{
             }
             else
             {
-                response.status(200).send({status:200,user_id:"User not found!"})
+                resolve({status:200,user_id:"User not found!"})
+                //response.status(200).send({status:200,user_id:"User not found!"})
             }
         }
         
       })
-})  
+})
 
+
+}
 
 app.post('/addWorkExData',(request,response)=>{
     let ciid=guidGeneratorCoin();
@@ -1138,6 +1245,23 @@ app.post('/totalCoins',(request,response)=>{
                       }
                       else{
                         response.send({redirectUrl: "/sucess.html"} );
+                      }
+                  })
+              })
+
+
+              app.post('/companyName', function (request, response) {
+                
+                
+                var sql = "select * from company_names";
+                  
+                  con.query(sql, function (error, results, fields) {
+                      if (error) 
+                      {
+                          response.status(500)
+                      }
+                      else{
+                        response.send(results);
                       }
                   })
               })
