@@ -335,7 +335,7 @@ table th[class*="col-"] {
 
 a {
   text-decoration: none;
-  color: #FF0000;
+  color: #1d4590;
   -webkit-transition: all 0.15s linear;
   transition: all 0.15s linear; }
 
@@ -453,7 +453,7 @@ input {
   color: #2f2c2c !important; }
 
 .c-primary {
-  color: #4cc2c0; }
+  color: #1d4590; }
 
 .c-secondary {
   color: #f15b26 !important; }
@@ -926,10 +926,10 @@ h6, .h6 {
   color: #f15b26; }
 
 .list--primary a:hover, .list--primary li:hover {
-  color: #4cc2c0; }
+  color: #1d4590; }
 
 .list--primary i {
-  color: #4cc2c0; }
+  color: #1d4590; }
 
 .list--standard a:hover, .list--standard li:hover {
   color: #2f2c2c; }

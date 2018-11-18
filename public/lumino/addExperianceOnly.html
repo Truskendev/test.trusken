@@ -186,13 +186,29 @@
 	});
 };
 
-
 $(document).ready(function(){
 	let uid=window.location.href.split('?')[1];
 	loadaddExperiance(uid);
 	loadProfilePage(uid);
 
-});
+	// ############# companyName getting @ Aravind M #############
+	$.post("/getAllCompanyNames", function (respons) {
+							// localStorage.setItem("companynames",JSON.stringify(respons));
+				respons.forEach((element,index) => {
+					console.log(element)
+					$("#companyName").append(new Option(element.companyname,element.companyname))
+					//companyNameOptions += `<option value="${element.companyname}"></option>`   
+			});
+		});
+		// ############# companyName getting @ Aravind M #############
+	});
+
+// $(document).ready(function(){
+// 	let uid=window.location.href.split('?')[1];
+// 	loadaddExperiance(uid);
+// 	loadProfilePage(uid);
+
+// });
 	</script>
 		
 </body>

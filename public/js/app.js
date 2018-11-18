@@ -14,8 +14,9 @@ function login() {
 		loginName: $('#uname').val(),
 		loginPass: $('#passw').val()
 	}
-	if (isValidEmail(loginData['loginName']) && (loginData['loginPass'].length > 1)) {
-
+	
+		if(isValidEmail(loginData['loginName'])) {
+			if ((loginData['loginPass'].length > 1)) {
 		$.post("/loginUser", loginData, function (response) {
 			//log(response);
 			if (response.status == 200) { alert(response.user_id) }
@@ -34,10 +35,11 @@ function login() {
 				log("finished");
 			});
 
-	}
-	else {
-
-		alert("please fill in the details")
+		} else {
+			alert("Please Enter Password")
+		}
+	} else {
+		alert("Please Enter valid Email id")	
 	}
 }
 function loginHom(rid) {
@@ -50,32 +52,72 @@ function loginHom(rid) {
 
 		refId: rid
 	}
-	if (isValidEmail(loginDat['regEmail']) && (loginDat['regPass'].length > 1) && (loginDat['regUsr'].length > 1) && (regCheck.is(":checked"))) {
 
-		$.post("/registerRefferedUser", loginDat, function (response) {
-			//log(response);
-			if (response.status == 500) { alert("User already exists") }
-			userID = response.guid
-			window.location = response.redirectUrl + '?' + userID
 
-		})
-			.done(function () {
-				log("second success");
-			})
-			.fail(function (error) {
-				log(error.responseJSON.error.sqlMessage);
-			})
-			.always(function (response) {
-				if (response.status == 500) { alert("User already exists") }
-				//$('#myModal2').hide();
-				log("finished");
-			});
 
+	if  ((loginDat['regUsr'].length > 1)) {
+		if(isValidEmail(loginDat['regEmail'])) {
+			if ((loginDat['regPass'].length > 1)) {
+				if ((regCheck.is(":checked"))) {
+
+					$.post("/registerRefferedUser", loginDat, function (response) {
+						//log(response);
+						if (response.status == 500) { alert("User already exists") }
+						userID = response.guid
+						window.location = response.redirectUrl + '?' + userID
+			
+					})
+						.done(function () {
+							log("second success");
+						})
+						.fail(function (error) {
+							log(error.responseJSON.error.sqlMessage);
+						})
+						.always(function (response) {
+							if (response.status == 500) { alert("User already exists") }
+							//$('#myModal2').hide();
+							//log("finished");
+						});
+			} else {
+				alert("Please check the user agreement")
+			}
+		} else {
+			alert("Please enter the correct password")
+		}
+	} else {
+		alert("Please enter a valid email id")	
 	}
-	else {
+} else {
+	alert("Please enter your user name")
+	
+}
 
-		alert("please fill in details");
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+
+	
+	
 }
 const log = console.log
 function modalData() {
@@ -93,7 +135,12 @@ function registerUser() {
 
 	}
 
-	if (isValidEmail(userData['regEmail']) && (userData['regUsr'].length > 1) && (userData['regPass'].length > 1) && (regCheck.is(":checked"))) {
+	
+
+		if  ((userData['regUsr'].length > 1)) {
+			if(isValidEmail(userData['regEmail'])) {
+				if ((userData['regPass'].length > 1)) {
+					if ((regCheck.is(":checked"))) {
 		$.post("/registerNewUser", userData, function (response) {
 			//log(response.redirectUrl);
 			if (response.status == 500) { alert("User already exists") }
@@ -112,11 +159,20 @@ function registerUser() {
 				$('#myModal2').hide();
 				log("finished");
 			});
+		} else {
+			alert("Please check the user agreement")
+		}
+	} else {
+		alert("Please enter the correct password")
 	}
-	else {
+} else {
+	alert("Please enter a valid email id")	
+}
+} else {
+alert("Please enter your user name")
 
-		alert("please fill in the details")
-	}
+}
+
 }
 function loadaddExperiance(uid) {
 	var qwe = getWorkTemplate(0)
@@ -385,7 +441,7 @@ function addWorkex(expCount) {
 				});
 		}
 		else {
-			alert("please fill in the data")
+			alert("Please fill in the data")
 		}
 
 	}
@@ -479,30 +535,42 @@ function checkWorkExp(event, expCount) {
 					if ((workData[c]['city'].length > 1)) {
 						if ((workData[c]['state'].length > 1)) {
 							if ((workData[c]['country'].length > 1)) {
-								if ((workData[c]['workstartYear'].length > 1)) {
-
+								if (!(workData[c]['workstartYear'].includes("null"))) {
+									if (!(workData[c]['workEndYear'].includes("null"))) {
+										if(workData[c]['workstartYear']<workData[c]['workEndYear']){
 								$('#myModal').modal('show');
-							} else {
-								alert("please provide Start date")
+						
+									
+							}else {
+								alert("End date is less than start Date")
 							}
+						}
+							else {
+								alert("Please provide an end date")
+							}
+						}else {
+								alert("Please provide a start date")
+							} 
+
+						
 						} else {
-							alert("please Country Name")
+							alert("Please enter the city name")
 						}
 					} else {
-						alert("please provide State Name")
+						alert("Please enter the state name")
 					}
 				} else {
-					alert("please Provide City Name")
+					alert("Please enter the country name")
 				}
 			} else {
-				alert("please Provide Company Name")
+				alert("Please enter the company name")
 			}
 
 
 
 		}
 		else {
-			alert("please Provide Title")
+			alert("Please enter your Job title")
 		}
 	}
 }
@@ -608,7 +676,7 @@ function addWorkexq(expCount) {
 				});
 		}
 		else {
-			alert("please fill in the data")
+			alert("Please fill in the data")
 		}
 
 	}
@@ -669,30 +737,34 @@ function checkEduFields(event, cT) {
 	if ((eduData[c]['city'].length > 1)) {
 						if ((eduData[c]['state'].length > 1)) {
 							if ((eduData[c]['country'].length > 1)) {
-								if ((eduData[c]['edustartYear'].length > 1)) {
-									if ((eduData[c]['edustartYear'].length > 1)) {
+								if ((eduData[c]['edustartYear'].length > 3)&&(eduData[c]['edustartYear'].length < 5) ) {
+									if ((eduData[c]['eduEndYear'].length > 3)&&(eduData[c]['eduEndYear'].length < 5) ) {
+										if (eduData[c]['edustartYear']<eduData[c]['eduEndYear']) {
 								$('#myModal').modal('show');
+							}else {
+								alert("Start year is greater than End Year")
+							}
 									}else {
-										alert("please provide End Year")
+										alert("Please provide the correct year")
 									}
 							} else {
-								alert("please provide Start Year")
+								alert("Please provide the correct year")
 							}
 						} else {
-							alert("please Country Name")
+							alert("Please enter the city name")
 						}
 					} else {
-						alert("please provide State Name")
+						alert("Please enter the state name")
 					}
 				} else {
-					alert("please Provide City Name")
+					alert("Please enter the country name")
 				}
 			} else {
-				alert("please Provide Degree")
+				alert("Please enter the Degree")
 			}
 		}
 		else {
-			alert("please Provide Institution Name")
+			alert("Please enter the Institution name")
 		}
 
 
@@ -1838,7 +1910,7 @@ function reqPassword() {
 		alert("check your mail to reset password")
 	}
 	else {
-		alert("please Enter proper Mail Id")
+		alert("Please Enter proper Mail Id")
 	}
 }
 
@@ -1885,4 +1957,3 @@ function dissp(cc) {
 
 
 }
-

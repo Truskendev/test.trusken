@@ -97,13 +97,13 @@ app.get('/', sessionChecker,function (request, response) {
 });
 app.get('/linkedinSignin',function(request,response){
 
-    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81vg12i7e078ut&redirect_uri=http://beta.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
+    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=8179orcfe50tvu&redirect_uri=http://beta.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
 })
 
 app.get('/verifyLinkedin',function(request,response){
 
 var requestbody={
-    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://beta.trusken.com/verifyLinkedin&client_id=81vg12i7e078ut&client_secret=66PSmjoxuWDjCdRn"
+    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://beta.trusken.com/verifyLinkedin&client_id=8179orcfe50tvu&client_secret=tH3kv033TiyCi1ST"
     ,method:"POST"
 }
 requestPromiseAPI(requestbody).then((body)=>{
@@ -875,6 +875,17 @@ app.post('/getMarksheet',(request,response)=>{
       })
 })
 
+app.post('/getAllCompanyNames',(request,reponse)=>{
+    var sql = "SELECT * from company_names"
+    con.query(sql, function(error, results, fields){
+        if(error){
+            response.status(500).send({error:error})
+        }
+        else{
+            reponse.send(results);
+        }
+    })
+})
 
 app.post('/updateMarksheet',(request,response)=>{
     console.log(JSON.stringify(request.body))

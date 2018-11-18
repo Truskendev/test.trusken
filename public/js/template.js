@@ -16,11 +16,11 @@ function getWorkTemplate(index, ID) {
     //     else {
     //         response.forEach(element => {
     //             cn.push(element);
-                
+
     //         });
     //     }
     // })
-  
+
     return template = `<div class="panel-body" >
         <div class="col-md-6">
             <form role="form">
@@ -28,49 +28,32 @@ function getWorkTemplate(index, ID) {
                 <label>Title*</label>
                 <input class="form-control infields" id="workTitle`+ index + `" type="text" placeholder="Job Title">
             </div>
-    <div class="form-group">
-    <label>Company*</label>
-    
-      <select id="companyName`+ index + `" class="form-control infields">
-      <option selected>Select Company</option>
-      <option value="Trusken">Trusken</option>
-      <option value="Google">Google</option>
-      <option value="Facebook">Facebook</option>
-      <option value="IBM">IBM</option>
-      <option value="Microsoft">Microsoft</option>
-      <option value="SAP">SAP</option>
-      <option value="TCS">TCS</option>
-      <option value="jda">jda</option>
-      <option value="Capgemini">Capgemini</option>
-      <option value="Cozgnizant">Cozgnizant</option>
-      <option value="Broadridge">Broadridge</option>
-      </select></div>
-
-
-<div class="form-group">
-<label>City*</label>
-<input class="form-control infields" id="city`+ index + `"  type="text" placeholder="City">
-</div>
-<div class="form-group">
-<label>State*</label>
-<input class="form-control infields" id="state`+ index + `"  type="text" placeholder="State">
-</div>
-<div class="form-group">
-<label>Country*</label>
-<input class="form-control infields" id="country`+ index + `"  type="text" placeholder="Country">
-</div>
-
-<div class="form-group">
-<label>Alias Name</label>
-<input class="form-control infields" id="alias`+ index + `" title="Enter Name as per your company records(if it is slightly different from your Full Name)" type="text" placeholder="Alias">
-</div>
+            <div class="form-group">
+            <label>Company*</label>
+                <input class="form-control infields" id="companyName`+ index + `"  type="text" list="companyName" placeholder="Company">
+                <datalist id="companyName" name="companyName">
+                </datalist>
+            </div>
+     
+            <div class="form-group">
+                <label>Country*</label>
+                <input class="form-control infields" id="country`+ index + `"  type="text" placeholder="Country">
+            </div>
+            <div class="form-group">
+                <label>State*</label>
+                <input class="form-control infields" id="state`+ index + `"  type="text" placeholder="State">
+            </div>
+            <div class="form-group">
+                <label>City*</label>
+                <input class="form-control infields" id="city`+ index + `"  type="text" placeholder="City">
+            </div>
 
             <div class="form-group" >
                 <label>Start Date</label></br>
                 <!-- <input class="form-control infields" id="workstartYear"   type="text" placeholder="Start Year"><br> -->
                 <div class="demo">
                 <select id="day" name="day" class="stDate`+ index + `">
-                    <option value="00">DD</option>
+                    <option value="null">DD</option>
                     <option value="01">1</option>
                     <option value="02">2</option>
                     <option value="03">3</option>
@@ -104,7 +87,7 @@ function getWorkTemplate(index, ID) {
                     <option value="31">31</option>
                 </select>
                 <select id="month" name="month" class="stMonth`+ index + `">
-                    <option value="00">MMM</option>
+                    <option value="null">MON</option>
                     <option value="01">January</option> 
                     <option value="02">February</option>
                     <option value="03">March</option>
@@ -120,7 +103,7 @@ function getWorkTemplate(index, ID) {
                 </select>
 
                 <select id="year" name="year" class="stYear`+ index + `">
-                    <option value="YYYY">YYYY</option>
+                    <option value="null">YYYY</option>
                     <option value="2000">2000</option>
                     <option value="2001">2001</option>
                     <option value="2002">2002</option>
@@ -152,7 +135,7 @@ function getWorkTemplate(index, ID) {
                  <div class="demo">
                  
                  <select id="day" name="day" class=" enDate`+ index + `">
-                     <option value="00">DD</option>
+                     <option value="null">DD</option>
                      <option value="01">1</option>
                      <option value="02">2</option>
                      <option value="03">3</option>
@@ -177,7 +160,7 @@ function getWorkTemplate(index, ID) {
                      <option value="22">22</option>
                      <option value="23">23</option>
                      <option value="24">24</option>
-                     <option value="25">25</option>
+                     <option value="25">25</option> 
                      <option value="26">26</option>
                      <option value="27">27</option>
                      <option value="28">28</option>
@@ -186,7 +169,7 @@ function getWorkTemplate(index, ID) {
                      <option value="31">31</option>
                  </select>
                  <select id="month" name="month" class=" enMonth`+ index + `">
-                     <option value="00">MMM</option> 
+                     <option value="null">MON</option> 
                      <option value="01">January</option> 
                      <option value="02">February</option>
                      <option value="03">March</option>
@@ -201,7 +184,7 @@ function getWorkTemplate(index, ID) {
                      <option value="12">December</option>
                  </select>
                  <select id="year" name="year" class="enYear`+ index + `">
-                        <option value="YYYY">YYYY</option>
+                        <option value="null">YYYY</option>
                         <option value="2000">2000</option>
                         <option value="2001">2001</option>
                         <option value="2002">2002</option>
@@ -220,18 +203,13 @@ function getWorkTemplate(index, ID) {
                         <option value="2015">2015</option>
                         <option value="2016">2016</option>
                         <option value="2017">2017</option>
-                        <option selected value="2018">2018</option>
-                    
- 
+                        <option value="2018">2018</option>
                  </select>
                 
                  
+             </div>    
+            
              </div>
-
-
-                
-
-            </div>
                 <div class="form-group">
                 <label>Employee Number </label>
                 <input class="form-control infields" id="employeeNumber`+ index + `" type="text" placeholder="Employee Number">
@@ -253,6 +231,10 @@ function getWorkTemplate(index, ID) {
                 <textarea class="form-control infields"  id="empdesc`+ index + `" rows="3"></textarea>
             </div>
             
+            <div class="form-group">
+            <label>Alias Name</label>
+              <input class="form-control infields" id="alias`+ index + `"  type="text" placeholder="Enter Name as per your company records">
+           </div>
             
         
             </div>
@@ -306,7 +288,7 @@ function getWorkTemplate(index, ID) {
         </div>
         <hr>
         `
-      
+
 }
 function getEducationTemplate(cT, ID) {
 
