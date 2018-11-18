@@ -1255,7 +1255,7 @@ app.post('/totalCoins',(request,response)=>{
                           response.status(500)
                       }
                       else{
-                        response.send({redirectUrl: "/sucess.html"} );
+                        response.send({redirectUrl: "/inde.html"} );
                       }
                   })
               })
