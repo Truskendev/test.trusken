@@ -782,7 +782,7 @@ function processLinkedInData(body){
                     console.log(resultse)
       
                    // response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
-                    insertcoinsIssued(ciid,guid,resultse)
+                    insertcoinsIssued(ciid,userId,resultse)
                 }
             })
         }
