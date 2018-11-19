@@ -946,3 +946,10 @@ h6, .h6 {
   .hno :hover{
     color:#acacac!important;
   }
+  
+
+  @media (min-width:268px) and (max-width:1100px) {
+    #atachUrl {
+      padding-left:14%!important;
+    }
+  }
