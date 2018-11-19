@@ -536,7 +536,7 @@ function checkWorkExp(event, expCount) {
 						if ((workData[c]['state'].length > 1)) {
 							if ((workData[c]['country'].length > 1)) {
 								if (!(workData[c]['workstartYear'].includes("null"))) {
-									if (!(workData[c]['workEndYear'].includes("null"))) {
+									
 										if(workData[c]['workstartYear']<workData[c]['workEndYear']){
 								$('#myModal').modal('show');
 						
