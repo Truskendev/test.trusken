@@ -185,7 +185,6 @@ function getWorkTemplate(index, ID) {
                  </select>
                  <select id="year" name="year" class="enYear`+ index + `">
                         <option value="null">YYYY</option>
- <option value="Till Date">Till Date</option>
                         <option value="2000">2000</option>
                         <option value="2001">2001</option>
                         <option value="2002">2002</option>
