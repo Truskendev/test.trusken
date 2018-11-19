@@ -544,10 +544,8 @@ function checkWorkExp(event, expCount) {
 							}else {
 								alert("End date is less than start Date")
 							}
-						}
-							else {
-								alert("Please provide an end date")
-							}
+						
+						
 						}else {
 								alert("Please provide a start date")
 							} 
