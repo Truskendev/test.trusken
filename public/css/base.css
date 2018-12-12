@@ -349,7 +349,7 @@ p {
   font-size: 18px; }
   @media (max-width: 600px) {
     p {
-      font-size: 14px; } }
+      font-size: 12px; } }
 
 figure {
   margin: 0; }

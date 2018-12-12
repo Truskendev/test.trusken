@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -26,21 +27,62 @@ app.use((req, res, next) => {
     next();
 });
 
+// to run app in prod/dev mode
+if (process.env.NODE_ENV === 'production') {
+    app.set('port', 80);
+
+// additional prod environment configuration
+}
+
+// forever service to run app
+
+// var forever = require('forever-monitor');
+
+//   var child = new (forever.Monitor)('index.js', {
+//     max: 3,
+//     silent: true,
+//     args: []
+//   });
+
+//   child.on('exit', function () {
+//     console.log('index.js has exited after 3 restarts');
+//   });
+
+//   child.start();
+
+// var child = new (forever.Monitor)('index.js');
+
+// child.on('watch:restart', function(info) {
+//     console.error('Restaring script because ' + info.file + ' changed');
+// });
+
+// child.on('restart', function() {
+//     console.error('Forever restarting script for ' + child.times + ' time');
+// });
+
+// child.on('exit:code', function(code) {
+//     console.error('Forever detected script exited with code ' + code);
+// });
+
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "truskendb.cyoekoc1b5ex.us-east-2.rds.amazonaws.com",
-  user: "trusken123",
-   password: "qwerty1995",
-   database : 'truskendb'
+    host: "142.93.218.67",
+    user: "truskendbuser",
+    password: "Authtruskendb@18",
+    database: 'truskendb'
+});
 
-// host: "localhost",
-//    user: "root",
-//    password: "azhar",
+
+// var mysql = require('mysql');
+
+// var con = mysql.createConnection({
+//   host: "truskendb.cyoekoc1b5ex.us-east-2.rds.amazonaws.com",
+//   user: "trusken123",
+//    password: "qwerty1995",
 //    database : 'truskendb'
 
-
-});
+// });
 
 con.connect(function(err) {
   if (err) throw err;
@@ -48,7 +90,7 @@ con.connect(function(err) {
 });
  
 var created=new Date();
-var server = app.listen(80,'206.189.142.47' ,function (){
+var server = app.listen(3000,'localhost', function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Server listening at http://%s:%s", host, port)

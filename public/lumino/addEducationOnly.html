@@ -145,7 +145,7 @@
 				  
 						  <div class="row" style="text-align: center;">
 							  <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
-								 <p style="font-weight: bold;">You Earned 10000 Coins</p>
+								 <p style="font-weight: bold;">You Earned 100 Coins</p>
 								 
 				
 								   
@@ -213,7 +213,15 @@
 			let uid = window.location.href.split('?')[1];
 			loadProfilePage(uid);
 			loadaddEducate(uid)
-
+			// ############# allCities getting @ Aravind M #############
+					$.post("/getAllCities", function (respons) {
+						// localStorage.setItem("citiess",JSON.stringify(respons));
+						respons.forEach((element,index) => {
+							// console.log(element)
+							$("#allCities").append(new Option(element.name,element.name)) 
+						});
+					});
+			// ############# allCities getting @ Aravind M #############
 		});
 
 	</script>

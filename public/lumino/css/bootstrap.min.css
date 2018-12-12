@@ -2459,7 +2459,7 @@ pre code {
 	}
 }
 
-@media (min-width:992px) {
+@media (min-width:1100px) {
 	.col-md-1,
 	.col-md-10,
 	.col-md-11,
@@ -2475,7 +2475,7 @@ pre code {
 		float: left
 	}
 	.col-md-12 {
-		width: 100%
+		width: 1100px
 	}
 	.col-md-11 {
 		width: 91.66666667%

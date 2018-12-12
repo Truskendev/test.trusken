@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -10,6 +11,44 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cookieParser());
+
+// to run app in prod/dev mode
+if(process.env.NODE_ENV === 'production') {
+    app.set('port', 80);
+
+    // additional prod environment configuration
+  }
+
+// forever service to run app
+
+// var forever = require('forever-monitor');
+
+//   var child = new (forever.Monitor)('index.js', {
+//     max: 3,
+//     silent: true,
+//     args: []
+//   });
+
+//   child.on('exit', function () {
+//     console.log('index.js has exited after 3 restarts');
+//   });
+
+//   child.start();
+
+// var child = new (forever.Monitor)('index.js');
+
+// child.on('watch:restart', function(info) {
+//     console.error('Restaring script because ' + info.file + ' changed');
+// });
+
+// child.on('restart', function() {
+//     console.error('Forever restarting script for ' + child.times + ' time');
+// });
+
+// child.on('exit:code', function(code) {
+//     console.error('Forever detected script exited with code ' + code);
+// });
+
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(session({
     name:'user_sid',
@@ -29,16 +68,10 @@ app.use((req, res, next) => {
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "truskendb.cyoekoc1b5ex.us-east-2.rds.amazonaws.com",
-  user: "trusken123",
-   password: "qwerty1995",
+  host: "142.93.218.67",
+  user: "truskendbuser",
+   password: "Authtruskendb@18",
    database : 'truskendb'
-
-// host: "localhost",
-//    user: "root",
-//    password: "azhar",
-//    database : 'truskendb'
-
 
 });
 
@@ -48,7 +81,7 @@ con.connect(function(err) {
 });
  
 var created=new Date();
-var server = app.listen(3000,function () {
+var server = app.listen(80,'139.59.6.36' ,function (){
     var host = server.address().address
     var port = server.address().port
     console.log("Server listening at http://%s:%s", host, port)
@@ -97,13 +130,13 @@ app.get('/', sessionChecker,function (request, response) {
 });
 app.get('/linkedinSignin',function(request,response){
 
-    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81vg12i7e078ut&redirect_uri=http://beta.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
+    response.redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=8179orcfe50tvu&redirect_uri=http://beta.trusken.com/verifyLinkedin&state=987654321&scope=r_emailaddress,r_basicprofile')
 })
 
 app.get('/verifyLinkedin',function(request,response){
 
 var requestbody={
-    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://beta.trusken.com/verifyLinkedin&client_id=81vg12i7e078ut&client_secret=66PSmjoxuWDjCdRn"
+    url:"https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+request.query.code+"&redirect_uri=http://beta.trusken.com/verifyLinkedin&client_id=8179orcfe50tvu&client_secret=tH3kv033TiyCi1ST"
     ,method:"POST"
 }
 requestPromiseAPI(requestbody).then((body)=>{
@@ -135,15 +168,15 @@ requestPromiseAPI(requestbody).then((body)=>{
                 {
                     if(results[0]['wexSubm']==1)
                     {
-                        if(results[0]['eduSub']==1)
-                        {
+                        // if(results[0]['eduSub']==1)
+                        // {
                            return response.redirect('/referral_landing.html?'+results[0].user_id)
-                        }
-                        return response.redirect('/lumino/addEdu.html?'+results[0].user_id)
+                        // }
+                        // return response.redirect('/lumino/addEdu.html?'+results[0].user_id)
                     }
-                    return response.redirect('/lumino/addExp.html?'+results[0].user_id)
+                     return response.redirect('/lumino/addExp.html?'+results[0].user_id)
                     // return response.send({guid:results[0].user_id,redirectUrl: "/lumino/home.html"} );
-                }else{
+                } else{
                     requestData.uri="https://api.linkedin.com/v1/people/~:(id,first-name,email-address,num-connections,formatted-name,site-standard-profile-request,api-standard-profile-request,public-profile-url,num-connections-capped,current-share,phonetic-first-name,phonetic-last-name,formatted-phonetic-name,last-name,headline,picture-url,industry,location,summary,specialties,positions:(id,title,summary,start-date,end-date,is-current,company:(id,name,type,size,industry,ticker)),educations:(id,school-name,field-of-study,start-date,end-date,degree,activities,notes),associations,interests,num-recommenders,date-of-birth,publications:(id,title,publisher:(name),authors:(id,name),date,url,summary),patents:(id,title,summary,number,status:(id,name),office:(name),inventors:(id,name),date,url),languages:(id,language:(name),proficiency:(level,name)),skills:(id,skill:(name)),certifications:(id,name,authority:(name),number,start-date,end-date),courses:(id,name,number),recommendations-received:(id,recommendation-type,recommendation-text,recommender),honors-awards,three-current-positions,three-past-positions,volunteer)?format=json"
                     requestPromiseAPI(requestData)
                     .then((body)=>{
@@ -282,14 +315,9 @@ app.post('/registerNewUser',sessionChecker,(request,response)=>{
                 {
                     console.log("mail failed")
                 }
-            })
-           
-        }
-        
+            })  
+        }  
       })
-
-     
-
 })
 
 function insertcoinsIssued(ciid,guid,resultse){
@@ -423,7 +451,7 @@ function loginChecks(loginName,loginPass){
         }
         
       })
-})
+    })
 
 
 }
@@ -454,7 +482,7 @@ app.post('/addWorkExData',(request,response)=>{
                 else{
                     console.log(resultse)
       
-                    response.send({uid:uid,redirectUrl: "/lumino/addEdu.html"} );
+                    response.send({uid:uid,redirectUrl: "/lumino/salaryalc.html"} );
                     insertcoinsIssued(ciid,request.body.uid,resultse)
 
                 }
@@ -462,7 +490,7 @@ app.post('/addWorkExData',(request,response)=>{
 
         }
         
-      })
+    })
       var sq="update user set wexSubm=1 where user_id='"+uid+"' and wexSubm=0"
       con.query(sq, function (error, results, fields) {
         if (error) 
@@ -478,7 +506,7 @@ app.post('/addWorkExData',(request,response)=>{
         
       })
 
-})  
+    })  
 
 
 
@@ -782,7 +810,7 @@ function processLinkedInData(body){
                     console.log(resultse)
       
                    // response.send({guid:guid,redirectUrl: "/lumino/addExp.html"} );
-                    insertcoinsIssued(ciid,guid,resultse)
+                    insertcoinsIssued(ciid,userId,resultse)
                 }
             })
         }
@@ -874,6 +902,177 @@ app.post('/getMarksheet',(request,response)=>{
         
       })
 })
+    //@@@@@@@@ get all job titles from job_titles page
+    app.post('/getAllJobTitles',(request,reponse)=>{
+        var sql = "SELECT * from job_titles limit 50"
+        con.query(sql, function(error, results, fields){
+            if(error){
+                response.status(500).send({error:error})
+            }
+            else{
+                reponse.send(results);
+            }
+        })
+    })
+    // @@@@@@@@@@@ Getting All companynames for company dropdwon from company_names table @ Aravind M @@@@@@@@@@@@@@
+   
+    app.post('/getAllCompanyNames',(request,reponse)=>{
+        var sql = "SELECT * from company_names Limit 50"
+        con.query(sql, function(error, results, fields){
+            if(error){
+                response.status(500).send({error:error})
+            }
+            else{
+                reponse.send(results);
+            }
+        })
+    })
+
+    // @@@@@@@@@@@ Getting All companynames for company dropdwon from company_names table @ Aravind M @@@@@@@@@@@@@@
+
+    // @@@@@@@@@@@ Getting All Cities for cities dropdwon from cities table @ Aravind M @@@@@@@@@@@@@@
+    app.post('/getAllCities',(request,reponse)=>{
+        var sql = "SELECT * from cities Limit 100"
+        con.query(sql, function(error, results, fields){
+            if(error){
+                response.status(500).send({error:error})
+            }
+            else{
+                reponse.send(results);
+            }
+        })
+    })
+
+    // @@@@@@@@@@@ Getting All Cities for cities dropdwon from cities table  @ Aravind M @@@@@@@@@@@@@@
+
+           //@@@@@@@@@@ Inserting JobTitle  to  table  @Aravind M @@@@@@@@@@@@@@
+        app.post('/addJobTitle',(request,response)=>{
+            // console.log("add job title name to job_title table");
+        //  console.log(JSON.stringify(request.body));
+         var sql = "INSERT INTO job_titles (job_title_name,reviewed) values ('"+request.body.jTitle+"','N')";
+         console.log(sql);
+         con.query(sql,function(error, results, fields){
+             if (error) 
+             {
+                 console.log("############## ERROR ############");
+                 response.status(500).send({error:error})
+             }
+             // console.log('The solution is: ', JSON.stringify(results));
+             else{
+                 console.log("############## SUCCESS ############");
+               response.send(results);
+             }
+         })
+ 
+     })
+     //@@@@@@@@@@ Inserting Inserting JobTitle  to  table table  @Aravind M @@@@@@@@@@@@@@
+
+    //@@@@@@@@@@ Inserting New companyname to company_names table  @Aravind M @@@@@@@@@@@@@@
+    app.post('/addCompanyName',(request,response)=>{
+        // console.log(JSON.stringify(request.body));
+        var sql = "INSERT INTO company_names (companyname,reviewed) values ('"+request.body.companyName+"','N')";
+        // console.log(sql);
+        con.query(sql,function(error, results, fields){
+            if (error) 
+            {
+                console.log("############## ERROR ############");
+                response.status(500).send({error:error})
+            }
+            // console.log('The solution is: ', JSON.stringify(results));
+            else{
+                console.log("############## SUCCESS ############");
+              response.send(results);
+            }
+        })
+
+    })
+    //@@@@@@@@@@ Inserting New companyname to company_names table  @Aravind M @@@@@@@@@@@@@@
+
+           //@@@@@@@@@@ Inserting city name  to cities table  @Aravind M @@@@@@@@@@@@@@
+        app.post('/addCityName',(request,response)=>{
+            // console.log("add city name to cities table");
+            //  console.log(JSON.stringify(request.body));
+         var sql = "INSERT INTO cities (name,reviewed) values ('"+request.body.location+"','N')";
+            // console.log(sql);
+         con.query(sql,function(error, results, fields){
+             if (error) 
+             {
+                 console.log("############## ERROR ############");
+                 response.status(500).send({error:error})
+             }
+             // console.log('The solution is: ', JSON.stringify(results));
+             else{
+                 console.log("############## SUCCESS ############");
+               response.send(results);
+             }
+         })
+ 
+     })
+     //@@@@@@@@@@ Inserting Inserting JobTitle  to  table table  @Aravind M @@@@@@@@@@@@@@
+
+     //Getting All region from region table region_name column  @Aravind M@@@@@@@@@@
+    app.post('/getAllregions',(request,reponse)=>{
+    // console.log("@@@@@@@ regions @@@@@@");
+    var sql = "SELECT * from region"
+    con.query(sql, function(error, results, fields){
+        if(error){
+            response.status(500).send({error:error})
+        }
+        else{
+            reponse.send(results);
+        }
+        })
+    })
+
+    //Getting All region from region table region_name column  @Aravind M@@@@@@@@@@
+   
+    //Getting job details data
+    app.post('/getJobDetailsData',(request,response)=>{
+        // console.log("getting job details data ## dk");
+        // console.log("hello",JSON.stringify(request.body));
+    
+        //  var sql = "SELECT * from job_Board inner join job_titles on (job_titles.job_title_id=job_Board.job_title_id) WHERE job_titles.job_title_name='"+request.body.jTitle+"' AND cities on (cities.id=job_Board.location_id)  WHERE cities.name='"+request.body.location+"'";
+        var sql = "select * from job_Board left join job_titles on job_titles.job_title_id=job_Board.job_title_id left join cities on cities.id=job_Board.location_id where job_titles.job_title_name='"+request.body.jTitle+"' AND cities.name='"+request.body.location+"' ";
+
+        con.query(sql, function (error, results, fields) {
+            if (error) 
+            {
+                console.log("############## ERROR ############");
+                response.status(500).send({error:error})
+            }
+            // console.log('The solution is: ', JSON.stringify(results));
+            else{
+                console.log("############## success ############");
+            response.send(results);
+            }
+            
+        })
+    })
+
+    //posting jobboard data 
+
+    
+    app.post('/addJobBoardData',(request,response)=>{
+        console.log("Job titles testting in index.js file");
+        console.log("hello",JSON.stringify(request.body));
+        var sql = "INSERT INTO  job_Board (ref_user_id,company_id,job_title_id,location_id,exp_years,job_details,job_summary,posted_date,active_till_date) VALUES ('"+request.body.uid+"', (SELECT company_id FROM company_names WHERE companyname ='"+request.body.companyName+"'), (SELECT job_title_id FROM job_titles WHERE job_title_name ='"+request.body.jTitle+"'), (SELECT id FROM cities WHERE name ='"+request.body.location+"'), '"+request.body.experiance+"','"+request.body.jobDetails+"','"+request.body.jobSummary+"','"+request.body.postedDate+"','"+request.body.activeTillDate+"')";
+        console.log(sql);
+        con.query(sql,function(error, results, fields){
+            if (error) 
+            {
+                console.log("############## ERROR ############");
+                response.status(500).send({error:error})
+            }
+            // console.log('The solution is: ', JSON.stringify(results));
+            else{
+                console.log("############## SUCCESS ############");
+                response.send(results);
+                //  response.send({guid:guid,redirectUrl: "/lumino/jobBoard.html"} );
+            }
+        })
+
+    })
+ //// posting job board
 
 
 app.post('/updateMarksheet',(request,response)=>{
@@ -1216,7 +1415,7 @@ app.post('/totalCoins',(request,response)=>{
                 
                 
                 let content=mailer.getFpassMailTemplate(request.body.fpass)
-                mailer.sendMail(request.body.fpass,'Trusken New Password Request',content,(response) => {
+                mailer.sendMail(request.body.fpass,'Reset your password for Trusken',content,(response) => {
                     if(response.status == 200)
                     {
                         console.log("mail success")
@@ -1244,7 +1443,7 @@ app.post('/totalCoins',(request,response)=>{
                           response.status(500)
                       }
                       else{
-                        response.send({redirectUrl: "/sucess.html"} );
+                        response.send({redirectUrl: "/inde.html"} );
                       }
                   })
               })

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <!-- Site information -->
+<head lang="en">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TRUSKEN</title>
-    <meta name="description" content="Saasera Description">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Trusken - Professional credibility through blockchain</title>
+
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="css/crumina-fonts.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/blocks.css">
+    <link rel="stylesheet" type="text/css" href="css/layouts.css">
+    <link rel="stylesheet" type="text/css" href="css/modules.css">
+    <link rel="stylesheet" type="text/css" href="css/widgets-styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
     <!-- External CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -25,116 +32,488 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans%7CLato:400,600,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <!--Plugins styles-->
 
-    <!-- Favicon -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/primary-menu.css">
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+
+    <!--Styles for RTL-->
+
+    <!--<link rel="stylesheet" type="text/css" href="css/rtl.css">-->
+
     <link rel="icon" href="images/tts.png">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/icon-114x114.png">
 
-    <!--[if lt IE 9]>
-        <script src="assets/js/html5shiv.min.js"></script>
-        <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <style>
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ffffff;
+            background-color: #ffffff;;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+        
+        .overlay-content {
+            position: relative;
+            top: 10%;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            
+        }
+        
+        .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: rgb(50,86,154);
+            display: block;
+            transition: 0.3s;
+        }
+        
+        .overlay a:hover, .overlay a:focus {
+            color: #f1f1f1;
+        }
+        
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+        }
+        
+        @media screen and (max-height: 450px) {
+          .overlay a {font-size: 20px}
+          .overlay .closebtn {
+            font-size: 40px;
+            top: 15px;
+            right: 35px;
+          }
+        }
+        </style>
 </head>
 
-<body class="primary">
+<body class=" ">
 
-    <!-- Header -->
-    <nav class="navbar navbar-default style-7" data-spy="affix" data-offset-top="60">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html"><img src="images/ts1.png" style="width:180px; height:40px;" alt="SaaSera Logo"></a>
+<!-- <div class="top-bar"> -->
+    <!-- <div class="container"> -->
+
+            <!-- <div class="top-bar-contact"> -->
+                <!-- <div class="contact-item"> -->
+                    <!-- <img src="img/united-states-of-america.png" class="flags" alt="flag"> -->
+                    <!-- <select> -->
+                        <!-- <option value="1">English</option> -->
+                        <!-- <option value="2">Germany</option> -->
+                        <!-- <option value="3">Ukrainian</option> -->
+                    <!-- </select> -->
+                <!-- </div> -->
+
+                <!-- <div class="contact-item"> -->
+                    <!-- 8 800 567.890.11 -->
+                <!-- </div> -->
+
+                <!-- <div class="contact-item"> -->
+                    <!-- <a href="#">info@seosight.com</a> -->
+                <!-- </div> -->
+
+                <!-- <div class="contact-item"> -->
+                    <!-- <span>Mon. - Fri.</span> 10:00 - 21:00 -->
+                <!-- </div> -->
+            <!-- </div> -->
+
+            <!-- <div class="login-block"> -->
+                <!-- <img src="img/signin_color.png" class="sign-in-dark"> -->
+                <!-- <a href="#">Sign in</a> -->
+            <!-- </div> -->
+
+            <!-- <div class="follow_us"> -->
+                <!-- <span>Follow us:</span> -->
+                <!-- <div class="socials"> -->
+
+                    <!-- <a href="" class="social__item"> -->
+                        <!-- <img src="svg/circle-facebook.svg" alt="facebook"> -->
+                    <!-- </a> -->
+
+                    <!-- <a href="" class="social__item"> -->
+                        <!-- <img src="svg/twitter.svg" alt="twitter"> -->
+                    <!-- </a> -->
+
+                    <!-- <a href="" class="social__item"> -->
+                        <!-- <img src="svg/google.svg" alt="google"> -->
+                    <!-- </a> -->
+
+                    <!-- <a href="" class="social__item"> -->
+                        <!-- <img src="svg/youtube.svg" alt="youtube"> -->
+                    <!-- </a> -->
+
+                <!-- </div> -->
+            <!-- </div> -->
+
+        <!-- <a href="#" class="top-bar-close" id="top-bar-close-js"> -->
+            <!-- <span></span> -->
+            <!-- <span></span> -->
+        <!-- </a> -->
+
+    <!-- </div> -->
+<!-- </div> -->
+
+<!-- Header -->
+
+<header class="header" id="site-header">
+
+    <div class="container">
+
+        <div class="header-content-wrapper">
+
+            <a id="top-bar-js" class="top-bar-link"></a>
+
+            <div class="logo" style="float:left">
+                <a href="index.html" class="full-block-link"></a>
+                <img src="images/truskenlogo.png" alt="Trusken">
+                <!---<div class="logo-text">
+                    <div class="logo-title">Trusken</div>
+                    <div class="logo-sub-title"></div>
+                </div> -->
             </div>
 
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- <li class="login-item"><a href="login-10.html">Login</a></li> -->
-                    <!-- <li class="signup-item"><a href="registration-10.html">Sign up</a></li> -->
-                </ul>
-            </div>
+            <nav id="primary-menu" class="primary-menu" style="text-align: center">
+
+                <!-- menu-icon-wrapper -->
+                <a href='javascript:void(0)' id="menu-icon-trigger" onclick="openNav()" class="menu-icon-trigger showhide">
+                    <span style="font-size:30px;cursor:pointer" >&nbsp;&nbsp;&nbsp;&nbsp;&#9776;</span>
+                    <!-- <span class="mob-menu--title">Menu</span>
+                    <span id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden"> -->
+                        
+                        <!-- <svg width="1000px" height="1000px">
+                            <path id="pathD" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                            <path id="pathE" d="M 300 500 L 700 500"></path>
+                            <path id="pathF" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+                        </svg> -->
+                    <!-- </span> -->
+                    <!--  -->
+                </a>
+
+
+
+
+                <div id="myNav" class="overlay">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <br><br>
+                    <div style="text-align: left"> 
+                    <!-- <a href="index.html" class="full-block-link"></a> -->
+                    <img src="images/truskenlogo.png" alt="Trusken">
+                    </div>
+                    <div class="overlay-content">
+                      <a data-toggle="modal" data-target="#myModal" >Login</a>
+                      <a data-toggle="modal" data-target="#myModal1">Sign Up</a>
+                      <a href="aboutus.html">About</a>
+                      <a href="contact.html">Contact</a>
+                      <!-- <a >Why Trusken</a> -->
+                    </div>
+                  </div>
+
+                <ul class="primary-menu-menu " >
+                    <!-- <li class="">
+                        <a> <img src="images/signinlinkedin.png" onclick="signupLinkdn()" /> </a> &nbsp; &nbsp;
+                    </li>
+                    <li class="">
+                        <a data-toggle="modal" data-target="#myModal" class="Btn Btn-small Btn--blue Btn-hover-shadow">
+                            <span class="text">Login</span>
+    
+                        </a>
+    
+                    </li> <li class="">
+                        <a data-toggle="modal" data-target="#myModal1" class="Btn Btn-small Btn--orange Btn-hover-shadow">
+                            <span class="text">Signup</span>
+                            </a>
+                    </li>
+
+                </ul> -->
+            </nav>
+
+            <ul class="nav-add pmhide">
+             
+
+                <!-- <li class="">
+                    <a> <img src="images/signinlinkedin.png" onclick="signupLinkdn()" /> </a> &nbsp; &nbsp;
+                </li> -->
+                <li class="">
+                    <a data-toggle="modal" data-target="#myModal" class="Btn Btn-small Btn--blue Btn-hover-shadow">
+                        <span class="text">Login</span>
+
+                    </a>
+
+                </li> 
+                <!-- <li class="">
+                    <a data-toggle="modal" data-target="#myModal1" class="Btn Btn-small Btn--orange Btn-hover-shadow">
+                        <span class="text">Signup</span>
+                        </a>
+                </li> -->
+  
+            </ul>
+
+
         </div>
-    </nav>
-    <!-- Header End -->
 
-    <!-- Page Header -->
-    <div class="page-header style-7">
-        <div class="container">
-            <h2 class="page-title">Welcome to Trusken</h2>
-            <div class="breadcrumb">
-            <h3>Your account has been verified</h3>
+    </div>
+
+</header>
+
+<!-- ... End Header -->
+
+ <!-- Page Header -->
+ <div class="page-header style-7">
+    <div class="container">
+        <h2 class="page-title" style="color: #FFFFFF">Welcome to Trusken</h2>
+        <div class="breadcrumb">
+        <h3 style="color: #FFFFFF">Your account has been verified</h3>
+        </div>
+
+    </div>
+</div>
+<!-- Page Header End -->
+
+<footer class="style-7">
+    <div class="container" style="text-align: center">
+     <img src="images/tick.png" width="20%" height="20%">
+     </div>
+ <!-- <div class="cps-footer-upper">
+         
+     <div class="container">
+         <div class="row">
+             <div class="col-xs-12 text-center">
+                 <div class="cps-footer-about-wrap text-center">
+                    
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div> -->
+ <div class="cps-footer-lower">
+     <div class="container">
+         <div class="row">
+             <div class="col-xs-12 text-center">
+                <ul class="footer-menu">
+                     <!-- <li><a href="#">Pricing</a></li> -->
+                     <!-- <li><a href="#">Career</a></li> -->
+                     <li><a href="aboutus.html">About</a></li>
+                     <!-- <li><a href="#">Legal</a></li> -->
+                     <!-- <li><a href="#">Terms &amp; Conditions</a></li> -->
+                     <li><a href="contact.html">Contact</a></li>
+                 </ul>
+             </div>
+             <div class="col-xs-12 text-center">
+                 <p class="copyright">Copyright 2018, <a href="index.html">Trusken. </a>  All Rights Reserved</p>
+                 <!-- <p>Designed By <a href="www.gamiac.in">Gamiac Studios</a></p> -->
+             </div>
+         </div>
+     </div>
+ </div>
+</footer>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom: none;">
+                    <img src="images/ts1.png" style="width:200px; height:50px; margin-left: 20%;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                            <div class="col-md-1 "></div>
+                        <div class="col-md-10 " style="text-align:center;">
+                            <!-- <img src="images/sin.png" class="LinkDNr" style=" height:40px;" onclick="signupLinkdn()"> -->
+                            <img src="images/signinlinkedin.png" class="LinkDNr" style=" height:35px; width: 100%" onclick="signupLinkdn()">
+                            <h5 style="text-align:center; color:#bdc3c7">or</h5>
+                            <form id="loginForm" class="account-form">
+
+                                <input type="text" class="email input-standard-grey" id="uname" style="width:100%;height:40px;"name="username"
+                                    placeholder="User Email" required>
+                                
+                                <input type="password" class="password input-standard-grey" id="passw" style="width:100%;height:40px;"name="password"
+                                    placeholder="Password" required>
+                               
+                                <!-- <label class=""><input type="radio" name="remember-pass"> Remember Password</label></br> -->
+                                <!-- <a  class="btn" onclick="redirect()" >Sign in</a> -->
+                                <input type="button" class="Btn Btn-small Btn--blue Btn-hover-shadow" style="height:35px; font-weight: bolder;  padding-top:10px; border:#0B4CFF;"
+                                    onclick="login()" value="Login">
+                                <!-- <a  class="btn btn-white" type="submit"  style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" >LOGIN</a> -->
+
+                            </form>
+                            <!-- <button class="account-form" href="registration.html" >sign in </button> -->
+                            <br>
+                            <!-- Do not have Login?
+                            <a data-toggle="modal" data-target="#myModal1" data-dismiss="modal"><b>Signup</b></a> -->
+
+                            <!-- <div class="text-center or-section">
+                            Or
+                        </div> -->
+                            <div class="login-with-social">
+                                <!-- <a class="gplus-login" href="#"><i class="fa fa-google-plus"></i> Sign in via Google Plus</a> -->
+                                <!-- <a class="facebook-login" href="#"><i class="fa fa-facebook"></i> Sign in via Facebook</a> -->
+                                <!-- <a class="twitter-login" href="#"><i class="fa fa-linkedin"></i> Sign in via LinkDN</a> -->
+                            </div>
+                        </div>
+                        <div class="col-md-1 "></div>
+                    </div>
+
+                </div>
+
+                <!-- <div class="modal-footer"> -->
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                <!-- </div> -->
             </div>
 
         </div>
     </div>
-    <!-- Page Header End -->
 
-  
+    <div id="myModal1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-    <footer class="style-7">
-           <div class="container" style="text-align: center">
-            <img src="images/tick.png" width="20%" height="20%">
-            </div>
-        <!-- <div class="cps-footer-upper">
-                
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <div class="cps-footer-about-wrap text-center">
-                           
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom: none;">
+                    <img src="images/ts1.png" style="width:200px; height:50px; margin-left: 20%;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-1 "></div>
+                        <div class="col-md-10 " style="text-align: center">
+
+                            <img src="images/signinlinkedin.png" style="width:100%; height:35px;" onclick="signupLinkdn()">
+                            <h5 style="text-align:center; color:#bdc3c7">or</h5>
+
+
+                            <form id="regForm" class="account-form registration-form">
+
+                                <input type="text" class="email input-standard-grey" id="namew" style="border:1px solid #ececec; width:100%;height:40px;"
+                                    name="name" placeholder="Name" required></br></br>
+
+                                <input type="email" class="email input-standard-grey" id="emaile" style="border:1px solid #ececec; width:100%; height:40px;"" name="
+                                    email" placeholder="Your Email" required></br></br>
+
+                                <input type="password" class="password input-standard-grey" id="regpass" style="border:1px solid #ececec; width:100%;height:40px;"" name="
+                                    password" placeholder="Password" required></br></br>
+
+                                <div class="checkbox">
+                                    <input name="agreement" type="checkbox"  id="agreement">
+                                    <label for="agreement">Accept User <a href="terms.html">Agreement</a> and <a href="privacy.html"> Privacy Policy</a> </label>
+                                </div>
+
+                                                                <!-- <div class="checkbox"> 
+                                                <input name="corporateUser" type="checkbox" id="corporateUser" >
+                                                    <label for="corporateUser">Corporate Account(Check this only if you want to be a corporate user)</label>
+                                                    </div>
+                                                            -->
+                                <input type="button" onclick="registerUser();" class="Btn Btn-small Btn--blue Btn-hover-shadow"
+                                    style=" height:35px; font-weight: bolder;  padding-top:10px; color:#fff; font-size:15px; border:#0B4CFF;"
+                                    value="Sign Up">
+
+                                <br><br>
+                                Do you already have a Login?
+                                <a data-toggle="modal" data-target="#myModal" data-dismiss="modal"><b>Login</b></a>
+
+
                         </div>
+                        <div class="col-md-1 "></div>
                     </div>
+
                 </div>
+
+                <!-- <div class="modal-footer"> -->
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                <!-- </div> -->
             </div>
-        </div> -->
-        <div class="cps-footer-lower">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                       <ul class="footer-menu">
-                            <!-- <li><a href="#">Pricing</a></li> -->
-                            <!-- <li><a href="#">Career</a></li> -->
-                            <li><a href="#">About</a></li>
-                            <!-- <li><a href="#">Legal</a></li> -->
-                            <!-- <li><a href="#">Terms &amp; Conditions</a></li> -->
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 text-center">
-                        <p class="copyright">Copyright 2018, <a href="#">TRUSKEN</a>. All Rights Reserved</p>
-						<p>Designed By <a href="www.gamiac.in">Gamiac Studios</a></p>
-                    </div>
-                </div>
-            </div>
+
         </div>
-    </footer>
+    </div>
+<!-- End Footer -->
 
-    <!-- Script -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/owl.carousel.js"></script>
-    <script src="assets/js/visible.js"></script>
-    <script src="assets/js/jquery.stellar.min.js"></script>
-    <script src="assets/js/jquery.countTo.js"></script>
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/js/plyr.js"></script>
-    <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/slick.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/app.js"></script>
+<svg style="display:none;">
+    <symbol id="arrow-left" viewBox="122.9 388.2 184.3 85">
+        <path d="M124.1,431.3c0.1,2,1,3.8,2.4,5.2c0,0,0.1,0.1,0.1,0.1l34.1,34.1c1.6,1.6,3.7,2.5,5.9,2.5s4.3-0.9,5.9-2.4
+		c1.6-1.6,2.4-3.7,2.4-5.9s-0.9-3.9-2.4-5.5l-19.9-19.5h11.1c1.5,0,2.7-1.5,2.7-3c0-1.5-1.2-3-2.7-3h-17.6c-1.1,0-2.1,0.6-2.5,1.6
+		c-0.4,1-0.2,2.1,0.6,2.9l24.4,24.4c0.6,0.6,0.9,1.3,0.9,2.1s-0.3,1.6-0.9,2.1c-0.6,0.6-1.3,0.9-2.1,0.9s-1.6-0.3-2.1-0.9
+		l-34.2-34.2c0,0,0,0,0,0c-0.6-0.6-0.8-1.4-0.9-1.9c0,0,0,0,0,0c0-0.2,0-0.4,0-0.6c0.1-0.6,0.3-1.1,0.7-1.6c0-0.1,0.1-0.1,0.2-0.2
+		l34.1-34.1c0.6-0.6,1.3-0.9,2.1-0.9s1.6,0.3,2.1,0.9c0.6,0.6,0.9,1.3,0.9,2.1s-0.3,1.6-0.9,2.1l-24.4,24.4c-0.8,0.8-1,2-0.6,3
+		c0.4,1,1.4,1.7,2.5,1.7h125.7c1.5,0,2.7-1,2.7-2.5c0-1.5-1.2-2.5-2.7-2.5H152.6l19.9-20.1c1.6-1.6,2.4-3.8,2.4-6s-0.9-4.4-2.4-6
+		c-1.6-1.6-3.7-2.5-5.9-2.5s-4.3,0.9-5.9,2.4l-34.1,34.1c-0.2,0.2-0.3,0.3-0.5,0.5c-1.1,1.2-1.8,2.8-2,4.4
+		C124.1,430.2,124.1,430.8,124.1,431.3C124.1,431.3,124.1,431.3,124.1,431.3z"></path>
+        <path d="M283.3,427.9h14.2c1.7,0,3,1.3,3,3c0,1.7-1.4,3-3,3H175.1c-1.5,0-2.7,1.5-2.7,3c0,1.5,1.2,3,2.7,3h122.4
+		c4.6,0,8.4-3.9,8.4-8.5c0-4.6-3.8-8.5-8.4-8.5h-14.2c-1.5,0-2.7,1-2.7,2.5C280.7,426.9,281.8,427.9,283.3,427.9z"></path>
+    </symbol>
+    <symbol id="arrow-right" viewBox="122.9 388.2 184.3 85">
+        <path d="M305.9,430.2c-0.1-2-1-3.8-2.4-5.2c0,0-0.1-0.1-0.1-0.1l-34.1-34.1c-1.6-1.6-3.7-2.5-5.9-2.5c-2.2,0-4.3,0.9-5.9,2.4
+		c-1.6,1.6-2.4,3.7-2.4,5.9s0.9,4.1,2.4,5.7l19.9,19.6h-11.1c-1.5,0-2.7,1.5-2.7,3c0,1.5,1.2,3,2.7,3h17.6c1.1,0,2.1-0.7,2.5-1.7
+		c0.4-1,0.2-2.2-0.6-2.9l-24.4-24.5c-0.6-0.6-0.9-1.3-0.9-2.1s0.3-1.6,0.9-2.1c0.6-0.6,1.3-0.9,2.1-0.9c0.8,0,1.6,0.3,2.1,0.9
+		l34.2,34.2c0,0,0,0,0,0c0.6,0.6,0.8,1.4,0.9,1.9c0,0,0,0,0,0c0,0.2,0,0.4,0,0.6c-0.1,0.6-0.3,1.1-0.7,1.6c0,0.1-0.1,0.1-0.2,0.2
+		l-34.1,34.1c-0.6,0.6-1.3,0.9-2.1,0.9s-1.6-0.3-2.1-0.9c-0.6-0.6-0.9-1.3-0.9-2.1s0.3-1.6,0.9-2.1l24.4-24.4c0.8-0.8,1-1.9,0.6-2.9
+		c-0.4-1-1.4-1.6-2.5-1.6H158.1c-1.5,0-2.7,1-2.7,2.5c0,1.5,1.2,2.5,2.7,2.5h119.3l-19.9,20c-1.6,1.6-2.4,3.7-2.4,6s0.9,4.4,2.4,5.9
+		c1.6,1.6,3.7,2.5,5.9,2.5s4.3-0.9,5.9-2.4l34.1-34.1c0.2-0.2,0.3-0.3,0.5-0.5c1.1-1.2,1.8-2.8,2-4.4
+		C305.9,431.3,305.9,430.8,305.9,430.2C305.9,430.2,305.9,430.2,305.9,430.2z"></path>
+        <path d="M146.7,433.9h-14.2c-1.7,0-3-1.3-3-3c0-1.7,1.4-3,3-3h122.4c1.5,0,2.7-1.5,2.7-3c0-1.5-1.2-3-2.7-3H132.4
+		c-4.6,0-8.4,3.9-8.4,8.5c0,4.6,3.8,8.5,8.4,8.5h14.2c1.5,0,2.7-1,2.7-2.5C149.3,434.9,148.1,433.9,146.7,433.9z"></path>
+    </symbol>
+    <symbol id="to-top" viewBox="0 0 32 32">
+        <path d="M17,22 L25.0005601,22 C27.7616745,22 30,19.7558048 30,17 C30,14.9035809 28.7132907,13.1085075 26.8828633,12.3655101
+         L26.8828633,12.3655101 C26.3600217,9.87224935 24.1486546,8 21.5,8 C20.6371017,8 19.8206159,8.19871575 19.0938083,8.55288165
+         C17.8911816,6.43144875 15.6127573,5 13,5 C9.13400656,5 6,8.13400656 6,12 C6,12.1381509 6.00400207,12.275367 6.01189661,12.4115388
+          L6.01189661,12.4115388 C4.23965876,13.1816085 3,14.9491311 3,17 C3,19.7614237 5.23249418,22 7.99943992,22 L16,22 L16,16 L12.75,19.25
+           L12,18.5 L16.5,14 L21,18.5 L20.25,19.25 L17,16 L17,22 L17,22 Z M16,22 L16,27 L17,27 L17,22 L16,22 L16,22 Z" id="cloud-upload"></path>
+    </symbol>
+</svg>
+
+<!-- JS Script -->
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/crum-mega-menu.js"></script>
+<script src="js/swiper.jquery.min.js"></script>
+<script src="js/theme-plugins.js"></script>
+<script src="js/main.js"></script>
+<script src="js/form-actions.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="js/velocity.min.js"></script>
+<script src="js/ScrollMagic.min.js"></script>
+<script src="js/animation.velocity.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/time-line.js"></script>
+<script>
+    function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+    }
+    
+    function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+    }
+    </script>
+<!-- ...end JS Script -->
+
 </body>
-
 </html>

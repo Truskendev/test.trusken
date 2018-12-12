@@ -10,13 +10,13 @@
 
 
 
-{/* <input class="form-control infields" id="state`+ index + `"  type="text" placeholder="State"></input> */}
-{/* <input class="form-control infields" id="country`+ index + `"  type="text" placeholder="Country"> */}
+{/* <input class="form-control infields" id="state`+ index + `"  type="text" placeholder="State"></input> */ }
+{/* <input class="form-control infields" id="country`+ index + `"  type="text" placeholder="Country"> */ }
 
 
 
 function getWorkTemplate(index, ID) {
-    var cn=[];
+    var cn = [];
     // $.post("/companyName",  function (response) {
     //     //log(response);
     //     if (response.status == 200) { console.log() }
@@ -33,69 +33,24 @@ function getWorkTemplate(index, ID) {
             <form role="form">
             <div class="form-group">
                 <label>Title*</label>
-                <input class="form-control infields" id="workTitle`+ index + `" type="text" placeholder="Job Title">
-            </div>
+                    <input class="form-control infields" id="workTitle`+ index + `" list="jTitles" type="text" placeholder="Job Title">
+                    <datalist id="jTitles" name="jTitle">
+                    </datalist>
+            </div>        
             <div class="form-group">
-            <label>Company*</label>
-                <input class="form-control infields" id="companyName`+ index + `"  type="text" list="companyName" placeholder="Company">
-                <datalist id="companyName" name="companyName">
-                </datalist>
+                <label>Company*</label>
+                    <input class="form-control infields" id="companyName`+ index + `"  type="text" list="companyName" placeholder="Company">
+                    <datalist id="companyName" name="companyName">
+                    </datalist>
             </div>
            
             <div class="form-group">
-                <label>Country*</label>
-               
-                <select class="form-control infields" id="country`+ index + `"  >
-<option value="">-----Select Country-----</option>
-<option value="India">India</option>
-</select>
+                <label>Location*</label>
+                    <input class="form-control infields" id="city`+ index + `"  type="text" list="allCities" placeholder="Location" title="Enter a City">
+                    <datalist id="allCities" name="Cities">
+                    </datalist>
             </div>
-            <div class="form-group">
-                <label>State*</label>
-                
-                <select class="form-control infields" id="state`+ index + `"  >
-<option value="">----Select State----</option>
-<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-<option value="Andhra Pradesh">Andhra Pradesh</option>
-<option value="Arunachal Pradesh">Arunachal Pradesh</option>
-<option value="Assam">Assam</option>
-<option value="Bihar">Bihar</option>
-<option value="Chandigarh">Chandigarh</option>
-<option value="Chhattisgarh">Chhattisgarh</option>
-<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-<option value="Daman and Diu">Daman and Diu</option>
-<option value="Delhi">Delhi</option>
-<option value="Goa">Goa</option>
-<option value="Gujarat">Gujarat</option>
-<option value="Haryana">Haryana</option>
-<option value="Himachal Pradesh">Himachal Pradesh</option>
-<option value="Jammu and Kashmir">Jammu and Kashmir</option>
-<option value="Jharkhand">Jharkhand</option>
-<option value="Karnataka">Karnataka</option>
-<option value="Kerala">Kerala</option>
-<option value="Lakshadweep">Lakshadweep</option>
-<option value="Madhya Pradesh">Madhya Pradesh</option>
-<option value="Maharashtra">Maharashtra</option>
-<option value="Manipur">Manipur</option>
-<option value="Meghalaya">Meghalaya</option>
-<option value="Mizoram">Mizoram</option>
-<option value="Nagaland">Nagaland</option>
-<option value="Orissa">Orissa</option>
-<option value="Pondicherry">Pondicherry</option>
-<option value="Punjab">Punjab</option>
-<option value="Rajasthan">Rajasthan</option>
-<option value="Sikkim">Sikkim</option>
-<option value="Tamil Nadu">Tamil Nadu</option>
-<option value="Tripura">Tripura</option>
-<option value="Uttaranchal">Uttaranchal</option>
-<option value="Uttar Pradesh">Uttar Pradesh</option>
-<option value="West Bengal">West Bengal</option>
-</select>
-            </div>
-            <div class="form-group">
-            <label>City*</label>
-            <input class="form-control infields" id="city`+ index + `"  type="text" placeholder="City">
-        </div>
+        
             <div class="form-group" >
                 <label>Start Date</label></br>
                 <!-- <input class="form-control infields" id="workstartYear"   type="text" placeholder="Start Year"><br> -->
@@ -232,26 +187,26 @@ function getWorkTemplate(index, ID) {
                      <option value="12">December</option>
                  </select>
                  <select id="year" name="year" class="enYear`+ index + `">
-                        <option value="null">YYYY</option>
-                        <option value="2000">2000</option>
-                        <option value="2001">2001</option>
-                        <option value="2002">2002</option>
-                        <option value="2003">2003</option>
-                        <option value="2004">2004</option>
-                        <option value="2005">2005</option>
-                        <option value="2006">2006</option>
-                        <option value="2007">2007</option>
-                        <option value="2008">2008</option>
-                        <option value="2009">2009</option>
-                        <option value="2010">2010</option>
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
+                    <option value="null">YYYY</option>
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
                  </select>
                 
                  
@@ -320,13 +275,9 @@ function getWorkTemplate(index, ID) {
                         <label>
                             <input type="radio" name="employmentType`+ index + `" onclick="dissp(` + index + `)" id="Temporary" value="Temporary">Temporary
 
-
                         </label>
                     </div>
-                    
-                </div>
-                
-                
+                </div>    
             </div>
             <div class='col-md-1' style="visibility:hidden;">
             <em class="fa fa-trash" style="font-size:20px;"></em>
@@ -353,76 +304,26 @@ function getEducationTemplate(cT, ID) {
                     <input class="form-control infields" id="degreeCertificate`+ cT + `" type="text" placeholder="">
                 </div>
 
+                <div class="form-group">
                
+                </div>
+           
+                <div class="form-group">
+                    <label>Location*</label>
+                        <input class="form-control infields" id="city`+ cT + `"  list="allCities" type="text" placeholder="City">
+                        <datalist id="allCities" name="Cities">
+                        </datalist>
+                </div>
+                <div class="form-group">
+
+                    <label>Start Year</label>
+                    <input type="text" class=" infields form-control edstYear`+ cT + `" style="width:25%;" placeholder="YYYY">
+                    
                 
-                <div class="form-group">
-                <label>Country*</label>
-         
-<select class="form-control infields" id="country`+ cT + `"  >
-
-<option value="">-----Select Country-----</option>
-<option value="India">India</option>
-
-
-</select>
-            </div>
-            <div class="form-group">
-                <label>State*</label>
-                <select class="form-control infields" id="state`+ cT + `" >
-                <option value="">----Select State----</option>
-                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar</option>
-                <option value="Chandigarh">Chandigarh</option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                <option value="Daman and Diu">Daman and Diu</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat</option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                <option value="Jharkhand">Jharkhand</option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Lakshadweep">Lakshadweep</option>
-                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya</option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Orissa">Orissa</option>
-                <option value="Pondicherry">Pondicherry</option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Tripura">Tripura</option>
-                <option value="Uttaranchal">Uttaranchal</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="West Bengal">West Bengal</option>
-</select>
-       
-              
-            </div>
-            <div class="form-group">
-            <label>City*</label>
-            <input class="form-control infields" id="city`+ cT + `"  type="text" placeholder="City">
-            </div>
-                <div class="form-group">
-
-        <label>Start Year</label>
-        <input type="text" class=" infields form-control edstYear`+ cT + `" style="width:25%;" placeholder="YYYY">
-        
-       
-        <label>End Year</label>
-        <input type="text" class=" infields form-control edEnYear`+ cT + `" style="width:25%;"  placeholder="YYYY">
-        
-    </div>
+                    <label>End Year</label>
+                    <input type="text" class=" infields form-control edEnYear`+ cT + `" style="width:25%;"  placeholder="YYYY">
+                    
+                </div>
                     <div class="form-group">
                     <label>Specialization  </label>
                     <input class=" infields form-control" id="speciality`+ cT + `" type="text" placeholder="">
@@ -433,12 +334,8 @@ function getEducationTemplate(cT, ID) {
                     <input class="form-control infields" id="memNumber`+ cT + `" type="text" placeholder="">
                 </div>
                 
-                
-            
-               
                 </div>
-            
-                    
+      
                 </div>
             </form>
         </div>

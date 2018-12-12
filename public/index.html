@@ -33,8 +33,8 @@
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
 
-<style>
-.overlay {
+    <style>
+        .overlay {
     height: 100%;
     width: 0;
     position: fixed;
@@ -176,11 +176,11 @@
 
                     <!-- menu-icon-wrapper -->
                     <a href='javascript:void(0)' id="menu-icon-trigger" onclick="openNav()" class="menu-icon-trigger showhide">
-                        <span style="font-size:30px;cursor:pointer" >&nbsp;&nbsp;&nbsp;&nbsp;&#9776;</span>
+                        <span style="font-size:30px;cursor:pointer">&nbsp;&nbsp;&nbsp;&nbsp;&#9776;</span>
                         <!-- <span class="mob-menu--title">Menu</span>
                         <span id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden"> -->
-                            
-                            <!-- <svg width="1000px" height="1000px">
+
+                        <!-- <svg width="1000px" height="1000px">
                                 <path id="pathD" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
                                 <path id="pathE" d="M 300 500 L 700 500"></path>
                                 <path id="pathF" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
@@ -189,7 +189,7 @@
                         <!--  -->
                     </a>
 
-                    <ul class="nav-add showhide">
+                    <!-- <ul class="nav-add showhide">
                  
 
                         <li class="">
@@ -197,26 +197,26 @@
                         <span class="text">Signup</span>
                         </a>
 </li>
-</ul>
+</ul> -->
 
 
                     <div id="myNav" class="overlay">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <br><br>
                         <div style="text-align: left">
-                        <!-- <a href="index.html" class="full-block-link"></a> -->
-                        <img src="images/truskenlogo.png" alt="Trusken">
+                            <!-- <a href="index.html" class="full-block-link"></a> -->
+                            <img src="images/truskenlogo.png" alt="Trusken">
                         </div>
                         <div class="overlay-content">
-                          <a data-toggle="modal" data-target="#myModal" >Login</a>
-                          <a data-toggle="modal" data-target="#myModal1">Sign Up</a>
-                          <a href="aboutus.html">About</a>
-                          <a href="contact.html">Contact</a>
-                          <!-- <a >Why Trusken</a> -->
+                            <a data-toggle="modal" data-target="#myModal">Login</a>
+                            <a data-toggle="modal" data-target="#myModal1">Sign Up</a>
+                            <a href="aboutus.html">About</a>
+                            <a href="contact.html">Contact</a>
+                            <!-- <a >Why Trusken</a> -->
                         </div>
-                      </div>
+                    </div>
 
-                    <ul class="primary-menu-menu " >
+                    <ul class="primary-menu-menu ">
                         <!-- <li class="">
                             <a> <img src="images/signinlinkedin.png" onclick="signupLinkdn()" /> </a> &nbsp; &nbsp;
                         </li>
@@ -236,25 +236,26 @@
                 </nav>
 
                 <ul class="nav-add pmhide">
-                 
 
-                    <li class="">
+
+                    <!-- <li class="">
                         <a> <img src="images/signinlinkedin.png" style="cursor:pointer" onclick="signupLinkdn()" /> </a> &nbsp; &nbsp;
-                    </li>
+                    </li> -->
                     <li class="">
                         <a data-toggle="modal" data-target="#myModal" class="Btn Btn-small Btn--blue Btn-hover-shadow">
                             <span class="text">Login</span>
-    
+
                         </a>
-    
-                    </li> <li class="">
+
+                    </li>
+                    <li class="">
                         <a data-toggle="modal" data-target="#myModal1" class="Btn Btn-small Btn--orange Btn-hover-shadow">
                             <span class="text">Signup</span>
-                            </a>
+                        </a>
                     </li>
-                   
 
-                  
+
+
 
 
                 </ul>
@@ -279,7 +280,7 @@
             <div class="right-menu-wrap">
 
                 <div class="user-menu-close js-close-aside">
-                    <a  class="user-menu-content  js-clode-aside">
+                    <a class="user-menu-content  js-clode-aside">
                         <span></span>
                         <span></span>
                     </a>
@@ -302,32 +303,41 @@
         <div class="header-spacer"></div>
         <!--  Main Slider -->
 
-       
+
         <div class="container-full-width">
-                <div class="swiper-container main-slider" data-effect="fade" data-autoplay="4000">
-    
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-    
-    
-                        <div class="swiper-slide bg-green-color main-slider-bg-dark">
-    
-                            <div class="container table full-height">
-                                <div class="row table-cell" style="padding-top:1%; padding-bottom:12%;">
-    
-                                    <div class="col-lg-6 table-cell">
-                                        <div class="slider-content">
-                                                <br>
-                                            <h4 class="h1 slider-content-title c-dark" data-swiper-parallax="-100"> Earn Trusken
-                                                Coins
-                                            </h4>
-    
-                                            <h5 class="slider-content-text" data-swiper-parallax="-200">To build a
+            <div class="swiper-container main-slider" data-effect="fade" data-autoplay="false">
+
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+
+
+                    <div class="swiper-slide bg-green-color main-slider-bg-dark">
+
+                        <div class="container table full-height">
+                            <div class="row table-cell" style="padding-top:1%; padding-bottom:12%;">
+
+                                <div class="col-lg-6 table-cell">
+                                    <div class="slider-content">
+                                        <br>
+                                        <h4 class="h4 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 18px; font-weight: 800">
+                                            Get your professional profile pre-verified and stand out from the crowd!
+                                        </h4>
+
+                                        <!-- <h5 class="slider-content-text" data-swiper-parallax="-200">To build a
                                                 community of Trusted Professionals, </br>we are giving away Trusken coins for free.
-                                            </h5>
-    
-                                            <!---    <div class="main-slider-btn-wrap" data-swiper-parallax="-300">
+                                            </h5> -->
+                                        <!-- <ul class="list list--primary"> -->
+                                        <p>A Verified profile gets shortlisted more often.</p>
+                                        <p>Compare your salary against peers.</p>
+                                        <p>iTrust gives you access to jobs in your network’s employers.</p>
+                                        <p>Refer trusted professionals to earn employer referral bonus. </p>
+                                        <p>Early adopters get Trusken Coins!</p>
+
+                                        <h5 class="h5 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 16px; font-weight: 800">
+                                            Get Invited Now. Its Free!</h5>
+
+                                        <!---    <div class="main-slider-btn-wrap" data-swiper-parallax="-300">
     
                                                 <a href="#">
                                                    <img src="images/signinlinkedin.png"/> 
@@ -340,128 +350,171 @@
                                                 </a>
     
                                             </div> -->
-    
-                                        </div>
+
                                     </div>
-    
-                                    <div class="col-lg-6 table-cell">
-                                        <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
-                                            <img src="img/slider5.png" alt="slider" >
-                                        </div>
-                                    </div>
-    
                                 </div>
+
+                                <div class="col-lg-6 table-cell">
+                                    <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
+                                        <img src="img/slider5.png" alt="slider">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-    
-    
-    
-    
-                        <div class="swiper-slide bg-secondary-color main-slider-bg-dark">
-    
-                            <div class="container table full-height">
-                                <div class="row table-cell" style="padding-top:1%; padding-bottom:10%;">
-                                    <div class="col-lg-6 table-cell">
-    
-                                        <div class="slider-content" >
-    
-                                            <h4 class="h1 slider-content-title c-dark" data-swiper-parallax="-100">Stand
-                                                out from the crowd!
-                                            </h4>
-    
-                                            <h5 class="slider-content-text" data-swiper-parallax="-200">Join the network of
+                    </div>
+
+
+
+
+                    <div class="swiper-slide bg-secondary-color main-slider-bg-dark">
+
+                        <div class="container table full-height">
+                            <div class="row table-cell" style="padding-top:1%; padding-bottom:10%;">
+                                <div class="col-lg-6 table-cell">
+
+                                    <div class="slider-content">
+
+                                        <h4 class="h4 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 18px; font-weight: 800">Get
+                                            your organisation onto the Blockchain platform!</h4>
+
+                                        <!-- <h5 class="slider-content-text" data-swiper-parallax="-200">Join the network of
                                                 verified trusted professionals and stand out from the crowd.
     
-                                            </h5>
-    
-                                        </div>
-    
+                                            </h5> -->
+
+                                        <!-- <ul class="list list--primary"> -->
+                                        <p>Ex-employee verification made easy.</p>
+                                        <p>Instant verification of prospective hires.</p>
+                                        <p>Blockchain the process and earn revenues.</p>
+                                        <p>Information remains secure and in your control.</p>
+                                        <p>Become a HR tech leader in the forefront of innovation.</p>
+
+                                        <h5 class="h5 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 16px; font-weight: 800">Get
+                                            your Blockchain Node Today.</h5>
+
+
+
                                     </div>
-                                    <div class="col-lg-6 table-cell">
-                                        <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
-                                            <img src="img/slider3.png" alt="slider">
-                                        </div>
-                                    </div>
-    
+
                                 </div>
+                                <div class="col-lg-6 table-cell">
+                                    <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
+                                        <img src="img/slider3.png" alt="slider">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-    
-    
-                        <div class="swiper-slide bg-border-color">
-    
-                            <div class="container table full-height">
-                                <div class="row table-cell" style="padding-top:1%; padding-bottom:18%;">
-                                    <div class="col-lg-6 table-cell">
-    
+                    </div>
+
+
+                    <div class="swiper-slide bg-border-color">
+
+                        <div class="container table full-height">
+                            <div class="row table-cell" style="padding-top:1%; padding-bottom:18%;">
+                                <div class="col-lg-6 table-cell">
+
                                     <!-- <div class="col-lg-12"> -->
-    
-                                        <div class="slider-content ">
-    
-                                            <h4 class="h1 slider-content-title c-dark" data-swiper-parallax="-100">Tools that help
-                                                you!</h4>
-                                            <h5 class="slider-content-text c-black" data-swiper-parallax="-200">Accurate
+
+                                    <div class="slider-content ">
+
+                                        <h4 class="h4 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 18px; font-weight: 800">Monetise
+                                            prior verifications by participating on the Marketplace!</h4>
+                                        <!-- <h5 class="slider-content-text c-black" data-swiper-parallax="-200">Accurate
                                                 data backed, salary tool that tell you where you stand against your peers.
-                                            </h5>
-    
-    
-                                        </div>
+                                            </h5> -->
+
+                                        <p>Blockchain your existing records and earn revenues.</p>
+                                        <p>Instantly verify, if records exist on the platform.</p>
+                                        <p>Your Information remains secure and in your control.</p>
+                                        <p>New clients can avail your services instantaneously. </p>
+                                        <p>Avoid duplication of BGC work. Save time, save cost.</p>
+
+                                        <h5 class="h5 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 16px; font-weight: 800">Get
+                                            your Blockchain Node Today.</h5>
+
+
                                     </div>
-                                    <div class="col-lg-6" >
-                                        <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
-                                            <img src="img/slider1.png" alt="slider" >
-                                        </div>
-                                    </div>
-    
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
+                                        <img src="img/slider1.png" alt="slider">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-    
-                        <div class="swiper-slide bg-orange-color main-slider-bg-dark">
-                            <div class="container table full-height">
-                                <div class="row table-cell" style="padding-top:1%; padding-bottom:18%;">
-    
-                                    <div class="col-lg-6" >
-    
-                                        <div class="slider-content ">
-                                            <h4 class="h1 slider-content-title c-dark" data-swiper-parallax="-100"> Get Shortlisted for jobs!</h4>
-                                            <h5 class="slider-content-text" data-swiper-parallax="-200">Get your profile verified for free and get ahead in the que for an interview.
-                                            </h5>
-                                        </div>
-    
+                    </div>
+
+                    <div class="swiper-slide bg-orange-color main-slider-bg-dark">
+                        <div class="container table full-height">
+                            <div class="row table-cell" style="padding-top:1%; padding-bottom:18%;">
+
+                                <div class="col-lg-6">
+
+                                    <div class="slider-content ">
+                                        <h4 class="h4 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 18px; font-weight: 800">
+                                            As an early user, earn Trusken Coins!</h4>
+                                        <!-- <h5 class="slider-content-text" data-swiper-parallax="-200">Get your profile verified for free and get ahead in the que for an interview.
+                                            </h5> -->
+
+
+                                        <p>On registration, you earn Trusken coins.</p>
+                                        <p>By inviting friends / colleagues you can earn more coins.</p>
+                                        <p>We have made it easy for you share on social media.</p>
+                                        <p>These coins can be redeemed for benefits and offers.</p>
+                                        <p>As the network grows, the benefits will increase.</p>
+
+
+                                        <h5 class="h5 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 16px; font-weight: 800">
+                                            Get your coins now!</h5>
                                     </div>
-    
-                                    <div class="col-lg-6" >
-                                        <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
-                                            <img src="img/slider4.png" alt="slider" >
-                                        </div>
-    
-                                    </div>
-    
+
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
+                                        <img src="img/slider4.png" alt="slider">
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
-    
-    
-    
-                        <div class="swiper-slide bg-primary-color main-slider-bg-dark thumb-left">
-    
-                            <div class="container table full-height">
-                                <div class="row table-cell" style="padding-top:1%; padding-bottom:10%;">
-    
-                                    <div class="col-lg-6 table-cell">
-                                        <div class="slider-content">
-                                            <h4 class="h1 slider-content-title c-dark" data-swiper-parallax="-100">
-                                                    Earn Trusken Badges </span>
-                                            </h4>
-                                            <h5 class="slider-content-text" data-swiper-parallax="-200">
+                    </div>
+
+
+
+                    <div class="swiper-slide bg-primary-color main-slider-bg-dark thumb-left">
+
+                        <div class="container table full-height">
+                            <div class="row table-cell" style="padding-top:1%; padding-bottom:10%;">
+
+                                <div class="col-lg-6 table-cell">
+                                    <div class="slider-content">
+                                        <h4 class="h4 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 18px; font-weight: 800">
+                                            Trusken Badge for professional credibility!</span>
+                                        </h4>
+                                        <!-- <h5 class="slider-content-text" data-swiper-parallax="-200">
     
                                                 Display it proudly on your social profile, resume etc.,</br>
                                                 A verified badge establishes trustworthiness
     
-                                            </h5>
-    
-                                            <!--    <div class="main-slider-btn-wrap" data-swiper-parallax="-300">
+                                            </h5> -->
+
+
+                                        <p>A Trusken badge is a symbol of Trust.</p>
+                                        <p>Badges issued on verification of your credentials.</p>
+                                        <p>Display badges on your LinkedIn / social media.</p>
+                                        <p>Badges certify that your work experience is genuine.</p>
+                                        <p>Pre-verified experience helps you get shortlisted for jobs.</p>
+
+                                        <h5 class="h5 slider-content-title c-dark" data-swiper-parallax="-100" style="font-size: 16px; font-weight: 800">
+                                            Get badges on successful verification. Its free!</span>
+                                        </h5>
+
+                                        <!--    <div class="main-slider-btn-wrap" data-swiper-parallax="-300">
     
                                                 <a href="#">
                                                    <img src="images/signinlinkedin.png"/> 
@@ -474,106 +527,106 @@
                                                 </a>
     
                                             </div> -->
-    
-                                        </div>
+
                                     </div>
-    
-                                    <div class="">
-                                        <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
-                                            <img src="img/slider2.png" alt="slider" >
-                                        </div>
-                                    </div>
-    
                                 </div>
+
+                                <div class="">
+                                    <div class="slider-thumb" data-swiper-parallax="-300" data-swiper-parallax-duration="500">
+                                        <img src="img/slider2.png" alt="slider">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-    
-    
-    
                     </div>
-    
-                    <!--Prev next buttons-->
-    
-                    <svg class="btn-next btn-next-black" style="margin-top:100px;">
+
+
+
+                </div>
+
+                <!--Prev next buttons-->
+
+                <!-- <svg class="btn-next btn-next-black" style="margin-top:100px;">
                         <use xlink:href="#arrow-right"></use>
                     </svg>
     
                     <svg class="btn-prev btn-prev-black" style="margin-top:100px;">
                         <use xlink:href="#arrow-left"></use>
-                    </svg>
-    
-                    <!-- Pagination tabs-- -->
-    
-                    <div class="slider-slides">
-    
-    
-    
-    
-    
-                        <a href="#" class="slides-item bg-green-color">
-                            <div class="content">
-                                <div class="text-wrap">
-                                    <h4 class="slides-title"> Earn Trusken Coins</h4>
-                                </div>
-                                <div class="slides-number">01</div>
+                    </svg> -->
+
+                <!-- Pagination tabs-- -->
+
+                <div class="slider-slides">
+
+
+
+
+
+                    <a href="#" class="slides-item bg-green-color">
+                        <div class="content">
+                            <div class="text-wrap">
+                                <h4 class="slides-title"> For Professionals</h4>
                             </div>
-                        </a>
-    
-                        <a href="#" class="slides-item bg-secondary-color">
-                            <div class="content">
-                                <div class="text-wrap">
-                                    <h4 class="slides-title">Stand out from the crowd</h4>
-                                </div>
-                                <div class="slides-number">02</div>
+                            <div class="slides-number">01</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="slides-item bg-secondary-color">
+                        <div class="content">
+                            <div class="text-wrap">
+                                <h4 class="slides-title">For Corporates</h4>
                             </div>
-                        </a>
-    
-    
-                        <a href="#" class="slides-item bg-border-color main-slider-bg-light">
-                            <div class="content">
-                                <div class="text-wrap">
-                                    <h4 class="slides-title">Tools that help you</h4>
-                                </div>
-                                <div class="slides-number">03</div>
+                            <div class="slides-number">02</div>
+                        </div>
+                    </a>
+
+
+                    <a href="#" class="slides-item bg-border-color main-slider-bg-light">
+                        <div class="content">
+                            <div class="text-wrap">
+                                <h4 class="slides-title">For BGC Firms</h4>
                             </div>
-                        </a>
-    
-    
-                        <a href="#" class="slides-item bg-orange-color">
-                            <div class="content">
-                                <div class="text-wrap">
-                                    <h4 class="slides-title"> Get Shortlisted for jobs!</h4>
-                                </div>
-                                <div class="slides-number">04</div>
+                            <div class="slides-number">03</div>
+                        </div>
+                    </a>
+
+
+                    <a href="#" class="slides-item bg-orange-color">
+                        <div class="content">
+                            <div class="text-wrap">
+                                <h4 class="slides-title"> Trusken Coins</h4>
                             </div>
-                        </a>
-    
-    
-                        <a href="#" class="slides-item bg-primary-color">
-                            <div class="content">
-                                <div class="text-wrap">
-                                    <h4 class="slides-title"> Earn Trusken Badges</h4>
-    
-                                </div>
-                                <div class="slides-number">05</div>
+                            <div class="slides-number">04</div>
+                        </div>
+                    </a>
+
+
+                    <a href="#" class="slides-item bg-primary-color">
+                        <div class="content">
+                            <div class="text-wrap">
+                                <h4 class="slides-title"> Trusken Badges</h4>
+
                             </div>
-                        </a>
-    
-    
-    
-    
-    
-    
-                    </div>
+                            <div class="slides-number">05</div>
+                        </div>
+                    </a>
+
+
+
+
+
+
                 </div>
             </div>
+        </div>
 
         <!-- ... End Main Slider
 
 
 <!-- Info-Box -->
 
-         <div class="container info-boxes pt100 pb100">
+        <div class="container info-boxes pt100 pb100">
 
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -583,24 +636,25 @@
                         </div>
                         <div class="info-box-content align-left">
                             <h5 class="info-box-title">Trusken Coins</h5>
-                            <p class="text">As an early member of the community you will receive Trusken coins, you can more coins when you invite more colleagues to our platform.
+                            <p class="text">As an early member of the community you will receive Trusken coins, you can
+                                more coins when you invite more colleagues to our platform.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                        <div class="info-box--standard" data-mh="info-boxes">
-                            <div class="info-box-image">
-                                <img src="images/time.png" alt="image">
-                            </div>
-                            <div class="info-box-content align-left">
-                                <h5 class="info-box-title">Save Time</h5>
-                                <p class="text">Instantaneously establish Trust by allowing bonafide requesters access to
-                                    your Trusken Badges
-                                    Save time.
-                                </p>
-                            </div>
+                    <div class="info-box--standard" data-mh="info-boxes">
+                        <div class="info-box-image">
+                            <img src="images/time.png" alt="image">
                         </div>
+                        <div class="info-box-content align-left">
+                            <h5 class="info-box-title">Save Time</h5>
+                            <p class="text">Instantaneously establish Trust by allowing bonafide requesters access to
+                                your Trusken Badges
+                                Save time.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -640,35 +694,37 @@
                         <div class="info-box-content align-left">
                             <h5 class="info-box-title">Data Privacy & Security
                             </h5>
-                            <p class="text">At Trusken, our priority is data privacy and security which is why we use highest level of encryption to secure your data.
+                            <p class="text">At Trusken, our priority is data privacy and security which is why we use
+                                highest level of encryption to secure your data.
                             </p>
                         </div>
                     </div>
                 </div>
 
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                        <div class="info-box--standard" data-mh="info-boxes">
-                            <div class="info-box-image">
-                                <img src="images/data.png" alt="image">
-                            </div>
-                            <div class="info-box-content align-left">
-                                <h5 class="info-box-title">Own your data
-                                </h5>
-                                <p class="text">You own your data all the time, grant access to your profile only to those companies who you wish to apply.
-                                </p>
-                            </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="info-box--standard" data-mh="info-boxes">
+                        <div class="info-box-image">
+                            <img src="images/data.png" alt="image">
+                        </div>
+                        <div class="info-box-content align-left">
+                            <h5 class="info-box-title">Own your data
+                            </h5>
+                            <p class="text">You own your data all the time, grant access to your profile only to those
+                                companies who you wish to apply.
+                            </p>
                         </div>
                     </div>
-
                 </div>
 
             </div>
 
         </div>
-        <!-- ... End Info-Box -->
+
+    </div>
+    <!-- ... End Info-Box -->
 
 
-        <!-- SEO-Score 
+    <!-- SEO-Score 
 
 <div class="container-fluid">
     <div class="row">
@@ -727,7 +783,7 @@
 <!-- ... End SEO-Score -->
 
 
-        <!-- Offers 
+    <!-- Offers 
 
 <div class="container">
     <div class="row medium-padding120">
@@ -799,7 +855,7 @@
 <!-- ... End Offers -->
 
 
-        <!-- Our-video --
+    <!-- Our-video --
 
 <div class="container-fluid">
     <div class="row">
@@ -842,7 +898,7 @@
 <!-- ... End Offers -->
 
 
-        <!-- Background-mountains --
+    <!-- Background-mountains --
 
 <div class="container-fluid">
     <div class="row">
@@ -945,7 +1001,7 @@
 <!-- End Background-mountains -->
 
 
-        <!-- Counters --
+    <!-- Counters --
 
 <div class="container-fluid">
     <div class="row bg-green-color">
@@ -1016,7 +1072,7 @@
 <!-- End Counters -->
 
 
-        <!-- Recent-case --
+    <!-- Recent-case --
 
 <div class="container">
     <div class="row medium-padding120">
@@ -1083,7 +1139,7 @@
 <!-- End Recent-case -->
 
 
-        <!-- Testimonial-slider --
+    <!-- Testimonial-slider --
 
 <div class="container-fluid">
     <div class="row">
@@ -1686,62 +1742,62 @@
     <!-- Footer -->
 
     <footer class="footer" style=" padding-top: 20px;">
-            <div class="container">
-                <div class="row">
-        
-                    <div class="info">
-                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                            <div class="heading">
-                                <h5 class="heading-title">Connect with Trusken</h5>
-                                <div class="heading-line">
-                                    <span class="short-line"></span>
-                                    <span class="long-line"></span>
-                                </div>
-                            
+        <div class="container">
+            <div class="row">
+
+                <div class="info">
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                        <div class="heading">
+                            <h5 class="heading-title">Connect with Trusken</h5>
+                            <div class="heading-line">
+                                <span class="short-line"></span>
+                                <span class="long-line"></span>
                             </div>
-        
-                            <div class="socials">
-                                    <a href="https://in.linkedin.com/company/trusken" class="social__item">
-                                        <img src="images/linkedin.png" alt="linkedin">
-                                    </a>
-                                    
-                                    <a href="https://www.facebook.com/Trusken/" class="social__item">
-                                        <img src="images/facebook.png" alt="facebook">
-                                    </a>
-                                    <a href="https://twitter.com/trusken_com" class="social__item">
-                                        <img src="images/twitter.png" alt="twitter">
-                                    </a>
-                                    
-                                    <a href="https://t.me/trusken" class="social__item">
-                                        <img src="images/telegram.png" alt="telegram">
-                                    </a>
-                                    <!-- <a href="https://twitter.com/trusken_com" class="social__item">
+
+                        </div>
+
+                        <div class="socials">
+                            <a href="https://in.linkedin.com/company/trusken" class="social__item">
+                                <img src="images/linkedin.png" alt="linkedin">
+                            </a>
+
+                            <a href="https://www.facebook.com/Trusken/" class="social__item">
+                                <img src="images/facebook.png" alt="facebook">
+                            </a>
+                            <a href="https://twitter.com/trusken_com" class="social__item">
+                                <img src="images/twitter.png" alt="twitter">
+                            </a>
+
+                            <a href="https://t.me/trusken" class="social__item">
+                                <img src="images/telegram.png" alt="telegram">
+                            </a>
+                            <!-- <a href="https://twitter.com/trusken_com" class="social__item">
                                         <img src="images/instagram.png" alt="instagram">
                                     </a> -->
-                            </div>
-                       
                         </div>
-        
-                        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-12 col-xs-12">
-                            <div class="services">
-                                <!-- <div class="heading">
+
+                    </div>
+
+                    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-12 col-xs-12">
+                        <div class="services">
+                            <!-- <div class="heading">
                                     <h3 class="heading-title">Services Provided</h3>
                                     <div class="heading-line">
                                         <span class="short-line"></span>
                                         <span class="long-line"></span>
                                     </div> -->
-                                </div>
-        
-                                <ul class="list list--primary">
-                                    <li>
-                                        <i class="fa fa-caret-right" aria-hidden="true"></i>
-                                        <a  href="aboutus.html">About</a>
-                                    </li>
-                                    <li>
-                                            <i class="fa fa-caret-right" aria-hidden="true"></i>
-                                            <a  href="contact.html">Contact</a>
-                                        </li>
-                                    <!-- <li>
+                        </div>
+
+                        <ul class="list list--primary">
+                            <li>
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                                <a href="aboutus.html">About</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                                <a href="contact.html">Contact</a>
+                            </li>
+                            <!-- <li>
                                         <i class="fa fa-caret-right" aria-hidden="true"></i>
                                         <a href="#">Pay-per-click</a>
                                     </li>
@@ -1765,9 +1821,9 @@
                                         <i class="fa fa-caret-right" aria-hidden="true"></i>
                                         <a href="#">Blog Management</a>
                                     </li> -->
-                                </ul>
-        
-                                <!-- <ul class="list list--primary">
+                        </ul>
+
+                        <!-- <ul class="list list--primary">
                                     <li>
                                         <i class="fa fa-caret-right" aria-hidden="true"></i>
                                         <a href="#">Virtual Marketing</a>
@@ -1781,13 +1837,13 @@
                                         <a href="#">Keyword Analytics</a>
                                     </li>
                                 </ul> -->
-                            </div>
-                        </div>
                     </div>
-        
                 </div>
-        
-                <!-- <div class="row">
+            </div>
+
+        </div>
+
+        <!-- <div class="row">
                     <div class="contacts">
                         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                             <div class="contacts-item">
@@ -1826,33 +1882,33 @@
                         </div>
                     </div>
                 </div> -->
-        
-            </div>
-        
-            <div class="sub-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <span>
-                                Copyright © 2018 <a href="index.html" class="sub-footer__link">Trusken</a>
-                               
-                            </span>
-        <br>
-                            
-                            <a href="terms.html">Terms and Conditions</a><a> |</a>
-                            <a href="privacy.html">Privacy Policy</a>
-        
-                            <a class="back-to-top" href="#">
-                                <svg class="back-to-top">
-                                    <use xlink:href="#to-top"></use>
-                                </svg>
-                            </a>
-                        </div>
+
+        </div>
+
+        <div class="sub-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <span>
+                            Copyright © 2018 <a href="index.html" class="sub-footer__link">Trusken</a>
+
+                        </span>
+                        <br>
+
+                        <a href="terms.html">Terms and Conditions</a><a> |</a>
+                        <a href="privacy.html">Privacy Policy</a>
+
+                        <a class="back-to-top" href="#">
+                            <svg class="back-to-top">
+                                <use xlink:href="#to-top"></use>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
-        
-        </footer>
+        </div>
+
+    </footer>
 
     <!-- End Footer -->
 
@@ -1924,23 +1980,23 @@
                 <div class="modal-body">
 
                     <div class="row">
-                            <div class="col-md-1 "></div>
+                        <div class="col-md-1 "></div>
                         <div class="col-md-10 " style="text-align:center;">
                             <!-- <img src="images/sin.png" class="LinkDNr" style=" height:40px;" onclick="signupLinkdn()"> -->
                             <img src="images/signinlinkedin.png" class="LinkDNr" style="cursor:pointer" onclick="signupLinkdn()">
                             <h5 style="text-align:center; color:#bdc3c7">or</h5>
                             <form id="loginForm" class="account-form">
 
-                                <input type="text" class="email input-standard-grey" id="uname" style="width:100%;height:40px;"name="username"
-                                    placeholder="User Email" required>
+                                <input type="text" class="email input-standard-grey" id="uname" style="width:100%;height:40px;"
+                                    name="username" placeholder="User Email" required>
                                 </br></br>
-                                <input type="password" class="password input-standard-grey" id="passw" style="width:100%;height:40px;"name="password"
-                                    placeholder="Password" required>
+                                <input type="password" class="password input-standard-grey" id="passw" style="width:100%;height:40px;"
+                                    name="password" placeholder="Password" required>
                                 </br></br>
 
                                 <!-- <label class=""><input type="radio" name="remember-pass"> Remember Password</label></br> -->
-                                <a  href="forgotPass.html" class="helped" style="cursor:pointer" >Forgot Password?</a>
-                                <br>       <br>
+                                <a href="forgotPass.html" class="helped" style="cursor:pointer">Forgot Password?</a>
+                                <br> <br>
                                 <input type="button" class="Btn Btn-small Btn--blue Btn-hover-shadow" style="height:35px; font-weight: bolder;  padding-top:10px; border:#0B4CFF;"
                                     onclick="login()" value="Login">
                                 <!-- <a  class="btn btn-white" type="submit"  style="background-color:#0B4CFF;color:#fff; border:#0B4CFF;" >LOGIN</a> -->
@@ -1949,7 +2005,7 @@
                             <!-- <button class="account-form" href="registration.html" >sign in </button> -->
                             <br>
                             Are you a new user?
-                            <a data-toggle="modal" data-target="#myModal1" data-dismiss="modal"><b>Signup</b></a>
+                            <a data-toggle="modal" data-target="#myModal1" data-dismiss="modal" style="cursor:pointer;"><b>Signup</b></a>
 
                             <!-- <div class="text-center or-section">
                             Or
@@ -1998,18 +2054,19 @@
                                 <input type="text" class="email input-standard-grey" id="namew" style="border:1px solid #ececec; width:100%;height:40px;"
                                     name="name" placeholder="Name" required></br></br>
 
-                                <input type="email" class="email input-standard-grey" id="emaile" style="border:1px solid #ececec; width:100%; height:40px;"" name="
-                                    email" placeholder="Your Email" required></br></br>
+                                <input type="email" class="email input-standard-grey" id="emaile" style="border:1px solid #ececec; width:100%; height:40px;"
+                                    name="email" placeholder="Your Email" required></br></br>
 
-                                <input type="password" class="password input-standard-grey" id="regpass" style="border:1px solid #ececec; width:100%;height:40px;"" name="
-                                    password" placeholder="Password" required></br></br>
+                                <input type="password" class="password input-standard-grey" id="regpass" style="border:1px solid #ececec; width:100%;height:40px;"
+                                    name="signuppassword" placeholder="Password" required></br></br>
 
                                 <div class="checkbox">
-                                    <input name="agreement" type="checkbox"  id="agreement">
-                                    <label for="agreement">Accept User <a href="terms.html">Agreement</a> and <a href="privacy.html"> Privacy Policy</a> </label>
+                                    <input name="agreement" type="checkbox" id="agreement">
+                                    <label for="agreement">Accept User <a href="terms.html">Agreement</a> and <a href="privacy.html">
+                                            Privacy Policy</a> </label>
                                 </div>
 
-                                                                <!-- <div class="checkbox"> 
+                                <!-- <div class="checkbox"> 
                                                 <input name="corporateUser" type="checkbox" id="corporateUser" >
                                                     <label for="corporateUser">Corporate Account(Check this only if you want to be a corporate user)</label>
                                                     </div>
@@ -2020,7 +2077,7 @@
 
                                 <br><br>
                                 Already have an account?
-                                <a data-toggle="modal" data-target="#myModal" data-dismiss="modal" ><b>Login</b></a>
+                                <a data-toggle="modal" data-target="#myModal" data-dismiss="modal" style="cursor:pointer;" ><b>Login</b></a>
 
 
                         </div>
@@ -2038,6 +2095,16 @@
     </div>
     <!-- JS Script -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
+    <script src="js/prove.js"></script>
+    <script src="js/decorator.js"></script>
+    <script src="js/validation.js"></script>
+
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/crum-mega-menu.js"></script>
     <script src="js/swiper.jquery.min.js"></script>
@@ -2052,15 +2119,15 @@
 
     <script src="js/app.js"></script>
     <script src="js/template.js"></script>
-        <script>
-            function openNav() {
+    <script>
+        function openNav() {
             document.getElementById("myNav").style.width = "100%";
-            }
-            
-            function closeNav() {
+        }
+
+        function closeNav() {
             document.getElementById("myNav").style.width = "0%";
-            }
-            </script>
+        }
+    </script>
     <!-- ...end JS Script -->
 
 </body>

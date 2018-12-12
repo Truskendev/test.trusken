@@ -897,7 +897,8 @@
         -webkit-transform: translate(0, -50%);
         -ms-transform: translate(0, -50%); }
         .slider-slides .slides-item .content .text-wrap .slides-title {
-          font-size: 26px;
+          font-size: 22px;
+          font-weight: 800;
           line-height: 30px;
           color: #fff;
           text-transform: capitalize; }
@@ -919,7 +920,7 @@
             .slider-slides .slides-item .content .text-wrap .slides-sub-title {
               display: none; } }
       .slider-slides .slides-item .content .slides-number {
-        font-size: 104px;
+        font-size: 90px;
         color: rgba(255, 255, 255, 0.1);
         position: relative;
         float: right;

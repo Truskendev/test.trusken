@@ -147,7 +147,7 @@
 				  
 						  <div class="row" style="text-align: center;">
 							  <div class="col-md-8 col-sm-6 col-md-offset-2 col-sm-offset-3">
-								 <p style="font-weight: bold;">You Earned 10000 Coins</p>
+								 <p style="font-weight: bold;">You Earned 100 Coins</p>
 								 
 				
 								   
@@ -200,23 +200,30 @@
 	<script src="../js/template.js"></script>
 	<script>
 		window.onload = function () {
-			var chart1 = document.getElementById("line-chart").getContext("2d");
-			window.myLine = new Chart(chart1).Line(lineChartData, {
-				responsive: true,
-				scaleLineColor: "rgba(0,0,0,.2)",
-				scaleGridLineColor: "rgba(0,0,0,.05)",
-				scaleFontColor: "#c5c7cc"
-			});
+			// var chart1 = document.getElementById("line-chart").getContext("2d");
+			// window.myLine = new Chart(chart1).Line(lineChartData, {
+			// 	responsive: true,
+			// 	scaleLineColor: "rgba(0,0,0,.2)",
+			// 	scaleGridLineColor: "rgba(0,0,0,.05)",
+			// 	scaleFontColor: "#c5c7cc"
+			// });
 		};
-
-
-
 
 		$(document).ready(function () {
 			let uid = window.location.href.split('?')[1];
 			loadProfilePage(uid);
 			loadaddEdu(uid)
 
+			// ############# allCities getting @ Aravind M #############		
+				$.post("/getAllCities", function (respons) {
+					// localStorage.setItem("citiess",JSON.stringify(respons));
+					respons.forEach((element,index) => {
+						// console.log(element)
+						$("#allCities").append(new Option(element.name,element.name)) 
+					});
+		
+				});
+			// ############# allCities getting @ Aravind M #############
 		});
 
 	</script>
